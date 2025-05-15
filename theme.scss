@@ -1,0 +1,7 @@
+.block-region {
+    width: 450px; // Ajustez cette valeur selon vos besoins
+
+    @media (max-width: 768px) {
+        width: 100%; // Assurez-vous que les blocs restent réactifs sur les petits écrans
+    }
+}

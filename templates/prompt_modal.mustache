@@ -1,0 +1,194 @@
+<!--
+  @copyright 2025 Université TÉLUQ
+-->
+
+<div id="promptModal" class="modal" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    {{#has_prompt}}Modifier{{/has_prompt}}
+                    {{^has_prompt}}Ajouter{{/has_prompt}} 
+                    un prompt personnalisé
+                </h5>
+                <button type="button" class="close" onclick="togglePromptModal()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="currentColor"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="promptform">
+                    <!-- Guide pour les enseignants -->
+                    <div class="form-group">
+                        <p>
+                            Consultez le guide pour concevoir des prompts efficaces : 
+                            <a href="https://docs.google.com/document/d/1JZOkdeZaAFJMhsxdb3SC28gel7S_PDgC/edit?usp=sharing&ouid=106953369477562214173&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">
+                                Guide pour concevoir des prompts destiné à l’enseignant
+                            </a>
+                        </p>
+                    </div>
+                    
+                    <!-- Champ de contenu du prompt -->
+                    <div class="form-group">
+                        <label for="prompttext">Contenu du prompt</label>
+                        <textarea id="prompttext" name="prompttext"
+                                  class="form-input prompt-textarea" 
+                                  placeholder="Écrivez votre prompt ici" 
+                                  style="height: 300px;" required>{{prompt_text}}</textarea>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secondary" onclick="togglePromptModal()">Annuler</button>
+                        <button type="submit" class="btn-primary">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: none;
+}
+
+.modal-dialog {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    margin: 30px auto;
+    max-width: 550px;
+    position: relative;
+    width: 95%;
+}
+
+.modal-content {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.modal-header {
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 24px;
+}
+
+.modal-title {
+    color: #1e293b;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.close {
+    background: none;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.close:hover {
+    color: #4f46e5;
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    color: #475569;
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.form-input {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    color: #1e293b;
+    display: block;
+    font-size: 0.95rem;
+    padding: 10px 16px;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.form-input:focus {
+    border-color: #6366F1;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+    outline: none;
+}
+
+.prompt-textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.modal-footer {
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    padding-top: 20px;
+}
+
+.btn-primary,
+.btn-secondary {
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: #6366F1;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #4f46e5;
+}
+
+.btn-secondary {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.btn-secondary:hover {
+    background: #e2e8f0;
+}
+
+@media (max-width: 640px) {
+    .modal-dialog {
+        margin: 16px;
+        width: auto;
+    }
+    
+    .modal-body {
+        padding: 16px;
+    }
+}
+</style>
