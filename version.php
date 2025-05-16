@@ -51,4 +51,4 @@ $plugin->requires = 2022112800;
 //              Features are complete, and most bugs are resolved.
 // MATURITY_STABLE: Stable version, tested and ready for production use.
 //                  Recommended for general use.
-$plugin->maturity = MATURITY_STABLE;
+$plugin->maturity = MATURITY_ALPHA;
