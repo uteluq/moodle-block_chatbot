@@ -9,9 +9,9 @@ require_once($CFG->dirroot . '/blocks/chatbot/classes/admin_setting_test_button.
 defined('MOODLE_INTERNAL') || die();
 
 
-// Vérifie si l'utilisateur a la capacité de gérer les paramètres du plugin.
+// Check if the user has the capability to manage the plugin settings.
 if (has_capability('block/chatbot:manage', context_system::instance()) && $ADMIN->fulltree) {
-    // Clé API OpenAI
+    // OpenAI API Key
     $settings->add(new admin_setting_configtext(
         'block_chatbot/openai_api_key',
         get_string('openai_api_key', 'block_chatbot'),
@@ -63,7 +63,7 @@ if (has_capability('block/chatbot:manage', context_system::instance()) && $ADMIN
         PARAM_TEXT
     ));
 
-    // Bouton de test des clés API
+    // API keys test button
     $settings->add(new admin_setting_test_button(
         'block_chatbot/test_api_keys',
         get_string('test_api_keys', 'block_chatbot'),
