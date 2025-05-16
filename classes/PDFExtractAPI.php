@@ -18,7 +18,7 @@ class PDFExtractAPI
     {
         $ch = curl_init();
     
-        // Préparation des données
+        // Preparation of data
         $postData = 'client_id=' . urlencode($this->clientId) . '&client_secret=' . urlencode($this->clientSecret);
     
         // Options cURL
@@ -33,7 +33,7 @@ class PDFExtractAPI
     
         curl_setopt_array($ch, $options);
     
-        // Exécution de la requête
+        // Executing the request
         $response = curl_exec($ch);
         $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         if (curl_errno($ch)) {
@@ -166,7 +166,7 @@ class PDFExtractAPI
 
         curl_close($ch);
 
-        // Afficher la réponse complète
+        // Show full answer
         echo "Response Headers: " . print_r($headers, true) . "\n";
         echo "Response Body: " . print_r($body, true) . "\n";
 
@@ -214,7 +214,7 @@ class PDFExtractAPI
             'Authorization: Bearer ' . $this->accessToken,
             'x-api-key: ' . $this->clientId,
         ]);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Désactive SSL
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Disable SSL
 
         $response = curl_exec($ch);
         $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -263,7 +263,7 @@ class PDFExtractAPI
 
         curl_setopt($ch, CURLOPT_URL, $downloadUri);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Désactive SSL
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Disable SSL
 
         $response = curl_exec($ch);
         $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -283,30 +283,30 @@ class PDFExtractAPI
 
     public function extraireTexte($contenu)
     {
-        // Décoder le contenu JSON en un tableau PHP
+        // Decoding JSON content into a PHP array
         $donnees = json_decode($contenu, true);
 
-        // Vérifier si les données ont été correctement décodées
+        // Check that data has been correctly decoded
         if ($donnees === null) {
             die("Erreur lors du décodage du fichier JSON.");
         }
 
-        // Initialiser une variable pour stocker le texte extrait
+        // Initialize a variable to store extracted text
         $texteComplet = "ok";
 
-        // Vérifier si la clé "elements" existe et est un tableau
+        // Check if the key “elements” exists and is an array
         if (isset($donnees["elements"]) && is_array($donnees["elements"])) {
-            // Parcourir les éléments
+            // Browse elements
             foreach ($donnees["elements"] as $element) {
-                // Vérifier si la clé "Text" existe dans l'élément
+                // Check if the “Text” key exists in the element
                 if (isset($element["Text"])) {
-                    // Ajouter le texte à la chaîne complète
+                    // Add text to complete string
                     $texteComplet .= $element["Text"] . "\n\n";
                 }
             }
         }
 
-        // Retourner le texte complet
+        // Return to full text
         return trim($texteComplet);
     }
 
@@ -315,13 +315,12 @@ class PDFExtractAPI
         $this->getAccessToken();
         $assetId = $this->uploadAsset($filePath);
         if ($assetId === null) {
-            return "Erreur 1";
+            return "Err code 1";
         }
 
         $locationUrl = $this->createJob($assetId);
         if ($locationUrl === null) {
-            return "Erreur 2";
-            ;
+            return "Err code 2";
         }
 
         $status = 'in progress';
@@ -339,22 +338,16 @@ class PDFExtractAPI
                     throw new Exception('Job failed');
                 }
             } else {
-                // echo "Unexpected response from getJobStatus: " . print_r($jobStatus, true) . "\n";
-                return "Erreur 4";
-                ;
+                return "Err code 4";
             }
         }
 
         if ($downloadUri !== null) {
             $result = $this->downloadAsset($downloadUri);
             $text = $this->extraireTexte($result);
-            // echo "PDF processed successfully!\n";
             return $text;
-
-        } else {
-            // echo "Job did not complete successfully.\n";
         }
-        return "Erreur 5";
+        return "Err code 5";
     }
 }
 

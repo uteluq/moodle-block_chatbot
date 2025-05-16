@@ -12,7 +12,7 @@ class admin_setting_test_button extends admin_setting {
     }
 
     public function write_setting($data) {
-        // Cette méthode est nécessaire mais ne fait rien car le bouton ne sauvegarde pas de données
+        // This method is necessary but does nothing because the button does not save any data.
         return '';
     }
 
