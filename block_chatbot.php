@@ -9,14 +9,14 @@ class block_chatbot extends block_base
 
     public function applicable_formats() {
         return array(
-            'course-view' => true, // Disponible uniquement dans les cours.
-            'site'       => false, // Non disponible sur la page d'accueil.
-            'mod'        => false, // Non disponible dans les activités (modules).
-            'my'         => false, // Non disponible sur le tableau de bord utilisateur.
+            'course-view' => true, // Only available in courses.
+            'site'       => false, // Not available on the site homepage.
+            'mod'        => false, // Not available in activities (modules).
+            'my'         => false, // Not available on the user dashboard.
         );
     }
     public function instance_allow_multiple() {
-        return false; // Empêche plusieurs instances du bloc dans un même cours.
+        return false; // Prevents multiple instances of the block in the same course.
     }
 
 
@@ -36,47 +36,34 @@ class block_chatbot extends block_base
 
         $this->content = new stdClass;
 
-        // Récupérer le nom du cours actuel
+        // Get the current course name
         global $PAGE;
         $coursename = $PAGE->course->fullname;
 
-        // Le prompt par défaut avec le nom du cours dynamique
-        $default_prompt = <<<EOT
-Contexte de la situation :
-L’apprenant suit un cours sur {$coursename}. Ton rôle est de l’accompagner en lui fournissant des réponses précises, pertinentes et adaptées à son apprentissage.
-Mission :
-En tant qu’assistant, ta mission est d’aider l’apprenant à comprendre les concepts du cours sur {$coursename} en répondant à ses questions, tout en t’appuyant sur le contexte fourni pour formuler une réponse. [[ historique ]].
-Tu dois formuler des réponses claires, précises et pertinentes, en veillant à ne transmettre que des informations issues du cours. Si une réponse ne peut être trouvée dans le contexte fourni, répondre strictement par : " Je suis calibré en fonction du contenu du cours qui a été soigneusement sélectionné par votre enseignant. Si vous voulez plus de renseignement on vous invite à le contacter. "
-Si l'apprenant écrit des phrases montrant qu'il n'a pas compris un concept ou une explication précédente, vérifie [[ historique ]] pour identifier ce qui a été mal compris, puis reformule ton explication avec plus de simplicité et des exemples plus concrets.
-Instructions :
-1. Détecte les émotions dans la question de l’apprenant et adopte un ton empathique et bienveillant.
-2. Réponds de manière claire et structurée.
-3. Explique le concept avec des exemples si nécessaire.
-4. Ne fais aucune supposition en dehors du contexte fourni.
-Nouvelle question de l’apprenant  [[ question ]] 
-EOT;
+        // Default prompt with dynamic course name
+        $default_prompt =  get_string('default_prompt', 'block_chatbot');
 
 
-        // Récupérer le prompt existant de l'utilisateur
+        // Retrieve the existing prompt from the database
         $existing_prompt = $DB->get_record('block_chatbot_prompts', array('userid' => $USER->id, 'courseid' => $COURSE->id));
 
-        // Vérification du rôle enseignant
+        // Check if the user is a teacher
         $coursecontext = context_course::instance($COURSE->id);
         $isteacher = has_capability('moodle/course:manageactivities', $coursecontext);
 
-        // Préparer les données pour les templates
+        // Prepare data for the templates
         $templateData = [
             'has_prompt' => !empty($existing_prompt),
             'prompt_text' => $existing_prompt ? $existing_prompt->prompt : $default_prompt,
-            'isteacher' => $isteacher  // Ajout de la variable isteacher,
+            'isteacher' => $isteacher  // Add the isteacher variable
         ];
 
-        // Chargement des templates
+        // Load the templates
         $this->content->text = $OUTPUT->render_from_template('block_chatbot/chatbot', $templateData);
         $this->content->text .= $OUTPUT->render_from_template('block_chatbot/prompt_modal', $templateData);
         $this->content->text .= $OUTPUT->render_from_template('block_chatbot/load-course-modal', $templateData);
 
-        // Ajout du JavaScript
+        // Add JavaScript
         $this->content->text .= <<<EOT
         <script type="text/javascript">
             function togglePromptModal() {
@@ -151,7 +138,7 @@ EOT;
                             userid: {$USER->id},
                             courseid: {$COURSE->id}
                         })
-                    })
+                    )
                     .then(response => response.json())
                     .then(data => {
                         errorDiv.textContent = "";
@@ -162,7 +149,7 @@ EOT;
                         errorDiv.textContent = "Prompt enregistré avec succès!";
                         togglePromptModal();
                         setTimeout(() => {
-                            location.reload(); // Recharger pour mettre à jour l'affichage
+                            location.reload(); // Reload to update the display
                         }, 1500);
                     })
                     .catch(error => {

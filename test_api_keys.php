@@ -104,17 +104,11 @@ function getAccessTokenAdobePDFServices($clientId, $clientSecret)
     }
 }
 
-/**
- * Récupère la liste des collections (classes) disponibles dans Weaviate
- * 
- * @return array Tableau contenant le statut de l'opération, un message et les données des collections
- */
 function getCollectionsWeaviate($apiUrl, $apiKey): array
 {
-    // Construction de l'URL pour récupérer le schéma
     $endpoint = $apiUrl . '/v1/schema';
 
-    // Configuration et exécution de la requête CURL
+    // Configure and execute the CURL request
     $ch = curl_init();
     curl_setopt_array($ch, [
         CURLOPT_URL => $endpoint,
@@ -126,24 +120,24 @@ function getCollectionsWeaviate($apiUrl, $apiKey): array
         ]
     ]);
 
-    // Exécution de la requête et récupération de la réponse
+    // Execute the request and get the response
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-    // Gestion des erreurs CURL
+    // Handle CURL errors
     if (curl_errno($ch)) {
         $errorMessage = curl_error($ch);
         curl_close($ch);
         return [
             'success' => false,
-            'message' => 'Erreur lors de la connexion à Weaviate: ' . $errorMessage,
+            'message' => 'Error connecting to Weaviate: ' . $errorMessage,
             'data' => []
         ];
     }
 
     curl_close($ch);
 
-    // Vérification du code de réponse HTTP
+    // Check HTTP response code
     if ($httpCode !== 200) {
         return [
             'success' => false,
