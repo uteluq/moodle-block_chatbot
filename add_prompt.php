@@ -4,31 +4,26 @@
  */
 
 require_once('../../config.php');
-require_once($CFG->dirroot . '/blocks/chatbot/classes/openai_service.php');
 require_login();
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-// $log_file = $CFG->dirroot . '/blocks/chatbot/custom_debug.log';
 
 try {
+    // Decode the JSON input from the request
     $input = json_decode(file_get_contents('php://input'), true);
-    // error_log('Input reçu: ' . print_r($input, true), 3, $log_file);
-
 
     $prompttext = $input['prompttext'];
     $sesskey = $input['sesskey'];
     $userid = $input['userid'];
     $courseid = $input['courseid'];
 
-    // $userid = $USER->id;
-    // $courseid = $COURSE->id;
-
+    // Validate the session key
     if (!confirm_sesskey($sesskey)) {
-        throw new Exception('Invalid sesskey');
+        throw new Exception(get_string('invalid_sesskey', 'block_chatbot'));
     }
 
-    // Vérifier si un prompt existe déjà pour cet utilisateur
+    // Check if a prompt already exists for this user
     $existing_prompt = $DB->get_record('block_chatbot_prompts', array('userid' => $userid));
 
     $record = new stdClass();
@@ -40,23 +35,26 @@ try {
 
     try {
         if ($existing_prompt) {
+            // Update the existing prompt
             $record->id = $existing_prompt->id;
             $DB->update_record('block_chatbot_prompts', $record);
-            // error_log('Prompt mis à jour avec succès', 3, $log_file);
         } else {
+            // Create a new prompt
             $record->timecreated = time();
             $DB->insert_record('block_chatbot_prompts', $record);
-            // error_log('Prompt créé avec succès', 3, $log_file);
         }
         $response = ['success' => true];
     } catch (Exception $db_error) {
-        // error_log('Erreur d\'écriture vers la base de données: ' . $db_error->getMessage(), 3, $log_file);
-        throw new Exception('Erreur d\'écriture vers la base de données: ' . $db_error->getMessage());
+        // Handle database errors
+        throw new Exception(get_string('database_write_error', 'block_chatbot') . $db_error->getMessage());
     }
 } catch (Exception $e) {
-    // error_log('Erreur chatbot: ' . $e->getMessage(), 3, $log_file);
+    // Handle exceptions and prepare error response
     $response = ['error' => $e->getMessage()];
 }
 
+// Set the header for JSON content type
 header('Content-Type: application/json');
+
+// Output the JSON response
 echo json_encode($response);

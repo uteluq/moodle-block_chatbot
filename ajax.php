@@ -1,271 +1,337 @@
 <?php
+
 /**
  * @copyright 2025 Université TÉLUQ
  */
-
 require_once('../../config.php');
+
 require_login();
-
-
-
-
 global $CFG, $USER, $COURSE, $DB, $PAGE;
 
-// Nettoyer toute sortie précédente
-ob_clean();
-if (ob_get_length())
-    ob_end_clean();
+// Clean any previous output
+// This is a good first step.
+if (ob_get_level() > 0) { // Check if buffer exists before trying to clean
+    ob_end_clean(); // Cleans and turns off buffering
+}
+ob_start(); // Start a new buffer immediately to catch any stray output
 
-// Définir les en-têtes HTTP
-header('Content-Type: application/json; charset=utf-8');
-header('Cache-Control: no-cache, must-revalidate');
+// Set HTTP headers - these might be overridden if send_json_response is called later
+// It's generally better to set these right before the final output.
+// header('Content-Type: application/json; charset=utf-8');
+// header('Cache-Control: no-cache, must-revalidate');
+
+// Configure debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 0); // Disable error display to browser to avoid JSON contamination
+ini_set('log_errors', 1);    // Ensure errors are logged
+// Consider setting ini_set('error_log', '/path/to/your/php_errors.log'); if not set globally
 
 require_once($CFG->dirroot . '/blocks/chatbot/classes/weaviate_connector.php');
 
-
-// Configuration du débogage
-error_reporting(E_ALL);
-ini_set('display_errors', 0); // Désactiver l'affichage des erreurs pour éviter la contamination du JSON
-
-// Chemin vers le fichier de log
-// $log_file = $CFG->dirroot . '/blocks/chatbot/custom_debug.log';
-
+/**
+ * Sanitize input to prevent XSS and other attacks.
+ * @param string $input The input string to sanitize.
+ * @return string The sanitized input.
+ */
 function sanitizeChatbotInput($input) {
-    // Supprimer les balises potentiellement dangereuses
-    $dangerousTags = ['script', 'iframe', 'object', 'embed', 'style', 'form', 'input'];
+    // Remove potentially dangerous tags
+    $dangerousTags = ['script', 'iframe', 'object', 'embed', 'style', 'form', 'input', 'applet', 'link', 'meta'];
     foreach ($dangerousTags as $tag) {
-        $input = preg_replace('/<\/?' . $tag . '[^>]*>/i', '', $input);
+        $input = preg_replace('/<\s*\/?\s*' . $tag . '[^>]*>/i', '', $input);
     }
 
-    // Supprimer les attributs contenant du JavaScript
-    $input = preg_replace('/\s*on\w+\s*=\s*["\'][^"\']*["\']/i', '', $input);
-    
-    // Supprimer les URLs JavaScript
-    $input = preg_replace('/javascript:\s*/i', '', $input);
+    // Remove attributes containing JavaScript (more robustly)
+    $input = preg_replace('/\s*on\w+\s*=\s*("([^"]*)"|\'([^\']*)\'|[^\s>]+)/i', '', $input);
 
-    // Bloquer les appels à des fonctions dangereuses
-    $dangerousFunctions = ['eval', 'system', 'exec', 'passthru', 'shell_exec', 'base64_decode'];
+    // Remove JavaScript URLs
+    $input = preg_replace('/javascript\s*:/i', '', $input);
+
+    // Block calls to dangerous functions (basic attempt, might not be exhaustive)
+    $dangerousFunctions = ['eval', 'system', 'exec', 'passthru', 'shell_exec', 'base64_decode', 'phpinfo', 'proc_open', 'popen'];
     foreach ($dangerousFunctions as $func) {
+        // Look for function name possibly followed by parentheses
         $input = preg_replace('/\b' . preg_quote($func, '/') . '\s*\(/i', '', $input);
     }
 
-    // Limiter la longueur
-    $input = mb_substr($input, 0, 1000, 'UTF-8');
+    // Limit length
+    $input = mb_substr($input, 0, 100000, 'UTF-8');
 
-    // Convertir en entités HTML uniquement pour les balises, sans affecter les apostrophes et guillemets
-    $input = htmlspecialchars($input, ENT_NOQUOTES, 'UTF-8');
+    // Convert special characters to HTML entities to prevent XSS.
+    // ENT_QUOTES will convert both double and single quotes.
+    // ENT_HTML5 is good practice if outputting to HTML5 contexts, otherwise ENT_HTML401.
+    $input = htmlspecialchars($input, ENT_QUOTES | ENT_HTML5, 'UTF-8');
 
-    // Décoder les entités HTML pour éviter le problème des apostrophes
-    $input = htmlspecialchars_decode($input, ENT_NOQUOTES);
+    // The previous htmlspecialchars_decode was likely neutralizing the htmlspecialchars.
+    // If the goal is to output safe HTML, only htmlspecialchars is needed.
+    // If the goal is to strip all HTML and then use, the preg_replace for tags is the main tool.
+    // For chatbot input, we generally want plain text or very restricted HTML.
+    // The current approach aims to strip dangerous HTML and then encode special chars.
 
     return $input;
 }
 
+/**
+ * Send a clean JSON response.
+ * @param array $data The data to send as JSON.
+ * @param int $status_code The HTTP status code.
+ */
+function send_json_response($data, $status_code = 200) {
+    global $CFG; // For logging path if needed
 
+    // Check if headers have already been sent (indicates premature output)
+    if (headers_sent($file, $line)) {
+        error_log("Chatbot API: Headers already sent from {$file}:{$line}. Cannot send JSON response properly. Prior output detected.");
+        // Attempt to clean again, though it's likely too late to set new headers.
+        while (ob_get_level() > 0) {
+            ob_end_clean();
+        }
+        // We can't reliably set headers now. The client will likely get mixed content.
+        // For debugging, we might try to echo the JSON anyway, but it's a sign of a deeper issue.
+        echo "";
+        echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PARTIAL_OUTPUT_ON_ERROR);
+        exit();
+    }
 
-// Fonction pour envoyer une réponse JSON propre
-function send_json_response($data, $status_code = 200)
-{
-
-    global $log_file;
-
-    // Nettoyer à nouveau pour s'assurer qu'il n'y a pas de sortie
-    if (ob_get_length())
+    // Clear all output buffers that might have been started by other parts of the code.
+    while (ob_get_level() > 0) {
         ob_end_clean();
+    }
 
-    // Log de la réponse avant envoi
-    // error_log('Envoi réponse JSON: ' . json_encode($data), 3, $log_file);
+    // Start a new, clean output buffer specifically for this JSON response.
+    if (!ob_start()) {
+        error_log("Chatbot API: Failed to start output buffer for JSON response.");
+        // Fallback or error handling if ob_start fails
+        http_response_code(500); // Internal Server Error
+        // Still try to send a JSON error message, but without buffer control.
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode(['error' => 'Server error: Output buffering failed.'], JSON_UNESCAPED_UNICODE);
+        exit();
+    }
 
     http_response_code($status_code);
-        // Réponse réussie
-        $answer = $data['answer'];
-    
-        if (!mb_detect_encoding($answer, 'UTF-8', true)) {
-            $data['answer'] = utf8_encode($answer); // Forcer l'encodage en UTF-8.
+    header('Content-Type: application/json; charset=utf-8');
+    header('Cache-Control: no-cache, must-revalidate, no-store, max-age=0');
+    header('Pragma: no-cache'); // For HTTP/1.0 compatibility
+    header('Expires: 0'); // Proxies
+
+    // Ensure $data['answer'] is UTF-8 if it exists and is a string
+    if (isset($data['answer']) && is_string($data['answer'])) {
+        if (!mb_check_encoding($data['answer'], 'UTF-8')) {
+            error_log('Chatbot API: Answer is not UTF-8. Attempting to convert. Original encoding: ' . mb_detect_encoding($data['answer']));
+            $converted_answer = mb_convert_encoding($data['answer'], 'UTF-8', mb_detect_encoding($data['answer']));
+            if ($converted_answer !== false) {
+                $data['answer'] = $converted_answer;
+            } else {
+                error_log('Chatbot API: Failed to convert answer to UTF-8. Using original potentially problematic string.');
+                // Potentially replace with an error message or a safe placeholder
+                // $data['answer'] = "Error: Could not encode answer to UTF-8.";
+            }
         }
-    echo json_encode($data, JSON_UNESCAPED_UNICODE);
+    } else if ($status_code === 200 && !isset($data['error']) && !isset($data['answer'])) {
+        error_log('Chatbot API: send_json_response called with 200 status but no "answer" or "error" field in data.');
+    }
+
+    $json_output = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PARTIAL_OUTPUT_ON_ERROR);
+
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        $json_error_msg = json_last_error_msg();
+        error_log('Chatbot API: JSON Encode Error - ' . $json_error_msg . '. Data was: ' . print_r($data, true));
+        
+        // Clean the buffer we started for the (failed) JSON attempt
+        ob_end_clean(); 
+        // Start a new buffer for the error message
+        ob_start(); 
+
+        http_response_code(500); // Internal Server Error
+        // Ensure Content-Type is still JSON for this error response
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode([
+            'error' => 'Server error: Failed to encode JSON response.',
+            'details' => $json_error_msg
+        ], JSON_UNESCAPED_UNICODE);
+        
+        ob_end_flush(); // Send the error JSON
+        exit();
+    }
+
+    // Successfully encoded JSON. Clean our buffer and send the output.
+    ob_end_clean();
+    echo $json_output;
     exit();
 }
 
 try {
-    // Vérifier la méthode HTTP
+    // Check HTTP method
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        send_json_response(['error' => 'Méthode HTTP non autorisée'], 405);
+        send_json_response(['error' => get_string('http_method_not_allowed', 'block_chatbot')], 405);
     }
 
-    // Lire l'entrée
+    // Read input
     $raw_input = file_get_contents('php://input');
-    // error_log('Raw input: ' . $raw_input, 3, $log_file);
-
-
-
+    if ($raw_input === false) {
+        send_json_response(['error' => get_string('error_reading_input', 'block_chatbot')], 400);
+    }
     $input = json_decode($raw_input, true);
-    // error_log('Input reçu: ' . print_r($input, true), 3, $log_file);
-    $userid = $input['userid'];
-    $courseid = $input['courseid'];
-    $sansRag = (int) $input['sansRag'];
-    $sansRag = $sansRag === 1;
-
-    // error_log('Valeur de sansRag : ' . $sansRag, 3, $log_file);
-
-
-    // error_log(PHP_EOL .'USER ID: ' . $courseid . ' COURSE ID ' . $userid, 3, $log_file);
-    // error_log(PHP_EOL  . ' COURSE ID ' . $userid, 3, $log_file);
 
     if (json_last_error() !== JSON_ERROR_NONE) {
-        send_json_response(['error' => 'JSON invalide: ' . json_last_error_msg()], 400);
+        send_json_response(['error' => get_string('invalid_json', 'block_chatbot') . ': ' . json_last_error_msg()], 400);
     }
 
-    if (!isset($input['question']) || !isset($input['sesskey'])) {
-        send_json_response(['error' => 'Paramètres manquants'], 400);
+    if (!isset($input['question']) || !isset($input['sesskey']) || !isset($input['userid']) || !isset($input['courseid'])) {
+        send_json_response(['error' => get_string('missing_parameters', 'block_chatbot')], 400);
     }
 
-    $question = trim($input['question']);
-
-    // Exemple d'utilisation
-try {
-    $question = sanitizeChatbotInput($question);
-    
-    // Vérification supplémentaire
-    if (empty($question)) {
-        throw new Exception("Question invalide");
-    }
-    
-    // Utilisation de la question sanitisée
-    // ... reste du traitement du chatbot
-    
-} catch (Exception $e) {
-    error_log('Erreur de sanitisation du chatbot : ' . $e->getMessage());
-    die('Question invalide');
-}
+    $question_raw = $input['question']; // Keep raw for logging if needed, then sanitize
+    $userid = (int)$input['userid']; // Cast to int for safety
+    $courseid = (int)$input['courseid']; // Cast to int for safety
     $sesskey = $input['sesskey'];
+    // Ensure sansRag is treated as boolean correctly
+    $sansRag = isset($input['sansRag']) && ($input['sansRag'] === true || $input['sansRag'] === 1 || $input['sansRag'] === 'true' || $input['sansRag'] === '1');
 
-    if (empty($question)) {
-        send_json_response(['error' => 'La question ne peut pas être vide'], 400);
+    // Sanitize the question
+    $question = sanitizeChatbotInput(trim($question_raw));
+
+
+
+    if (empty($question)) { // Check after sanitization
+        // If sanitizeChatbotInput can return an empty string from a non-empty input due to stripping
+        // this check is important.
+        send_json_response(['error' => get_string('invalid_question_after_sanitize', 'block_chatbot')], 400);
     }
-
+    
+    // Session key confirmation
     if (!confirm_sesskey($sesskey)) {
-        send_json_response(['error' => 'Session invalide'], 403);
+        send_json_response(['error' => get_string('invalid_session', 'block_chatbot')], 403);
     }
 
- 
+    // Retrieve API key for OpenAI (if used directly, otherwise for Weaviate/Cohere)
+    // $api_key = get_config('block_chatbot', 'openai_api_key');
+    // if (empty($api_key)) {
+    //     send_json_response(['error' => get_string('openai_api_key_not_configured', 'block_chatbot')], 500);
+    // }
 
-
-
-
-
-    // Récupérer la clé API
-    $api_key = get_config('block_chatbot', 'openai_api_key');
-    if (empty($api_key)) {
-        send_json_response(['error' => 'Clé API OpenAI non configurée'], 500);
-    }
-
-    // Initialiser OpenAI et obtenir la réponse
-    // $openai = new block_chatbot\openai_service($api_key);
-    // $answer = $openai->get_response($question);
-// Configuration des clés API et URL de Weaviate
-    $apiUrl = get_config('block_chatbot', 'weaviate_api_url');
-    $apiKey = get_config('block_chatbot', 'weaviate_api_key');
+    // Configure Weaviate API keys and URL
+    $weaviateApiUrl = get_config('block_chatbot', 'weaviate_api_url');
+    $weaviateApiKey = get_config('block_chatbot', 'weaviate_api_key');
     $cohereApiKey = get_config('block_chatbot', 'cohere_embedding_api_key');
 
+    if (empty($weaviateApiUrl) || empty($cohereApiKey)) { // Weaviate API key might be optional depending on setup
+        error_log('Chatbot API: Weaviate URL or Cohere API key is not configured.');
+        send_json_response(['error' => get_string('weaviate_cohere_not_configured', 'block_chatbot')], 500);
+    }
+    
     $weaviateConnector = new WeaviateConnector(
-        $apiUrl, // URL de votre instance Weaviate
-        $apiKey,  // Votre clé API Weaviate
-        cohereApiKey: $cohereApiKey // Votre clé API Cohere
+        $weaviateApiUrl,
+        $weaviateApiKey,
+        $cohereApiKey
     );
 
-    // Pour vérifier si c'est un enseignant dans le cours actuel
-    $context = context_course::instance($COURSE->id);
-    $isTeacher = has_capability('moodle/course:update', $context, $currentUserId);
-    $courseName = $DB->get_record('course', array('id' => $courseid))->fullname;
-    $collectionName = 'Collection_course_' . $courseid;
+    $context = context_course::instance($courseid); // Use $courseid from input
+    // $isTeacher = has_capability('moodle/course:update', $context, $USER->id); // $USER->id should be used if checking logged-in user
+                                                                              // If using $userid from input, ensure it's validated/authorized
+    
+    $courseRecord = $DB->get_record('course', array('id' => $courseid));
+    if (!$courseRecord) {
+        send_json_response(['error' => get_string('invalid_course_id', 'block_chatbot')], 400);
+    }
+    $courseName = $courseRecord->fullname;
+    $collectionName = 'Collection_course_' . $courseid; // Ensure this naming convention is consistent
 
+    $ragResults = "";
 
+    // ***** START DEBUGGING LOG FOR $answer (from $ragResults) *****
+    // This log will show what WeaviateConnector returns BEFORE it's processed further.
+    // Ensure this path is writable by your web server user (e.g., www-data, apache).
+    // Using $CFG->dataroot is generally safer for Moodle.
+    $debug_log_file = $CFG->dataroot . '/temp/chatbot_api_debug.log';
+    $timestamp = date('Y-m-d H:i:s');
+    $log_entry_header = "[{$timestamp}] UserID: {$userid}, CourseID: {$courseid}, SansRAG: " . ($sansRag ? 'true' : 'false') . "\n";
+    $log_entry_header .= "Sanitized Question: {$question}\n";
+    // ***** END DEBUGGING LOG HEADER *****
 
-
-    // Appeler la méthode
-// $ragResults = $weaviateConnector->ragSearchWithBestResult($courseName, $question, $courseName);
-// $answer =  $ragResults['generated_content'];
-
-$ragResults = "";
-
-if($sansRag === true) {
-    // error_log(PHP_EOL . 'Cohere Model Call', 3, $log_file);
-    $ragResults = $weaviateConnector->getCohereResponse($question, $cohereApiKey);
-
-} else {
-    // error_log(PHP_EOL . 'Weaviate  Call', 3, $log_file);
-
-    $ragResults = $weaviateConnector->getQuestionAnswer($courseName, $collectionName, $question,  $userid, $courseid);
-}
-    $answer = $ragResults;
-
-
-
-    if (empty($answer)) {
-        send_json_response(['error' => 'Réponse vide reçue de l\'API OpenAI'], 500);
+    if ($sansRag === true) {
+        $ragResults = $weaviateConnector->getCohereResponse($question, $cohereApiKey);
+    } else {
+        $ragResults = $weaviateConnector->getQuestionAnswer($courseName, $collectionName, $question, $userid, $courseid);
     }
 
-    // error_log(PHP_EOL .'Prompt envoyé: ' . PHP_EOL . $weaviateConnector->getLastPrompt() . PHP_EOL . PHP_EOL, 3, $log_file);
+    $answer = $ragResults;
+
+    // ***** CONTINUE DEBUGGING LOG FOR $answer *****
+    $log_entry_content = "Raw answer type from Connector: " . gettype($answer) . "\n";
+    $log_entry_content .= "Raw answer content from Connector:\n" . print_r($answer, true) . "\n";
+    $log_entry_content .= "-------------------------------------------------\n";
+    file_put_contents($debug_log_file, $log_entry_header . $log_entry_content, FILE_APPEND);
+    // ***** END DEBUGGING LOG *****
+
+    // Check if $answer is truly empty or indicates an error from the connector.
+    // An empty string "" might be a valid (though perhaps unhelpful) answer.
+    // null or false often indicate an actual failure in the connector.
+    if (is_null($answer) || $answer === false) {
+        error_log("Chatbot API: Empty or error response from Weaviate/Cohere. Answer was: " . var_export($answer, true));
+        send_json_response(['error' => get_string('empty_response_from_api', 'block_chatbot')], 500);
+    }
+    // If an empty string is also an error, add: || $answer === ""
+    if ($answer === "") {
+         // Decide if an empty string is an error or a valid (empty) response
+         // For now, let's assume it might be valid, but log it.
+         error_log("Chatbot API: Received an empty string as answer from Weaviate/Cohere for question: {$question}");
+    }
 
 
-    // error_log(PHP_EOL . 'Réponse reçue: ' . PHP_EOL .  $answer, 3, $log_file);
-
-    // error_log(PHP_EOL . '-------------------------------------------------------------------', 3, $log_file);
-
-    // Enregistrer la conversation
-    $max_conversations =  10;
+    // Save the conversation
+    $max_conversations = 10; // Consider making this configurable
 
     $record = new stdClass();
-    $record->userid = $userid;
-    $record->courseid = $courseid;
-    $record->question = $question;
-    $record->answer = $answer;
+    $record->userid = $userid; // Use validated $userid from input
+    $record->courseid = $courseid; // Use validated $courseid from input
+    $record->question = $question; // Use sanitized question
+    $record->answer = is_string($answer) ? $answer : json_encode($answer); // Ensure answer is string for DB
     $record->timecreated = time();
 
     try {
-        // Gérer la limite de conversations
-        $count = $DB->count_records('block_chatbot_conversations', ['userid' => $userid]);
+        $count = $DB->count_records('block_chatbot_conversations', ['userid' => $userid, 'courseid' => $courseid]);
 
         if ($count >= $max_conversations) {
-            $oldest = $DB->get_record_sql(
-                "SELECT id FROM {block_chatbot_conversations} 
-                WHERE userid = :userid 
-                ORDER BY timecreated ASC 
-                LIMIT 1",
-                ['userid' => $userid]
+            // Moodle's $DB methods expect an array of IDs for delete_records_select or similar.
+            // Or get the oldest records and delete them one by one or by a list of IDs.
+            $oldest_ids = $DB->get_fieldset_sql(
+                "SELECT id FROM {block_chatbot_conversations}
+                 WHERE userid = :userid AND courseid = :courseid
+                 ORDER BY timecreated ASC",
+                ['userid' => $userid, 'courseid' => $courseid],
+                0, // Offset
+                $count - $max_conversations + 1 // Limit (number of records to delete)
             );
 
-            if ($oldest) {
-                $DB->delete_records('block_chatbot_conversations', ['id' => $oldest->id]);
+            if ($oldest_ids) {
+                foreach ($oldest_ids as $old_id) {
+                    $DB->delete_records('block_chatbot_conversations', ['id' => $old_id]);
+                }
             }
         }
 
-        // Insérer la nouvelle conversation
         $DB->insert_record('block_chatbot_conversations', $record);
 
-        // Envoyer la réponse
         send_json_response([
             'status' => 'success',
-            'answer' => $answer
+            'answer' => $answer // Send the original $answer from the connector
         ]);
 
     } catch (dml_exception $db_error) {
-        // error_log('Erreur DB: ' . $db_error->getMessage(), 3, $log_file);
-        send_json_response([
-            'error' => 'Erreur lors de l\'enregistrement de la conversation'
-        ], 500);
+        error_log('Chatbot API: Database error while saving conversation - ' . $db_error->getMessage());
+        send_json_response(['error' => get_string('error_saving_conversation', 'block_chatbot') . ': ' . $db_error->getMessage()], 500);
     }
 
-    // Envoyer la réponse
-    send_json_response([
-        'status' => 'success',
-        'answer' => $answer
-    ]);
-
 } catch (Exception $e) {
-    // error_log('Erreur générale: ' . $e->getMessage(), 3, $log_file);
-    send_json_response([
-        'error' => $e->getMessage()
-    ], 500);
+    error_log('Chatbot API: General exception - ' . $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine());
+    // Avoid sending detailed exception messages to the client in production for security.
+    send_json_response(['error' => get_string('generic_server_error', 'block_chatbot') . ' Trace: ' . $e->getTraceAsString()], 500); // Added trace for debugging
+} finally {
+    // Ensure the output buffer started at the very beginning is cleaned up if not already handled.
+    if (ob_get_level() > 0) {
+        ob_end_flush(); // Or ob_end_clean() if no output is desired from this final stage.
+    }
 }
+
+?>

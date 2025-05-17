@@ -8,10 +8,9 @@ require_once($CFG->dirroot . '/blocks/chatbot/classes/admin_setting_test_button.
 // settings.php
 defined('MOODLE_INTERNAL') || die();
 
-
-// Vérifie si l'utilisateur a la capacité de gérer les paramètres du plugin.
+// Check if the user has the capability to manage plugin settings.
 if (has_capability('block/chatbot:manage', context_system::instance()) && $ADMIN->fulltree) {
-    // Clé API OpenAI
+    // OpenAI API Key
     $settings->add(new admin_setting_configtext(
         'block_chatbot/openai_api_key',
         get_string('openai_api_key', 'block_chatbot'),
@@ -20,7 +19,7 @@ if (has_capability('block/chatbot:manage', context_system::instance()) && $ADMIN
         PARAM_TEXT
     ));
 
-    // Cohere Embedding Model API
+    // Cohere Embedding Model API Key
     $settings->add(new admin_setting_configtext(
         'block_chatbot/cohere_embedding_api_key',
         get_string('cohere_embedding_api_key', 'block_chatbot'),
@@ -29,7 +28,7 @@ if (has_capability('block/chatbot:manage', context_system::instance()) && $ADMIN
         PARAM_TEXT
     ));
 
-    // Adobe PDF Services API
+    // Adobe PDF Services API Client ID
     $settings->add(new admin_setting_configtext(
         'block_chatbot/adobe_pdf_client_id',
         get_string('adobe_pdf_client_id', 'block_chatbot'),
@@ -38,6 +37,7 @@ if (has_capability('block/chatbot:manage', context_system::instance()) && $ADMIN
         PARAM_TEXT
     ));
 
+    // Adobe PDF Services API Client Secret
     $settings->add(new admin_setting_configtext(
         'block_chatbot/adobe_pdf_client_secret',
         get_string('adobe_pdf_client_secret', 'block_chatbot'),
@@ -46,7 +46,7 @@ if (has_capability('block/chatbot:manage', context_system::instance()) && $ADMIN
         PARAM_TEXT
     ));
 
-    // Weaviate
+    // Weaviate API URL
     $settings->add(new admin_setting_configtext(
         'block_chatbot/weaviate_api_url',
         get_string('weaviate_api_url', 'block_chatbot'),
@@ -55,6 +55,7 @@ if (has_capability('block/chatbot:manage', context_system::instance()) && $ADMIN
         PARAM_URL
     ));
 
+    // Weaviate API Key
     $settings->add(new admin_setting_configtext(
         'block_chatbot/weaviate_api_key',
         get_string('weaviate_api_key', 'block_chatbot'),
@@ -63,7 +64,7 @@ if (has_capability('block/chatbot:manage', context_system::instance()) && $ADMIN
         PARAM_TEXT
     ));
 
-    // Bouton de test des clés API
+    // Button to test API keys
     $settings->add(new admin_setting_test_button(
         'block_chatbot/test_api_keys',
         get_string('test_api_keys', 'block_chatbot'),

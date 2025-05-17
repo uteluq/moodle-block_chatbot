@@ -1,45 +1,52 @@
 <?php
 /**
- * @copyright 2025 Université TÉLUQ
+ * Weaviate Connector class for Moodle.
+ *
+ * @package    block_chatbot
+ * @subpackage weaviateconnector
+ * @copyright  2025 Université TÉLUQ
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+defined('MOODLE_INTERNAL') || die();
 
 require_once(__DIR__ . '/../../../config.php');
 require_login();
+
 /**
- * Classe WeaviateConnector
- * 
- * Cette classe gère toutes les interactions avec une instance Weaviate,
- * incluant la connexion, l'indexation de documents, la recherche sémantique
- * et la génération de contenu.
+ * Class WeaviateConnector
+ *
+ * This class manages all interactions with a Weaviate instance,
+ * including connection, document indexing, semantic search,
+ * and content generation.
  */
 class WeaviateConnector
 {
-
-    /** @var string URL de l'instance Weaviate */
+    /** @var string Weaviate instance URL */
     private string $apiUrl;
 
     private string $lastPrompt;
 
-    /** @var string Clé API pour l'authentification Weaviate */
+    /** @var string API Key for Weaviate authentication */
     private string $apiKey;
 
-    /** @var string Clé API pour l'authentification Cohere */
+    /** @var string API Key for Cohere authentication */
     private string $cohereApiKey;
 
-    /** @var string|null Stocke la dernière erreur survenue */
+    /** @var string|null Stores the last error occurred */
     private ?string $lastError = null;
 
-    /** @var int Taille des lots pour l'indexation par batch */
+    /** @var int Batch size for batch indexing */
     private int $batchSize = 100;
 
     /**
-     * Constructeur
-     * 
-     * Initialise une nouvelle instance du connecteur Weaviate
-     * 
-     * @param string $apiUrl URL de l'instance Weaviate
-     * @param string $apiKey Clé API Weaviate
-     * @param string $cohereApiKey Clé API Cohere
+     * Constructor
+     *
+     * Initializes a new instance of the Weaviate connector
+     *
+     * @param string $apiUrl Weaviate instance URL
+     * @param string $apiKey Weaviate API Key
+     * @param string $cohereApiKey Cohere API Key
      */
     public function __construct(string $apiUrl, string $apiKey, string $cohereApiKey)
     {
@@ -48,23 +55,28 @@ class WeaviateConnector
         $this->cohereApiKey = $cohereApiKey;
     }
 
-    // Fonction pour appeler l'API Cohere
+    /**
+     * Function to call the Cohere API
+     *
+     * @param string $question Question to ask
+     * @param string $apiKey API Key for Cohere
+     * @return string|null Generated text or null in case of error
+     */
     public function getCohereResponse(string $question, string $apiKey): ?string
     {
         $url = 'https://api.cohere.com/v2/chat';
-        // Préparation des données pour la requête
+        // Prepare data for the request
         $data = [
-            // 'model' => 'command-r-plus-08-2024',
             'model' => 'command-r-03-2024',
             'messages' => [
                 ['role' => 'user', 'content' => $question]
             ]
         ];
 
-        // Initialisation de cURL
+        // Initialize cURL
         $ch = curl_init($url);
 
-        // Configuration des options cURL
+        // Configure cURL options
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
             'Authorization: Bearer ' . $apiKey,
@@ -73,144 +85,126 @@ class WeaviateConnector
         ]);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Réactivez la vérification SSL
-        curl_setopt($ch, CURLOPT_VERBOSE, true); // Mode verbose pour plus d'informations
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Re-enable SSL verification
+        curl_setopt($ch, CURLOPT_VERBOSE, true); // Verbose mode for more information
 
-        // Création d'un fichier temporaire pour stocker les informations de débogage
+        // Create a temporary file to store debug information
         $debugFile = fopen('php://temp', 'w+');
         curl_setopt($ch, CURLOPT_STDERR, $debugFile);
 
-        // Exécution de la requête
+        // Execute the request
         $response = curl_exec($ch);
 
-        // Récupération des informations de débogage
+        // Retrieve debug information
         rewind($debugFile);
         $debugInfo = stream_get_contents($debugFile);
 
-        // Vérification des erreurs cURL
+        // Check for cURL errors
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $curlError = curl_error($ch);
 
-        // Fermeture de la session cURL
+        // Close the cURL session
         curl_close($ch);
 
-        // Log détaillé
+        // Detailed log
         error_log('HTTP Status Code: ' . $httpCode);
         error_log('cURL Debug Info: ' . $debugInfo);
         error_log('Raw Response: ' . $response);
 
-        // Gestion des erreurs
+        // Error handling
         if ($curlError) {
-            return 'Erreur cURL : ' . $curlError;
+            return get_string('curl_error', 'block_chatbot') . $curlError;
         }
 
-        // Vérification du code de statut HTTP
+        // Check HTTP status code
         if ($httpCode !== 200) {
-            return 'Erreur HTTP ' . $httpCode . ': ' . $response;
+            return get_string('http_error', 'block_chatbot') . $httpCode . ': ' . $response;
         }
 
-        // Décodage de la réponse JSON
+        // Decode the JSON response
         $responseData = json_decode($response, true);
 
-        // Vérification des erreurs de décodage JSON
+        // Check for JSON decoding errors
         if (json_last_error() !== JSON_ERROR_NONE) {
-            return 'Erreur de décodage JSON : ' . json_last_error_msg() .
-                ' - Réponse brute : ' . $response;
+            return get_string('json_decode_error', 'block_chatbot') . json_last_error_msg() .
+                ' - Raw response: ' . $response;
         }
 
-        // Extraction de la réponse
+        // Extract the response
         if (isset($responseData['message']['content'][0]['text'])) {
             $this->lastPrompt = $question;
             return $responseData['message']['content'][0]['text'];
         }
 
-        // Retourne un message d'erreur si aucune réponse n'est générée
-        return 'Aucune réponse générée. Données reçues : ' . print_r($responseData, true);
+        // Return an error message if no response is generated
+        return get_string('no_response_generated', 'block_chatbot') . print_r($responseData, true);
     }
 
-
-
     /**
-     * Envoie une requête pour récupérer des réponses liées à une question et une collection
+     * Sends a request to get answers related to a question and a collection
      *
-     * @param string $collection Nom de la collection cible
-     * @param string $question Question posée
-     * @return string|null Texte généré ou null en cas d'erreur
+     * @param string $coursename Course name
+     * @param string $collection Target collection name
+     * @param string $question Question asked
+     * @param int $user_id User ID
+     * @param int $course_id Course ID
+     * @return string|null Generated text or null in case of error
      */
     public function getQuestionAnswer($coursename, string $collection, string $question, $user_id, $course_id): ?string
     {
-
         global $COURSE, $DB, $USER;
 
 
 
-        // Requête avec des valeurs entières
+
+
+
+        // Query with integer values
         $task = $DB->get_record('block_chatbot_prompts', array('userid' => $user_id, 'courseid' => $course_id))->prompt;
 
-        // Récupérer les deux dernières conversations de l'utilisateur
+        // Get the last 10 conversations of the user
         $last_conversations = $DB->get_records_sql(
-            "SELECT question, answer 
-            FROM {block_chatbot_conversations} 
-            WHERE userid = :userid 
-            ORDER BY timecreated DESC 
+            "SELECT question, answer
+            FROM {block_chatbot_conversations}
+            WHERE userid = :userid
+            ORDER BY timecreated DESC
             LIMIT 10",
             ['userid' => $user_id]
         );
 
-        // Initialiser les variables pour éviter les erreurs si moins de 2 conversations
+        // Initialize variables to avoid errors if less than 2 conversations
         $historique = "";
-        $question1 = '';
-        $reponse1 = '';
-        $question2 = '';
-        $reponse2 = '';
 
-        // Convertir le résultat en tableau indexé
+
+        // Convert the result to an indexed array
         $conversations = array_values($last_conversations);
 
-        // Construire le format d'historique
+        // Build the history format
         if (count($conversations) > 0) {
-            $historique = "Historique des interactions précédentes :\n\n";
+            $historique = get_string('previous_interactions_history', 'block_chatbot') . "\n\n";
 
             foreach ($conversations as $index => $conversation) {
                 $num = $index + 1;
-                $historique .= "Question précédente $num : " . $conversation->question . "\n";
-                $historique .= "Réponse : " . $conversation->answer . "\n\n";
+                $historique .= get_string('previous_question', 'block_chatbot', $num) . $conversation->question . "\n";
+                $historique .= get_string('answer', 'block_chatbot') . $conversation->answer . "\n\n";
             }
         }
-        // Déterminer le prompt à utiliser
+        // Determine the prompt to use
         if (!$task) {
-            $task = <<<EOT
-Contexte de la situation :
-L’apprenant suit un cours sur {$coursename}. Ton rôle est de l’accompagner en lui fournissant des réponses précises, pertinentes et adaptées à son apprentissage.
-Mission :
-En tant qu’assistant, ta mission est d’aider l’apprenant à comprendre les concepts du cours sur {$coursename} en répondant à ses questions, tout en t’appuyant sur le contexte fourni pour formuler une réponse. [[ historique ]].
-Tu dois formuler des réponses claires, précises et pertinentes, en veillant à ne transmettre que des informations issues du cours. Si une réponse ne peut être trouvée dans le contexte fourni, répondre strictement par : " Je suis calibré en fonction du contenu du cours qui a été soigneusement sélectionné par votre enseignant. Si vous voulez plus de renseignement on vous invite à le contacter. "
-Si l'apprenant écrit des phrases montrant qu'il n'a pas compris un concept ou une explication précédente, vérifie [[ historique ]] pour identifier ce qui a été mal compris, puis reformule ton explication avec plus de simplicité et des exemples plus concrets.
-Instructions :
-1. Détecte les émotions dans la question de l’apprenant et adopte un ton empathique et bienveillant.
-2. Réponds de manière claire et structurée.
-3. Explique le concept avec des exemples si nécessaire.
-4. Ne fais aucune supposition en dehors du contexte fourni.
-Nouvelle question de l’apprenant  [[ question ]] 
-EOT;
+            $task = get_string('default_prompt', 'block_chatbot');
         }
 
-
-
+        
+        $task = str_replace('[[ coursename ]]', $coursename, $task);
         $task = str_replace('[[ question ]]', $question, $task);
-        $task = str_replace('[[ historique ]]', $historique, $task);
+        $task = str_replace('[[ history ]]', $historique, $task);
 
 
 
 
-
-
-
-        $this->lastPrompt = $task;
-
-        // Encodez proprement le prompt pour l'intégrer dans la requête GraphQL
-        $task = json_encode($task); // Cela gère correctement l'échappement
-        $task = substr($task, 1, -1); // Retire les guillemets au début et à la fin
+        // Properly encode the prompt for inclusion in the GraphQL query
+        $task = json_encode($task); // This properly handles escaping
+        $task = substr($task, 1, -1); // Remove the quotes at the beginning and end
 
         $question = json_encode($question);
         $question = substr($question, 1, -1);
@@ -240,8 +234,6 @@ EOT;
             }"
         ];
 
-
-
         $headers = [
             'Content-Type: application/json',
             'Authorization: Bearer ' . $this->apiKey,
@@ -260,7 +252,7 @@ EOT;
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
         if (curl_errno($ch) || $httpCode !== 200) {
-            $this->lastError = curl_error($ch) ?: "HTTP Code $httpCode";
+            $this->lastError = curl_error($ch) ?: get_string('http_code', 'block_chatbot') . $httpCode;
             curl_close($ch);
             return null;
         }
@@ -272,22 +264,22 @@ EOT;
             return $decodedResponse['data']['Get'][$collection][0]['_additional']['generate']['groupedResult'];
         }
 
-        $this->lastError = "Invalid response format";
+        $this->lastError = get_string('invalid_response_format', 'block_chatbot');
         return null;
     }
 
     /**
-     * Supprime une collection (classe) existante dans Weaviate
-     * 
-     * @param string $className Nom de la collection à supprimer
-     * @return bool True si la suppression est réussie, False sinon
+     * Deletes an existing collection (class) in Weaviate
+     *
+     * @param string $className Name of the collection to delete
+     * @return bool True if deletion is successful, False otherwise
      */
     public function deleteCollection(string $className): bool
     {
-        // Construction de l'URL pour la suppression de schéma
+        // Construct the URL for schema deletion
         $endpoint = $this->apiUrl . '/v1/schema/' . urlencode($className);
 
-        // Configuration et exécution de la requête CURL
+        // Configure and execute the CURL request
         $ch = curl_init();
         curl_setopt_array($ch, [
             CURLOPT_URL => $endpoint,
@@ -300,11 +292,11 @@ EOT;
             ]
         ]);
 
-        // Exécution de la requête et récupération de la réponse
+        // Execute the request and retrieve the response
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-        // Gestion des erreurs CURL
+        // Handle CURL errors
         if (curl_errno($ch)) {
             $this->lastError = curl_error($ch);
             curl_close($ch);
@@ -313,10 +305,10 @@ EOT;
 
         curl_close($ch);
 
-        // Vérification du code de réponse HTTP
-        // 200 ou 204 sont des codes de succès pour une suppression
+        // Check HTTP response code
+        // 200 or 204 are success codes for deletion
         if ($httpCode !== 200 && $httpCode !== 204) {
-            $this->lastError = "Erreur HTTP $httpCode: " . $response;
+            $this->lastError = get_string('http_error', 'block_chatbot') . $httpCode . ": " . $response;
             return false;
         }
 
@@ -324,17 +316,17 @@ EOT;
     }
 
     /**
-     * Vérifie si une collection existe déjà dans Weaviate
-     * 
-     * @param string $className Nom de la collection à vérifier
-     * @return bool True si la collection existe, False sinon
+     * Checks if a collection already exists in Weaviate
+     *
+     * @param string $className Name of the collection to check
+     * @return bool True if the collection exists, False otherwise
      */
     public function collectionExists(string $className): bool
     {
-        // Construction de l'URL pour récupérer le schéma
+        // Construct the URL to retrieve the schema
         $endpoint = $this->apiUrl . '/v1/schema';
 
-        // Configuration et exécution de la requête CURL
+        // Configure and execute the CURL request
         $ch = curl_init();
         curl_setopt_array($ch, [
             CURLOPT_URL => $endpoint,
@@ -346,11 +338,11 @@ EOT;
             ]
         ]);
 
-        // Exécution de la requête et récupération de la réponse
+        // Execute the request and retrieve the response
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-        // Gestion des erreurs CURL
+        // Handle CURL errors
         if (curl_errno($ch)) {
             $this->lastError = curl_error($ch);
             curl_close($ch);
@@ -359,16 +351,16 @@ EOT;
 
         curl_close($ch);
 
-        // Vérification du code de réponse HTTP
+        // Check HTTP response code
         if ($httpCode !== 200) {
-            $this->lastError = "Erreur HTTP $httpCode: " . $response;
+            $this->lastError = get_string('http_error', 'block_chatbot') . $httpCode . ": " . $response;
             return false;
         }
 
-        // Décodage de la réponse JSON
+        // Decode the JSON response
         $schema = json_decode($response, true);
 
-        // Vérification de la présence de la collection dans le schéma
+        // Check for the presence of the collection in the schema
         if (isset($schema['classes'])) {
             foreach ($schema['classes'] as $class) {
                 if ($class['class'] === $className) {
@@ -379,26 +371,27 @@ EOT;
 
         return false;
     }
+
     /**
-     * Crée une nouvelle collection (classe) dans Weaviate
-     * 
-     * Cette méthode configure une nouvelle collection avec un vectorizer
-     * et des modules spécifiques pour le traitement du texte
-     * 
-     * @param string $className Nom de la collection à créer
-     * @param string $vectorizer Nom du vectorizer (par défaut text2vec-cohere)
-     * @param array $moduleConfig Configuration supplémentaire des modules
-     * @return bool True si la création est réussie, False sinon
+     * Creates a new collection (class) in Weaviate
+     *
+     * This method configures a new collection with a vectorizer
+     * and specific modules for text processing
+     *
+     * @param string $className Name of the collection to create
+     * @param string $vectorizer Name of the vectorizer (default text2vec-cohere)
+     * @param array $moduleConfig Additional module configuration
+     * @return bool True if creation is successful, False otherwise
      */
     public function createCollection(
         string $className,
         string $vectorizer = "text2vec-cohere",
         array $moduleConfig = []
     ): bool {
-        // Construction de l'URL pour la création de schéma
+        // Construct the URL for schema creation
         $endpoint = $this->apiUrl . '/v1/schema';
 
-        // Préparation de la configuration de la collection
+        // Prepare the collection configuration
         $data = [
             'class' => $className,
             'vectorizer' => $vectorizer,
@@ -411,7 +404,7 @@ EOT;
             )
         ];
 
-        // Configuration et exécution de la requête CURL
+        // Configure and execute the CURL request
         $ch = curl_init();
         curl_setopt_array($ch, [
             CURLOPT_URL => $endpoint,
@@ -425,11 +418,11 @@ EOT;
             ]
         ]);
 
-        // Exécution de la requête et récupération de la réponse
+        // Execute the request and retrieve the response
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-        // Gestion des erreurs CURL
+        // Handle CURL errors
         if (curl_errno($ch)) {
             $this->lastError = curl_error($ch);
             curl_close($ch);
@@ -438,9 +431,9 @@ EOT;
 
         curl_close($ch);
 
-        // Vérification du code de réponse HTTP
+        // Check HTTP response code
         if ($httpCode !== 200) {
-            $this->lastError = "Erreur HTTP $httpCode: " . $response;
+            $this->lastError = get_string('http_error', 'block_chatbot') . $httpCode . ": " . $response;
             return false;
         }
 
@@ -448,67 +441,46 @@ EOT;
     }
 
     /**
-     * Nettoie le texte en entrée pour l'indexation dans Weaviate
-     * 
-     * Normalise les espaces et retire les caractères problématiques
-     * tout en préservant les caractères spéciaux utiles
-     * 
-     * @param string $text Texte à nettoyer
-     * @return string Texte nettoyé
+     * Cleans the input text for indexing in Weaviate
+     *
+     * Normalizes spaces and removes problematic characters
+     * while preserving useful special characters
+     *
+     * @param string $text Text to clean
+     * @return string Cleaned text
      */
     private function cleanText(string $text): string
     {
-        // Convertit les caractères non-UTF8 ou invalides
+        // Convert non-UTF8 or invalid characters
         $text = mb_convert_encoding($text, 'UTF-8', 'UTF-8');
 
-        // Supprime les caractères de contrôle invisibles (sauf les sauts de ligne et tabs)
+        // Remove invisible control characters (except newlines and tabs)
         $text = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/u', '', $text);
 
-        // Normalise les sauts de ligne
+        // Normalize newlines
         $text = str_replace(["\r\n", "\r"], "\n", $text);
 
-        // Normalise les espaces multiples en un seul espace
+        // Normalize multiple spaces into a single space
         $text = preg_replace('/[ \t]+/', ' ', $text);
 
-        // Limite les sauts de ligne consécutifs à deux maximum
+        // Limit consecutive newlines to a maximum of two
         $text = preg_replace('/\n{3,}/', "\n\n", $text);
 
-        // Supprime les espaces au début et à la fin
+        // Remove spaces at the beginning and end
         $text = trim($text);
 
-        // Échappe les caractères qui pourraient causer des problèmes dans les requêtes JSON
+        // Escape characters that could cause problems in JSON queries
         $text = str_replace(['\\', "\f", "\b"], ['\\\\', '', ''], $text);
 
         return $text;
     }
-    // private function cleanText(string $text): string {
-    //     // Convertir le texte en UTF-8 pour éviter les problèmes d'encodage
-    //     $text = mb_convert_encoding($text, 'UTF-8', 'auto');
-
-    //     // Supprimer les caractères non imprimables (par exemple : retours chariot, tabulations, etc.)
-    //     $text = preg_replace('/[\x00-\x1F\x7F]/u', '', $text);
-
-    //     // Normaliser les espaces multiples en un seul espace
-    //     $text = preg_replace('/\s+/', ' ', $text);
-
-    //     // Supprimer les espaces au début et à la fin
-    //     $text = trim($text);
-
-    //     // Garder uniquement les caractères alphanumériques, emojis et certains symboles
-    //     // Nous incluons les emojis et les caractères Unicode dans la liste autorisée
-    //     $text = preg_replace('/[^\p{L}\p{N}\s\.,!?\-\'\"\p{So}]+/u', '', $text);
-
-    //     return $text;
-    // }
-
-
 
     /**
-     * Découpe le texte en chunks de taille similaire
-     * 
-     * @param string $text Texte à découper
-     * @param int $chunkSize Taille approximative souhaitée pour chaque chunk
-     * @return array Tableau de chunks de texte
+     * Splits the text into chunks of similar size
+     *
+     * @param string $text Text to split
+     * @param int $chunkSize Approximate desired size for each chunk
+     * @return array Array of text chunks
      */
     private function chunkText(string $text, int $chunkSize = 300): array
     {
@@ -519,17 +491,17 @@ EOT;
 
         foreach ($words as $word) {
             $wordLength = strlen($word);
-            // Si l'ajout du mot dépasse la taille limite et qu'on a déjà des mots
+            // If adding the word exceeds the size limit and there are already words
             if ($currentLength + $wordLength + 1 > $chunkSize && !empty($currentChunk)) {
                 $chunks[] = implode(' ', $currentChunk);
                 $currentChunk = [];
                 $currentLength = 0;
             }
             $currentChunk[] = $word;
-            $currentLength += $wordLength + 1; // +1 pour l'espace
+            $currentLength += $wordLength + 1; // +1 for the space
         }
 
-        // Ajoute le dernier chunk s'il reste des mots
+        // Add the last chunk if there are remaining words
         if (!empty($currentChunk)) {
             $chunks[] = implode(' ', $currentChunk);
         }
@@ -538,17 +510,17 @@ EOT;
     }
 
     /**
-     * Effectue une recherche sémantique avec génération de contenu
-     * 
-     * Cette méthode combine la recherche sémantique avec la génération
-     * de nouveau contenu basé sur les résultats
-     * 
-     * @param string $collection Nom de la collection à interroger
-     * @param string $concept Concept à rechercher
-     * @param string $generationTask Instruction pour la génération
-     * @param array $fields Champs à retourner dans les résultats
-     * @param int $limit Nombre maximum de résultats
-     * @return array|null Résultats avec contenu généré ou null si erreur
+     * Performs a semantic search with content generation
+     *
+     * This method combines semantic search with the generation
+     * of new content based on the results
+     *
+     * @param string $collection Name of the collection to query
+     * @param string $concept Concept to search for
+     * @param string $generationTask Instruction for generation
+     * @param array $fields Fields to return in the results
+     * @param int $limit Maximum number of results
+     * @return array|null Results with generated content or null if error
      */
     public function semanticSearchWithGeneration(
         string $collection,
@@ -559,12 +531,12 @@ EOT;
     ): ?array {
         $graphqlEndpoint = $this->apiUrl . '/v1/graphql';
 
-        // Prépare la liste des champs pour la requête GraphQL
+        // Prepare the list of fields for the GraphQL query
         $fieldsString = implode(' ', $fields);
-        // Échappe les guillemets dans la tâche de génération
+        // Escape quotes in the generation task
         $escapedTask = str_replace('"', '\\"', $generationTask);
 
-        // Construction de la requête GraphQL
+        // Construct the GraphQL query
         $query = [
             'query' => "{
                 Get {
@@ -590,7 +562,7 @@ EOT;
             }"
         ];
 
-        // Exécution de la requête via CURL
+        // Execute the request via CURL
         $ch = curl_init($graphqlEndpoint);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt_array($ch, [
@@ -604,7 +576,7 @@ EOT;
             ]
         ]);
 
-        // Récupération et vérification de la réponse
+        // Retrieve and verify the response
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
@@ -616,69 +588,68 @@ EOT;
 
         curl_close($ch);
 
-        // Vérification du code HTTP
+        // Check HTTP code
         if ($httpCode !== 200) {
-            $this->lastError = "Erreur HTTP $httpCode: $response";
+            $this->lastError = get_string('http_error', 'block_chatbot') . $httpCode . ": $response";
             return null;
         }
 
-        // Décodage de la réponse JSON
+        // Decode the JSON response
         $result = json_decode($response, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
-            $this->lastError = "Erreur de décodage JSON: " . json_last_error_msg();
+            $this->lastError = get_string('json_decode_error', 'block_chatbot') . json_last_error_msg();
             return null;
         }
 
         return $result['data']['Get'][$collection] ?? [];
     }
+
     /**
-     * Indexe un fichier texte dans Weaviate avec mécanisme de réessai
-     * 
-     * Lit, nettoie, découpe et indexe le contenu d'un fichier texte
-     * 
-     * @param string $filePath Chemin vers le fichier à indexer
-     * @param string $collection Nom de la collection cible
-     * @param string $courseId Identifiant du cours
-     * @return bool True si succès, False si erreur
+     * Indexes a text file in Weaviate with retry mechanism
+     *
+     * Reads, cleans, splits, and indexes the content of a text file
+     *
+     * @param string $filePath Path to the file to index
+     * @param string $collection Target collection name
+     * @param string $courseId Course ID
+     * @return bool True if successful, False if error
      */
     public function indexTextFile(string $filePath, string $collection, string $courseId): bool
     {
         global $CFG;
-        // $log_file = $CFG->dirroot . '/blocks/chatbot/custom_debug.log';
 
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
-        // error_log('Indexation: Début du processus', 3, $log_file);
 
-        // Vérification de l'existence du fichier
+        // Check if the file exists
         if (!file_exists($filePath)) {
-            $this->lastError = "Le fichier n'existe pas: $filePath";
+            $this->lastError = get_string('file_not_found', 'block_chatbot') . $filePath;
             return false;
         }
 
-        // Lecture du fichier
+        // Read the file
         $text = file_get_contents($filePath);
         if ($text === false) {
-            $this->lastError = "Impossible de lire le fichier";
+            $this->lastError = get_string('unable_to_read_file', 'block_chatbot');
             return false;
         }
 
-        // Préparation du texte
+        // Prepare the text
         $cleanedText = $this->cleanText($text);
         $cleanedText = $text;
         $chunks = $this->chunkText($cleanedText);
 
-        // Configuration pour l'indexation par lots
+        // Configure for batch indexing
         $batchEndpoint = $this->apiUrl . '/v1/batch/objects';
         $currentBatch = [];
         $success = true;
 
-        // Paramètres de réessai
-        $maxRetries = 5;        // Nombre maximum de tentatives
-        $retryDelay = 1;        // Délai initial entre les tentatives (en secondes)
-        $maxRetryDelay = 5;    // Délai maximum entre les tentatives (en secondes)
+        // Retry parameters
+        $maxRetries = 5;        // Maximum number of attempts
+        $retryDelay = 1;        // Initial delay between attempts (in seconds)
+        $maxRetryDelay = 5;    // Maximum delay between attempts (in seconds)
 
-        // Traitement de chaque chunk
+        // Process each chunk
         $objectCount = 0;
 
         foreach ($chunks as $chunk) {
@@ -693,14 +664,14 @@ EOT;
             $currentBatch[] = $object;
             $objectCount++;
 
-            // Si le lot est plein ou c'est le dernier chunk
+            // If the batch is full or it's the last chunk
             if ($objectCount >= $this->batchSize || $chunk === end($chunks)) {
-                // Construction manuelle du JSON pour éviter les problèmes potentiels avec json_encode
+                // Manually construct JSON to avoid potential issues with json_encode
                 $jsonObjects = [];
                 foreach ($currentBatch as $obj) {
                     $jsonObj = json_encode($obj);
                     if ($jsonObj === false) {
-                        $this->lastError = "Erreur d'encodage JSON: " . json_last_error_msg();
+                        $this->lastError = get_string('json_encode_error', 'block_chatbot') . json_last_error_msg();
                         return false;
                     }
                     $jsonObjects[] = $jsonObj;
@@ -708,16 +679,15 @@ EOT;
 
                 $jsonData = '{"objects":[' . implode(',', $jsonObjects) . ']}';
 
-                // Mise en place de la logique de réessai
+                // Set up retry logic
                 $retry = 0;
                 $currentDelay = $retryDelay;
                 $requestSuccess = false;
 
                 while (!$requestSuccess && $retry <= $maxRetries) {
                     if ($retry > 0) {
-                        // error_log("Tentative #$retry après échec. Attente de $currentDelay secondes...", 3, $log_file);
-                        // sleep($currentDelay);
-                        // Augmentation exponentielle du délai (backoff exponentiel)
+                        sleep($currentDelay);
+                        // Exponential backoff
                         $currentDelay = min($currentDelay * 2, $maxRetryDelay);
                     }
 
@@ -732,70 +702,61 @@ EOT;
                             'Authorization: Bearer ' . $this->apiKey,
                             'X-Cohere-Api-Key: ' . $this->cohereApiKey
                         ],
-                        CURLOPT_TIMEOUT => 30, // Timeout de 30 secondes
+                        CURLOPT_TIMEOUT => 30, // 30-second timeout
                     ]);
 
                     $response = curl_exec($ch);
                     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
                     if (curl_errno($ch)) {
-                        // error_log("Erreur CURL à la tentative #$retry: " . curl_error($ch), 3, $log_file);
                         curl_close($ch);
                         $retry++;
                         continue;
                     }
 
-                    // Vérification si c'est une erreur temporaire du serveur (500, 502, 503, 504)
+                    // Check if it's a temporary server error (500, 502, 503, 504)
                     if ($httpCode >= 500 && $httpCode < 600) {
-                        // error_log("Erreur serveur $httpCode à la tentative #$retry: $response", 3, $log_file);
                         curl_close($ch);
                         $retry++;
                         continue;
                     }
-                    // Autres erreurs HTTP
+                    // Other HTTP errors
                     elseif ($httpCode < 200 || $httpCode >= 300) {
-                        $this->lastError = "Erreur HTTP $httpCode: $response";
-                        // error_log($this->lastError, 3, $log_file);
+                        $this->lastError = get_string('http_error', 'block_chatbot') . $httpCode . ": $response";
                         curl_close($ch);
                         return false;
                     }
 
-                    // Si on arrive ici, la requête a réussi
-                    // error_log("Lot indexé avec succès (HTTP $httpCode)", 3, $log_file);
+                    // If we get here, the request was successful
                     curl_close($ch);
                     $requestSuccess = true;
                 }
 
-                // Si toutes les tentatives ont échoué
+                // If all attempts failed
                 if (!$requestSuccess) {
-                    $this->lastError = "Échec après $maxRetries tentatives. Dernière erreur: HTTP $httpCode";
-                    // error_log($this->lastError, 3, $log_file);
+                    $this->lastError = get_string('failure_after_retries', 'block_chatbot') . $maxRetries . get_string('last_error', 'block_chatbot') . $httpCode;
                     return false;
                 }
 
-                // Réinitialisation du lot
+                // Reset the batch
                 $currentBatch = [];
                 $objectCount = 0;
 
-                // Pause de 5 secondes entre chaque envoi de lot
-                // error_log("Pause de 5 secondes avant le prochain lot...", 3, $log_file);
-                // sleep(1);
+                // Pause for 5 seconds between each batch send
+                sleep(1);
             }
         }
 
-        // error_log('Indexation: Processus terminé avec succès', 3, $log_file);
         return $success;
     }
 
-
-
     /**
-     * Formatte les résultats de la recherche
-     * 
-     * Sépare les données et le contenu généré dans un format plus lisible
-     * 
-     * @param array $results Résultats bruts de la recherche
-     * @return array Résultats formattés
+     * Formats the search results
+     *
+     * Separates the data and generated content into a more readable format
+     *
+     * @param array $results Raw search results
+     * @return array Formatted results
      */
     public function formatSearchResults(array $results): array
     {
@@ -803,7 +764,7 @@ EOT;
 
         foreach ($results as $result) {
             $formattedResult = [
-                // Filtrage des données principales (sans _additional)
+                // Filter main data (without _additional)
                 'data' => array_filter($result, function ($key) {
                     return $key !== '_additional';
                 }, ARRAY_FILTER_USE_KEY),
@@ -811,7 +772,7 @@ EOT;
                 'generation_error' => null
             ];
 
-            // Extraction du contenu généré s'il existe
+            // Extract generated content if it exists
             if (isset($result['_additional']['generate'])) {
                 $formattedResult['generated_content'] =
                     $result['_additional']['generate']['groupedResult'] ?? null;
@@ -826,9 +787,9 @@ EOT;
     }
 
     /**
-     * Définit la taille des lots pour l'indexation
-     * 
-     * @param int $size Nouvelle taille de lot
+     * Sets the batch size for indexing
+     *
+     * @param int $size New batch size
      */
     public function setBatchSize(int $size): void
     {
@@ -836,9 +797,9 @@ EOT;
     }
 
     /**
-     * Récupère la dernière erreur survenue
-     * 
-     * @return string|null Message d'erreur ou null si aucune erreur
+     * Retrieves the last error occurred
+     *
+     * @return string|null Error message or null if no error
      */
     public function getLastError(): ?string
     {
@@ -846,9 +807,9 @@ EOT;
     }
 
     /**
-     * Récupère la dernière erreur survenue
-     * 
-     * @return string|null Message d'erreur ou null si aucune erreur
+     * Retrieves the last prompt
+     *
+     * @return string|null Last prompt or null if none
      */
     public function getLastPrompt(): ?string
     {
@@ -856,16 +817,16 @@ EOT;
     }
 
     /**
-     * Effectue une recherche sémantique dans une collection Weaviate.
-     * 
-     * Cette méthode interroge la base de données Weaviate pour obtenir des résultats basés
-     * sur une recherche sémantique en utilisant un concept donné.
-     * 
-     * @param string $collection Nom de la collection à interroger
-     * @param string $concept Concept à rechercher (par exemple : "biologie", "technologie", etc.)
-     * @param array $fields Champs à retourner dans les résultats
-     * @param int $limit Nombre maximum de résultats à retourner
-     * @return array|null Résultats de la recherche sémantique ou null en cas d'erreur
+     * Performs a semantic search in a Weaviate collection.
+     *
+     * This method queries the Weaviate database to obtain results based
+     * on a semantic search using a given concept.
+     *
+     * @param string $collection Name of the collection to query
+     * @param string $concept Concept to search for (e.g., "biology", "technology", etc.)
+     * @param array $fields Fields to return in the results
+     * @param int $limit Maximum number of results to return
+     * @return array|null Semantic search results or null in case of error
      */
     public function semanticSearch(
         string $collection,
@@ -875,10 +836,10 @@ EOT;
     ): ?array {
         $graphqlEndpoint = $this->apiUrl . '/v1/graphql';
 
-        // Prépare la liste des champs pour la requête GraphQL
+        // Prepare the list of fields for the GraphQL query
         $fieldsString = implode(' ', $fields);
 
-        // Construction de la requête GraphQL
+        // Construct the GraphQL query
         $query = [
             'query' => "{
             Get {
@@ -894,7 +855,7 @@ EOT;
         }"
         ];
 
-        // Exécution de la requête via CURL
+        // Execute the request via CURL
         $ch = curl_init($graphqlEndpoint);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt_array($ch, [
@@ -908,7 +869,7 @@ EOT;
             ]
         ]);
 
-        // Récupération et vérification de la réponse
+        // Retrieve and verify the response
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
@@ -920,23 +881,19 @@ EOT;
 
         curl_close($ch);
 
-        // Vérification du code HTTP
+        // Check HTTP code
         if ($httpCode !== 200) {
-            $this->lastError = "Erreur HTTP $httpCode: $response";
+            $this->lastError = get_string('http_error', 'block_chatbot') . $httpCode . ": $response";
             return null;
         }
 
-        // Décodage de la réponse JSON
+        // Decode the JSON response
         $result = json_decode($response, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
-            $this->lastError = "Erreur de décodage JSON: " . json_last_error_msg();
+            $this->lastError = get_string('json_decode_error', 'block_chatbot') . json_last_error_msg();
             return null;
         }
 
         return $result['data']['Get'][$collection] ?? [];
     }
-
-
-
-
 }

@@ -2,12 +2,11 @@
   @copyright 2025 Université TÉLUQ
 -->
 
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Chatbot avec Toggle Boutons</title>
+    <title>{{#str}}chatbot_with_toggle_buttons, block_chatbot{{/str}}</title>
     <style>
     .block-chatbot-container {
         background: #ffffff;
@@ -198,29 +197,29 @@
             height: 400px;
             max-width: 95%;
         }
-        
+
         .message {
             max-width: 90%;
         }
-        
+
         .chat-form {
             gap: 8px;
         }
-        
+
         .chat-input {
             max-width: calc(100% - 50px);
         }
-        
+
         .send-button {
             height: 42px;
             width: 42px;
             min-width: 42px;
         }
-        
+
         .button-container {
             justify-content: space-between;
         }
-        
+
         .prompt-button, .file-upload-button {
             font-size: 0.75rem;
             padding: 6px 12px;
@@ -240,17 +239,10 @@
             </div>
             <div class="message bot-message">
                 {{#isteacher}}
-                Bonjour Professeur,
-
-                Vous avez la possibilité de tester le chatbot afin de vous assurer qu'il fonctionne correctement et que votre prompt est configuré de manière optimale.
+                {{#str}}hello_professor, block_chatbot{{/str}}
                 {{/isteacher}}
                 {{^isteacher}}
-                Bonjour ! Je suis votre assistant d'apprentissage. Je peux vous aider à :
-                - Comprendre les concepts du cours
-                - Réviser et pratiquer les exercices
-                - Clarifier des points difficiles
-                - Suggérer des méthodes d'étude
-                Quelle aide puis-je vous apporter ?
+                {{#str}}hello_student, block_chatbot{{/str}}
                 {{/isteacher}}
             </div>
         </div>
@@ -259,7 +251,7 @@
     <div class="chat-input-container">
         <form id="chatform" class="chat-form">
             <input type="text" id="question" name="question"
-                   class="chat-input" placeholder="Posez votre question ici...">
+                   class="chat-input" placeholder="{{#str}}ask_your_question_here, block_chatbot{{/str}}" required>
             <button type="submit" class="send-button">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" fill="white"/>
@@ -272,13 +264,13 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="currentColor"/>
                 </svg>
-                Modifier le prompt
+                {{#str}}modify_prompt, block_chatbot{{/str}}
             </button>
             <button id="toggle-file-upload-form" class="file-upload-button" onclick="toggleFileUploadModal()">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="currentColor"/>
                 </svg>
-                Charger le cours
+                {{#str}}upload_course, block_chatbot{{/str}}
             </button>
             {{/isteacher}}
         </div>
@@ -286,6 +278,7 @@
 </div>
 
 <script>
+
 document.addEventListener('DOMContentLoaded', function() {
     // Éléments administratifs
     //const toggleCheckbox = document.createElement('input');
@@ -344,12 +337,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Conserver les fonctions originales
 function togglePromptModal() {
-    console.log('Ouvrir la modale de modification du prompt');
+    console.log('{{#str}}open_prompt_modal, block_chatbot{{/str}}');
 }
 
 function toggleFileUploadModal() {
-    console.log('Ouvrir la modale de chargement de cours');
+    console.log('{{#str}}open_file_upload_modal, block_chatbot{{/str}}');
 }
+
 </script>
 </body>
 </html>

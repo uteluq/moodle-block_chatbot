@@ -3,7 +3,6 @@
  * @copyright 2025 Université TÉLUQ
  */
 
- 
 require_once('../../config.php');
 require_once($CFG->libdir . '/adminlib.php');
 require_login();
@@ -35,7 +34,7 @@ function test_openai_key($key)
     if ($response === false) {
         return [
             'success' => false,
-            'message' => 'Erreur de connexion lors de la vérification de l\'API OpenAI.'
+            'message' => get_string('openai_connection_error', 'block_chatbot')
         ];
     }
 
@@ -43,13 +42,13 @@ function test_openai_key($key)
         $error_message = json_decode($response, true);
         return [
             'success' => false,
-            'message' => 'La clé API OpenAI est invalide. Code d\'erreur: ' . $http_code
+            'message' => get_string('openai_invalid_key', 'block_chatbot') . $http_code
         ];
     }
 
     return [
         'success' => true,
-        'message' => 'La clé API OpenAI est valide et fonctionnelle.'
+        'message' => get_string('openai_valid_key', 'block_chatbot')
     ];
 }
 
@@ -57,28 +56,28 @@ function getAccessTokenAdobePDFServices($clientId, $clientSecret)
 {
     $ch = curl_init();
 
-    // Préparation des données
+    // Prepare data
     $postData = 'client_id=' . urlencode($clientId) . '&client_secret=' . urlencode($clientSecret);
 
-    // Options cURL
+    // cURL options
     $options = [
         CURLOPT_URL => 'https://pdf-services.adobe.io/token',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_POST => true,
         CURLOPT_POSTFIELDS => $postData,
         CURLOPT_HTTPHEADER => ['Content-Type: application/x-www-form-urlencoded'],
-        CURLOPT_SSL_VERIFYPEER => false, // Désactive SSL (à utiliser avec prudence)
+        CURLOPT_SSL_VERIFYPEER => false, // Disable SSL (use with caution)
     ];
 
     curl_setopt_array($ch, $options);
 
-    // Exécution de la requête
+    // Execute the request
     $response = curl_exec($ch);
     $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     if (curl_errno($ch)) {
         return [
             'success' => false,
-            'message' => 'Le client ID ou le client secret pour Adobe PDF Services est invalide.'
+            'message' => get_string('adobe_invalid_credentials', 'block_chatbot')
         ];
     }
     curl_close($ch);
@@ -86,7 +85,7 @@ function getAccessTokenAdobePDFServices($clientId, $clientSecret)
     if ($httpStatus != 200) {
         return [
             'success' => false,
-            'message' => 'Le client ID ou le client secret pour Adobe PDF Services est invalide.'
+            'message' => get_string('adobe_invalid_credentials', 'block_chatbot')
         ];
     }
 
@@ -94,27 +93,27 @@ function getAccessTokenAdobePDFServices($clientId, $clientSecret)
     if (isset($responseData['access_token'])) {
         return [
             'success' => true,
-            'message' => 'Le client ID et le client secret pour Adobe PDF Services sont valides et fonctionnelles.'
+            'message' => get_string('adobe_valid_credentials', 'block_chatbot')
         ];
     } else {
         return [
             'success' => false,
-            'message' => 'Le client ID ou le client secret pour Adobe PDF Services est invalide.'
+            'message' => get_string('adobe_invalid_credentials', 'block_chatbot')
         ];
     }
 }
 
 /**
- * Récupère la liste des collections (classes) disponibles dans Weaviate
- * 
- * @return array Tableau contenant le statut de l'opération, un message et les données des collections
+ * Retrieves the list of available collections (classes) in Weaviate
+ *
+ * @return array Array containing the status of the operation, a message, and the collections data
  */
 function getCollectionsWeaviate($apiUrl, $apiKey): array
 {
-    // Construction de l'URL pour récupérer le schéma
+    // Construct the URL to retrieve the schema
     $endpoint = $apiUrl . '/v1/schema';
 
-    // Configuration et exécution de la requête CURL
+    // Configure and execute the CURL request
     $ch = curl_init();
     curl_setopt_array($ch, [
         CURLOPT_URL => $endpoint,
@@ -126,45 +125,45 @@ function getCollectionsWeaviate($apiUrl, $apiKey): array
         ]
     ]);
 
-    // Exécution de la requête et récupération de la réponse
+    // Execute the request and retrieve the response
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-    // Gestion des erreurs CURL
+    // Handle CURL errors
     if (curl_errno($ch)) {
         $errorMessage = curl_error($ch);
         curl_close($ch);
         return [
             'success' => false,
-            'message' => 'Erreur lors de la connexion à Weaviate: ' . $errorMessage,
+            'message' => get_string('weaviate_connection_error', 'block_chatbot') . $errorMessage,
             'data' => []
         ];
     }
 
     curl_close($ch);
 
-    // Vérification du code de réponse HTTP
+    // Check HTTP response code
     if ($httpCode !== 200) {
         return [
             'success' => false,
-            'message' => "L'URL de l'API Weaviate ou la clé Weaviate est invalide ou une erreur est survenue. Code d\'erreur: " . $httpCode,
+            'message' => get_string('weaviate_invalid_key_or_url', 'block_chatbot') . $httpCode,
             'data' => []
         ];
     }
 
-    // Décodage de la réponse JSON
+    // Decode the JSON response
     $schema = json_decode($response, true);
 
-    // Vérification si le décodage JSON a réussi
+    // Check if JSON decoding was successful
     if (json_last_error() !== JSON_ERROR_NONE) {
         return [
             'success' => false,
-            'message' => "L'URL de l'API Weaviate ou la clé Weaviate est invalide ou une erreur est survenue.",
+            'message' => get_string('weaviate_invalid_key_or_url', 'block_chatbot'),
             'data' => []
         ];
     }
 
-    // Extraction des noms de collections
+    // Extract collection names
     $collections = [];
     if (isset($schema['classes']) && is_array($schema['classes'])) {
         foreach ($schema['classes'] as $class) {
@@ -180,20 +179,19 @@ function getCollectionsWeaviate($apiUrl, $apiKey): array
 
         return [
             'success' => true,
-            'message' => "L'URL de l'API Weaviate ainsi que la clé Weaviate sont valides et fonctionnelles.",
+            'message' => get_string('weaviate_valid_key_and_url', 'block_chatbot'),
             'data' => $collections
         ];
     }
 
     return [
         'success' => false,
-        'message' => "L'URL de l'API Weaviate ou la clé Weaviate est invalide ou une erreur est survenue.",
+        'message' => get_string('weaviate_invalid_key_or_url', 'block_chatbot'),
         'data' => []
     ];
 }
 
-
-// Récupération des clés
+// Retrieve keys
 $openai_key = get_config('block_chatbot', 'openai_api_key');
 $weaviate_api_url = get_config('block_chatbot', 'weaviate_api_url');
 $weaviate_api_key = get_config('block_chatbot', 'weaviate_api_key');
@@ -201,18 +199,14 @@ $adobe_pdf_client_id = get_config('block_chatbot', 'adobe_pdf_client_id');
 $adobe_pdf_client_secret = get_config('block_chatbot', 'adobe_pdf_client_secret');
 $cohere_embedding_api_key = get_config('block_chatbot', 'cohere_embedding_api_key');
 
-
-
-
-
-// Tests des clés
+// Test keys
 $results = [
     'openai' => test_openai_key($openai_key),
     'weaviate' => getCollectionsWeaviate($weaviate_api_url, $weaviate_api_key),
     'adobe pdf services' => getAccessTokenAdobePDFServices($adobe_pdf_client_id, $adobe_pdf_client_secret)
 ];
 
-// Affichage des résultats
+// Display results
 echo $OUTPUT->header();
 
 foreach ($results as $service => $result) {

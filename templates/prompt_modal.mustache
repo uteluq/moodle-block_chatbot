@@ -7,9 +7,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">
-                    {{#has_prompt}}Modifier{{/has_prompt}}
-                    {{^has_prompt}}Ajouter{{/has_prompt}} 
-                    un prompt personnalisé
+                    {{#has_prompt}}{{#str}}modify_prompt, block_chatbot{{/str}}{{/has_prompt}}
+                    {{^has_prompt}}{{#str}}add_prompt, block_chatbot{{/str}}{{/has_prompt}}
                 </h5>
                 <button type="button" class="close" onclick="togglePromptModal()">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -22,33 +21,31 @@
                     <!-- Guide pour les enseignants -->
                     <div class="form-group">
                         <p>
-                            Consultez le guide pour concevoir des prompts efficaces : 
+                            {{#str}}consult_guide, block_chatbot{{/str}}
                             <a href="https://docs.google.com/document/d/1JZOkdeZaAFJMhsxdb3SC28gel7S_PDgC/edit?usp=sharing&ouid=106953369477562214173&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">
-                                Guide pour concevoir des prompts destiné à l’enseignant
+                                {{#str}}guide_link, block_chatbot{{/str}}
                             </a>
                         </p>
                     </div>
-                    
+
                     <!-- Champ de contenu du prompt -->
                     <div class="form-group">
-                        <label for="prompttext">Contenu du prompt</label>
+                        <label for="prompttext">{{#str}}prompt_content, block_chatbot{{/str}}</label>
                         <textarea id="prompttext" name="prompttext"
-                                  class="form-input prompt-textarea" 
-                                  placeholder="Écrivez votre prompt ici" 
+                                  class="form-input prompt-textarea"
+                                  placeholder="{{#str}}write_prompt_here, block_chatbot{{/str}}"
                                   style="height: 300px;" required>{{prompt_text}}</textarea>
                     </div>
-                    
+
                     <div class="modal-footer">
-                        <button type="button" class="btn-secondary" onclick="togglePromptModal()">Annuler</button>
-                        <button type="submit" class="btn-primary">Enregistrer</button>
+                        <button type="button" class="btn-secondary" onclick="togglePromptModal()">{{#str}}cancel, block_chatbot{{/str}}</button>
+                        <button type="submit" class="btn-primary">{{#str}}save, block_chatbot{{/str}}</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-
 
 <style>
 .modal {
@@ -186,7 +183,7 @@
         margin: 16px;
         width: auto;
     }
-    
+
     .modal-body {
         padding: 16px;
     }
