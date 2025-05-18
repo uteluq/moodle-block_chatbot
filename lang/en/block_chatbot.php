@@ -231,5 +231,9 @@ $string['upload_course'] = "Upload Course";
 $string['open_prompt_modal'] = "Open the prompt modification modal";
 $string['open_file_upload_modal'] = "Open the course upload modal";
 
-
+// For classes/PDFExtractAPI.php
+$string['error_uploading_asset'] = 'Error uploading asset.';
+$string['error_creating_job'] = 'Error creating job.';
+$string['job_failed'] = 'Job failed.';
+$string['error_processing_pdf'] = 'Error processing PDF.';
 

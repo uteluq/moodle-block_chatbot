@@ -209,3 +209,9 @@ $string['modify_prompt'] = "Modifier le prompt";
 $string['upload_course'] = "Charger le cours";
 $string['open_prompt_modal'] = "Ouvrir la modale de modification du prompt";
 $string['open_file_upload_modal'] = "Ouvrir la modale de chargement de cours";
+
+// For classes/PDFExtractAPI.php
+$string['error_uploading_asset'] = 'Erreur lors du téléchargement de l\'asset.';
+$string['error_creating_job'] = 'Erreur lors de la création du job.';
+$string['job_failed'] = 'Le job a échoué.';
+$string['error_processing_pdf'] = 'Erreur lors du traitement du PDF.';

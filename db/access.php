@@ -6,24 +6,24 @@
 defined('MOODLE_INTERNAL') || die();
 
 $capabilities = array(
-    // Capacité pour ajouter le bloc à un cours.
+    // Capability to add the block to a course.
     'block/chatbot:addinstance' => array(
-        'riskbitmask'  => RISK_SPAM | RISK_PERSONAL | RISK_XSS, // Risques associés à cette capacité.
-        'captype'      => 'write', // Type de capacité (écriture).
-        'contextlevel' => CONTEXT_BLOCK, // Contexte du bloc.
+        'riskbitmask'  => RISK_SPAM | RISK_PERSONAL | RISK_XSS, // Risks associated with this capability.
+        'captype'      => 'write', // Capability type (write).
+        'contextlevel' => CONTEXT_BLOCK, // Block context.
         'archetypes'   => array(
-            'editingteacher' => CAP_ALLOW, // Les enseignants peuvent ajouter le bloc.
-            'manager'       => CAP_ALLOW, // Les gestionnaires peuvent ajouter le bloc.
+            'editingteacher' => CAP_ALLOW, // Teachers can add the block.
+            'manager'       => CAP_ALLOW, // Managers can add the block.
         ),
     ),
 
-    // Capacité pour gérer les paramètres du plugin.
+    // Capability to manage the plugin settings.
     'block/chatbot:manage' => array(
-        'riskbitmask'  => RISK_CONFIG, // Risque associé à la modification des configurations.
-        'captype'      => 'write', // Type de capacité (écriture).
-        'contextlevel' => CONTEXT_SYSTEM, // Contexte système (administration du site).
+        'riskbitmask'  => RISK_CONFIG, // Risk associated with modifying configurations.
+        'captype'      => 'write', // Capability type (write).
+        'contextlevel' => CONTEXT_SYSTEM, // System context (site administration).
         'archetypes'   => array(
-            'manager' => CAP_ALLOW, // Seuls les gestionnaires peuvent gérer le plugin.
+            'manager' => CAP_ALLOW, // Only managers can manage the plugin.
         ),
     ),
 );

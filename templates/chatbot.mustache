@@ -279,63 +279,7 @@
 
 <script>
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Éléments administratifs
-    //const toggleCheckbox = document.createElement('input');
-    //toggleCheckbox.type = 'checkbox';
-    //toggleCheckbox.id = 'toggleButtonsCheckbox';
-    //toggleCheckbox.name = 'sansRag';
-
-    //const toggleLabel = document.createElement('label');
-    //toggleLabel.className = 'toggle-buttons-checkbox';
-    //toggleLabel.appendChild(toggleCheckbox);
-    //toggleLabel.appendChild(document.createTextNode('Chatbot Sans RAG'));
-
-    // Récupérer les boutons administratifs
-    const promptButton = document.getElementById('toggle-prompt-form');
-    const fileUploadButton = document.getElementById('toggle-file-upload-form');
-    const buttonContainer = document.querySelector('.button-container');
-
-    // Vérifier si les éléments nécessaires existent
-    if (buttonContainer && promptButton && fileUploadButton) {
-        // Insérer le toggle checkbox en premier dans le conteneur de boutons
-        //buttonContainer.insertBefore(toggleLabel, buttonContainer.firstChild);
-
-        // Récupérer l'état précédent du localStorage
-        //const isButtonsHidden = localStorage.getItem('buttonsHidden') === 'true';
-        
-        // Fonction pour mettre à jour la visibilité des boutons
-        /*function updateButtonVisibility(hidden) {
-            if (hidden) {
-                promptButton.style.display = 'none';
-                fileUploadButton.style.display = 'none';
-                promptButton.disabled = true;
-                fileUploadButton.disabled = true;
-            } else {
-                promptButton.style.display = '';
-                fileUploadButton.style.display = '';
-                promptButton.disabled = false;
-                fileUploadButton.disabled = false;
-            }
-            
-            // Enregistrer l'état dans localStorage
-            localStorage.setItem('buttonsHidden', hidden);
-        }*/
-
-        // Définir l'état initial de la case à cocher
-        //toggleCheckbox.checked = isButtonsHidden;
-
-        // Appliquer l'état initial
-        //updateButtonVisibility(isButtonsHidden);
-
-        // Ajouter un écouteur d'événements pour les changements futurs
-        /*toggleCheckbox.addEventListener('change', function() {
-            updateButtonVisibility(this.checked);
-        });*/
-    }
-});
-
-// Conserver les fonctions originales
+// Keep the original functions
 function togglePromptModal() {
     console.log('{{#str}}open_prompt_modal, block_chatbot{{/str}}');
 }

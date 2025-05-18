@@ -239,15 +239,7 @@ try {
 
     $ragResults = "";
 
-    // ***** START DEBUGGING LOG FOR $answer (from $ragResults) *****
-    // This log will show what WeaviateConnector returns BEFORE it's processed further.
-    // Ensure this path is writable by your web server user (e.g., www-data, apache).
-    // Using $CFG->dataroot is generally safer for Moodle.
-    $debug_log_file = $CFG->dataroot . '/temp/chatbot_api_debug.log';
-    $timestamp = date('Y-m-d H:i:s');
-    $log_entry_header = "[{$timestamp}] UserID: {$userid}, CourseID: {$courseid}, SansRAG: " . ($sansRag ? 'true' : 'false') . "\n";
-    $log_entry_header .= "Sanitized Question: {$question}\n";
-    // ***** END DEBUGGING LOG HEADER *****
+
 
     if ($sansRag === true) {
         $ragResults = $weaviateConnector->getCohereResponse($question, $cohereApiKey);
@@ -257,12 +249,7 @@ try {
 
     $answer = $ragResults;
 
-    // ***** CONTINUE DEBUGGING LOG FOR $answer *****
-    $log_entry_content = "Raw answer type from Connector: " . gettype($answer) . "\n";
-    $log_entry_content .= "Raw answer content from Connector:\n" . print_r($answer, true) . "\n";
-    $log_entry_content .= "-------------------------------------------------\n";
-    file_put_contents($debug_log_file, $log_entry_header . $log_entry_content, FILE_APPEND);
-    // ***** END DEBUGGING LOG *****
+
 
     // Check if $answer is truly empty or indicates an error from the connector.
     // An empty string "" might be a valid (though perhaps unhelpful) answer.

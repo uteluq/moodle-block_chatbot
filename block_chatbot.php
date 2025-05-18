@@ -74,8 +74,6 @@ class block_chatbot extends block_base
     $this->content->text .= $OUTPUT->render_from_template('block_chatbot/prompt_modal', $templateData);
     $this->content->text .= $OUTPUT->render_from_template('block_chatbot/load-course-modal', $templateData);
 
-    // Require the AMD module and initialize it
-    // $PAGE->requires->js_call_amd('block_chatbot/chatbot', 'init', [$CFG->wwwroot, sesskey(), $USER->id, $COURSE->id]);
     $PAGE->requires->jquery();
 
 $PAGE->requires->js(new moodle_url('/blocks/chatbot/amd/src/chatbot.js'));

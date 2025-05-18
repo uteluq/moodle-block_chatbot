@@ -369,12 +369,12 @@ class PDFExtractAPI
         $this->getAccessToken();
         $assetId = $this->uploadAsset($filePath);
         if ($assetId === null) {
-            return "Erreur 1";
+            return get_string('error_uploading_asset', 'block_chatbot');
         }
 
         $locationUrl = $this->createJob($assetId);
         if ($locationUrl === null) {
-            return "Erreur 2";
+            return get_string('error_creating_job', 'block_chatbot');
         }
 
         $status = 'in progress';
@@ -389,10 +389,8 @@ class PDFExtractAPI
                     $downloadUri = $jobStatus['downloadUri']; // getJobStatus returns the download URI when done
                     break;
                 } elseif ($status === 'failed') {
-                    throw new Exception('Job failed');
+                    throw new Exception(get_string('job_failed', 'block_chatbot'));
                 }
-            } else {
-                return "Erreur 4";
             }
         }
 
@@ -400,9 +398,8 @@ class PDFExtractAPI
             $result = $this->downloadAsset($downloadUri);
             $text = $this->extraireTexte($result);
             return $text;
-        } else {
-            // echo "Job did not complete successfully.\n";
         }
-        return "Erreur 5";
+        return get_string('error_processing_pdf', 'block_chatbot');
     }
+
 }
