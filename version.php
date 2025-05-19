@@ -19,10 +19,8 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Plugin version and other metadata are defined here.
- *
  * @package     block_chatbot
- * @copyright   2025 Your Name <you@example.com>
+ * @copyright   2025 Universié TÉLUQ
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
