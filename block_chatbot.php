@@ -76,10 +76,10 @@ class block_chatbot extends block_base
 
     $PAGE->requires->jquery();
 
-$PAGE->requires->js(new moodle_url('/blocks/chatbot/amd/src/chatbot.js'));
-$PAGE->requires->js_init_code("
-    Chatbot.init('$CFG->wwwroot', '".sesskey()."', $USER->id, $COURSE->id);
-");
+    $PAGE->requires->js(new moodle_url('/blocks/chatbot/amd/src/chatbot.js'));
+    $PAGE->requires->js_init_code("
+      Chatbot.init('$CFG->wwwroot', '".sesskey()."', $USER->id, $COURSE->id);
+    ");
 
     $this->content->footer = '';
 
