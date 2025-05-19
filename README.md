@@ -143,7 +143,7 @@ Configuration is managed through **Site Administration > Plugins > Blocks > Chat
 
 Contributions are welcome! To contribute:
 
-1. Fork the repository: [https://github.com//moodle-block_chatbot](https://github.com//moodle-block_chatbot).
+1. Fork the repository: [https://github.com/uteluq/moodle-block_chatbot](https://github.com/uteluq/moodle-block_chatbot).
 2. Create a feature branch: `git checkout -b feature/your-feature`.
 3. Commit changes: `git commit -m "Add your feature"`.
 4. Push to the branch: `git push origin feature/your-feature`.
