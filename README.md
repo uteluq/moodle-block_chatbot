@@ -3,8 +3,7 @@
 Chatbot is a Moodle block plugin designed to enhance distance learning by providing an adaptive and innovative chatbot solution. Integrated into the Moodle platform, it supports three distinct user roles—Learner, Teacher, and Administrative Manager—to facilitate course interactions, content management, and plugin configuration. This plugin leverages Retrieval-Augmented Generation (RAG) to deliver precise, context-aware responses based on course materials, improving the learning experience for users.
 
 ## Maturity
-- The plugin is in alpha version currently. We have validated it internally
-- but it may still contain significant bugs. We do not currently recommend the plug for production use.
+- The plugin is in alpha version currently. We have validated it internally on a test server but it may still contain significant bugs. We do not currently recommend the plugin for production use.
 
 ## Supported Languages
 The plugin currently supports the following languages:
