@@ -154,11 +154,6 @@ class WeaviateConnector
     {
         global $COURSE, $DB, $USER;
 
-
-
-
-
-
         // Query with integer values
         $task = $DB->get_record('block_chatbot_prompts', array('userid' => $user_id, 'courseid' => $course_id))->prompt;
 
