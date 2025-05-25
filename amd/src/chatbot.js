@@ -20,7 +20,7 @@
             const errorDiv = $("#error-message");
 
             require(['core/str'], function(str) {
-                str.get_string('sending_question', 'block_chatbot').then(function(sendingQuestionStr) {
+                str.get_string('sending_question', 'block_uteluqchatbot').then(function(sendingQuestionStr) {
                     errorDiv.text(sendingQuestionStr);
                 }).catch(function() {
                     errorDiv.text("Sending the question...");
@@ -46,7 +46,7 @@
                 errorDiv.text("");
                 if (data.error) {
                     require(['core/str'], function(str) {
-                        str.get_string('error', 'block_chatbot').then(function(errorStr) {
+                        str.get_string('error', 'block_uteluqchatbot').then(function(errorStr) {
                             errorDiv.text(errorStr + data.error);
                         }).catch(function() {
                             errorDiv.text("Error: " + data.error);
@@ -65,7 +65,7 @@
             .catch(error => {
                 console.error("Error:", error);
                 require(['core/str'], function(str) {
-                    str.get_string('error_sending_question', 'block_chatbot').then(function(errorSendingQuestionStr) {
+                    str.get_string('error_sending_question', 'block_uteluqchatbot').then(function(errorSendingQuestionStr) {
                         errorDiv.text(errorSendingQuestionStr + error.message);
                     }).catch(function() {
                         errorDiv.text("Error sending the question: " + error.message);
@@ -81,7 +81,7 @@
             const errorDiv = $("#error-message");
 
             require(['core/str'], function(str) {
-                str.get_string('saving_prompt', 'block_chatbot').then(function(savingPromptStr) {
+                str.get_string('saving_prompt', 'block_uteluqchatbot').then(function(savingPromptStr) {
                     errorDiv.text(savingPromptStr);
                 }).catch(function() {
                     errorDiv.text("Saving the prompt...");
@@ -105,7 +105,7 @@
                 errorDiv.text("");
                 if (data.error) {
                     require(['core/str'], function(str) {
-                        str.get_string('error', 'block_chatbot').then(function(errorStr) {
+                        str.get_string('error', 'block_uteluqchatbot').then(function(errorStr) {
                             errorDiv.text(errorStr + data.error);
                         }).catch(function() {
                             errorDiv.text("Error: " + data.error);
@@ -114,7 +114,7 @@
                     return;
                 }
                 require(['core/str'], function(str) {
-                    str.get_string('prompt_saved_successfully', 'block_chatbot').then(function(promptSavedSuccessfullyStr) {
+                    str.get_string('prompt_saved_successfully', 'block_uteluqchatbot').then(function(promptSavedSuccessfullyStr) {
                         errorDiv.text(promptSavedSuccessfullyStr);
                     }).catch(function() {
                         errorDiv.text("Prompt saved successfully!");
@@ -128,7 +128,7 @@
             .catch(error => {
                 console.error("Error:", error);
                 require(['core/str'], function(str) {
-                    str.get_string('error_saving_prompt', 'block_chatbot').then(function(errorSavingPromptStr) {
+                    str.get_string('error_saving_prompt', 'block_uteluqchatbot').then(function(errorSavingPromptStr) {
                         errorDiv.text(errorSavingPromptStr + error.message);
                     }).catch(function() {
                         errorDiv.text("Error saving the prompt: " + error.message);
@@ -150,7 +150,7 @@
             formData.append('courseid', courseid);
 
             require(['core/str'], function(str) {
-                str.get_string('uploading_file', 'block_chatbot').then(function(uploadingFileStr) {
+                str.get_string('uploading_file', 'block_uteluqchatbot').then(function(uploadingFileStr) {
                     errorDiv.textContent = uploadingFileStr;
                 }).catch(function() {
                     errorDiv.textContent = "Uploading the file...";
@@ -169,7 +169,7 @@
                 } catch (err) {
                     console.error("JSON parsing error:", err);
                     require(['core/str'], function(str) {
-                        str.get_string('json_parse_error', 'block_chatbot').then(function(jsonParseErrorStr) {
+                        str.get_string('json_parse_error', 'block_uteluqchatbot').then(function(jsonParseErrorStr) {
                             errorDiv.textContent = jsonParseErrorStr + err.message;
                         }).catch(function() {
                             errorDiv.textContent = "JSON Parse Error: " + err.message;
@@ -182,7 +182,7 @@
 
                 if (data.error) {
                     require(['core/str'], function(str) {
-                        str.get_string('error_processing_file', 'block_chatbot').then(function(errorProcessingFileStr) {
+                        str.get_string('error_processing_file', 'block_uteluqchatbot').then(function(errorProcessingFileStr) {
                             errorDiv.textContent = errorProcessingFileStr + data.error;
                         }).catch(function() {
                             errorDiv.textContent = "Error processing the file: " + data.error;
@@ -192,7 +192,7 @@
                 }
 
                 require(['core/str'], function(str) {
-                    str.get_string('file_indexed_successfully', 'block_chatbot').then(function(fileIndexedSuccessfullyStr) {
+                    str.get_string('file_indexed_successfully', 'block_uteluqchatbot').then(function(fileIndexedSuccessfullyStr) {
                         errorDiv.textContent = fileIndexedSuccessfullyStr;
                     }).catch(function() {
                         errorDiv.textContent = "File indexed successfully!";
@@ -209,7 +209,7 @@
             .catch(error => {
                 console.error("Error:", error);
                 require(['core/str'], function(str) {
-                    str.get_string('error_processing_file', 'block_chatbot').then(function(errorProcessingFileStr) {
+                    str.get_string('error_processing_file', 'block_uteluqchatbot').then(function(errorProcessingFileStr) {
                         errorDiv.textContent = errorProcessingFileStr + error.message;
                     }).catch(function() {
                         errorDiv.textContent = "Error processing the file: " + error.message;

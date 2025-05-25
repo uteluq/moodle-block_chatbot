@@ -10,8 +10,8 @@ require_capability('moodle/site:config', context_system::instance());
 
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url('/blocks/chatbot/test_api_keys.php');
-$PAGE->set_title(get_string('test_api_keys', 'block_chatbot'));
-$PAGE->set_heading(get_string('test_api_keys', 'block_chatbot'));
+$PAGE->set_title(get_string('test_api_keys', 'block_uteluqchatbot'));
+$PAGE->set_heading(get_string('test_api_keys', 'block_uteluqchatbot'));
 
 function test_openai_key($key)
 {
@@ -34,7 +34,7 @@ function test_openai_key($key)
     if ($response === false) {
         return [
             'success' => false,
-            'message' => get_string('openai_connection_error', 'block_chatbot')
+            'message' => get_string('openai_connection_error', 'block_uteluqchatbot')
         ];
     }
 
@@ -42,13 +42,13 @@ function test_openai_key($key)
         $error_message = json_decode($response, true);
         return [
             'success' => false,
-            'message' => get_string('openai_invalid_key', 'block_chatbot') . $http_code
+            'message' => get_string('openai_invalid_key', 'block_uteluqchatbot') . $http_code
         ];
     }
 
     return [
         'success' => true,
-        'message' => get_string('openai_valid_key', 'block_chatbot')
+        'message' => get_string('openai_valid_key', 'block_uteluqchatbot')
     ];
 }
 
@@ -77,7 +77,7 @@ function getAccessTokenAdobePDFServices($clientId, $clientSecret)
     if (curl_errno($ch)) {
         return [
             'success' => false,
-            'message' => get_string('adobe_invalid_credentials', 'block_chatbot')
+            'message' => get_string('adobe_invalid_credentials', 'block_uteluqchatbot')
         ];
     }
     curl_close($ch);
@@ -85,7 +85,7 @@ function getAccessTokenAdobePDFServices($clientId, $clientSecret)
     if ($httpStatus != 200) {
         return [
             'success' => false,
-            'message' => get_string('adobe_invalid_credentials', 'block_chatbot')
+            'message' => get_string('adobe_invalid_credentials', 'block_uteluqchatbot')
         ];
     }
 
@@ -93,12 +93,12 @@ function getAccessTokenAdobePDFServices($clientId, $clientSecret)
     if (isset($responseData['access_token'])) {
         return [
             'success' => true,
-            'message' => get_string('adobe_valid_credentials', 'block_chatbot')
+            'message' => get_string('adobe_valid_credentials', 'block_uteluqchatbot')
         ];
     } else {
         return [
             'success' => false,
-            'message' => get_string('adobe_invalid_credentials', 'block_chatbot')
+            'message' => get_string('adobe_invalid_credentials', 'block_uteluqchatbot')
         ];
     }
 }
@@ -135,7 +135,7 @@ function getCollectionsWeaviate($apiUrl, $apiKey): array
         curl_close($ch);
         return [
             'success' => false,
-            'message' => get_string('weaviate_connection_error', 'block_chatbot') . $errorMessage,
+            'message' => get_string('weaviate_connection_error', 'block_uteluqchatbot') . $errorMessage,
             'data' => []
         ];
     }
@@ -146,7 +146,7 @@ function getCollectionsWeaviate($apiUrl, $apiKey): array
     if ($httpCode !== 200) {
         return [
             'success' => false,
-            'message' => get_string('weaviate_invalid_key_or_url', 'block_chatbot') . $httpCode,
+            'message' => get_string('weaviate_invalid_key_or_url', 'block_uteluqchatbot') . $httpCode,
             'data' => []
         ];
     }
@@ -158,7 +158,7 @@ function getCollectionsWeaviate($apiUrl, $apiKey): array
     if (json_last_error() !== JSON_ERROR_NONE) {
         return [
             'success' => false,
-            'message' => get_string('weaviate_invalid_key_or_url', 'block_chatbot'),
+            'message' => get_string('weaviate_invalid_key_or_url', 'block_uteluqchatbot'),
             'data' => []
         ];
     }
@@ -179,25 +179,25 @@ function getCollectionsWeaviate($apiUrl, $apiKey): array
 
         return [
             'success' => true,
-            'message' => get_string('weaviate_valid_key_and_url', 'block_chatbot'),
+            'message' => get_string('weaviate_valid_key_and_url', 'block_uteluqchatbot'),
             'data' => $collections
         ];
     }
 
     return [
         'success' => false,
-        'message' => get_string('weaviate_invalid_key_or_url', 'block_chatbot'),
+        'message' => get_string('weaviate_invalid_key_or_url', 'block_uteluqchatbot'),
         'data' => []
     ];
 }
 
 // Retrieve keys
-$openai_key = get_config('block_chatbot', 'openai_api_key');
-$weaviate_api_url = get_config('block_chatbot', 'weaviate_api_url');
-$weaviate_api_key = get_config('block_chatbot', 'weaviate_api_key');
-$adobe_pdf_client_id = get_config('block_chatbot', 'adobe_pdf_client_id');
-$adobe_pdf_client_secret = get_config('block_chatbot', 'adobe_pdf_client_secret');
-$cohere_embedding_api_key = get_config('block_chatbot', 'cohere_embedding_api_key');
+$openai_key = get_config('block_uteluqchatbot', 'openai_api_key');
+$weaviate_api_url = get_config('block_uteluqchatbot', 'weaviate_api_url');
+$weaviate_api_key = get_config('block_uteluqchatbot', 'weaviate_api_key');
+$adobe_pdf_client_id = get_config('block_uteluqchatbot', 'adobe_pdf_client_id');
+$adobe_pdf_client_secret = get_config('block_uteluqchatbot', 'adobe_pdf_client_secret');
+$cohere_embedding_api_key = get_config('block_uteluqchatbot', 'cohere_embedding_api_key');
 
 // Test keys
 $results = [

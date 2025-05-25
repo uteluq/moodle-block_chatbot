@@ -120,7 +120,7 @@ $string['json_encode_error'] = 'Erè enkode JSON: ';
 $string['failure_after_retries'] = 'Echè apre ';
 $string['last_error'] = ' tèt. Dènye erè: HTTP ';
 
-// For block_chatbot.php
+// For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
 Konteks Sitiyasyon an:
 Aprann yo pran yon kou sou [[ coursename ]]. Ròl ou se pou ede yo pa ba yo repons eksak, relevan, ak adapte pou aprentisaj yo.

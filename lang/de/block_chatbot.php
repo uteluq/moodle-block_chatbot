@@ -120,7 +120,7 @@ $string['json_encode_error'] = 'JSON-Kodierungsfehler: ';
 $string['failure_after_retries'] = 'Fehler nach ';
 $string['last_error'] = ' Versuchen. Letzter Fehler: HTTP ';
 
-// For block_chatbot.php
+// For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
 Situationskontext:
 Der Lernende belegt einen Kurs zu [[ coursename ]]. Ihre Rolle besteht darin, sie durch die Bereitstellung genauer, relevanter und maßgeschneiderter Antworten auf ihre Lernbedürfnisse zu unterstützen.

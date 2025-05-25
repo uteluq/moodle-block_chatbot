@@ -19,7 +19,7 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * @package     block_chatbot
+ * @package     block_uteluqchatbot
  * @copyright   2025 Universié TÉLUQ
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -27,7 +27,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 // Full name of the plugin (type_name) - Here, a block named "chatbot".
-$plugin->component = 'block_chatbot';
+$plugin->component = 'block_uteluqchatbot';
 
 // Human-readable version - Recommended format: major.minor.patch.
 $plugin->release = '0.1.0';

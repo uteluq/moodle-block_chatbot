@@ -120,7 +120,7 @@ $string['json_encode_error'] = 'JSON एन्कोड त्रुटि: ';
 $string['failure_after_retries'] = 'पुनः प्रयास के बाद विफलता ';
 $string['last_error'] = ' प्रयास। अंतिम त्रुटि: HTTP ';
 
-// For block_chatbot.php
+// For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
 स्थिति संदर्भ:
 छात्र [[ coursename ]] कोर्स में भाग ले रहा है। आपका कार्य उनका समर्थन करना है और उनकी सीख के अनुरूप सटीक, प्रासंगिक और अनुकूलित प्रतिक्रियाएँ प्रदान करना है।

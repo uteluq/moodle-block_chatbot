@@ -120,7 +120,7 @@ $string['json_encode_error'] = 'Hitilafu ya kuweka JSON: ';
 $string['failure_after_retries'] = 'Kupoteza baada ya ';
 $string['last_error'] = ' majaribio. Hitilafu ya mwisho: HTTP ';
 
-// For block_chatbot.php
+// For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
 Mazingira ya Mwadamu:
 Mwanafunzi anafanya masomo ya [[ coursename ]]. Kazi yako ni kumshelp kwa kutoa majibu yanayo sahihi, yanayo faida na yenye kutegemea kwa masomo yake.

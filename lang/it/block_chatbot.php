@@ -120,7 +120,7 @@ $string['json_encode_error'] = 'Errore di codifica JSON: ';
 $string['failure_after_retries'] = 'Fallimento dopo ';
 $string['last_error'] = ' tentativi. Ultimo errore: HTTP ';
 
-// For block_chatbot.php
+// For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
 Contesto della Situazione:
 Lo studente sta seguendo un corso su [[ coursename ]]. Il tuo ruolo è supportarlo fornendo risposte accurate, pertinenti e personalizzate al suo apprendimento.

@@ -20,11 +20,11 @@ try {
 
     // Validate the session key
     if (!confirm_sesskey($sesskey)) {
-        throw new Exception(get_string('invalid_sesskey', 'block_chatbot'));
+        throw new Exception(get_string('invalid_sesskey', 'block_uteluqchatbot'));
     }
 
     // Check if a prompt already exists for this user
-    $existing_prompt = $DB->get_record('block_chatbot_prompts', array('userid' => $userid));
+    $existing_prompt = $DB->get_record('block_uteluqchatbot_prompts', array('userid' => $userid));
 
     $record = new stdClass();
 
@@ -37,16 +37,16 @@ try {
         if ($existing_prompt) {
             // Update the existing prompt
             $record->id = $existing_prompt->id;
-            $DB->update_record('block_chatbot_prompts', $record);
+            $DB->update_record('block_uteluqchatbot_prompts', $record);
         } else {
             // Create a new prompt
             $record->timecreated = time();
-            $DB->insert_record('block_chatbot_prompts', $record);
+            $DB->insert_record('block_uteluqchatbot_prompts', $record);
         }
         $response = ['success' => true];
     } catch (Exception $db_error) {
         // Handle database errors
-        throw new Exception(get_string('database_write_error', 'block_chatbot') . $db_error->getMessage());
+        throw new Exception(get_string('database_write_error', 'block_uteluqchatbot') . $db_error->getMessage());
     }
 } catch (Exception $e) {
     // Handle exceptions and prepare error response

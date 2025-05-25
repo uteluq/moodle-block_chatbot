@@ -120,7 +120,7 @@ $string['json_encode_error'] = "خطأ ترميز JSON: ";
 $string['failure_after_retries'] = "فشل بعد ";
 $string['last_error'] = " محاولات. آخر خطأ: HTTP ";
 
-// For block_chatbot.php
+// For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
 سياق الموقف:
 يتابع المتعلم دورة في [[ coursename ]]. دورك هو دعمه من خلال تقديم إجابات دقيقة وذات صلة ومصممة حسب احتياجاته التعليمية.

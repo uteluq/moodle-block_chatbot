@@ -27,9 +27,9 @@ require_once($CFG->dirroot . '/blocks/chatbot/classes/weaviate_connector.php');
 require_once($CFG->dirroot . '/blocks/chatbot/classes/PDFExtractAPI.php');
 
 // Configuration of API keys and Weaviate URL
-$apiUrl = get_config('block_chatbot', 'weaviate_api_url');
-$apiKey = get_config('block_chatbot', 'weaviate_api_key');
-$cohereApiKey = get_config('block_chatbot', 'cohere_embedding_api_key');
+$apiUrl = get_config('block_uteluqchatbot', 'weaviate_api_url');
+$apiKey = get_config('block_uteluqchatbot', 'weaviate_api_key');
+$cohereApiKey = get_config('block_uteluqchatbot', 'cohere_embedding_api_key');
 
 // Initialize WeaviateConnector object
 $connector = new WeaviateConnector($apiUrl, $apiKey, $cohereApiKey);
@@ -37,7 +37,7 @@ $connector = new WeaviateConnector($apiUrl, $apiKey, $cohereApiKey);
 try {
     // Check form data
     if (empty($_FILES['files'])) {
-        throw new Exception(get_string('filesmissing', 'block_chatbot'));
+        throw new Exception(get_string('filesmissing', 'block_uteluqchatbot'));
     }
 
     $uploadedFiles = $_FILES['files'];
@@ -51,24 +51,24 @@ try {
 
     // Create the collection if it does not exist
     if ($checkIfCreated == false && !$connector->createCollection($courseName)) {
-        throw new Exception(get_string('errorcreatingcollection', 'block_chatbot') . $connector->getLastError());
+        throw new Exception(get_string('errorcreatingcollection', 'block_uteluqchatbot') . $connector->getLastError());
     }
 
     // Check for upload errors
     foreach ($uploadedFiles['error'] as $key => $error) {
         if ($error !== UPLOAD_ERR_OK) {
             $message = match($error) {
-                UPLOAD_ERR_INI_SIZE => get_string('fileexceedsmaxsizeini', 'block_chatbot'),
-                UPLOAD_ERR_FORM_SIZE => get_string('fileexceedsmaxsizeform', 'block_chatbot'),
-                UPLOAD_ERR_PARTIAL => get_string('filepartiallyuploaded', 'block_chatbot'),
-                UPLOAD_ERR_NO_FILE => get_string('nofileuploaded', 'block_chatbot'),
-                UPLOAD_ERR_NO_TMP_DIR => get_string('missingtmpfolder', 'block_chatbot'),
-                UPLOAD_ERR_CANT_WRITE => get_string('failedtowritetodisk', 'block_chatbot'),
-                UPLOAD_ERR_EXTENSION => get_string('phpextensionstoppedupload', 'block_chatbot'),
-                default => get_string('unknownuploaderror', 'block_chatbot')
+                UPLOAD_ERR_INI_SIZE => get_string('fileexceedsmaxsizeini', 'block_uteluqchatbot'),
+                UPLOAD_ERR_FORM_SIZE => get_string('fileexceedsmaxsizeform', 'block_uteluqchatbot'),
+                UPLOAD_ERR_PARTIAL => get_string('filepartiallyuploaded', 'block_uteluqchatbot'),
+                UPLOAD_ERR_NO_FILE => get_string('nofileuploaded', 'block_uteluqchatbot'),
+                UPLOAD_ERR_NO_TMP_DIR => get_string('missingtmpfolder', 'block_uteluqchatbot'),
+                UPLOAD_ERR_CANT_WRITE => get_string('failedtowritetodisk', 'block_uteluqchatbot'),
+                UPLOAD_ERR_EXTENSION => get_string('phpextensionstoppedupload', 'block_uteluqchatbot'),
+                default => get_string('unknownuploaderror', 'block_uteluqchatbot')
             };
 
-            throw new Exception(get_string('uploaderror', 'block_chatbot') . $message);
+            throw new Exception(get_string('uploaderror', 'block_uteluqchatbot') . $message);
         }
     }
 
@@ -83,8 +83,8 @@ try {
         // Move the file to the destination directory
         move_uploaded_file($fileTmpName, $destination);
 
-        $adobe_pdf_client_id = get_config('block_chatbot', 'adobe_pdf_client_id');
-        $adobe_pdf_client_secret = get_config('block_chatbot', 'adobe_pdf_client_secret');
+        $adobe_pdf_client_id = get_config('block_uteluqchatbot', 'adobe_pdf_client_id');
+        $adobe_pdf_client_secret = get_config('block_uteluqchatbot', 'adobe_pdf_client_secret');
 
         // Extract the file content
         $pdfExtractor = new PDFExtractAPI($adobe_pdf_client_id, $adobe_pdf_client_secret);
@@ -103,14 +103,14 @@ try {
         $in = $connector->indexTextFile($destinationTxt, $courseName, $courseName);
 
         if (!$in) {
-            throw new Exception(get_string('errorindexingfile', 'block_chatbot') . $connector->getLastError());
+            throw new Exception(get_string('errorindexingfile', 'block_uteluqchatbot') . $connector->getLastError());
         }
         unlink($destinationTxt);
         unlink($destination);
     }
 
     // Successful response
-    $response = ['success' => true, 'message' => get_string('allfilesindexed', 'block_chatbot')];
+    $response = ['success' => true, 'message' => get_string('allfilesindexed', 'block_uteluqchatbot')];
     $message = $response['message'];
 
     if (!mb_detect_encoding($message, 'UTF-8', true)) {

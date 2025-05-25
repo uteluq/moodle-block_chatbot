@@ -45,8 +45,8 @@ The plugin currently supports the following languages:
 ## Installation
 
 ### Download the Plugin:
-- Clone the repository: `git clone https://github.com//moodle-block_chatbot.git chatbot`
-- Or download the ZIP file from the [Moodle Plugins Directory](https://github.com/uteluq/moodle-block_chatbot/blob/main/README.md#) (once published).
+- Clone the repository: `git clone https://github.com//moodle-block_uteluqchatbot.git chatbot`
+- Or download the ZIP file from the [Moodle Plugins Directory](https://github.com/uteluq/moodle-block_uteluqchatbot/blob/main/README.md#) (once published).
 
 ### Install in Moodle:
 - Copy the `chatbot` folder to the `/blocks/` directory of your Moodle installation.
@@ -143,25 +143,25 @@ Configuration is managed through **Site Administration > Plugins > Blocks > Chat
 
 Contributions are welcome! To contribute:
 
-1. Fork the repository: [https://github.com/uteluq/moodle-block_chatbot](https://github.com/uteluq/moodle-block_chatbot).
+1. Fork the repository: [https://github.com/uteluq/moodle-block_uteluqchatbot](https://github.com/uteluq/moodle-block_uteluqchatbot).
 2. Create a feature branch: `git checkout -b feature/your-feature`.
 3. Commit changes: `git commit -m "Add your feature"`.
 4. Push to the branch: `git push origin feature/your-feature`.
 5. Open a pull request.
 
-Please adhere to Moodle’s [Coding Style](https://moodledev.io/general/development/policies/codingstyle) and submit issues via the [GitHub Issues page](https://github.com//moodle-block_chatbot/issues).
+Please adhere to Moodle’s [Coding Style](https://moodledev.io/general/development/policies/codingstyle) and submit issues via the [GitHub Issues page](https://github.com//moodle-block_uteluqchatbot/issues).
 
 ## License
 
-This plugin is licensed under the GNU General Public License v3.0 or later (GPLv3+). See the [LICENSE](https://github.com/uteluq/moodle-block_chatbot/blob/main/LICENSE) file for details.
+This plugin is licensed under the GNU General Public License v3.0 or later (GPLv3+). See the [LICENSE](https://github.com/uteluq/moodle-block_uteluqchatbot/blob/main/LICENSE) file for details.
 
 ## Support
 
 For issues, feature requests, or questions:
 
-- File an issue on the [GitHub Issues page](https://github.com//moodle-block_chatbot/issues).
+- File an issue on the [GitHub Issues page](https://github.com//moodle-block_uteluqchatbot/issues).
 - Refer to the [Moodle Tracker](https://tracker.moodle.org/) for broader Moodle-related support.
-- Consult the [Moodle Documentation](https://docs.moodle.org/) or the plugin’s [Prompt Design Guide](https://github.com/uteluq/moodle-block_chatbot/blob/main/README.md) for specific guidance.
+- Consult the [Moodle Documentation](https://docs.moodle.org/) or the plugin’s [Prompt Design Guide](https://github.com/uteluq/moodle-block_uteluqchatbot/blob/main/README.md) for specific guidance.
 
 ## Acknowledgments
 

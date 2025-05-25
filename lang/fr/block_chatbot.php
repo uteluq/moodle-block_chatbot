@@ -12,7 +12,7 @@ $string['api_error'] = 'Erreur lors de la communication avec OpenAI';
 
 
 
-// lang/fr/block_chatbot.php
+// lang/fr/block_uteluqchatbot.php
 
 $string['adobe_pdf_client_id'] = 'Identifiant Client Adobe PDF Services';
 $string['adobe_pdf_client_id_desc'] = 'Entrez votre identifiant client Adobe PDF Services ici.';
@@ -154,7 +154,7 @@ $string['last_error'] = " tentatives. Dernière erreur : HTTP ";
 
 
 
-// For block_chatbot.php
+// For block_uteluqchatbot.php
 $string['pluginname'] = "Chatbot";
 $string['default_prompt'] = <<<EOT
 Contexte de la situation :

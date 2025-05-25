@@ -2,7 +2,7 @@
 /**
  * Weaviate Connector class for Moodle.
  *
- * @package    block_chatbot
+ * @package    block_uteluqchatbot
  * @subpackage weaviateconnector
  * @copyright  2025 Université TÉLUQ
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -113,12 +113,12 @@ class WeaviateConnector
 
         // Error handling
         if ($curlError) {
-            return get_string('curl_error', 'block_chatbot') . $curlError;
+            return get_string('curl_error', 'block_uteluqchatbot') . $curlError;
         }
 
         // Check HTTP status code
         if ($httpCode !== 200) {
-            return get_string('http_error', 'block_chatbot') . $httpCode . ': ' . $response;
+            return get_string('http_error', 'block_uteluqchatbot') . $httpCode . ': ' . $response;
         }
 
         // Decode the JSON response
@@ -126,7 +126,7 @@ class WeaviateConnector
 
         // Check for JSON decoding errors
         if (json_last_error() !== JSON_ERROR_NONE) {
-            return get_string('json_decode_error', 'block_chatbot') . json_last_error_msg() .
+            return get_string('json_decode_error', 'block_uteluqchatbot') . json_last_error_msg() .
                 ' - Raw response: ' . $response;
         }
 
@@ -137,7 +137,7 @@ class WeaviateConnector
         }
 
         // Return an error message if no response is generated
-        return get_string('no_response_generated', 'block_chatbot') . print_r($responseData, true);
+        return get_string('no_response_generated', 'block_uteluqchatbot') . print_r($responseData, true);
     }
 
     /**
@@ -155,12 +155,12 @@ class WeaviateConnector
         global $COURSE, $DB, $USER;
 
         // Query with integer values
-        $task = $DB->get_record('block_chatbot_prompts', array('userid' => $user_id, 'courseid' => $course_id))->prompt;
+        $task = $DB->get_record('block_uteluqchatbot_prompts', array('userid' => $user_id, 'courseid' => $course_id))->prompt;
 
         // Get the last 10 conversations of the user
         $last_conversations = $DB->get_records_sql(
             "SELECT question, answer
-            FROM {block_chatbot_conversations}
+            FROM {block_uteluqchatbot_conversations}
             WHERE userid = :userid
             ORDER BY timecreated DESC
             LIMIT 10",
@@ -176,17 +176,17 @@ class WeaviateConnector
 
         // Build the history format
         if (count($conversations) > 0) {
-            $historique = get_string('previous_interactions_history', 'block_chatbot') . "\n\n";
+            $historique = get_string('previous_interactions_history', 'block_uteluqchatbot') . "\n\n";
 
             foreach ($conversations as $index => $conversation) {
                 $num = $index + 1;
-                $historique .= get_string('previous_question', 'block_chatbot', $num) . $conversation->question . "\n";
-                $historique .= get_string('answer', 'block_chatbot') . $conversation->answer . "\n\n";
+                $historique .= get_string('previous_question', 'block_uteluqchatbot', $num) . $conversation->question . "\n";
+                $historique .= get_string('answer', 'block_uteluqchatbot') . $conversation->answer . "\n\n";
             }
         }
         // Determine the prompt to use
         if (!$task) {
-            $task = get_string('default_prompt', 'block_chatbot');
+            $task = get_string('default_prompt', 'block_uteluqchatbot');
         }
 
         
@@ -247,7 +247,7 @@ class WeaviateConnector
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
         if (curl_errno($ch) || $httpCode !== 200) {
-            $this->lastError = curl_error($ch) ?: get_string('http_code', 'block_chatbot') . $httpCode;
+            $this->lastError = curl_error($ch) ?: get_string('http_code', 'block_uteluqchatbot') . $httpCode;
             curl_close($ch);
             return null;
         }
@@ -259,7 +259,7 @@ class WeaviateConnector
             return $decodedResponse['data']['Get'][$collection][0]['_additional']['generate']['groupedResult'];
         }
 
-        $this->lastError = get_string('invalid_response_format', 'block_chatbot');
+        $this->lastError = get_string('invalid_response_format', 'block_uteluqchatbot');
         return null;
     }
 
@@ -303,7 +303,7 @@ class WeaviateConnector
         // Check HTTP response code
         // 200 or 204 are success codes for deletion
         if ($httpCode !== 200 && $httpCode !== 204) {
-            $this->lastError = get_string('http_error', 'block_chatbot') . $httpCode . ": " . $response;
+            $this->lastError = get_string('http_error', 'block_uteluqchatbot') . $httpCode . ": " . $response;
             return false;
         }
 
@@ -348,7 +348,7 @@ class WeaviateConnector
 
         // Check HTTP response code
         if ($httpCode !== 200) {
-            $this->lastError = get_string('http_error', 'block_chatbot') . $httpCode . ": " . $response;
+            $this->lastError = get_string('http_error', 'block_uteluqchatbot') . $httpCode . ": " . $response;
             return false;
         }
 
@@ -428,7 +428,7 @@ class WeaviateConnector
 
         // Check HTTP response code
         if ($httpCode !== 200) {
-            $this->lastError = get_string('http_error', 'block_chatbot') . $httpCode . ": " . $response;
+            $this->lastError = get_string('http_error', 'block_uteluqchatbot') . $httpCode . ": " . $response;
             return false;
         }
 
@@ -585,14 +585,14 @@ class WeaviateConnector
 
         // Check HTTP code
         if ($httpCode !== 200) {
-            $this->lastError = get_string('http_error', 'block_chatbot') . $httpCode . ": $response";
+            $this->lastError = get_string('http_error', 'block_uteluqchatbot') . $httpCode . ": $response";
             return null;
         }
 
         // Decode the JSON response
         $result = json_decode($response, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
-            $this->lastError = get_string('json_decode_error', 'block_chatbot') . json_last_error_msg();
+            $this->lastError = get_string('json_decode_error', 'block_uteluqchatbot') . json_last_error_msg();
             return null;
         }
 
@@ -618,14 +618,14 @@ class WeaviateConnector
 
         // Check if the file exists
         if (!file_exists($filePath)) {
-            $this->lastError = get_string('file_not_found', 'block_chatbot') . $filePath;
+            $this->lastError = get_string('file_not_found', 'block_uteluqchatbot') . $filePath;
             return false;
         }
 
         // Read the file
         $text = file_get_contents($filePath);
         if ($text === false) {
-            $this->lastError = get_string('unable_to_read_file', 'block_chatbot');
+            $this->lastError = get_string('unable_to_read_file', 'block_uteluqchatbot');
             return false;
         }
 
@@ -666,7 +666,7 @@ class WeaviateConnector
                 foreach ($currentBatch as $obj) {
                     $jsonObj = json_encode($obj);
                     if ($jsonObj === false) {
-                        $this->lastError = get_string('json_encode_error', 'block_chatbot') . json_last_error_msg();
+                        $this->lastError = get_string('json_encode_error', 'block_uteluqchatbot') . json_last_error_msg();
                         return false;
                     }
                     $jsonObjects[] = $jsonObj;
@@ -717,7 +717,7 @@ class WeaviateConnector
                     }
                     // Other HTTP errors
                     elseif ($httpCode < 200 || $httpCode >= 300) {
-                        $this->lastError = get_string('http_error', 'block_chatbot') . $httpCode . ": $response";
+                        $this->lastError = get_string('http_error', 'block_uteluqchatbot') . $httpCode . ": $response";
                         curl_close($ch);
                         return false;
                     }
@@ -729,7 +729,7 @@ class WeaviateConnector
 
                 // If all attempts failed
                 if (!$requestSuccess) {
-                    $this->lastError = get_string('failure_after_retries', 'block_chatbot') . $maxRetries . get_string('last_error', 'block_chatbot') . $httpCode;
+                    $this->lastError = get_string('failure_after_retries', 'block_uteluqchatbot') . $maxRetries . get_string('last_error', 'block_uteluqchatbot') . $httpCode;
                     return false;
                 }
 
@@ -878,14 +878,14 @@ class WeaviateConnector
 
         // Check HTTP code
         if ($httpCode !== 200) {
-            $this->lastError = get_string('http_error', 'block_chatbot') . $httpCode . ": $response";
+            $this->lastError = get_string('http_error', 'block_uteluqchatbot') . $httpCode . ": $response";
             return null;
         }
 
         // Decode the JSON response
         $result = json_decode($response, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
-            $this->lastError = get_string('json_decode_error', 'block_chatbot') . json_last_error_msg();
+            $this->lastError = get_string('json_decode_error', 'block_uteluqchatbot') . json_last_error_msg();
             return null;
         }
 

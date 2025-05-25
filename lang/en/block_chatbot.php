@@ -11,7 +11,7 @@ $string['openai_api_key'] = 'OpenAI API Key';
 $string['openai_api_key_desc'] = 'Enter your OpenAI API key here.';
 
 
-// lang/en/block_chatbot.php
+// lang/en/block_uteluqchatbot.php
 
 $string['adobe_pdf_client_id'] = 'Adobe PDF Services Client ID';
 $string['adobe_pdf_client_id_desc'] = 'Enter your Adobe PDF Services Client ID here.';
@@ -172,7 +172,7 @@ $string['failure_after_retries'] = "Failure after ";
 $string['last_error'] = " attempts. Last error: HTTP ";
 
 
-// For block_chatbot.php
+// For block_uteluqchatbot.php
 
 
 $string['pluginname'] = "Chatbot";

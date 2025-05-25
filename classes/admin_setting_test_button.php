@@ -52,7 +52,7 @@ class admin_setting_test_button extends admin_setting {
                 'div',
                 html_writer::tag(
                     'button',
-                    get_string('test_api_keys_label', 'block_chatbot'),
+                    get_string('test_api_keys_label', 'block_uteluqchatbot'),
                     array(
                         'id' => 'id_test_api_keys',
                         'class' => 'btn btn-secondary',

@@ -6,7 +6,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>{{#str}}chatbot_with_toggle_buttons, block_chatbot{{/str}}</title>
+    <title>{{#str}}chatbot_with_toggle_buttons, block_uteluqchatbot{{/str}}</title>
     <style>
     .block-chatbot-container {
         background: #ffffff;
@@ -239,10 +239,10 @@
             </div>
             <div class="message bot-message">
                 {{#isteacher}}
-                {{#str}}hello_professor, block_chatbot{{/str}}
+                {{#str}}hello_professor, block_uteluqchatbot{{/str}}
                 {{/isteacher}}
                 {{^isteacher}}
-                {{#str}}hello_student, block_chatbot{{/str}}
+                {{#str}}hello_student, block_uteluqchatbot{{/str}}
                 {{/isteacher}}
             </div>
         </div>
@@ -251,7 +251,7 @@
     <div class="chat-input-container">
         <form id="chatform" class="chat-form">
             <input type="text" id="question" name="question"
-                   class="chat-input" placeholder="{{#str}}ask_your_question_here, block_chatbot{{/str}}" required>
+                   class="chat-input" placeholder="{{#str}}ask_your_question_here, block_uteluqchatbot{{/str}}" required>
             <button type="submit" class="send-button">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" fill="white"/>
@@ -264,13 +264,13 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="currentColor"/>
                 </svg>
-                {{#str}}modify_prompt, block_chatbot{{/str}}
+                {{#str}}modify_prompt, block_uteluqchatbot{{/str}}
             </button>
             <button id="toggle-file-upload-form" class="file-upload-button" onclick="toggleFileUploadModal()">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="currentColor"/>
                 </svg>
-                {{#str}}upload_course, block_chatbot{{/str}}
+                {{#str}}upload_course, block_uteluqchatbot{{/str}}
             </button>
             {{/isteacher}}
         </div>
@@ -281,11 +281,11 @@
 
 // Keep the original functions
 function togglePromptModal() {
-    console.log('{{#str}}open_prompt_modal, block_chatbot{{/str}}');
+    console.log('{{#str}}open_prompt_modal, block_uteluqchatbot{{/str}}');
 }
 
 function toggleFileUploadModal() {
-    console.log('{{#str}}open_file_upload_modal, block_chatbot{{/str}}');
+    console.log('{{#str}}open_file_upload_modal, block_uteluqchatbot{{/str}}');
 }
 
 </script>

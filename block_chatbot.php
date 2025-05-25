@@ -3,16 +3,16 @@
 /**
  * Chatbot block class for Moodle.
  *
- * @package    block_chatbot
+ * @package    block_uteluqchatbot
  * @copyright  2025 Université TÉLUQ
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-class block_chatbot extends block_base
+class block_uteluqchatbot extends block_base
 {
     public function init()
     {
-        $this->title = get_string('pluginname', 'block_chatbot');
+        $this->title = get_string('pluginname', 'block_uteluqchatbot');
     }
 
     public function applicable_formats()
@@ -49,10 +49,10 @@ class block_chatbot extends block_base
     $coursename = $PAGE->course->fullname;
 
     // Default prompt with dynamic course name
-    $default_prompt = get_string('default_prompt', 'block_chatbot', $coursename);
+    $default_prompt = get_string('default_prompt', 'block_uteluqchatbot', $coursename);
 
     // Get the existing prompt for the user
-    $existing_prompt = $DB->get_record('block_chatbot_prompts', array('userid' => $USER->id, 'courseid' => $COURSE->id));
+    $existing_prompt = $DB->get_record('block_uteluqchatbot_prompts', array('userid' => $USER->id, 'courseid' => $COURSE->id));
 
     // Check if the user is a teacher
     $coursecontext = context_course::instance($COURSE->id);
@@ -70,9 +70,9 @@ class block_chatbot extends block_base
     ];
 
     // Load templates
-    $this->content->text = $OUTPUT->render_from_template('block_chatbot/chatbot', $templateData);
-    $this->content->text .= $OUTPUT->render_from_template('block_chatbot/prompt_modal', $templateData);
-    $this->content->text .= $OUTPUT->render_from_template('block_chatbot/load-course-modal', $templateData);
+    $this->content->text = $OUTPUT->render_from_template('block_uteluqchatbot/chatbot', $templateData);
+    $this->content->text .= $OUTPUT->render_from_template('block_uteluqchatbot/prompt_modal', $templateData);
+    $this->content->text .= $OUTPUT->render_from_template('block_uteluqchatbot/load-course-modal', $templateData);
 
     $PAGE->requires->jquery();
 

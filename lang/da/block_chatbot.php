@@ -120,7 +120,7 @@ $string['json_encode_error'] = 'JSON-kodning fejl: ';
 $string['failure_after_retries'] = 'Fejl efter ';
 $string['last_error'] = ' forsøg. Sidste fejl: HTTP ';
 
-// For block_chatbot.php
+// For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
 Situationskontekst:
 Læreren tager et kursus om [[ coursename ]]. Din rolle er at støtte dem ved at give præcise, relevante og tilpassede svar på deres læring.

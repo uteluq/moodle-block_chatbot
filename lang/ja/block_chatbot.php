@@ -120,7 +120,7 @@ $string['json_encode_error'] = 'JSONエンコードエラー: ';
 $string['failure_after_retries'] = '再試行後に失敗 ';
 $string['last_error'] = ' 回。最後のエラー: HTTP ';
 
-// For block_chatbot.php
+// For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
 状況コンテキスト:
 学習者は[[ coursename ]]のコースを受講しています。あなたの役割は、彼らの学習をサポートするために、正確で関連性があり、カスタマイズされた回答を提供することです。

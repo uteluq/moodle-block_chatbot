@@ -163,22 +163,22 @@ function send_json_response($data, $status_code = 200) {
 try {
     // Check HTTP method
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        send_json_response(['error' => get_string('http_method_not_allowed', 'block_chatbot')], 405);
+        send_json_response(['error' => get_string('http_method_not_allowed', 'block_uteluqchatbot')], 405);
     }
 
     // Read input
     $raw_input = file_get_contents('php://input');
     if ($raw_input === false) {
-        send_json_response(['error' => get_string('error_reading_input', 'block_chatbot')], 400);
+        send_json_response(['error' => get_string('error_reading_input', 'block_uteluqchatbot')], 400);
     }
     $input = json_decode($raw_input, true);
 
     if (json_last_error() !== JSON_ERROR_NONE) {
-        send_json_response(['error' => get_string('invalid_json', 'block_chatbot') . ': ' . json_last_error_msg()], 400);
+        send_json_response(['error' => get_string('invalid_json', 'block_uteluqchatbot') . ': ' . json_last_error_msg()], 400);
     }
 
     if (!isset($input['question']) || !isset($input['sesskey']) || !isset($input['userid']) || !isset($input['courseid'])) {
-        send_json_response(['error' => get_string('missing_parameters', 'block_chatbot')], 400);
+        send_json_response(['error' => get_string('missing_parameters', 'block_uteluqchatbot')], 400);
     }
 
     $question_raw = $input['question']; // Keep raw for logging if needed, then sanitize
@@ -196,28 +196,28 @@ try {
     if (empty($question)) { // Check after sanitization
         // If sanitizeChatbotInput can return an empty string from a non-empty input due to stripping
         // this check is important.
-        send_json_response(['error' => get_string('invalid_question_after_sanitize', 'block_chatbot')], 400);
+        send_json_response(['error' => get_string('invalid_question_after_sanitize', 'block_uteluqchatbot')], 400);
     }
     
     // Session key confirmation
     if (!confirm_sesskey($sesskey)) {
-        send_json_response(['error' => get_string('invalid_session', 'block_chatbot')], 403);
+        send_json_response(['error' => get_string('invalid_session', 'block_uteluqchatbot')], 403);
     }
 
     // Retrieve API key for OpenAI (if used directly, otherwise for Weaviate/Cohere)
-    // $api_key = get_config('block_chatbot', 'openai_api_key');
+    // $api_key = get_config('block_uteluqchatbot', 'openai_api_key');
     // if (empty($api_key)) {
-    //     send_json_response(['error' => get_string('openai_api_key_not_configured', 'block_chatbot')], 500);
+    //     send_json_response(['error' => get_string('openai_api_key_not_configured', 'block_uteluqchatbot')], 500);
     // }
 
     // Configure Weaviate API keys and URL
-    $weaviateApiUrl = get_config('block_chatbot', 'weaviate_api_url');
-    $weaviateApiKey = get_config('block_chatbot', 'weaviate_api_key');
-    $cohereApiKey = get_config('block_chatbot', 'cohere_embedding_api_key');
+    $weaviateApiUrl = get_config('block_uteluqchatbot', 'weaviate_api_url');
+    $weaviateApiKey = get_config('block_uteluqchatbot', 'weaviate_api_key');
+    $cohereApiKey = get_config('block_uteluqchatbot', 'cohere_embedding_api_key');
 
     if (empty($weaviateApiUrl) || empty($cohereApiKey)) { // Weaviate API key might be optional depending on setup
         error_log('Chatbot API: Weaviate URL or Cohere API key is not configured.');
-        send_json_response(['error' => get_string('weaviate_cohere_not_configured', 'block_chatbot')], 500);
+        send_json_response(['error' => get_string('weaviate_cohere_not_configured', 'block_uteluqchatbot')], 500);
     }
     
     $weaviateConnector = new WeaviateConnector(
@@ -232,7 +232,7 @@ try {
     
     $courseRecord = $DB->get_record('course', array('id' => $courseid));
     if (!$courseRecord) {
-        send_json_response(['error' => get_string('invalid_course_id', 'block_chatbot')], 400);
+        send_json_response(['error' => get_string('invalid_course_id', 'block_uteluqchatbot')], 400);
     }
     $courseName = $courseRecord->fullname;
     $collectionName = 'Collection_course_' . $courseid; // Ensure this naming convention is consistent
@@ -256,7 +256,7 @@ try {
     // null or false often indicate an actual failure in the connector.
     if (is_null($answer) || $answer === false) {
         error_log("Chatbot API: Empty or error response from Weaviate/Cohere. Answer was: " . var_export($answer, true));
-        send_json_response(['error' => get_string('empty_response_from_api', 'block_chatbot')], 500);
+        send_json_response(['error' => get_string('empty_response_from_api', 'block_uteluqchatbot')], 500);
     }
     // If an empty string is also an error, add: || $answer === ""
     if ($answer === "") {
@@ -277,13 +277,13 @@ try {
     $record->timecreated = time();
 
     try {
-        $count = $DB->count_records('block_chatbot_conversations', ['userid' => $userid, 'courseid' => $courseid]);
+        $count = $DB->count_records('block_uteluqchatbot_conversations', ['userid' => $userid, 'courseid' => $courseid]);
 
         if ($count >= $max_conversations) {
             // Moodle's $DB methods expect an array of IDs for delete_records_select or similar.
             // Or get the oldest records and delete them one by one or by a list of IDs.
             $oldest_ids = $DB->get_fieldset_sql(
-                "SELECT id FROM {block_chatbot_conversations}
+                "SELECT id FROM {block_uteluqchatbot_conversations}
                  WHERE userid = :userid AND courseid = :courseid
                  ORDER BY timecreated ASC",
                 ['userid' => $userid, 'courseid' => $courseid],
@@ -293,12 +293,12 @@ try {
 
             if ($oldest_ids) {
                 foreach ($oldest_ids as $old_id) {
-                    $DB->delete_records('block_chatbot_conversations', ['id' => $old_id]);
+                    $DB->delete_records('block_uteluqchatbot_conversations', ['id' => $old_id]);
                 }
             }
         }
 
-        $DB->insert_record('block_chatbot_conversations', $record);
+        $DB->insert_record('block_uteluqchatbot_conversations', $record);
 
         send_json_response([
             'status' => 'success',
@@ -307,13 +307,13 @@ try {
 
     } catch (dml_exception $db_error) {
         error_log('Chatbot API: Database error while saving conversation - ' . $db_error->getMessage());
-        send_json_response(['error' => get_string('error_saving_conversation', 'block_chatbot') . ': ' . $db_error->getMessage()], 500);
+        send_json_response(['error' => get_string('error_saving_conversation', 'block_uteluqchatbot') . ': ' . $db_error->getMessage()], 500);
     }
 
 } catch (Exception $e) {
     error_log('Chatbot API: General exception - ' . $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine());
     // Avoid sending detailed exception messages to the client in production for security.
-    send_json_response(['error' => get_string('generic_server_error', 'block_chatbot') . ' Trace: ' . $e->getTraceAsString()], 500); // Added trace for debugging
+    send_json_response(['error' => get_string('generic_server_error', 'block_uteluqchatbot') . ' Trace: ' . $e->getTraceAsString()], 500); // Added trace for debugging
 } finally {
     // Ensure the output buffer started at the very beginning is cleaned up if not already handled.
     if (ob_get_level() > 0) {
