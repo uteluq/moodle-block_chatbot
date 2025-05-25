@@ -26,11 +26,11 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-// Full name of the plugin (type_name) - Here, a block named "chatbot".
+// Full name of the plugin (type_name) - Here, a block named "uteluqchatbot".
 $plugin->component = 'block_uteluqchatbot';
 
 // Human-readable version - Recommended format: major.minor.patch.
-$plugin->release = '0.1.0';
+$plugin->release = '0.4.0';
 
 // Internal version number - Format YYYYMMDDXX (year, month, day, increment).
 // Here: March 6, 2025, version 06 of the day.
