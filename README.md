@@ -116,7 +116,6 @@ A detailed testing protocol will be published, with evaluation criteria includin
   - [Adobe PDF Services] for processing uploaded course materials.
   - [Weaviate] for vector database storage and retrieval.
 - **Server**: Deployable on standard Moodle servers or AWS for scalability.
-- **Empathy Evaluation**: Assessing perceived empathy in learner interactions with the chatbot.
 
 ## Web Services
 
