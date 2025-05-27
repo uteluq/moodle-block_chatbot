@@ -3,8 +3,11 @@
  * @copyright 2025 Université TÉLUQ
  */
 $string['pluginname'] = 'شات بوت';
-$string['chatbot:addinstance'] = 'أضف كتلة شات بوت جديدة';
-$string['chatbot:myaddinstance'] = 'أضف كتلة شات بوت جديدة إلى لوحة التحكم';
+$string['uteluqchatbot:addinstance'] = 'أضف كتلة شات بوت جديدة';
+$string['uteluqchatbot:myaddinstance'] = 'أضف كتلة شات بوت جديدة إلى لوحة التحكم';
+
+$string['weaviate_cohere_not_configured'] = 'لم يتم تكوين مفتاح API الخاص بـ Cohere أو أنه غير صالح. يرجى التحقق من الإعدادات.';
+
 
 // Open AI
 $string['openai_api_key'] = 'مفتاح واجهة برمجة تطبيقات OpenAI';
@@ -36,7 +39,7 @@ $string['test_api_keys'] = 'اختبار مفاتيح واجهة برمجة ال
 $string['test_api_keys_desc'] = 'انقر لاختبار مفاتيح واجهة برمجة التطبيقات المُعَدَّة';
 $string['test_api_keys_label'] = 'اختبار المفاتيح';
 
-$string['chatbot:manage'] = 'إدارة إعدادات الشات بوت';
+$string['uteluqchatbot:manage'] = 'إدارة إعدادات الشات بوت';
 
 // For ../.../weaviate_db.php
 $string['filesmissing'] = "الملفات مفقودة.";

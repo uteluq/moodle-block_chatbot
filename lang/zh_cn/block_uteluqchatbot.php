@@ -3,8 +3,11 @@
  * @copyright 2025 Université TÉLUQ
  */
 $string['pluginname'] = '聊天机器人';
-$string['chatbot:addinstance'] = '添加新的聊天机器人块';
-$string['chatbot:myaddinstance'] = '在仪表板中添加新的聊天机器人块';
+$string['uteluqchatbot:addinstance'] = '添加新的聊天机器人块';
+$string['uteluqchatbot:myaddinstance'] = '在仪表板中添加新的聊天机器人块';
+
+$string['weaviate_cohere_not_configured'] = 'Cohere API 密钥未配置或无效。请检查设置。';
+
 
 // Open AI
 $string['openai_api_key'] = 'OpenAI API密钥';
@@ -36,7 +39,7 @@ $string['test_api_keys'] = '测试API密钥';
 $string['test_api_keys_desc'] = '点击测试已配置的API密钥';
 $string['test_api_keys_label'] = '测试密钥';
 
-$string['chatbot:manage'] = '管理聊天机器人设置';
+$string['uteluqchatbot:manage'] = '管理聊天机器人设置';
 
 // For ../.../weaviate_db.php
 $string['filesmissing'] = '文件丢失。';

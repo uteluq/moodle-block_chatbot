@@ -9,48 +9,11 @@ require_login();
 require_capability('moodle/site:config', context_system::instance());
 
 $PAGE->set_context(context_system::instance());
-$PAGE->set_url('/blocks/chatbot/test_api_keys.php');
+$PAGE->set_url('/blocks/uteluqchatbot/test_api_keys.php');
 $PAGE->set_title(get_string('test_api_keys', 'block_uteluqchatbot'));
 $PAGE->set_heading(get_string('test_api_keys', 'block_uteluqchatbot'));
 
-function test_openai_key($key)
-{
-    $url = 'https://api.openai.com/v1/models';
 
-    $headers = [
-        'Authorization: Bearer ' . $key,
-        'Content-Type: application/json'
-    ];
-
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-    $response = curl_exec($ch);
-    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-
-    if ($response === false) {
-        return [
-            'success' => false,
-            'message' => get_string('openai_connection_error', 'block_uteluqchatbot')
-        ];
-    }
-
-    if ($http_code !== 200) {
-        $error_message = json_decode($response, true);
-        return [
-            'success' => false,
-            'message' => get_string('openai_invalid_key', 'block_uteluqchatbot') . $http_code
-        ];
-    }
-
-    return [
-        'success' => true,
-        'message' => get_string('openai_valid_key', 'block_uteluqchatbot')
-    ];
-}
 
 function getAccessTokenAdobePDFServices($clientId, $clientSecret)
 {
@@ -192,7 +155,6 @@ function getCollectionsWeaviate($apiUrl, $apiKey): array
 }
 
 // Retrieve keys
-$openai_key = get_config('block_uteluqchatbot', 'openai_api_key');
 $weaviate_api_url = get_config('block_uteluqchatbot', 'weaviate_api_url');
 $weaviate_api_key = get_config('block_uteluqchatbot', 'weaviate_api_key');
 $adobe_pdf_client_id = get_config('block_uteluqchatbot', 'adobe_pdf_client_id');
@@ -201,7 +163,6 @@ $cohere_embedding_api_key = get_config('block_uteluqchatbot', 'cohere_embedding_
 
 // Test keys
 $results = [
-    'openai' => test_openai_key($openai_key),
     'weaviate' => getCollectionsWeaviate($weaviate_api_url, $weaviate_api_key),
     'adobe pdf services' => getAccessTokenAdobePDFServices($adobe_pdf_client_id, $adobe_pdf_client_secret)
 ];

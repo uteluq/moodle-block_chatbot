@@ -3,21 +3,13 @@
  * @copyright 2025 Université TÉLUQ
  */
 
-require_once($CFG->dirroot . '/blocks/chatbot/classes/admin_setting_test_button.php');
+require_once($CFG->dirroot . '/blocks/uteluqchatbot/classes/admin_setting_test_button.php');
 
 // settings.php
 defined('MOODLE_INTERNAL') || die();
 
 // Check if the user has the capability to manage plugin settings.
-if (has_capability('block/chatbot:manage', context_system::instance()) && $ADMIN->fulltree) {
-    // OpenAI API Key
-    $settings->add(new admin_setting_configtext(
-        'block_uteluqchatbot/openai_api_key',
-        get_string('openai_api_key', 'block_uteluqchatbot'),
-        get_string('openai_api_key_desc', 'block_uteluqchatbot'),
-        '',
-        PARAM_TEXT
-    ));
+if (has_capability('block/uteluqchatbot:manage', context_system::instance()) && $ADMIN->fulltree) {
 
     // Cohere Embedding Model API Key
     $settings->add(new admin_setting_configtext(

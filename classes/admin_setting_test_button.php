@@ -44,7 +44,7 @@ class admin_setting_test_button extends admin_setting {
      * @return string The HTML for the setting.
      */
     public function output_html($data, $query='') {
-        $url = new moodle_url('/blocks/chatbot/test_api_keys.php');
+        $url = new moodle_url('/blocks/uteluqchatbot/test_api_keys.php');
         return format_admin_setting(
             $this,
             $this->visiblename,

@@ -26,7 +26,7 @@ ini_set('display_errors', 0); // Disable error display to browser to avoid JSON 
 ini_set('log_errors', 1);    // Ensure errors are logged
 // Consider setting ini_set('error_log', '/path/to/your/php_errors.log'); if not set globally
 
-require_once($CFG->dirroot . '/blocks/chatbot/classes/weaviate_connector.php');
+require_once($CFG->dirroot . '/blocks/uteluqchatbot/classes/weaviate_connector.php');
 
 /**
  * Sanitize input to prevent XSS and other attacks.
@@ -80,7 +80,7 @@ function send_json_response($data, $status_code = 200) {
 
     // Check if headers have already been sent (indicates premature output)
     if (headers_sent($file, $line)) {
-        error_log("Chatbot API: Headers already sent from {$file}:{$line}. Cannot send JSON response properly. Prior output detected.");
+        error_log("uteluqchatbot API: Headers already sent from {$file}:{$line}. Cannot send JSON response properly. Prior output detected.");
         // Attempt to clean again, though it's likely too late to set new headers.
         while (ob_get_level() > 0) {
             ob_end_clean();
@@ -99,7 +99,7 @@ function send_json_response($data, $status_code = 200) {
 
     // Start a new, clean output buffer specifically for this JSON response.
     if (!ob_start()) {
-        error_log("Chatbot API: Failed to start output buffer for JSON response.");
+        error_log("uteluqchatbot API: Failed to start output buffer for JSON response.");
         // Fallback or error handling if ob_start fails
         http_response_code(500); // Internal Server Error
         // Still try to send a JSON error message, but without buffer control.
@@ -117,25 +117,25 @@ function send_json_response($data, $status_code = 200) {
     // Ensure $data['answer'] is UTF-8 if it exists and is a string
     if (isset($data['answer']) && is_string($data['answer'])) {
         if (!mb_check_encoding($data['answer'], 'UTF-8')) {
-            error_log('Chatbot API: Answer is not UTF-8. Attempting to convert. Original encoding: ' . mb_detect_encoding($data['answer']));
+            error_log('uteluqchatbot API: Answer is not UTF-8. Attempting to convert. Original encoding: ' . mb_detect_encoding($data['answer']));
             $converted_answer = mb_convert_encoding($data['answer'], 'UTF-8', mb_detect_encoding($data['answer']));
             if ($converted_answer !== false) {
                 $data['answer'] = $converted_answer;
             } else {
-                error_log('Chatbot API: Failed to convert answer to UTF-8. Using original potentially problematic string.');
+                error_log('uteluqchatbot API: Failed to convert answer to UTF-8. Using original potentially problematic string.');
                 // Potentially replace with an error message or a safe placeholder
                 // $data['answer'] = "Error: Could not encode answer to UTF-8.";
             }
         }
     } else if ($status_code === 200 && !isset($data['error']) && !isset($data['answer'])) {
-        error_log('Chatbot API: send_json_response called with 200 status but no "answer" or "error" field in data.');
+        error_log('uteluqchatbot API: send_json_response called with 200 status but no "answer" or "error" field in data.');
     }
 
     $json_output = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PARTIAL_OUTPUT_ON_ERROR);
 
     if (json_last_error() !== JSON_ERROR_NONE) {
         $json_error_msg = json_last_error_msg();
-        error_log('Chatbot API: JSON Encode Error - ' . $json_error_msg . '. Data was: ' . print_r($data, true));
+        error_log('uteluqchatbot API: JSON Encode Error - ' . $json_error_msg . '. Data was: ' . print_r($data, true));
         
         // Clean the buffer we started for the (failed) JSON attempt
         ob_end_clean(); 
@@ -216,7 +216,7 @@ try {
     $cohereApiKey = get_config('block_uteluqchatbot', 'cohere_embedding_api_key');
 
     if (empty($weaviateApiUrl) || empty($cohereApiKey)) { // Weaviate API key might be optional depending on setup
-        error_log('Chatbot API: Weaviate URL or Cohere API key is not configured.');
+        error_log('uteluqchatbot API: Weaviate URL or Cohere API key is not configured.');
         send_json_response(['error' => get_string('weaviate_cohere_not_configured', 'block_uteluqchatbot')], 500);
     }
     
@@ -255,14 +255,14 @@ try {
     // An empty string "" might be a valid (though perhaps unhelpful) answer.
     // null or false often indicate an actual failure in the connector.
     if (is_null($answer) || $answer === false) {
-        error_log("Chatbot API: Empty or error response from Weaviate/Cohere. Answer was: " . var_export($answer, true));
+        error_log("uteluqchatbot API: Empty or error response from Weaviate/Cohere. Answer was: " . var_export($answer, true));
         send_json_response(['error' => get_string('empty_response_from_api', 'block_uteluqchatbot')], 500);
     }
     // If an empty string is also an error, add: || $answer === ""
     if ($answer === "") {
          // Decide if an empty string is an error or a valid (empty) response
          // For now, let's assume it might be valid, but log it.
-         error_log("Chatbot API: Received an empty string as answer from Weaviate/Cohere for question: {$question}");
+         error_log("uteluqchatbot API: Received an empty string as answer from Weaviate/Cohere for question: {$question}");
     }
 
 
@@ -306,12 +306,12 @@ try {
         ]);
 
     } catch (dml_exception $db_error) {
-        error_log('Chatbot API: Database error while saving conversation - ' . $db_error->getMessage());
+        error_log('uteluqchatbot API: Database error while saving conversation - ' . $db_error->getMessage());
         send_json_response(['error' => get_string('error_saving_conversation', 'block_uteluqchatbot') . ': ' . $db_error->getMessage()], 500);
     }
 
 } catch (Exception $e) {
-    error_log('Chatbot API: General exception - ' . $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine());
+    error_log('uteluqchatbot API: General exception - ' . $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine());
     // Avoid sending detailed exception messages to the client in production for security.
     send_json_response(['error' => get_string('generic_server_error', 'block_uteluqchatbot') . ' Trace: ' . $e->getTraceAsString()], 500); // Added trace for debugging
 } finally {

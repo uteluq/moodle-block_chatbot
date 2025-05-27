@@ -6,9 +6,9 @@ module.exports = function(grunt) {
                 sourcemap: false
             },
             dist: {
-                input: 'amd/src/chatbot.js',
+                input: 'amd/src/uteluqchatbot.js',
                 output: {
-                    file: 'amd/build/chatbot.min.js'
+                    file: 'amd/build/uteluqchatbot.min.js'
                 }
             }
         }
