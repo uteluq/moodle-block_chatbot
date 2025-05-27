@@ -30,7 +30,7 @@ defined('MOODLE_INTERNAL') || die();
 $plugin->component = 'block_uteluqchatbot';
 
 // Human-readable version - Recommended format: major.minor.patch.
-$plugin->release = '0.5.0';
+$plugin->release = '0.5.1';
 
 // Internal version number - Format YYYYMMDDXX (year, month, day, increment).
 // Here: March 6, 2025, version 06 of the day.
