@@ -3,8 +3,11 @@
  * @copyright 2025 Université TÉLUQ
  */
 $string['pluginname'] = 'Чатбот';
-$string['chatbot:addinstance'] = 'Добавить новый блок чатбота';
-$string['chatbot:myaddinstance'] = 'Добавить новый блок чатбота на Панель';
+$string['uteluqchatbot:addinstance'] = 'Добавить новый блок чатбота';
+$string['uteluqchatbot:myaddinstance'] = 'Добавить новый блок чатбота на Панель';
+
+$string['weaviate_cohere_not_configured'] = 'Ключ API Cohere не настроен или недействителен. Проверьте настройки.';
+
 
 // Open AI
 $string['openai_api_key'] = 'Ключ API OpenAI';
@@ -36,7 +39,7 @@ $string['test_api_keys'] = 'Тестировать ключи API';
 $string['test_api_keys_desc'] = 'Нажмите, чтобы протестировать настроенные ключи API';
 $string['test_api_keys_label'] = 'Тестировать ключи';
 
-$string['chatbot:manage'] = 'Управлять настройками чатбота';
+$string['uteluqchatbot:manage'] = 'Управлять настройками чатбота';
 
 // For ../.../weaviate_db.php
 $string['filesmissing'] = 'Файлы отсутствуют.';

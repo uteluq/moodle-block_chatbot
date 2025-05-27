@@ -23,8 +23,8 @@ require_login();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once($CFG->dirroot . '/blocks/chatbot/classes/weaviate_connector.php');
-require_once($CFG->dirroot . '/blocks/chatbot/classes/PDFExtractAPI.php');
+require_once($CFG->dirroot . '/blocks/uteluqchatbot/classes/weaviate_connector.php');
+require_once($CFG->dirroot . '/blocks/uteluqchatbot/classes/PDFExtractAPI.php');
 
 // Configuration of API keys and Weaviate URL
 $apiUrl = get_config('block_uteluqchatbot', 'weaviate_api_url');

@@ -1,6 +1,6 @@
-# Moodle Block Chatbot
+# Moodle Block uteluqchatbot
 
-Chatbot is a Moodle block plugin designed to enhance distance learning by providing an adaptive and innovative chatbot solution. Integrated into the Moodle platform, it supports three distinct user roles—Learner, Teacher, and Administrative Manager—to facilitate course interactions, content management, and plugin configuration. This plugin leverages Retrieval-Augmented Generation (RAG) to deliver precise, context-aware responses based on course materials, improving the learning experience for users.
+uteluqchatbot is a Moodle block plugin designed to enhance distance learning by providing an adaptive and innovative chatbot solution. Integrated into the Moodle platform, it supports three distinct user roles—Learner, Teacher, and Administrative Manager—to facilitate course interactions, content management, and plugin configuration. This plugin leverages Retrieval-Augmented Generation (RAG) to deliver precise, context-aware responses based on course materials, improving the learning experience for users.
 
 ## Maturity
 - The plugin is in alpha version currently. We have validated it internally on a test server but it may still contain significant bugs. We do not currently recommend the plugin for production use.
@@ -45,23 +45,23 @@ The plugin currently supports the following languages:
 ## Installation
 
 ### Download the Plugin:
-- Clone the repository: `git clone https://github.com//moodle-block_uteluqchatbot.git chatbot`
+- Clone the repository: `git clone https://github.com//moodle-block_uteluqchatbot.git`
 - Or download the ZIP file from the [Moodle Plugins Directory](https://github.com/uteluq/moodle-block_uteluqchatbot/blob/main/README.md#) (once published).
 
 ### Install in Moodle:
-- Copy the `chatbot` folder to the `/blocks/` directory of your Moodle installation.
+- Copy the `uteluqchatbot` folder to the `/blocks/` directory of your Moodle installation.
 - Navigate to **Site Administration > Notifications** in Moodle to trigger the installation process.
 - Follow the on-screen instructions to complete the setup.
 
 ### Configure the Plugin:
-- Go to **Site Administration > Plugins > Blocks > Chatbot**.
+- Go to **Site Administration > Plugins > Blocks > uteluqchatbot**.
 - Enter the required API keys for Cohere, Adobe PDF Services, and Weaviate.
 - Save the settings to activate the plugin.
 
 ### Add the Block to Course Pages:
 - To make the Chatbot visible on all course pages, go to a course and turn editing on.
-- In the **Add a block** menu, select **Chatbot**.
-- After adding it, click on the block’s settings (gear icon), then choose **Configure Chatbot block**.
+- In the **Add a block** menu, select **uteluqchatbot**.
+- After adding it, click on the block’s settings (gear icon), then choose **Configure uteluqchatbot block**.
 - Under **Where this block appears**, set **Display on page types** to **Any page**.
 - Save changes to apply the block site-wide within the course.
 
@@ -71,7 +71,7 @@ The plugin currently supports the following languages:
 - Access the chatbot block on a course page.
 - Pose questions related to course content in the provided text box.
 
-![For Learners](https://drive.google.com/uc?export=view&id=1t0BAIpg8OuhEgGl3411R_gbA-9So8oUT)
+![For Learners](https://drive.google.com/uc?export=view&id=1MfvQgGL0ufW24-yyTMvEAnU8Pg61pHLR)
 
 
 ### For Teachers
@@ -79,9 +79,11 @@ The plugin currently supports the following languages:
 - Click **Modify Prompt** to customize the chatbot’s response behavior, referring to the [Prompt Design Guide](#).
 - Test the chatbot by asking questions to ensure it aligns with course content.
 
-![For Teachers](https://drive.google.com/uc?export=view&id=1Y1qnzb3Dhw-04mf_IamyMO8QwXYymcN9)
+![For Teachers](https://drive.google.com/uc?export=view&id=14ZMb7VUJMqRfWBskcpTPvV1rfc9c9M_9)
 
-![For Teachers](https://drive.google.com/uc?export=view&id=1j6OlMzBDdGXqUqom1MPrx7TYM6u6baBk)
+![For Teachers](https://drive.google.com/uc?export=view&id=1N9aNPd6VTxuB-_GWubKzRfy-td54CkVn)
+
+![For Teachers](https://drive.google.com/uc?export=view&id=1GVXFF8SqZMfQ5ok766dIV7h_D_eqUP__)
 
 
 ### For Admins
@@ -89,7 +91,7 @@ The plugin currently supports the following languages:
 - Configure API keys and other settings as needed.
 - Monitor plugin performance and ensure API services are operational.
 
-- ![For Teachers](https://drive.google.com/uc?export=view&id=1OLYH1pOfACzu_UWl_cFra38on7fV5Hfz)
+- ![For Teachers](https://drive.google.com/uc?export=view&id=1j49BXrAeJ8xRhMxclCl9v9BAE0Czcvux)
 
 
 ## Testing and Validation

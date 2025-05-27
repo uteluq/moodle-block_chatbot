@@ -2,9 +2,12 @@
 /**
  * @copyright 2025 Université TÉLUQ
  */
-$string['pluginname'] = 'Chatbot';
-$string['chatbot:addinstance'] = 'Ajoute yon nouvo blok chatbot';
-$string['chatbot:myaddinstance'] = 'Ajoute yon nouvo blok chatbot nan Tablo Bòd';
+$string['pluginname'] = 'uteluqchatbot';
+$string['uteluqchatbot:addinstance'] = 'Ajoute yon nouvo blok uteluqchatbot';
+$string['uteluqchatbot:myaddinstance'] = 'Ajoute yon nouvo blok uteluqchatbot nan Tablo Bòd';
+
+$string['weaviate_cohere_not_configured'] = 'Makullin Cohere API ba a saita shi ba ko kuwa ba daidai ba ne. Don Allah duba saituna.';
+
 
 // Open AI
 $string['openai_api_key'] = 'Klè API OpenAI';
@@ -36,7 +39,7 @@ $string['test_api_keys'] = 'Tès Klè API';
 $string['test_api_keys_desc'] = 'Klike pou tès klè API ki konfigire';
 $string['test_api_keys_label'] = 'Tès Klè';
 
-$string['chatbot:manage'] = 'Jere paramèt chatbot';
+$string['uteluqchatbot:manage'] = 'Jere paramèt chatbot';
 
 // For ../.../weaviate_db.php
 $string['filesmissing'] = 'Fichye yo manke.';

@@ -70,13 +70,13 @@ class block_uteluqchatbot extends block_base
     ];
 
     // Load templates
-    $this->content->text = $OUTPUT->render_from_template('block_uteluqchatbot/chatbot', $templateData);
+    $this->content->text = $OUTPUT->render_from_template('block_uteluqchatbot/uteluqchatbot', $templateData);
     $this->content->text .= $OUTPUT->render_from_template('block_uteluqchatbot/prompt_modal', $templateData);
     $this->content->text .= $OUTPUT->render_from_template('block_uteluqchatbot/load-course-modal', $templateData);
 
     $PAGE->requires->jquery();
 
-    $PAGE->requires->js(new moodle_url('/blocks/chatbot/amd/src/chatbot.js'));
+    $PAGE->requires->js(new moodle_url('/blocks/uteluqchatbot/amd/src/uteluqchatbot.js'));
     $PAGE->requires->js_init_code("
       Chatbot.init('$CFG->wwwroot', '".sesskey()."', $USER->id, $COURSE->id);
     ");

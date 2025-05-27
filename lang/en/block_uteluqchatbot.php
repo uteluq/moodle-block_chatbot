@@ -2,9 +2,9 @@
 /**
  * @copyright 2025 Université TÉLUQ
  */
-$string['pluginname'] = 'Chatbot';
-$string['chatbot:addinstance'] = 'Add a new chatbot block';
-$string['chatbot:myaddinstance'] = 'Add a new chatbot block to Dashboard';
+$string['pluginname'] = 'uteluqchatbot';
+$string['uteluqchatbot:addinstance'] = 'Add a new chatbot block';
+$string['uteluqchatbot:myaddinstance'] = 'Add a new chatbot block to Dashboard';
 
 // Open AI
 $string['openai_api_key'] = 'OpenAI API Key';
@@ -26,6 +26,7 @@ $string['weaviate_api_key'] = 'Weaviate API Key';
 $string['weaviate_api_key_desc'] = 'Enter your Weaviate API key here.';
 
 
+$string['weaviate_cohere_not_configured'] = 'Cohere API key is either not configured or invalid. Please check the settings.';
 
 
 $string['cohere_embedding_api_key'] = 'Cohere Embedding Model API Key';
@@ -41,7 +42,7 @@ $string['test_api_keys'] = 'Test API Keys';
 $string['test_api_keys_desc'] = 'Click to test the configured API keys';
 $string['test_api_keys_label'] = 'Test Keys';
 
-$string['chatbot:manage'] = 'Manage chatbot settings';
+$string['uteluqchatbot:manage'] = 'Manage chatbot settings';
 
 
 
@@ -175,7 +176,7 @@ $string['last_error'] = " attempts. Last error: HTTP ";
 // For block_uteluqchatbot.php
 
 
-$string['pluginname'] = "Chatbot";
+$string['pluginname'] = "uteluqchatbot";
 $string['default_prompt'] = <<<EOT
 Situation Context:
 The learner is taking a course on [[ coursename ]]. Your role is to support them by providing accurate, relevant, and tailored responses to their learning.

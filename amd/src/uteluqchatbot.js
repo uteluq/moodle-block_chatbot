@@ -34,7 +34,7 @@
                 courseid: courseid
             });
 
-            fetch(wwwroot + "/blocks/chatbot/ajax.php", {
+            fetch(wwwroot + "/blocks/uteluqchatbot/ajax.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -88,7 +88,7 @@
                 });
             });
 
-            fetch(wwwroot + "/blocks/chatbot/add_prompt.php", {
+            fetch(wwwroot + "/blocks/uteluqchatbot/add_prompt.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -157,7 +157,7 @@
                 });
             });
 
-            fetch(wwwroot + "/blocks/chatbot/weaviate_db.php", {
+            fetch(wwwroot + "/blocks/uteluqchatbot/weaviate_db.php", {
                 method: "POST",
                 body: formData,
             })

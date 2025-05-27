@@ -7,7 +7,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $capabilities = array(
     // Capability to add the block to a course.
-    'block/chatbot:addinstance' => array(
+    'block/uteluqchatbot:addinstance' => array(
         'riskbitmask'  => RISK_SPAM | RISK_PERSONAL | RISK_XSS, // Risks associated with this capability.
         'captype'      => 'write', // Capability type (write).
         'contextlevel' => CONTEXT_BLOCK, // Block context.
@@ -18,7 +18,7 @@ $capabilities = array(
     ),
 
     // Capability to manage the plugin settings.
-    'block/chatbot:manage' => array(
+    'block/uteluqchatbot:manage' => array(
         'riskbitmask'  => RISK_CONFIG, // Risk associated with modifying configurations.
         'captype'      => 'write', // Capability type (write).
         'contextlevel' => CONTEXT_SYSTEM, // System context (site administration).

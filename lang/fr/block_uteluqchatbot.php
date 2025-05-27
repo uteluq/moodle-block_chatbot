@@ -3,9 +3,9 @@
  * @copyright 2025 Université TÉLUQ
  */
 
-$string['pluginname'] = 'Chatbot';
-$string['chatbot:addinstance'] = 'Ajouter un nouveau bloc chatbot';
-$string['chatbot:myaddinstance'] = 'Ajouter un nouveau bloc chatbot au tableau de bord';
+$string['pluginname'] = 'uteluqchatbot';
+$string['uteluqchatbot:addinstance'] = 'Ajouter un nouveau bloc uteluqchatbot';
+$string['uteluqchatbot:myaddinstance'] = 'Ajouter un nouveau bloc uteluqchatbot au tableau de bord';
 $string['openai_api_key'] = 'Clé API OpenAI';
 $string['openai_api_key_desc'] = 'Entrez votre clé API OpenAI';
 $string['api_error'] = 'Erreur lors de la communication avec OpenAI';
@@ -27,6 +27,7 @@ $string['weaviate_api_key'] = 'Clé API Weaviate';
 $string['weaviate_api_key_desc'] = 'Entrez votre clé API Weaviate ici.';
 
 
+$string['weaviate_cohere_not_configured'] = 'La clé API Cohere n\'est pas configurée ou est invalide. Veuillez vérifier les paramètres.';
 
 
 $string['cohere_embedding_api_key'] = 'Clé API Cohere Embedding Model';
@@ -57,7 +58,7 @@ $string['test_api_keys'] = 'Tester les clés API';
 $string['test_api_keys_desc'] = 'Cliquez pour tester les clés API configurées';
 $string['test_api_keys_label'] = 'Tester les clés';
 
-$string['chatbot:manage'] = 'Gérer les paramètres du chatbot';
+$string['uteluqchatbot:manage'] = 'Gérer les paramètres du chatbot';
 
 
 
@@ -155,7 +156,7 @@ $string['last_error'] = " tentatives. Dernière erreur : HTTP ";
 
 
 // For block_uteluqchatbot.php
-$string['pluginname'] = "Chatbot";
+$string['pluginname'] = "uteluqchatbot";
 $string['default_prompt'] = <<<EOT
 Contexte de la situation :
 L’apprenant suit un cours sur [[ coursename ]]. Ton rôle est de l’accompagner en lui fournissant des réponses précises, pertinentes et adaptées à son apprentissage.
