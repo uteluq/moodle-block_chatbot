@@ -1,4 +1,5 @@
 # Moodle Block uteluqchatbot
+[![Moodle Plugin CI](https://github.com/uteluq/moodle-block_uteluqchatbot/actions/workflows/ci.yml/badge.svg)](https://github.com/uteluq/moodle-block_uteluqchatbot/actions/workflows/ci.yml)
 
 The uteluqchatbot plugin is a Moodle block plugin designed to enhance distance learning by providing an adaptive and innovative chatbot solution. Integrated into the Moodle platform, it supports three distinct user roles—Learner, Teacher, and Administrative Manager—to facilitate course interactions, content management, and plugin configuration. This plugin leverages Retrieval-Augmented Generation (RAG) to deliver precise, context-aware responses based on course materials, improving the learning experience for users.
 
