@@ -13,24 +13,24 @@ try {
     // Decode the JSON input from the request
     $input = json_decode(file_get_contents('php://input'), true);
 
-    $prompttext = $input['prompttext'];
-    $sesskey = $input['sesskey'];
-    $userid = $input['userid'];
-    $courseid = $input['courseid'];
+    $prompt_text = $input['prompttext'];
+    $sess_key = $input['sesskey'];
+    $user_id = $input['userid'];
+    $course_id = $input['courseid'];
 
     // Validate the session key
-    if (!confirm_sesskey($sesskey)) {
+    if (!confirm_sesskey($sess_key)) {
         throw new Exception(get_string('invalid_sesskey', 'block_uteluqchatbot'));
     }
 
     // Check if a prompt already exists for this user
-    $existing_prompt = $DB->get_record('block_uteluqchatbot_prompts', array('userid' => $userid));
+    $existing_prompt = $DB->get_record('block_uteluqchatbot_prompts', array('userid' => $user_id));
 
     $record = new stdClass();
 
-    $record->prompt = $prompttext;
-    $record->userid = $userid;
-    $record->courseid = $courseid;
+    $record->prompt = $prompt_text;
+    $record->userid = $user_id;
+    $record->courseid = $course_id;
     $record->timemodified = time();
 
     try {

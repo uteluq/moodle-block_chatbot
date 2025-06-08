@@ -90,11 +90,19 @@ $string['invalid_session'] = "Invalid session";
 $string['openai_api_key_not_configured'] = "OpenAI API key not configured";
 $string['empty_response_from_api'] = "Empty response received from API";
 $string['error_saving_conversation'] = "Error saving conversation";
+$string['invalid_question_after_sanitize'] = 'Invalid question after sanitization.';
+$string['empty_string_as_answer'] = 'An empty string was received as an answer.';
+$string['database_error_saving_conversation'] = 'Database error saving conversation: ';
+$string['error_saving_conversation'] = 'Error saving conversation';
+$string['error_reading_input'] = 'Error reading input.';
+$string['generic_server_error'] = 'Generic server error.';
+$string['invalid_course_id'] = 'Invalid course ID.';
 
 
 
 
-// For classes/PDFExtractAPI.php
+
+// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = "Failed to obtain access token. HTTP Status: ";
 $string['access_token_obtained_successfully'] = "Access Token obtained successfully.";
 $string['failed_to_obtain_access_token_response'] = "Failed to obtain access token. Response: ";
@@ -127,7 +135,7 @@ $string['error_5'] = "Error 5";
 
 
 
-// For classes/PDFExtractAPI.php
+// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = "Failed to obtain access token. HTTP Status: ";
 $string['access_token_obtained_successfully'] = "Access Token obtained successfully.";
 $string['failed_to_obtain_access_token_response'] = "Failed to obtain access token. Response: ";
@@ -157,7 +165,7 @@ $string['error_decoding_json_file'] = "Error decoding JSON file.";
 
 
 
-// For classes/weaviateconnector.php
+// For classes/weaviate_connector.php
 
 $string['curl_error'] = "cURL Error: ";
 $string['http_error'] = "HTTP Error ";
@@ -171,6 +179,9 @@ $string['unable_to_read_file'] = "Unable to read the file";
 $string['json_encode_error'] = "JSON Encode Error: ";
 $string['failure_after_retries'] = "Failure after ";
 $string['last_error'] = " attempts. Last error: HTTP ";
+$string['invalid_response_format'] = 'Invalid response format.';
+$string['http_code'] = 'HTTP Code: ';
+
 
 
 // For block_uteluqchatbot.php
@@ -232,9 +243,20 @@ $string['upload_course'] = "Upload Course";
 $string['open_prompt_modal'] = "Open the prompt modification modal";
 $string['open_file_upload_modal'] = "Open the course upload modal";
 
-// For classes/PDFExtractAPI.php
+// For classes/pdf_extract_api.php
 $string['error_uploading_asset'] = 'Error uploading asset.';
 $string['error_creating_job'] = 'Error creating job.';
 $string['job_failed'] = 'Job failed.';
 $string['error_processing_pdf'] = 'Error processing PDF.';
 
+$string['headers_already_sent'] = 'Headers already sent.';
+$string['failed_to_start_output_buffer'] = 'Failed to start output buffer.';
+$string['server_error_output_buffer_failed'] = 'Server error: Output buffering failed.';
+$string['answer_not_utf8'] = 'Answer is not UTF-8.';
+$string['no_answer_or_error_field'] = 'No answer or error field.';
+$string['json_encode_error'] = 'JSON encode error: ';
+$string['server_error_json_encode_failed'] = 'Server error: JSON encode failed.';
+$string['empty_response_from_api'] = 'Empty response from API.';
+$string['empty_string_as_answer'] = 'Empty string received as answer.';
+$string['database_error_saving_conversation'] = 'Database error saving conversation: ';
+$string['general_exception'] = 'General exception: ';

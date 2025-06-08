@@ -3,6 +3,8 @@
  * @copyright 2025 Université TÉLUQ
  */
 
+
+
 require_once('../../config.php');
 
 // Enable output buffering at the start
@@ -23,8 +25,6 @@ require_login();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once($CFG->dirroot . '/blocks/uteluqchatbot/classes/weaviate_connector.php');
-require_once($CFG->dirroot . '/blocks/uteluqchatbot/classes/PDFExtractAPI.php');
 
 // Configuration of API keys and Weaviate URL
 $apiUrl = get_config('block_uteluqchatbot', 'weaviate_api_url');
@@ -32,7 +32,7 @@ $apiKey = get_config('block_uteluqchatbot', 'weaviate_api_key');
 $cohereApiKey = get_config('block_uteluqchatbot', 'cohere_embedding_api_key');
 
 // Initialize WeaviateConnector object
-$connector = new WeaviateConnector($apiUrl, $apiKey, $cohereApiKey);
+$connector = new \block_uteluqchatbot\weaviate_connector($apiUrl, $apiKey, $cohereApiKey);
 
 try {
     // Check form data
@@ -42,22 +42,23 @@ try {
 
     $uploadedFiles = $_FILES['files'];
 
-    $userid = $_POST['userid'];
-    $courseid = $_POST['courseid'];
+    $userid = required_param('userid', PARAM_INT);
+    $courseid = required_param('courseid', PARAM_INT);
+
 
     $courseName = 'Collection_course_' . $courseid;
-    $connector->deleteCollection($courseName);
-    $checkIfCreated = $connector->collectionExists($courseName);
+    $connector->delete_collection($courseName);
+    $checkIfCreated = $connector->collection_exists($courseName);
 
     // Create the collection if it does not exist
-    if ($checkIfCreated == false && !$connector->createCollection($courseName)) {
-        throw new Exception(get_string('errorcreatingcollection', 'block_uteluqchatbot') . $connector->getLastError());
+    if ($checkIfCreated == false && !$connector->create_collection($courseName)) {
+        throw new Exception(get_string('errorcreatingcollection', 'block_uteluqchatbot') . $connector->get_last_error());
     }
 
     // Check for upload errors
     foreach ($uploadedFiles['error'] as $key => $error) {
         if ($error !== UPLOAD_ERR_OK) {
-            $message = match($error) {
+            $message = match ($error) {
                 UPLOAD_ERR_INI_SIZE => get_string('fileexceedsmaxsizeini', 'block_uteluqchatbot'),
                 UPLOAD_ERR_FORM_SIZE => get_string('fileexceedsmaxsizeform', 'block_uteluqchatbot'),
                 UPLOAD_ERR_PARTIAL => get_string('filepartiallyuploaded', 'block_uteluqchatbot'),
@@ -72,23 +73,44 @@ try {
         }
     }
 
-    // Use the global variable $CFG->dataroot to build the storage directory path
-    $uploadDir = $CFG->dataroot . '/filedir/';
+
+    // Create or get a temporary directory for the plugin under /moodledata/temp/block_uteluqchatbot
+    $temppath = make_temp_directory('block_uteluqchatbot');
+
+    // Define the path where uploaded files will be temporarily stored.
+    $uploadDir = $temppath . '/uploads';
+
+
+
+    // If the uploads subdirectory doesn't exist, create it with proper permissions (0777).
+    if (!file_exists($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
+
+
 
     foreach ($uploadedFiles['tmp_name'] as $key => $fileTmpName) {
         $fileName = $uploadedFiles['name'][$key];
         $newFileName = uniqid('file_', true) . '-' . $fileName;
         $destination = $uploadDir . $newFileName;
 
+        
+
+
         // Move the file to the destination directory
         move_uploaded_file($fileTmpName, $destination);
 
+        
+
         $adobe_pdf_client_id = get_config('block_uteluqchatbot', 'adobe_pdf_client_id');
         $adobe_pdf_client_secret = get_config('block_uteluqchatbot', 'adobe_pdf_client_secret');
+        
 
+          
         // Extract the file content
-        $pdfExtractor = new PDFExtractAPI($adobe_pdf_client_id, $adobe_pdf_client_secret);
-        $extractedText = $pdfExtractor->processPDF($destination);
+        $pdfExtractor = new \block_uteluqchatbot\pdf_extract_api($adobe_pdf_client_id, $adobe_pdf_client_secret);
+        $extractedText = $pdfExtractor->process_pdf($destination);
+
 
         // Generate a unique name for the text file
         $newFileTxtName = uniqid('file_', true) . '-' . $fileName . '.txt';
@@ -100,10 +122,10 @@ try {
             // Error saving text file
         }
 
-        $in = $connector->indexTextFile($destinationTxt, $courseName, $courseName);
+        $in = $connector->index_text_file($destinationTxt, $courseName, $courseName);
 
         if (!$in) {
-            throw new Exception(get_string('errorindexingfile', 'block_uteluqchatbot') . $connector->getLastError());
+            throw new Exception(get_string('errorindexingfile', 'block_uteluqchatbot') . $connector->get_last_error());
         }
         unlink($destinationTxt);
         unlink($destination);

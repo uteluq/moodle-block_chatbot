@@ -105,9 +105,21 @@ $string['invalid_session'] = "Session invalide";
 $string['openai_api_key_not_configured'] = "Clé API OpenAI non configurée";
 $string['empty_response_from_api'] = "Réponse vide reçue de l'API";
 $string['error_saving_conversation'] = "Erreur lors de l'enregistrement de la conversation";
+$string['invalid_question_after_sanitize'] = 'Question invalide après nettoyage.';
+$string['empty_string_as_answer'] = 'Une chaîne vide a été reçue comme réponse.';
+$string['database_error_saving_conversation'] = 'Erreur de base de données lors de l\'enregistrement de la conversation : ';
+$string['error_saving_conversation'] = 'Erreur lors de l\'enregistrement de la conversation';
+$string['invalid_question_after_sanitize'] = 'Question invalide après nettoyage.';
+$string['empty_string_as_answer'] = 'Une chaîne vide a été reçue comme réponse.';
+$string['database_error_saving_conversation'] = 'Erreur de base de données lors de l\'enregistrement de la conversation : ';
+$string['error_saving_conversation'] = 'Erreur lors de l\'enregistrement de la conversation';
+$string['error_reading_input'] = 'Erreur lors de la lecture de l\'entrée.';
+$string['generic_server_error'] = 'Erreur générique du serveur.';
+$string['invalid_course_id'] = 'ID de cours invalide.';
 
 
-// For classes/PDFExtractAPI.php
+
+// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = "Échec de l'obtention du jeton d'accès. Code HTTP: ";
 $string['access_token_obtained_successfully'] = "Jeton d'accès obtenu avec succès.";
 $string['failed_to_obtain_access_token_response'] = "Échec de l'obtention du jeton d'accès. Réponse: ";
@@ -136,7 +148,7 @@ $string['error_decoding_json_file'] = "Erreur de décodage du fichier JSON.";
 
 
 
-// For classes/weaviateconnector.php
+// For classes/weaviate_connector.php
 $string['curl_error'] = "Erreur cURL : ";
 $string['http_error'] = "Erreur HTTP ";
 $string['json_decode_error'] = "Erreur de décodage JSON : ";
@@ -149,6 +161,9 @@ $string['unable_to_read_file'] = "Impossible de lire le fichier";
 $string['json_encode_error'] = "Erreur d'encodage JSON : ";
 $string['failure_after_retries'] = "Échec après ";
 $string['last_error'] = " tentatives. Dernière erreur : HTTP ";
+$string['invalid_response_format'] = 'Format de réponse invalide.';
+$string['http_code'] = 'Code HTTP : ';
+
 
 
 
@@ -158,23 +173,42 @@ $string['last_error'] = " tentatives. Dernière erreur : HTTP ";
 // For block_uteluqchatbot.php
 $string['pluginname'] = "uteluqchatbot";
 $string['default_prompt'] = <<<EOT
-Contexte de la situation :
+Contexte de la situation
 L’apprenant suit un cours sur [[ coursename ]]. Ton rôle est de l’accompagner en lui fournissant des réponses précises, pertinentes et adaptées à son apprentissage.
-Mission :
+
+Mission
 En tant qu’assistant, ta mission est d’aider l’apprenant à comprendre les concepts du cours sur Cours X en répondant à ses questions, tout en t’appuyant sur le contexte fourni pour formuler une réponse. [[ history ]].
 Tu dois formuler des réponses claires, précises et pertinentes, en veillant à ne transmettre que des informations issues du cours. Si une réponse ne peut être trouvée dans le contexte fourni, répondre strictement par : " Je suis calibré en fonction du contenu du cours qui a été soigneusement sélectionné par votre enseignant. Si vous voulez plus de renseignement on vous invite à le contacter. "
 Si l'apprenant écrit des phrases montrant qu'il n'a pas compris un concept ou une explication précédente, vérifie [[ history ]] pour identifier ce qui a été mal compris, puis reformule ton explication avec plus de simplicité et des exemples plus concrets.
+
 Instructions
-1.Détecte les émotions dans la question de l’apprenant et adopte un ton empathique et bienveillant.
-2. Réponds de manière claire et structurée.  
-3. Explique le concept avec des exemples si nécessaire.  
-4. Ne donne aucune réponse en dehors du contexte fourni.  
-5. Ta réponse doit intégrer les 4 composantes de l’empathie suivantes :
-    -Composante cognitive : Montre que tu comprends le point de vue, le raisonnement et les intentions de l’apprenant. Reformule ses idées pour valider ta compréhension. Propose des pistes en lien avec ce qu’il a dit, sans imposer ton propre raisonnement.
-    -Composante affective : Sois sensible à l’état émotionnel de l’apprenant (frustration, doute, satisfaction, stress…). Reflète ou valide ses émotions par des mots adaptés ou des métaphores simples. Exprime de la bienveillance.
-    -Composante attitudinale : Adopte une attitude chaleureuse, respectueuse et encourageante. Fais preuve d’ouverture, valorise ses efforts et évite tout jugement. Ton ton doit être amical et sincère.
-    -Composante d’ajustement : Adapte tes réponses à l’évolution du discours de l’apprenant. Utilise un vocabulaire et un style qui correspondent à son niveau et à son humeur. Laisse-le guider la conversation, ne force jamais le sujet.
+1. Analyse chaque question de l’apprenant pour détecter la présence d’une émotion. Utilise la taxonomie suivante :
+   - Confusion : « je ne comprends pas », « je suis perdu », « c’est flou ».
+   - Frustration : « ça m’énerve », « j’abandonne », « c’est trop compliqué ».
+   - Stress ou anxiété** : « je stresse », « je suis dépassé », « il ne reste plus de temps ».
+   - Doute ou manque de confiance : « je ne suis pas capable », « je ne suis pas bon ».
+
+2. Si une émotion est détectée, commence ta réponse par une phrase empathique adaptée :
+   - Pour la confusion : « Je comprends, ce n’est pas évident. »
+   - Pour la frustration : « Je vois que c’est frustrant. »
+   - Pour le stress : « C’est normal de se sentir dépassé parfois. »
+   - Pour le doute : « Tu fais de ton mieux, et c’est déjà énorme. »
+
+3. Réponds ensuite de manière claire, et structurée. 
+4. Utilise des exemples si nécessaire. 
+5. Ne donne jamais de réponse en dehors du contexte fourni.
+
+6. Intègre dans ta réponse les 4 composantes de l’empathie telles que définies dans [Springer Table 1](https://link.springer.com/article/10.1007/s00146-023-01715-z/tables/1) :
+   - Composante cognitive : montre que tu comprends le point de vue, le raisonnement et les intentions de l’apprenant. Reformule ses idées pour valider ta compréhension. Propose des pistes en lien avec ce qu’il a dit, sans imposer ton propre raisonnement.
+   - Composante affective : sois sensible à son état émotionnel (frustration, doute, stress…). Reflète ou valide ses émotions avec des mots adaptés ou des métaphores simples. Exprime de la bienveillance.
+   - Composante attitudinale: adopte une attitude chaleureuse, respectueuse et encourageante. Fais preuve d’ouverture, valorise ses efforts, et évite tout jugement.
+   - Composante d’ajustement (attunement): adapte ton vocabulaire, ton style, et ton niveau de langage à celui de l’apprenant. Laisse-le guider la conversation sans jamais forcer un sujet.
+
+7. Maintiens un ton bienveillant, respectueux et motivant tout au long de l’échange.
+
+Nouvelle question de l’apprenant
 Nouvelle question de l’apprenant [[ question ]]
+
 EOT;
 $string['sending_question'] = "Envoi de la question...";
 $string['error'] = "Erreur: ";
@@ -211,8 +245,22 @@ $string['upload_course'] = "Charger le cours";
 $string['open_prompt_modal'] = "Ouvrir la modale de modification du prompt";
 $string['open_file_upload_modal'] = "Ouvrir la modale de chargement de cours";
 
-// For classes/PDFExtractAPI.php
+// For classes/pdf_extract_api.php
 $string['error_uploading_asset'] = 'Erreur lors du téléchargement de l\'asset.';
 $string['error_creating_job'] = 'Erreur lors de la création du job.';
 $string['job_failed'] = 'Le job a échoué.';
 $string['error_processing_pdf'] = 'Erreur lors du traitement du PDF.';
+
+
+$string['headers_already_sent'] = 'Les en-têtes ont déjà été envoyés.';
+$string['failed_to_start_output_buffer'] = 'Échec du démarrage du tampon de sortie.';
+$string['server_error_output_buffer_failed'] = 'Erreur serveur : échec du tampon de sortie.';
+$string['answer_not_utf8'] = 'La réponse n\'est pas en UTF-8.';
+$string['no_answer_or_error_field'] = 'Aucun champ de réponse ou d\'erreur.';
+$string['json_encode_error'] = 'Erreur d\'encodage JSON : ';
+$string['server_error_json_encode_failed'] = 'Erreur serveur : échec de l\'encodage JSON.';
+$string['empty_response_from_api'] = 'Réponse vide de l\'API.';
+$string['empty_string_as_answer'] = 'Chaîne vide reçue comme réponse.';
+$string['database_error_saving_conversation'] = 'Erreur de base de données lors de l\'enregistrement de la conversation : ';
+$string['general_exception'] = 'Exception générale : ';
+

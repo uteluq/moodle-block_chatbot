@@ -5,6 +5,8 @@
 
 require_once('../../config.php');
 require_once($CFG->libdir . '/adminlib.php');
+require_once($CFG->libdir . '/filelib.php');
+
 require_login();
 require_capability('moodle/site:config', context_system::instance());
 
@@ -13,47 +15,43 @@ $PAGE->set_url('/blocks/uteluqchatbot/test_api_keys.php');
 $PAGE->set_title(get_string('test_api_keys', 'block_uteluqchatbot'));
 $PAGE->set_heading(get_string('test_api_keys', 'block_uteluqchatbot'));
 
-
-
-function getAccessTokenAdobePDFServices($clientId, $clientSecret)
+function get_access_token_adobe_pdf_services($client_id, $client_secret)
 {
-    $ch = curl_init();
+    // Initialize Moodle's curl class
+    $curl = new curl();
 
     // Prepare data
-    $postData = 'client_id=' . urlencode($clientId) . '&client_secret=' . urlencode($clientSecret);
+    $post_data = 'client_id=' . urlencode($client_id) . '&client_secret=' . urlencode($client_secret);
 
-    // cURL options
+    // cURL options using Moodle's curl class
     $options = [
-        CURLOPT_URL => 'https://pdf-services.adobe.io/token',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_POST => true,
-        CURLOPT_POSTFIELDS => $postData,
-        CURLOPT_HTTPHEADER => ['Content-Type: application/x-www-form-urlencoded'],
-        CURLOPT_SSL_VERIFYPEER => false, // Disable SSL (use with caution)
+        'returntransfer' => true,
+        'post' => true,
+        'postfields' => $post_data,
+        'httpheader' => ['Content-Type: application/x-www-form-urlencoded'],
+        'ssl_verifypeer' => false, // Disable SSL (use with caution)
     ];
 
-    curl_setopt_array($ch, $options);
-
     // Execute the request
-    $response = curl_exec($ch);
-    $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    if (curl_errno($ch)) {
-        return [
-            'success' => false,
-            'message' => get_string('adobe_invalid_credentials', 'block_uteluqchatbot')
-        ];
-    }
-    curl_close($ch);
+    $response = $curl->post('https://pdf-services.adobe.io/token', $post_data, $options);
+    $http_status = $curl->get_info()['http_code'];
 
-    if ($httpStatus != 200) {
+    if ($curl->get_errno()) {
         return [
             'success' => false,
             'message' => get_string('adobe_invalid_credentials', 'block_uteluqchatbot')
         ];
     }
 
-    $responseData = json_decode($response, true);
-    if (isset($responseData['access_token'])) {
+    if ($http_status != 200) {
+        return [
+            'success' => false,
+            'message' => get_string('adobe_invalid_credentials', 'block_uteluqchatbot')
+        ];
+    }
+
+    $response_data = json_decode($response, true);
+    if (isset($response_data['access_token'])) {
         return [
             'success' => true,
             'message' => get_string('adobe_valid_credentials', 'block_uteluqchatbot')
@@ -71,45 +69,43 @@ function getAccessTokenAdobePDFServices($clientId, $clientSecret)
  *
  * @return array Array containing the status of the operation, a message, and the collections data
  */
-function getCollectionsWeaviate($apiUrl, $apiKey): array
+function get_collections_weaviate($api_url, $api_key): array
 {
     // Construct the URL to retrieve the schema
-    $endpoint = $apiUrl . '/v1/schema';
+    $endpoint = $api_url . '/v1/schema';
 
-    // Configure and execute the CURL request
-    $ch = curl_init();
-    curl_setopt_array($ch, [
-        CURLOPT_URL => $endpoint,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_SSL_VERIFYPEER => false,
-        CURLOPT_HTTPHEADER => [
+    // Initialize Moodle's curl class
+    $curl = new curl();
+
+    // Configure cURL options using Moodle's curl class
+    $options = [
+        'returntransfer' => true,
+        'ssl_verifypeer' => false,
+        'httpheader' => [
             'Content-Type: application/json',
-            'Authorization: Bearer ' . $apiKey
+            'Authorization: Bearer ' . $api_key
         ]
-    ]);
+    ];
 
     // Execute the request and retrieve the response
-    $response = curl_exec($ch);
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $response = $curl->get($endpoint, [], $options);
+    $http_code = $curl->get_info()['http_code'];
 
     // Handle CURL errors
-    if (curl_errno($ch)) {
-        $errorMessage = curl_error($ch);
-        curl_close($ch);
+    if ($curl->get_errno()) {
+        $error_message = $curl->error;
         return [
             'success' => false,
-            'message' => get_string('weaviate_connection_error', 'block_uteluqchatbot') . $errorMessage,
+            'message' => get_string('weaviate_connection_error', 'block_uteluqchatbot') . $error_message,
             'data' => []
         ];
     }
 
-    curl_close($ch);
-
     // Check HTTP response code
-    if ($httpCode !== 200) {
+    if ($http_code !== 200) {
         return [
             'success' => false,
-            'message' => get_string('weaviate_invalid_key_or_url', 'block_uteluqchatbot') . $httpCode,
+            'message' => get_string('weaviate_invalid_key_or_url', 'block_uteluqchatbot') . $http_code,
             'data' => []
         ];
     }
@@ -163,8 +159,8 @@ $cohere_embedding_api_key = get_config('block_uteluqchatbot', 'cohere_embedding_
 
 // Test keys
 $results = [
-    'weaviate' => getCollectionsWeaviate($weaviate_api_url, $weaviate_api_key),
-    'adobe pdf services' => getAccessTokenAdobePDFServices($adobe_pdf_client_id, $adobe_pdf_client_secret)
+    'weaviate' => get_collections_weaviate($weaviate_api_url, $weaviate_api_key),
+    'adobe pdf services' => get_access_token_adobe_pdf_services($adobe_pdf_client_id, $adobe_pdf_client_secret)
 ];
 
 // Display results

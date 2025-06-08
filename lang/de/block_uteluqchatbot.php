@@ -81,8 +81,16 @@ $string['invalid_session'] = 'Ungültige Sitzung';
 $string['openai_api_key_not_configured'] = 'OpenAI API-Schlüssel nicht konfiguriert';
 $string['empty_response_from_api'] = 'Leere Antwort von der API erhalten';
 $string['error_saving_conversation'] = 'Fehler beim Speichern des Gesprächs';
+$string['invalid_question_after_sanitization'] = 'Ungültige Frage nach der Bereinigung.';
+$string['empty_string_as_answer'] = 'Ein leerer String wurde als Antwort erhalten.';
+$string['database_error_saving_conversation'] = 'Datenbankfehler beim Speichern der Konversation: ';
+$string['error_saving_conversation'] = 'Fehler beim Speichern der Konversation';
+$string['error_reading_input'] = 'Fehler beim Lesen der Eingabe.';
+$string['generic_server_error'] = 'Allgemeiner Serverfehler.';
+$string['invalid_course_id'] = 'Ungültige Kurs-ID.';
 
-// For classes/PDFExtractAPI.php
+
+// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = 'Fehler beim Abrufen des Zugriffstokens. HTTP-Status: ';
 $string['access_token_obtained_successfully'] = 'Zugriffstoken erfolgreich abgerufen.';
 $string['failed_to_obtain_access_token_response'] = 'Fehler beim Abrufen des Zugriffstokens. Antwort: ';
@@ -109,7 +117,7 @@ $string['failed_to_download_asset'] = 'Fehler beim Herunterladen des Assets. HTT
 $string['asset_downloaded_successfully'] = 'Asset erfolgreich heruntergeladen.';
 $string['error_decoding_json_file'] = 'Fehler beim Dekodieren der JSON-Datei.';
 
-// For classes/weaviateconnector.php
+// For classes/weaviate_connector.php
 $string['curl_error'] = 'cURL-Fehler: ';
 $string['http_error'] = 'HTTP-Fehler ';
 $string['json_decode_error'] = 'JSON-Dekodierungsfehler: ';
@@ -122,6 +130,9 @@ $string['unable_to_read_file'] = 'Datei kann nicht gelesen werden';
 $string['json_encode_error'] = 'JSON-Kodierungsfehler: ';
 $string['failure_after_retries'] = 'Fehler nach ';
 $string['last_error'] = ' Versuchen. Letzter Fehler: HTTP ';
+$string['invalid_response_format'] = 'Ungültiges Antwortformat.';
+$string['http_code'] = 'HTTP-Code: ';
+
 
 // For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
@@ -179,8 +190,21 @@ $string['open_prompt_modal'] = 'Öffnen Sie das Modal zur Änderung des Prompts'
 $string['open_file_upload_modal'] = 'Öffnen Sie das Modal zum Hochladen des Kurses';
 
 
-// For classes/PDFExtractAPI.php
+// For classes/pdf_extract_api.php
 $string['error_uploading_asset'] = 'Fehler beim Hochladen der Datei.';
 $string['error_creating_job'] = 'Fehler beim Erstellen des Jobs.';
 $string['job_failed'] = 'Job ist fehlgeschlagen.';
 $string['error_processing_pdf'] = 'Fehler bei der Verarbeitung der PDF.';
+
+
+$string['headers_already_sent'] = 'Header bereits gesendet.';
+$string['failed_to_start_output_buffer'] = 'Fehler beim Starten des Ausgabepuffers.';
+$string['server_error_output_buffer_failed'] = 'Serverfehler: Ausgabepufferung fehlgeschlagen.';
+$string['answer_not_utf8'] = 'Antwort ist nicht UTF-8.';
+$string['no_answer_or_error_field'] = 'Kein Antwort- oder Fehlerfeld.';
+$string['json_encode_error'] = 'JSON-Kodierungsfehler: ';
+$string['server_error_json_encode_failed'] = 'Serverfehler: JSON-Kodierung fehlgeschlagen.';
+$string['empty_response_from_api'] = 'Leere Antwort von der API.';
+$string['empty_string_as_answer'] = 'Leerer String als Antwort erhalten.';
+$string['database_error_saving_conversation'] = 'Datenbankfehler beim Speichern der Konversation: ';
+$string['general_exception'] = 'Allgemeine Ausnahme: ';
