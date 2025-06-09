@@ -10,29 +10,16 @@ module.exports = function(grunt) {
                 output: {
                     file: 'amd/build/uteluqchatbot.min.js'
                 }
-            }
-        },
-        clean: {
-            build: ['build/']
-        },
-        stylelint: {
-            options: {
-                configFile: '.stylelintrc',
-                formatter: 'string',
-                ignoreDisables: false,
-                failOnError: true,
-                outputFile: '',
-                reportNeedlessDisables: false,
-                syntax: ''
             },
-            src: ['**/*.css', '**/*.scss']
+            clean: {
+                build: ['build/']
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-rollup');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-stylelint');
+    grunt.registerTask('default', ['rollup', 'clean']);
 
     grunt.registerTask('amd', []); // Dummy task for compatibility
-    grunt.registerTask('default', ['clean', 'stylelint']);
+    grunt.registerTask('stylelint', []); // Dummy task for compatibility
 };
