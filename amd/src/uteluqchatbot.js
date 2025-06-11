@@ -7,21 +7,21 @@ define(['jquery', 'core/str'], function($, str) {
         init: function(wwwroot, sesskey, userid, courseid) {
             // Toggle prompt modal
             const togglePromptModal = function() {
-                const modal = document.getElementById('promptModal');
+                const modal = document.querySelector('.block_uteluqchatbot #promptModal');
                 modal.style.display = modal.style.display === 'none' ? 'block' : 'none';
             };
 
             // Toggle file upload modal
             const toggleFileUploadModal = function() {
-                const modal = document.getElementById('fileUploadModal');
+                const modal = document.querySelector('.block_uteluqchatbot #fileUploadModal');
                 modal.style.display = modal.style.display === 'none' ? 'block' : 'none';
             };
 
             // Handle chat form submission
-            $("#chatform").on("submit", function(e) {
+            $(".block_uteluqchatbot #chatform").on("submit", function(e) {
                 e.preventDefault();
-                const question = $("#question").val();
-                const errorDiv = $("#error-message");
+                const question = $(".block_uteluqchatbot #question").val();
+                const errorDiv = $(".block_uteluqchatbot #error-message");
 
                 str.get_string('sending_question', 'block_uteluqchatbot').then(function(sendingQuestionStr) {
                     errorDiv.text(sendingQuestionStr);
@@ -56,12 +56,12 @@ define(['jquery', 'core/str'], function($, str) {
                         });
                         return;
                     }
-                    const chatMessages = $("#chat-messages");
+                    const chatMessages = $(".block_uteluqchatbot #chat-messages");
                     chatMessages.append(`
                         <div class="message user-message">${question}</div>
                         <div class="message bot-message">${data.answer}</div>
                     `);
-                    $("#question").val("");
+                    $(".block_uteluqchatbot #question").val("");
                     chatMessages.scrollTop(chatMessages[0].scrollHeight);
                 })
                 .catch(function(error) {
@@ -75,10 +75,10 @@ define(['jquery', 'core/str'], function($, str) {
             });
 
             // Handle prompt form submission
-            $("#promptform").on("submit", function(e) {
+            $(".block_uteluqchatbot #promptform").on("submit", function(e) {
                 e.preventDefault();
-                const prompttext = $("#prompttext").val();
-                const errorDiv = $("#error-message");
+                const prompttext = $(".block_uteluqchatbot #prompttext").val();
+                const errorDiv = $(".block_uteluqchatbot #error-message");
 
                 str.get_string('saving_prompt', 'block_uteluqchatbot').then(function(savingPromptStr) {
                     errorDiv.text(savingPromptStr);
@@ -132,10 +132,10 @@ define(['jquery', 'core/str'], function($, str) {
             });
 
             // Handle file upload form submission
-            document.getElementById("fileUploadForm").addEventListener("submit", function(e) {
+            document.querySelector(".block_uteluqchatbot #fileUploadForm").addEventListener("submit", function(e) {
                 e.preventDefault();
                 const formData = new FormData(this);
-                const errorDiv = document.getElementById("error-message");
+                const errorDiv = document.querySelector(".block_uteluqchatbot #error-message");
 
                 formData.append('userid', userid);
                 formData.append('courseid', courseid);
@@ -184,8 +184,8 @@ define(['jquery', 'core/str'], function($, str) {
                         errorDiv.textContent = "File indexed successfully!";
                     });
 
-                    document.getElementById("file").value = "";
-                    document.getElementById("fileUploadModal").style.display = "none";
+                    document.querySelector(".block_uteluqchatbot #file").value = "";
+                    document.querySelector(".block_uteluqchatbot #fileUploadModal").style.display = "none";
 
                     setTimeout(function() {
                         location.reload();

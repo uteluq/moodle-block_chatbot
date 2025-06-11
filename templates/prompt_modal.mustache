@@ -2,7 +2,7 @@
   @copyright 2025 Université TÉLUQ
 -->
 
-<div id="promptModal" class="modal" style="display: none;">
+<div id="promptModal" class="block_uteluqchatbot modal" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -48,7 +48,7 @@
 </div>
 
 <style>
-.modal {
+.block_uteluqchatbot .modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -59,7 +59,7 @@
     display: none;
 }
 
-.modal-dialog {
+.block_uteluqchatbot .modal-dialog {
     background: white;
     border-radius: 12px;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
@@ -70,12 +70,12 @@
     width: 95%;
 }
 
-.modal-content {
+.block_uteluqchatbot .modal-content {
     border-radius: 12px;
     overflow: hidden;
 }
 
-.modal-header {
+.block_uteluqchatbot .modal-header {
     align-items: center;
     border-bottom: 1px solid #e2e8f0;
     display: flex;
@@ -83,14 +83,14 @@
     padding: 16px 24px;
 }
 
-.modal-title {
+.block_uteluqchatbot .modal-title {
     color: #1e293b;
     font-size: 1.25rem;
     font-weight: 600;
     margin: 0;
 }
 
-.close {
+.block_uteluqchatbot .close {
     background: none;
     border: none;
     color: #64748b;
@@ -98,19 +98,19 @@
     padding: 4px;
 }
 
-.close:hover {
+.block_uteluqchatbot .close:hover {
     color: #4f46e5;
 }
 
-.modal-body {
+.block_uteluqchatbot .modal-body {
     padding: 24px;
 }
 
-.form-group {
+.block_uteluqchatbot .form-group {
     margin-bottom: 20px;
 }
 
-.form-group label {
+.block_uteluqchatbot .form-group label {
     color: #475569;
     display: block;
     font-size: 0.875rem;
@@ -118,7 +118,7 @@
     margin-bottom: 8px;
 }
 
-.form-input {
+.block_uteluqchatbot .form-input {
     background: #f8fafc;
     border: 1px solid #e2e8f0;
     border-radius: 8px;
@@ -130,18 +130,18 @@
     width: 100%;
 }
 
-.form-input:focus {
+.block_uteluqchatbot .form-input:focus {
     border-color: #6366F1;
     box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
     outline: none;
 }
 
-.prompt-textarea {
+.block_uteluqchatbot .prompt-textarea {
     min-height: 150px;
     resize: vertical;
 }
 
-.modal-footer {
+.block_uteluqchatbot .modal-footer {
     border-top: 1px solid #e2e8f0;
     display: flex;
     gap: 12px;
@@ -149,8 +149,8 @@
     padding-top: 20px;
 }
 
-.btn-primary,
-.btn-secondary {
+.block_uteluqchatbot .btn-primary,
+.block_uteluqchatbot .btn-secondary {
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -160,31 +160,31 @@
     transition: all 0.2s;
 }
 
-.btn-primary {
+.block_uteluqchatbot .btn-primary {
     background: #6366F1;
     color: white;
 }
 
-.btn-primary:hover {
+.block_uteluqchatbot .btn-primary:hover {
     background: #4f46e5;
 }
 
-.btn-secondary {
+.block_uteluqchatbot .btn-secondary {
     background: #f1f5f9;
     color: #475569;
 }
 
-.btn-secondary:hover {
+.block_uteluqchatbot .btn-secondary:hover {
     background: #e2e8f0;
 }
 
 @media (max-width: 640px) {
-    .modal-dialog {
+    .block_uteluqchatbot .modal-dialog {
         margin: 16px;
         width: auto;
     }
 
-    .modal-body {
+    .block_uteluqchatbot .modal-body {
         padding: 16px;
     }
 }

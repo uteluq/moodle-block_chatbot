@@ -1,16 +1,15 @@
-
 /*!
  * @copyright 2025 Université TÉLUQ
  */
 
-.block-chatbot-container {
+.block_uteluqchatbot .block-chatbot-container {
     padding: 15px;
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.chat-messages {
+.block_uteluqchatbot .chat-messages {
     height: 300px;
     overflow-y: auto;
     margin-bottom: 15px;
@@ -22,20 +21,20 @@
     scrollbar-color: #6366F1 #f1f5f9;
 }
 
-.chat-messages::-webkit-scrollbar {
+.block_uteluqchatbot .chat-messages::-webkit-scrollbar {
     width: 6px;
 }
 
-.chat-messages::-webkit-scrollbar-track {
+.block_uteluqchatbot .chat-messages::-webkit-scrollbar-track {
     background: #f1f5f9;
 }
 
-.chat-messages::-webkit-scrollbar-thumb {
+.block_uteluqchatbot .chat-messages::-webkit-scrollbar-thumb {
     background-color: #6366F1;
     border-radius: 3px;
 }
 
-.message {
+.block_uteluqchatbot .message {
     margin: 10px 0;
     padding: 12px;
     border-radius: 12px;
@@ -45,7 +44,7 @@
     max-width: 85%;
 }
 
-.user-message {
+.block_uteluqchatbot .user-message {
     background-color: #6366F1;
     color: white;
     margin-left: auto;
@@ -53,20 +52,20 @@
     position: relative;
 }
 
-.bot-message {
+.block_uteluqchatbot .bot-message {
     background-color: #f1f5f9;
     color: #1e293b;
     margin-right: auto;
     margin-left: 0;
 }
 
-.chat-input {
+.block_uteluqchatbot .chat-input {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.chat-input input {
+.block_uteluqchatbot .chat-input input {
     width: 100%;
     padding: 12px 16px;
     border: 1px solid #e2e8f0;
@@ -76,13 +75,13 @@
     background: #f8fafc;
 }
 
-.chat-input input:focus {
+.block_uteluqchatbot .chat-input input:focus {
     outline: none;
     border-color: #6366F1;
     box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
 }
 
-.chat-input button {
+.block_uteluqchatbot .chat-input button {
     width: 100%;
     padding: 10px;
     border: none;
@@ -94,11 +93,11 @@
     transition: background-color 0.2s;
 }
 
-.chat-input button:hover {
+.block_uteluqchatbot .chat-input button:hover {
     background-color: #4f46e5;
 }
 
-#toggle-prompt-form {
+.block_uteluqchatbot #toggle-prompt-form {
     margin-top: 10px;
     background-color: #f8fafc;
     border: 1px solid #e2e8f0;
@@ -110,12 +109,12 @@
     font-size: 14px;
 }
 
-#toggle-prompt-form:hover {
+.block_uteluqchatbot #toggle-prompt-form:hover {
     background-color: #f1f5f9;
     color: #4f46e5;
 }
 
-#error-message {
+.block_uteluqchatbot #error-message {
     color: #ef4444;
     text-align: center;
     margin: 8px 0;
@@ -123,7 +122,7 @@
 }
 
 /* Styles pour le modal */
-.modal {
+.block_uteluqchatbot .modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -133,7 +132,7 @@
     z-index: 1000;
 }
 
-.modal-dialog {
+.block_uteluqchatbot .modal-dialog {
     margin: 30px auto;
     max-width: 500px;
     background: white;
@@ -141,11 +140,11 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.modal-content {
+.block_uteluqchatbot .modal-content {
     padding: 20px;
 }
 
-.modal-header {
+.block_uteluqchatbot .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -154,14 +153,14 @@
     border-bottom: 1px solid #e2e8f0;
 }
 
-.modal-title {
+.block_uteluqchatbot .modal-title {
     font-size: 18px;
     font-weight: 600;
     color: #1e293b;
     margin: 0;
 }
 
-.close {
+.block_uteluqchatbot .close {
     background: none;
     border: none;
     font-size: 24px;
@@ -169,12 +168,12 @@
     color: #64748b;
 }
 
-.form-group {
+.block_uteluqchatbot .form-group {
     margin-bottom: 15px;
 }
 
-.form-group input,
-.form-group textarea {
+.block_uteluqchatbot .form-group input,
+.block_uteluqchatbot .form-group textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #e2e8f0;
@@ -183,34 +182,34 @@
     background: #f8fafc;
 }
 
-.form-group textarea {
+.block_uteluqchatbot .form-group textarea {
     min-height: 100px;
     resize: vertical;
 }
 
-.modal-footer {
+.block_uteluqchatbot .modal-footer {
     margin-top: 20px;
     padding-top: 15px;
     border-top: 1px solid #e2e8f0;
     text-align: right;
 }
 
-.modal-footer button {
+.block_uteluqchatbot .modal-footer button {
     margin-left: 10px;
 }
 
 /* Responsive design */
 @media (max-width: 640px) {
-    .block-chatbot-container {
+    .block_uteluqchatbot .block-chatbot-container {
         padding: 10px;
     }
 
-    .modal-dialog {
+    .block_uteluqchatbot .modal-dialog {
         margin: 15px;
         width: auto;
     }
-    
-    .message {
+
+    .block_uteluqchatbot .message {
         max-width: 90%;
     }
 }
