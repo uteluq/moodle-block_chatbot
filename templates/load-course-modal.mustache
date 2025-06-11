@@ -1,97 +1,109 @@
 <!--
   @copyright 2025 Université TÉLUQ
 -->
-
+{{!
+  @template block_uteluqchatbot/load_course_modal
+  Example context (json):
+  {
+    "str": {
+      "add_files": "Add Files",
+      "text_or_pdf_files": "Text or PDF Files",
+      "drag_files_here_or_click": "Drag files here or click to upload",
+      "cancel": "Cancel",
+      "upload_course": "Upload Course"
+    }
+  }
+}}
 <style>
-    .block_uteluqchatbot .modal {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        overflow-y: auto;
-    }
+.block_uteluqchatbot .modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
 
-    .block_uteluqchatbot .modal-dialog {
-        width: 90%;
-        max-width: 500px;
-        background-color: white;
-        border-radius: 8px;
-        overflow: hidden;
-        max-height: 90vh;
-        display: flex;
-        flex-direction: column;
-    }
+.block_uteluqchatbot .modal-dialog {
+    width: 90%;
+    max-width: 500px;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
 
-    .block_uteluqchatbot .modal-content {
-        padding: 20px;
-        overflow-y: auto;
-    }
+.block_uteluqchatbot .modal-content {
+    padding: 20px;
+    overflow-y: auto;
+}
 
-    .block_uteluqchatbot .modal-header, .block_uteluqchatbot .modal-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+.block_uteluqchatbot .modal-header, .block_uteluqchatbot .modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.block_uteluqchatbot .modal-footer {
+    margin-top: 20px;
+}
+
+.block_uteluqchatbot .file-upload-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.block_uteluqchatbot .file-upload-box {
+    text-align: center;
+}
+
+.block_uteluqchatbot .uploaded-file {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.block_uteluqchatbot .uploaded-file button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.block_uteluqchatbot .uploaded-file svg {
+    width: 16px;
+    height: 16px;
+}
+
+@media (max-width: 600px) {
     .block_uteluqchatbot .modal-footer {
-        margin-top: 20px;
-    }
-
-    .block_uteluqchatbot .file-upload-container {
-        position: relative;
-        display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        border: 2px dashed #ccc;
-        padding: 20px;
-        border-radius: 8px;
-        cursor: pointer;
+        align-items: stretch;
     }
 
-    .block_uteluqchatbot .file-upload-box {
-        text-align: center;
-    }
-
-    .block_uteluqchatbot .uploaded-file {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
+    .block_uteluqchatbot .modal-footer button {
+        width: 100%;
         margin-top: 10px;
     }
+}
 
-    .block_uteluqchatbot .uploaded-file button {
-        background: none;
-        border: none;
-        cursor: pointer;
-    }
-
-    .block_uteluqchatbot .uploaded-file svg {
-        width: 16px;
-        height: 16px;
-    }
-
-    @media (max-width: 600px) {
-        .block_uteluqchatbot .modal-footer {
-            flex-direction: column;
-            align-items: stretch;
-        }
-
-        .block_uteluqchatbot .modal-footer button {
-            width: 100%;
-            margin-top: 10px;
-        }
-    }
 </style>
-
 <div id="fileUploadModal" class="block_uteluqchatbot modal" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">

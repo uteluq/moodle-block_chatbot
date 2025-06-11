@@ -1,52 +1,24 @@
 <!--
   @copyright 2025 Université TÉLUQ
 -->
-
-<div id="promptModal" class="block_uteluqchatbot modal" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">
-                    {{#has_prompt}}{{#str}}modify_prompt, block_uteluqchatbot{{/str}}{{/has_prompt}}
-                    {{^has_prompt}}{{#str}}add_prompt, block_uteluqchatbot{{/str}}{{/has_prompt}}
-                </h5>
-                <button type="button" class="close" onclick="togglePromptModal()">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="currentColor"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="promptform">
-                    <!-- Guide pour les enseignants -->
-                    <div class="form-group">
-                        <p>
-                            {{#str}}consult_guide, block_uteluqchatbot{{/str}}
-                            <a href="https://docs.google.com/document/d/1JZOkdeZaAFJMhsxdb3SC28gel7S_PDgC/edit?usp=sharing&ouid=106953369477562214173&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">
-                                {{#str}}guide_link, block_uteluqchatbot{{/str}}
-                            </a>
-                        </p>
-                    </div>
-
-                    <!-- Champ de contenu du prompt -->
-                    <div class="form-group">
-                        <label for="prompttext">{{#str}}prompt_content, block_uteluqchatbot{{/str}}</label>
-                        <textarea id="prompttext" name="prompttext"
-                                  class="form-input prompt-textarea"
-                                  placeholder="{{#str}}write_prompt_here, block_uteluqchatbot{{/str}}"
-                                  style="height: 300px;" required>{{prompt_text}}</textarea>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn-secondary" onclick="togglePromptModal()">{{#str}}cancel, block_uteluqchatbot{{/str}}</button>
-                        <button type="submit" class="btn-primary">{{#str}}save, block_uteluqchatbot{{/str}}</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
+{{!
+  @template block_uteluqchatbot/prompt_modal
+  Example context (json):
+  {
+    "has_prompt": true,
+    "prompt_text": "Sample prompt text",
+    "str": {
+      "modify_prompt": "Modify Prompt",
+      "add_prompt": "Add Prompt",
+      "consult_guide": "Consult the guide",
+      "guide_link": "Guide Link",
+      "prompt_content": "Prompt Content",
+      "write_prompt_here": "Write your prompt here...",
+      "cancel": "Cancel",
+      "save": "Save"
+    }
+  }
+}}
 <style>
 .block_uteluqchatbot .modal {
     position: fixed;
@@ -188,4 +160,49 @@
         padding: 16px;
     }
 }
+
 </style>
+<div id="promptModal" class="block_uteluqchatbot modal" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    {{#has_prompt}}{{#str}}modify_prompt, block_uteluqchatbot{{/str}}{{/has_prompt}}
+                    {{^has_prompt}}{{#str}}add_prompt, block_uteluqchatbot{{/str}}{{/has_prompt}}
+                </h5>
+                <button type="button" class="close" onclick="togglePromptModal()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="currentColor"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="promptform">
+                    <!-- Guide pour les enseignants -->
+                    <div class="form-group">
+                        <p>
+                            {{#str}}consult_guide, block_uteluqchatbot{{/str}}
+                            <a href="https://docs.google.com/document/d/1JZOkdeZaAFJMhsxdb3SC28gel7S_PDgC/edit?usp=sharing&ouid=106953369477562214173&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">
+                                {{#str}}guide_link, block_uteluqchatbot{{/str}}
+                            </a>
+                        </p>
+                    </div>
+
+                    <!-- Champ de contenu du prompt -->
+                    <div class="form-group">
+                        <label for="prompttext">{{#str}}prompt_content, block_uteluqchatbot{{/str}}</label>
+                        <textarea id="prompttext" name="prompttext"
+                                  class="form-input prompt-textarea"
+                                  placeholder="{{#str}}write_prompt_here, block_uteluqchatbot{{/str}}"
+                                  style="height: 300px;" required>{{prompt_text}}</textarea>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secondary" onclick="togglePromptModal()">{{#str}}cancel, block_uteluqchatbot{{/str}}</button>
+                        <button type="submit" class="btn-primary">{{#str}}save, block_uteluqchatbot{{/str}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

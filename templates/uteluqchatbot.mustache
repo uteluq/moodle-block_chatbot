@@ -1,6 +1,23 @@
 <!--
   @copyright 2025 Université TÉLUQ
 -->
+{{!
+  @template block_uteluqchatbot/uteluqchatbot
+  Example context (json):
+  {
+    "isteacher": true,
+    "str": {
+      "chatbot_with_toggle_buttons": "Chatbot with Toggle Buttons",
+      "hello_professor": "Hello Professor!",
+      "hello_student": "Hello Student!",
+      "ask_your_question_here": "Ask your question here...",
+      "modify_prompt": "Modify Prompt",
+      "upload_course": "Upload Course",
+      "open_prompt_modal": "Open Prompt Modal",
+      "open_file_upload_modal": "Open File Upload Modal"
+    }
+  }
+}}
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -278,7 +295,6 @@
 </div>
 
 <script>
-
 // Keep the original functions
 function togglePromptModal() {
     console.log('{{#str}}open_prompt_modal, block_uteluqchatbot{{/str}}');
@@ -287,7 +303,6 @@ function togglePromptModal() {
 function toggleFileUploadModal() {
     console.log('{{#str}}open_file_upload_modal, block_uteluqchatbot{{/str}}');
 }
-
 </script>
 </body>
 </html>

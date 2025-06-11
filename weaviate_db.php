@@ -54,24 +54,39 @@ try {
     if ($checkIfCreated == false && !$connector->create_collection($courseName)) {
         throw new Exception(get_string('errorcreatingcollection', 'block_uteluqchatbot') . $connector->get_last_error());
     }
-
     // Check for upload errors
     foreach ($uploadedFiles['error'] as $key => $error) {
         if ($error !== UPLOAD_ERR_OK) {
-            $message = match ($error) {
-                UPLOAD_ERR_INI_SIZE => get_string('fileexceedsmaxsizeini', 'block_uteluqchatbot'),
-                UPLOAD_ERR_FORM_SIZE => get_string('fileexceedsmaxsizeform', 'block_uteluqchatbot'),
-                UPLOAD_ERR_PARTIAL => get_string('filepartiallyuploaded', 'block_uteluqchatbot'),
-                UPLOAD_ERR_NO_FILE => get_string('nofileuploaded', 'block_uteluqchatbot'),
-                UPLOAD_ERR_NO_TMP_DIR => get_string('missingtmpfolder', 'block_uteluqchatbot'),
-                UPLOAD_ERR_CANT_WRITE => get_string('failedtowritetodisk', 'block_uteluqchatbot'),
-                UPLOAD_ERR_EXTENSION => get_string('phpextensionstoppedupload', 'block_uteluqchatbot'),
-                default => get_string('unknownuploaderror', 'block_uteluqchatbot')
-            };
+            switch ($error) {
+                case UPLOAD_ERR_INI_SIZE:
+                    $message = get_string('fileexceedsmaxsizeini', 'block_uteluqchatbot');
+                    break;
+                case UPLOAD_ERR_FORM_SIZE:
+                    $message = get_string('fileexceedsmaxsizeform', 'block_uteluqchatbot');
+                    break;
+                case UPLOAD_ERR_PARTIAL:
+                    $message = get_string('filepartiallyuploaded', 'block_uteluqchatbot');
+                    break;
+                case UPLOAD_ERR_NO_FILE:
+                    $message = get_string('nofileuploaded', 'block_uteluqchatbot');
+                    break;
+                case UPLOAD_ERR_NO_TMP_DIR:
+                    $message = get_string('missingtmpfolder', 'block_uteluqchatbot');
+                    break;
+                case UPLOAD_ERR_CANT_WRITE:
+                    $message = get_string('failedtowritetodisk', 'block_uteluqchatbot');
+                    break;
+                case UPLOAD_ERR_EXTENSION:
+                    $message = get_string('phpextensionstoppedupload', 'block_uteluqchatbot');
+                    break;
+                default:
+                    $message = get_string('unknownuploaderror', 'block_uteluqchatbot');
+            }
 
             throw new Exception(get_string('uploaderror', 'block_uteluqchatbot') . $message);
         }
     }
+
 
 
     // Create or get a temporary directory for the plugin under /moodledata/temp/block_uteluqchatbot
@@ -94,19 +109,19 @@ try {
         $newFileName = uniqid('file_', true) . '-' . $fileName;
         $destination = $uploadDir . $newFileName;
 
-        
+
 
 
         // Move the file to the destination directory
         move_uploaded_file($fileTmpName, $destination);
 
-        
+
 
         $adobe_pdf_client_id = get_config('block_uteluqchatbot', 'adobe_pdf_client_id');
         $adobe_pdf_client_secret = get_config('block_uteluqchatbot', 'adobe_pdf_client_secret');
-        
 
-          
+
+
         // Extract the file content
         $pdfExtractor = new \block_uteluqchatbot\pdf_extract_api($adobe_pdf_client_id, $adobe_pdf_client_secret);
         $extractedText = $pdfExtractor->process_pdf($destination);
