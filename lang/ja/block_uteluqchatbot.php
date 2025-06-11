@@ -81,8 +81,16 @@ $string['invalid_session'] = '無効なセッション';
 $string['openai_api_key_not_configured'] = 'OpenAI APIキーが設定されていません';
 $string['empty_response_from_api'] = 'APIから空の応答が返されました';
 $string['error_saving_conversation'] = '会話の保存中にエラーが発生しました';
+$string['invalid_question_after_sanitize'] = 'サニタイズ後の無効な質問。';
+$string['empty_string_as_answer'] = '空の文字列が回答として受信されました。';
+$string['database_error_saving_conversation'] = '会話の保存中にデータベースエラー: ';
+$string['error_saving_conversation'] = '会話の保存中にエラー';
+$string['error_reading_input'] = '入力の読み取り中にエラー。';
+$string['generic_server_error'] = '汎用サーバーエラー。';
+$string['invalid_course_id'] = '無効なコースID。';
 
-// For classes/PDFExtractAPI.php
+
+// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = 'アクセストークンの取得に失敗しました。HTTPステータス: ';
 $string['access_token_obtained_successfully'] = 'アクセストークンを正常に取得しました。';
 $string['failed_to_obtain_access_token_response'] = 'アクセストークンの取得に失敗しました。レスポンス: ';
@@ -109,7 +117,7 @@ $string['failed_to_download_asset'] = 'アセットのダウンロードに失�
 $string['asset_downloaded_successfully'] = 'アセットが正常にダウンロードされました。';
 $string['error_decoding_json_file'] = 'JSONファイルのデコード中にエラーが発生しました。';
 
-// For classes/weaviateconnector.php
+// For classes/weaviate_connector.php
 $string['curl_error'] = 'cURLエラー: ';
 $string['http_error'] = 'HTTPエラー ';
 $string['json_decode_error'] = 'JSONデコードエラー: ';
@@ -122,6 +130,10 @@ $string['unable_to_read_file'] = 'ファイルを読み取れません';
 $string['json_encode_error'] = 'JSONエンコードエラー: ';
 $string['failure_after_retries'] = '再試行後に失敗 ';
 $string['last_error'] = ' 回。最後のエラー: HTTP ';
+$string['invalid_response_format'] = '無効な応答形式。';
+$string['http_code'] = 'HTTPコード: ';
+
+
 
 // For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
@@ -179,8 +191,20 @@ $string['open_prompt_modal'] = 'プロンプト修正モーダルを開く';
 $string['open_file_upload_modal'] = 'コースアップロードモーダルを開く';
 
 
-// For classes/PDFExtractAPI.php
+// For classes/pdf_extract_api.php
 $string['error_uploading_asset'] = 'アセットのアップロード中にエラーが発生しました。';
 $string['error_creating_job'] = 'ジョブの作成中にエラーが発生しました。';
 $string['job_failed'] = 'ジョブが失敗しました。';
 $string['error_processing_pdf'] = 'PDFの処理中にエラーが発生しました。';
+
+$string['headers_already_sent'] = 'ヘッダーは既に送信されています。';
+$string['failed_to_start_output_buffer'] = '出力バッファの開始に失敗しました。';
+$string['server_error_output_buffer_failed'] = 'サーバーエラー：出力バッファリングに失敗しました。';
+$string['answer_not_utf8'] = '回答がUTF-8ではありません。';
+$string['no_answer_or_error_field'] = '回答またはエラーフィールドがありません。';
+$string['json_encode_error'] = 'JSONエンコードエラー：';
+$string['server_error_json_encode_failed'] = 'サーバーエラー：JSONエンコードに失敗しました。';
+$string['empty_response_from_api'] = 'APIからの空の応答。';
+$string['empty_string_as_answer'] = '空の文字列が回答として受信されました。';
+$string['database_error_saving_conversation'] = '会話の保存中にデータベースエラー：';
+$string['general_exception'] = '一般例外：';

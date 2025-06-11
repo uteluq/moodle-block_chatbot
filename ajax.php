@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @copyright 2025 Université TÉLUQ
  */
@@ -9,164 +8,99 @@ require_login();
 global $CFG, $USER, $COURSE, $DB, $PAGE;
 
 // Clean any previous output
-// This is a good first step.
-if (ob_get_level() > 0) { // Check if buffer exists before trying to clean
-    ob_end_clean(); // Cleans and turns off buffering
+if (ob_get_level() > 0) {
+    ob_end_clean();
 }
-ob_start(); // Start a new buffer immediately to catch any stray output
+ob_start();
 
-// Set HTTP headers - these might be overridden if send_json_response is called later
-// It's generally better to set these right before the final output.
-// header('Content-Type: application/json; charset=utf-8');
-// header('Cache-Control: no-cache, must-revalidate');
-
-// Configure debugging
-error_reporting(E_ALL);
-ini_set('display_errors', 0); // Disable error display to browser to avoid JSON contamination
-ini_set('log_errors', 1);    // Ensure errors are logged
-// Consider setting ini_set('error_log', '/path/to/your/php_errors.log'); if not set globally
-
-require_once($CFG->dirroot . '/blocks/uteluqchatbot/classes/weaviate_connector.php');
-
-/**
- * Sanitize input to prevent XSS and other attacks.
- * @param string $input The input string to sanitize.
- * @return string The sanitized input.
- */
-function sanitizeChatbotInput($input) {
-    // Remove potentially dangerous tags
-    $dangerousTags = ['script', 'iframe', 'object', 'embed', 'style', 'form', 'input', 'applet', 'link', 'meta'];
-    foreach ($dangerousTags as $tag) {
+function sanitize_chatbot_input($input) {
+    $dangerous_tags = ['script', 'iframe', 'object', 'embed', 'style', 'form', 'input', 'applet', 'link', 'meta'];
+    foreach ($dangerous_tags as $tag) {
         $input = preg_replace('/<\s*\/?\s*' . $tag . '[^>]*>/i', '', $input);
     }
 
-    // Remove attributes containing JavaScript (more robustly)
     $input = preg_replace('/\s*on\w+\s*=\s*("([^"]*)"|\'([^\']*)\'|[^\s>]+)/i', '', $input);
-
-    // Remove JavaScript URLs
     $input = preg_replace('/javascript\s*:/i', '', $input);
 
-    // Block calls to dangerous functions (basic attempt, might not be exhaustive)
-    $dangerousFunctions = ['eval', 'system', 'exec', 'passthru', 'shell_exec', 'base64_decode', 'phpinfo', 'proc_open', 'popen'];
-    foreach ($dangerousFunctions as $func) {
-        // Look for function name possibly followed by parentheses
+    $dangerous_functions = ['eval', 'system', 'exec', 'passthru', 'shell_exec', 'base64_decode', 'phpinfo', 'proc_open', 'popen'];
+    foreach ($dangerous_functions as $func) {
         $input = preg_replace('/\b' . preg_quote($func, '/') . '\s*\(/i', '', $input);
     }
 
-    // Limit length
     $input = mb_substr($input, 0, 100000, 'UTF-8');
-
-    // Convert special characters to HTML entities to prevent XSS.
-    // ENT_QUOTES will convert both double and single quotes.
-    // ENT_HTML5 is good practice if outputting to HTML5 contexts, otherwise ENT_HTML401.
     $input = htmlspecialchars($input, ENT_QUOTES | ENT_HTML5, 'UTF-8');
-
-    // The previous htmlspecialchars_decode was likely neutralizing the htmlspecialchars.
-    // If the goal is to output safe HTML, only htmlspecialchars is needed.
-    // If the goal is to strip all HTML and then use, the preg_replace for tags is the main tool.
-    // For chatbot input, we generally want plain text or very restricted HTML.
-    // The current approach aims to strip dangerous HTML and then encode special chars.
 
     return $input;
 }
 
-/**
- * Send a clean JSON response.
- * @param array $data The data to send as JSON.
- * @param int $status_code The HTTP status code.
- */
 function send_json_response($data, $status_code = 200) {
-    global $CFG; // For logging path if needed
+    global $CFG;
 
-    // Check if headers have already been sent (indicates premature output)
     if (headers_sent($file, $line)) {
-        error_log("uteluqchatbot API: Headers already sent from {$file}:{$line}. Cannot send JSON response properly. Prior output detected.");
-        // Attempt to clean again, though it's likely too late to set new headers.
+        error_log(get_string('headers_already_sent', 'block_uteluqchatbot') . " {$file}:{$line}");
         while (ob_get_level() > 0) {
             ob_end_clean();
         }
-        // We can't reliably set headers now. The client will likely get mixed content.
-        // For debugging, we might try to echo the JSON anyway, but it's a sign of a deeper issue.
-        echo "";
         echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PARTIAL_OUTPUT_ON_ERROR);
         exit();
     }
 
-    // Clear all output buffers that might have been started by other parts of the code.
     while (ob_get_level() > 0) {
         ob_end_clean();
     }
 
-    // Start a new, clean output buffer specifically for this JSON response.
     if (!ob_start()) {
-        error_log("uteluqchatbot API: Failed to start output buffer for JSON response.");
-        // Fallback or error handling if ob_start fails
-        http_response_code(500); // Internal Server Error
-        // Still try to send a JSON error message, but without buffer control.
+        error_log(get_string('failed_to_start_output_buffer', 'block_uteluqchatbot'));
+        http_response_code(500);
         header('Content-Type: application/json; charset=utf-8');
-        echo json_encode(['error' => 'Server error: Output buffering failed.'], JSON_UNESCAPED_UNICODE);
+        echo json_encode(['error' => get_string('server_error_output_buffer_failed', 'block_uteluqchatbot')], JSON_UNESCAPED_UNICODE);
         exit();
     }
 
     http_response_code($status_code);
     header('Content-Type: application/json; charset=utf-8');
     header('Cache-Control: no-cache, must-revalidate, no-store, max-age=0');
-    header('Pragma: no-cache'); // For HTTP/1.0 compatibility
-    header('Expires: 0'); // Proxies
+    header('Pragma: no-cache');
+    header('Expires: 0');
 
-    // Ensure $data['answer'] is UTF-8 if it exists and is a string
     if (isset($data['answer']) && is_string($data['answer'])) {
         if (!mb_check_encoding($data['answer'], 'UTF-8')) {
-            error_log('uteluqchatbot API: Answer is not UTF-8. Attempting to convert. Original encoding: ' . mb_detect_encoding($data['answer']));
+            error_log(get_string('answer_not_utf8', 'block_uteluqchatbot'));
             $converted_answer = mb_convert_encoding($data['answer'], 'UTF-8', mb_detect_encoding($data['answer']));
             if ($converted_answer !== false) {
                 $data['answer'] = $converted_answer;
-            } else {
-                error_log('uteluqchatbot API: Failed to convert answer to UTF-8. Using original potentially problematic string.');
-                // Potentially replace with an error message or a safe placeholder
-                // $data['answer'] = "Error: Could not encode answer to UTF-8.";
             }
         }
-    } else if ($status_code === 200 && !isset($data['error']) && !isset($data['answer'])) {
-        error_log('uteluqchatbot API: send_json_response called with 200 status but no "answer" or "error" field in data.');
+    } elseif ($status_code === 200 && !isset($data['error']) && !isset($data['answer'])) {
+        error_log(get_string('no_answer_or_error_field', 'block_uteluqchatbot'));
     }
 
     $json_output = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PARTIAL_OUTPUT_ON_ERROR);
 
     if (json_last_error() !== JSON_ERROR_NONE) {
         $json_error_msg = json_last_error_msg();
-        error_log('uteluqchatbot API: JSON Encode Error - ' . $json_error_msg . '. Data was: ' . print_r($data, true));
-        
-        // Clean the buffer we started for the (failed) JSON attempt
-        ob_end_clean(); 
-        // Start a new buffer for the error message
-        ob_start(); 
+        error_log(get_string('json_encode_error', 'block_uteluqchatbot') . $json_error_msg);
 
-        http_response_code(500); // Internal Server Error
-        // Ensure Content-Type is still JSON for this error response
+        ob_end_clean();
+        ob_start();
+
+        http_response_code(500);
         header('Content-Type: application/json; charset=utf-8');
         echo json_encode([
-            'error' => 'Server error: Failed to encode JSON response.',
+            'error' => get_string('server_error_json_encode_failed', 'block_uteluqchatbot'),
             'details' => $json_error_msg
         ], JSON_UNESCAPED_UNICODE);
-        
-        ob_end_flush(); // Send the error JSON
+
+        ob_end_flush();
         exit();
     }
 
-    // Successfully encoded JSON. Clean our buffer and send the output.
     ob_end_clean();
     echo $json_output;
     exit();
 }
 
 try {
-    // Check HTTP method
-    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        send_json_response(['error' => get_string('http_method_not_allowed', 'block_uteluqchatbot')], 405);
-    }
-
-    // Read input
     $raw_input = file_get_contents('php://input');
     if ($raw_input === false) {
         send_json_response(['error' => get_string('error_reading_input', 'block_uteluqchatbot')], 400);
@@ -181,114 +115,82 @@ try {
         send_json_response(['error' => get_string('missing_parameters', 'block_uteluqchatbot')], 400);
     }
 
-    $question_raw = $input['question']; // Keep raw for logging if needed, then sanitize
-    $userid = (int)$input['userid']; // Cast to int for safety
-    $courseid = (int)$input['courseid']; // Cast to int for safety
+    $question_raw = $input['question'];
+    $userid = (int)$input['userid'];
+    $courseid = (int)$input['courseid'];
     $sesskey = $input['sesskey'];
-    // Ensure sansRag is treated as boolean correctly
-    $sansRag = isset($input['sansRag']) && ($input['sansRag'] === true || $input['sansRag'] === 1 || $input['sansRag'] === 'true' || $input['sansRag'] === '1');
+    $sans_rag = isset($input['sansRag']) && ($input['sansRag'] === true || $input['sansRag'] === 1 || $input['sansRag'] === 'true' || $input['sansRag'] === '1');
 
-    // Sanitize the question
-    $question = sanitizeChatbotInput(trim($question_raw));
+    $question = sanitize_chatbot_input(trim($question_raw));
 
-
-
-    if (empty($question)) { // Check after sanitization
-        // If sanitizeChatbotInput can return an empty string from a non-empty input due to stripping
-        // this check is important.
+    if (empty($question)) {
         send_json_response(['error' => get_string('invalid_question_after_sanitize', 'block_uteluqchatbot')], 400);
     }
-    
-    // Session key confirmation
+
     if (!confirm_sesskey($sesskey)) {
         send_json_response(['error' => get_string('invalid_session', 'block_uteluqchatbot')], 403);
     }
 
-    // Retrieve API key for OpenAI (if used directly, otherwise for Weaviate/Cohere)
-    // $api_key = get_config('block_uteluqchatbot', 'openai_api_key');
-    // if (empty($api_key)) {
-    //     send_json_response(['error' => get_string('openai_api_key_not_configured', 'block_uteluqchatbot')], 500);
-    // }
+    $weaviate_api_url = get_config('block_uteluqchatbot', 'weaviate_api_url');
+    $weaviate_api_key = get_config('block_uteluqchatbot', 'weaviate_api_key');
+    $cohere_api_key = get_config('block_uteluqchatbot', 'cohere_embedding_api_key');
 
-    // Configure Weaviate API keys and URL
-    $weaviateApiUrl = get_config('block_uteluqchatbot', 'weaviate_api_url');
-    $weaviateApiKey = get_config('block_uteluqchatbot', 'weaviate_api_key');
-    $cohereApiKey = get_config('block_uteluqchatbot', 'cohere_embedding_api_key');
-
-    if (empty($weaviateApiUrl) || empty($cohereApiKey)) { // Weaviate API key might be optional depending on setup
-        error_log('uteluqchatbot API: Weaviate URL or Cohere API key is not configured.');
+    if (empty($weaviate_api_url) || empty($cohere_api_key)) {
+        error_log(get_string('weaviate_cohere_not_configured', 'block_uteluqchatbot'));
         send_json_response(['error' => get_string('weaviate_cohere_not_configured', 'block_uteluqchatbot')], 500);
     }
-    
-    $weaviateConnector = new WeaviateConnector(
-        $weaviateApiUrl,
-        $weaviateApiKey,
-        $cohereApiKey
+
+    $weaviate_connector = new \block_uteluqchatbot\weaviate_connector(
+        $weaviate_api_url,
+        $weaviate_api_key,
+        $cohere_api_key
     );
 
-    $context = context_course::instance($courseid); // Use $courseid from input
-    // $isTeacher = has_capability('moodle/course:update', $context, $USER->id); // $USER->id should be used if checking logged-in user
-                                                                              // If using $userid from input, ensure it's validated/authorized
-    
-    $courseRecord = $DB->get_record('course', array('id' => $courseid));
-    if (!$courseRecord) {
+    $context = context_course::instance($courseid);
+    $course_record = $DB->get_record('course', ['id' => $courseid]);
+    if (!$course_record) {
         send_json_response(['error' => get_string('invalid_course_id', 'block_uteluqchatbot')], 400);
     }
-    $courseName = $courseRecord->fullname;
-    $collectionName = 'Collection_course_' . $courseid; // Ensure this naming convention is consistent
+    $course_name = $course_record->fullname;
+    $collection_name = 'Collection_course_' . $courseid;
 
-    $ragResults = "";
-
-
-
-    if ($sansRag === true) {
-        $ragResults = $weaviateConnector->getCohereResponse($question, $cohereApiKey);
+    if ($sans_rag === true) {
+        $rag_results = $weaviate_connector->get_cohere_response($question, $cohere_api_key);
     } else {
-        $ragResults = $weaviateConnector->getQuestionAnswer($courseName, $collectionName, $question, $userid, $courseid);
+        $rag_results = $weaviate_connector->get_question_answer($course_name, $collection_name, $question, $userid, $courseid);
     }
 
-    $answer = $ragResults;
+    $answer = $rag_results;
 
-
-
-    // Check if $answer is truly empty or indicates an error from the connector.
-    // An empty string "" might be a valid (though perhaps unhelpful) answer.
-    // null or false often indicate an actual failure in the connector.
     if (is_null($answer) || $answer === false) {
-        error_log("uteluqchatbot API: Empty or error response from Weaviate/Cohere. Answer was: " . var_export($answer, true));
+        error_log(get_string('empty_response_from_api', 'block_uteluqchatbot'));
         send_json_response(['error' => get_string('empty_response_from_api', 'block_uteluqchatbot')], 500);
     }
-    // If an empty string is also an error, add: || $answer === ""
+
     if ($answer === "") {
-         // Decide if an empty string is an error or a valid (empty) response
-         // For now, let's assume it might be valid, but log it.
-         error_log("uteluqchatbot API: Received an empty string as answer from Weaviate/Cohere for question: {$question}");
+        error_log(get_string('empty_string_as_answer', 'block_uteluqchatbot'));
     }
 
-
-    // Save the conversation
-    $max_conversations = 10; // Consider making this configurable
+    $max_conversations = 10;
 
     $record = new stdClass();
-    $record->userid = $userid; // Use validated $userid from input
-    $record->courseid = $courseid; // Use validated $courseid from input
-    $record->question = $question; // Use sanitized question
-    $record->answer = is_string($answer) ? $answer : json_encode($answer); // Ensure answer is string for DB
+    $record->userid = $userid;
+    $record->courseid = $courseid;
+    $record->question = $question;
+    $record->answer = is_string($answer) ? $answer : json_encode($answer);
     $record->timecreated = time();
 
     try {
         $count = $DB->count_records('block_uteluqchatbot_conversations', ['userid' => $userid, 'courseid' => $courseid]);
 
         if ($count >= $max_conversations) {
-            // Moodle's $DB methods expect an array of IDs for delete_records_select or similar.
-            // Or get the oldest records and delete them one by one or by a list of IDs.
             $oldest_ids = $DB->get_fieldset_sql(
                 "SELECT id FROM {block_uteluqchatbot_conversations}
                  WHERE userid = :userid AND courseid = :courseid
                  ORDER BY timecreated ASC",
                 ['userid' => $userid, 'courseid' => $courseid],
-                0, // Offset
-                $count - $max_conversations + 1 // Limit (number of records to delete)
+                0,
+                $count - $max_conversations + 1
             );
 
             if ($oldest_ids) {
@@ -302,23 +204,19 @@ try {
 
         send_json_response([
             'status' => 'success',
-            'answer' => $answer // Send the original $answer from the connector
+            'answer' => $answer
         ]);
 
     } catch (dml_exception $db_error) {
-        error_log('uteluqchatbot API: Database error while saving conversation - ' . $db_error->getMessage());
+        error_log(get_string('database_error_saving_conversation', 'block_uteluqchatbot') . $db_error->getMessage());
         send_json_response(['error' => get_string('error_saving_conversation', 'block_uteluqchatbot') . ': ' . $db_error->getMessage()], 500);
     }
 
 } catch (Exception $e) {
-    error_log('uteluqchatbot API: General exception - ' . $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine());
-    // Avoid sending detailed exception messages to the client in production for security.
-    send_json_response(['error' => get_string('generic_server_error', 'block_uteluqchatbot') . ' Trace: ' . $e->getTraceAsString()], 500); // Added trace for debugging
+    error_log(get_string('general_exception', 'block_uteluqchatbot') . $e->getMessage());
+    send_json_response(['error' => get_string('generic_server_error', 'block_uteluqchatbot')], 500);
 } finally {
-    // Ensure the output buffer started at the very beginning is cleaned up if not already handled.
     if (ob_get_level() > 0) {
-        ob_end_flush(); // Or ob_end_clean() if no output is desired from this final stage.
+        ob_end_flush();
     }
 }
-
-?>

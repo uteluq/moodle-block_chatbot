@@ -81,8 +81,16 @@ $string['invalid_session'] = '无效的会话';
 $string['openai_api_key_not_configured'] = '未配置OpenAI API密钥';
 $string['empty_response_from_api'] = '从API收到空响应';
 $string['error_saving_conversation'] = '保存对话时出错';
+$string['invalid_question_after_sanitize'] = '净化后的问题无效。';
+$string['empty_string_as_answer'] = '收到空字符串作为回答。';
+$string['database_error_saving_conversation'] = '保存对话时的数据库错误: ';
+$string['error_saving_conversation'] = '保存对话时出错';
+$string['error_reading_input'] = '读取输入时出错。';
+$string['generic_server_error'] = '通用服务器错误。';
+$string['invalid_course_id'] = '无效的课程ID。';
 
-// For classes/PDFExtractAPI.php
+
+// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = '获取访问令牌失败。HTTP状态: ';
 $string['access_token_obtained_successfully'] = '成功获取访问令牌。';
 $string['failed_to_obtain_access_token_response'] = '获取访问令牌失败。响应: ';
@@ -109,7 +117,7 @@ $string['failed_to_download_asset'] = '下载资产失败。HTTP状态: ';
 $string['asset_downloaded_successfully'] = '资产下载成功。';
 $string['error_decoding_json_file'] = '解码JSON文件时出错。';
 
-// For classes/weaviateconnector.php
+// For classes/weaviate_connector.php
 $string['curl_error'] = 'cURL错误: ';
 $string['http_error'] = 'HTTP错误 ';
 $string['json_decode_error'] = 'JSON解码错误: ';
@@ -122,6 +130,10 @@ $string['unable_to_read_file'] = '无法读取文件';
 $string['json_encode_error'] = 'JSON编码错误: ';
 $string['failure_after_retries'] = '重试后失败 ';
 $string['last_error'] = ' 次。最后一次错误: HTTP ';
+$string['invalid_response_format'] = '无效的响应格式。';
+$string['http_code'] = 'HTTP代码：';
+
+
 
 // For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
@@ -179,8 +191,21 @@ $string['open_prompt_modal'] = '打开提示修改模态框';
 $string['open_file_upload_modal'] = '打开课程上传模态框';
 
 
-// For classes/PDFExtractAPI.php
+// For classes/pdf_extract_api.php
 $string['error_uploading_asset'] = '上传资产时出错。';
 $string['error_creating_job'] = '创建作业时出错。';
 $string['job_failed'] = '作业失败。';
 $string['error_processing_pdf'] = '处理PDF时出错。';
+
+
+$string['headers_already_sent'] = '标头已发送。';
+$string['failed_to_start_output_buffer'] = '启动输出缓冲区失败。';
+$string['server_error_output_buffer_failed'] = '服务器错误：输出缓冲失败。';
+$string['answer_not_utf8'] = '答案不是UTF-8编码。';
+$string['no_answer_or_error_field'] = '没有答案或错误字段。';
+$string['json_encode_error'] = 'JSON编码错误：';
+$string['server_error_json_encode_failed'] = '服务器错误：JSON编码失败。';
+$string['empty_response_from_api'] = '来自API的空响应。';
+$string['empty_string_as_answer'] = '收到空字符串作为答案。';
+$string['database_error_saving_conversation'] = '保存对话时的数据库错误：';
+$string['general_exception'] = '一般异常：';

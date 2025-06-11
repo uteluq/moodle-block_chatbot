@@ -1,98 +1,110 @@
 <!--
   @copyright 2025 Université TÉLUQ
 -->
-
+{{!
+  @template block_uteluqchatbot/load_course_modal
+  Example context (json):
+  {
+    "str": {
+      "add_files": "Add Files",
+      "text_or_pdf_files": "Text or PDF Files",
+      "drag_files_here_or_click": "Drag files here or click to upload",
+      "cancel": "Cancel",
+      "upload_course": "Upload Course"
+    }
+  }
+}}
 <style>
-    .modal {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        left: 0;
+.block_uteluqchatbot .modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+.block_uteluqchatbot .modal-dialog {
+    width: 90%;
+    max-width: 500px;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.block_uteluqchatbot .modal-content {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.block_uteluqchatbot .modal-header, .block_uteluqchatbot .modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.block_uteluqchatbot .modal-footer {
+    margin-top: 20px;
+}
+
+.block_uteluqchatbot .file-upload-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.block_uteluqchatbot .file-upload-box {
+    text-align: center;
+}
+
+.block_uteluqchatbot .uploaded-file {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.block_uteluqchatbot .uploaded-file button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.block_uteluqchatbot .uploaded-file svg {
+    width: 16px;
+    height: 16px;
+}
+
+@media (max-width: 600px) {
+    .block_uteluqchatbot .modal-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .block_uteluqchatbot .modal-footer button {
         width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        overflow-y: auto;
-    }
-
-    .modal-dialog {
-        width: 90%;
-        max-width: 500px;
-        background-color: white;
-        border-radius: 8px;
-        overflow: hidden;
-        max-height: 90vh;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .modal-content {
-        padding: 20px;
-        overflow-y: auto;
-    }
-
-    .modal-header, .modal-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .modal-footer {
-        margin-top: 20px;
-    }
-
-    .file-upload-container {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        border: 2px dashed #ccc;
-        padding: 20px;
-        border-radius: 8px;
-        cursor: pointer;
-    }
-
-    .file-upload-box {
-        text-align: center;
-    }
-
-    .uploaded-file {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
         margin-top: 10px;
     }
+}
 
-    .uploaded-file button {
-        background: none;
-        border: none;
-        cursor: pointer;
-    }
-
-    .uploaded-file svg {
-        width: 16px;
-        height: 16px;
-    }
-
-    @media (max-width: 600px) {
-        .modal-footer {
-            flex-direction: column;
-            align-items: stretch;
-        }
-
-        .modal-footer button {
-            width: 100%;
-            margin-top: 10px;
-        }
-    }
 </style>
-
-<div id="fileUploadModal" class="modal" style="display: none;">
+<div id="fileUploadModal" class="block_uteluqchatbot modal" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -129,51 +141,3 @@
         </div>
     </div>
 </div>
-
-<script>
-
-function toggleFileUploadModal() {
-    const modal = document.getElementById('fileUploadModal');
-    modal.style.display = modal.style.display === 'none' || modal.style.display === '' ? 'flex' : 'none';
-
-    if (modal.style.display === 'none') {
-        document.getElementById('fileUploadForm').reset();
-        document.getElementById('uploadedFilesContainer').innerHTML = '';
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('file').addEventListener('change', function(e) {
-        const files = e.target.files;
-        const container = document.getElementById('uploadedFilesContainer');
-        container.innerHTML = '';
-
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            const fileItem = document.createElement('div');
-            fileItem.classList.add('uploaded-file');
-            fileItem.innerHTML = `
-                <span>${file.name}</span>
-                <button type="button" onclick="removeFile(this, '${file.name}')">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                        <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="currentColor"/>
-                    </svg>
-                </button>
-            `;
-            container.appendChild(fileItem);
-        }
-    });
-});
-
-function removeFile(button, fileName) {
-    const container = document.getElementById('uploadedFilesContainer');
-    container.removeChild(button.parentElement);
-
-    const filesInput = document.getElementById('file');
-    const dt = new DataTransfer();
-    const files = Array.from(filesInput.files).filter(file => file.name !== fileName);
-    files.forEach(file => dt.items.add(file));
-    filesInput.files = dt.files;
-}
-
-</script>
