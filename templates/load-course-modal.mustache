@@ -1,7 +1,24 @@
-<!--
-  @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
--->
+{{!
+    @template block_uteluqchatbot/fileupload_modal
 
+    File upload modal for the TÉLUQ chatbot block.
+
+    This template renders a modal dialog that allows users to upload PDF and text files
+    for indexing in the chatbot's knowledge base. Features include:
+    - Drag and drop file upload interface
+    - Multiple file selection support
+    - File type validation (PDF, TXT, MD)
+    - Visual feedback for uploaded files
+    - Form submission handling
+
+    Context variables:
+    * None - Uses string identifiers for internationalization
+
+    Example context (JSON):
+    {}
+
+    @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+}}
 <div class="block_uteluqchatbot">
     <div id="fileUploadModal" class="modal" style="display: none;">
         <div class="modal-dialog">

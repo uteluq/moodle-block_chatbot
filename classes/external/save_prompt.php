@@ -18,12 +18,14 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir . '/externallib.php');
 
-class save_prompt extends external_api {
+class save_prompt extends external_api
+{
 
     /**
      * Define parameters for the external function
      */
-    public static function execute_parameters() {
+    public static function execute_parameters()
+    {
         return new external_function_parameters([
             'prompttext' => new external_value(PARAM_RAW, 'The prompt text'),
             'userid' => new external_value(PARAM_INT, 'User ID'),
@@ -34,7 +36,8 @@ class save_prompt extends external_api {
     /**
      * Execute the external function
      */
-    public static function execute($prompttext, $userid, $courseid) {
+    public static function execute($prompttext, $userid, $courseid)
+    {
         global $DB, $USER;
 
         // Validate parameters
@@ -46,7 +49,7 @@ class save_prompt extends external_api {
 
         // Security checks
         require_login();
-        
+
         // Check if user can access this course
         $context = context_course::instance($params['courseid']);
         self::validate_context($context);
@@ -96,8 +99,17 @@ class save_prompt extends external_api {
 
     /**
      * Define return values for the external function
+     * 
+     * Specifies the structure and data types of the response returned by the execute() method.
+     * This definition is required by Moodle's external API framework for validation,
+     * documentation generation, and web service compatibility.
+     * 
+     * @return external_single_structure The structured definition of the response format
+     * @see external_single_structure Moodle's external API structure class
+     * @see execute() The main function that returns data matching this structure
      */
-    public static function execute_returns() {
+    public static function execute_returns()
+    {
         return new external_single_structure([
             'status' => new external_value(PARAM_TEXT, 'Status of the request'),
             'message' => new external_value(PARAM_TEXT, 'Success message', VALUE_OPTIONAL),

@@ -1,6 +1,28 @@
-<!--
-  @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
--->
+{{!
+    @template block_uteluqchatbot/prompt_modal
+
+    Prompt configuration modal for the TÉLUQ chatbot block.
+
+    This template renders a modal dialog that allows instructors to create or modify
+    the chatbot's system prompt for their course. Features include:
+    - Dynamic title based on prompt existence (Add/Modify)
+    - Large textarea for prompt content editing
+    - Link to documentation guide for best practices
+    - Form validation and submission handling
+    - Responsive modal design
+
+    Context variables:
+    * has_prompt (bool) - Whether a prompt already exists for this course
+    * prompt_text (string) - Current prompt content (empty if new prompt)
+
+    Example context (JSON):
+    {
+        "has_prompt": true,
+        "prompt_text": "You are a helpful teaching assistant for this course..."
+    }
+
+    @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+}}
 
 <div id="promptModal" class="block_uteluqchatbot modal" style="display: none;">
     <div class="modal-dialog">

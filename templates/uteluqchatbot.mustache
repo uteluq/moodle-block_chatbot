@@ -1,6 +1,31 @@
-<!--
-  @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
--->
+{{!
+    @template block_uteluqchatbot/chatbot_main
+
+    Main chatbot interface for the TÉLUQ chatbot block.
+
+    This template renders the complete chatbot interface including the chat area,
+    input form, and administration buttons. Features include:
+    - Welcome message customized by user role (teacher/student)
+    - Real-time chat message display area
+    - Text input with send button for user questions
+    - Role-based administration buttons (teachers only)
+    - Responsive design with proper accessibility
+    - Bot avatar and message styling
+
+    The interface adapts based on user permissions:
+    - Students: See chat interface only
+    - Teachers: Additional buttons for prompt modification and file upload
+
+    Context variables:
+    * isteacher (bool) - Whether the current user has teacher capabilities
+    
+    Example context (JSON):
+    {
+        "isteacher": true
+    }
+
+    @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+}}
 
 <!DOCTYPE html>
 <html lang="fr">
