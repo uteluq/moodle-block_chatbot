@@ -67,6 +67,8 @@ function get_access_token_adobe_pdf_services($client_id, $client_secret)
 /**
  * Retrieves the list of available collections (classes) in Weaviate
  *
+ * @param string $api_url The base URL of the Weaviate instance
+ * @param string $api_key The API key for authentication
  * @return array Array containing the status of the operation, a message, and the collections data
  */
 function get_collections_weaviate($api_url, $api_key): array

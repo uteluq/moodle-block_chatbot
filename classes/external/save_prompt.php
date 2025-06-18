@@ -35,6 +35,13 @@ class save_prompt extends external_api
 
     /**
      * Execute the external function
+     *
+     * @param string $prompttext The prompt text to save
+     * @param int $userid The user ID for whom the prompt is saved
+     * @param int $courseid The course ID associated with the prompt
+     * @return array Status and message or error
+     * @throws invalid_parameter_exception If the user is invalid
+     * @throws dml_exception If a database error occurs
      */
     public static function execute($prompttext, $userid, $courseid)
     {
