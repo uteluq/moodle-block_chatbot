@@ -33,7 +33,7 @@ $plugin->component = 'block_uteluqchatbot';
 $plugin->release = '0.5.4';
 
 // Internal version number - Format YYYYMMDDXX (year, month, day, increment).
-// Here: March 6, 2025, version 06 of the day.
+// Here: June 18, 2025, version 01 of the day.
 $plugin->version = 2025061801;
 
 // Minimum required version of Moodle (here Moodle 4.1 - November 2022).
