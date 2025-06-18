@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 Université TÉLUQ
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
  */
 
 // This file is part of Moodle - https://moodle.org/
@@ -34,7 +34,7 @@ $plugin->release = '0.5.3';
 
 // Internal version number - Format YYYYMMDDXX (year, month, day, increment).
 // Here: March 6, 2025, version 06 of the day.
-$plugin->version = 2025052001;
+$plugin->version = 2025061801;
 
 // Minimum required version of Moodle (here Moodle 4.1 - November 2022).
 // This corresponds to Moodle 4.1.

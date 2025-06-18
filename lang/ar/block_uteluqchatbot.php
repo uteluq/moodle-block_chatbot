@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 Université TÉLUQ
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'شات بوت';
 $string['uteluqchatbot:addinstance'] = 'أضف كتلة شات بوت جديدة';

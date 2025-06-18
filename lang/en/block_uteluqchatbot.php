@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 Université TÉLUQ
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'uteluqchatbot';
 $string['uteluqchatbot:addinstance'] = 'Add a new chatbot block';
@@ -260,3 +260,46 @@ $string['empty_response_from_api'] = 'Empty response from API.';
 $string['empty_string_as_answer'] = 'Empty string received as answer.';
 $string['database_error_saving_conversation'] = 'Database error saving conversation: ';
 $string['general_exception'] = 'General exception: ';
+
+
+
+
+
+
+// Privacy API strings
+$string['privacy:metadata:block_uteluqchatbot_conversations'] = 'Information about user conversations with the chatbot';
+$string['privacy:metadata:block_uteluqchatbot_conversations:userid'] = 'The ID of the user who created the conversation';
+$string['privacy:metadata:block_uteluqchatbot_conversations:question'] = 'The question asked by the user';
+$string['privacy:metadata:block_uteluqchatbot_conversations:answer'] = 'The answer provided by the chatbot';
+$string['privacy:metadata:block_uteluqchatbot_conversations:timecreated'] = 'The time when the conversation was created';
+$string['privacy:metadata:block_uteluqchatbot_conversations:courseid'] = 'The ID of the course where the conversation took place';
+
+$string['privacy:metadata:block_uteluqchatbot_prompts'] = 'Information about custom prompts created by users';
+$string['privacy:metadata:block_uteluqchatbot_prompts:prompt'] = 'The custom prompt text created by the user';
+$string['privacy:metadata:block_uteluqchatbot_prompts:userid'] = 'The ID of the user who created the prompt';
+$string['privacy:metadata:block_uteluqchatbot_prompts:courseid'] = 'The ID of the course where the prompt was created';
+$string['privacy:metadata:block_uteluqchatbot_prompts:timecreated'] = 'The time when the prompt was created';
+
+// Service externe Cohere API
+$string['privacy:metadata:cohere_api'] = 'Data sent to Cohere API service for AI-powered chat responses';
+$string['privacy:metadata:cohere_api:question'] = 'The user question sent to Cohere API for processing';
+$string['privacy:metadata:cohere_api:courseid'] = 'The course context information sent to Cohere API';
+$string['privacy:metadata:cohere_api:prompt'] = 'Custom prompts and system instructions sent to Cohere API';
+
+// Service externe Weaviate Cloud
+$string['privacy:metadata:weaviate_cloud'] = 'Data sent to Weaviate Cloud vector database for document storage and similarity search';
+$string['privacy:metadata:weaviate_cloud:document_content'] = 'Text content extracted from uploaded documents stored in Weaviate';
+$string['privacy:metadata:weaviate_cloud:embeddings'] = 'Vector embeddings generated from document content stored in Weaviate';
+$string['privacy:metadata:weaviate_cloud:courseid'] = 'Course context information associated with stored documents';
+$string['privacy:metadata:weaviate_cloud:metadata'] = 'Document metadata and properties stored in Weaviate database';
+
+// Service externe Adobe PDF Services API
+$string['privacy:metadata:adobe_pdf_api'] = 'Data sent to Adobe PDF Services API for text extraction from PDF documents';
+$string['privacy:metadata:adobe_pdf_api:pdf_content'] = 'PDF file content sent to Adobe PDF Services for text extraction';
+$string['privacy:metadata:adobe_pdf_api:filename'] = 'Original filename of the PDF document sent for processing';
+$string['privacy:metadata:adobe_pdf_api:extracted_text'] = 'Text content extracted from PDF documents by Adobe PDF Services';
+
+// General strings (ajoutez ces chaînes si elles n'existent pas déjà)
+$string['pluginname'] = 'TÉLUQ Chatbot';
+$string['conversations'] = 'Conversations';
+$string['prompts'] = 'Custom Prompts';

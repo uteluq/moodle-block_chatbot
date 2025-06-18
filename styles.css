@@ -1,127 +1,101 @@
 /*!
- * @copyright 2025 Université TÉLUQ
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
  */
 
-.block_uteluqchatbot .block-chatbot-container {
-    padding: 15px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
-.block_uteluqchatbot .chat-messages {
-    height: 300px;
+ /* For load-course-modal.mustache */
+
+.block_uteluqchatbot .modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     overflow-y: auto;
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #e2e8f0;
+}
+
+.block_uteluqchatbot .modal-dialog {
+    width: 90%;
+    max-width: 500px;
+    background-color: white;
     border-radius: 8px;
-    background: white;
-    scrollbar-width: thin;
-    scrollbar-color: #6366F1 #f1f5f9;
-}
-
-.block_uteluqchatbot .chat-messages::-webkit-scrollbar {
-    width: 6px;
-}
-
-.block_uteluqchatbot .chat-messages::-webkit-scrollbar-track {
-    background: #f1f5f9;
-}
-
-.block_uteluqchatbot .chat-messages::-webkit-scrollbar-thumb {
-    background-color: #6366F1;
-    border-radius: 3px;
-}
-
-.block_uteluqchatbot .message {
-    margin: 10px 0;
-    padding: 12px;
-    border-radius: 12px;
-    font-size: 14px;
-    word-wrap: break-word;
-    line-height: 1.4;
-    max-width: 85%;
-}
-
-.block_uteluqchatbot .user-message {
-    background-color: #6366F1;
-    color: white;
-    margin-left: auto;
-    margin-right: 0;
-    position: relative;
-}
-
-.block_uteluqchatbot .bot-message {
-    background-color: #f1f5f9;
-    color: #1e293b;
-    margin-right: auto;
-    margin-left: 0;
-}
-
-.block_uteluqchatbot .chat-input {
+    overflow: hidden;
+    max-height: 90vh;
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
-.block_uteluqchatbot .chat-input input {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1px solid #e2e8f0;
-    border-radius: 24px;
-    font-size: 14px;
-    transition: all 0.2s;
-    background: #f8fafc;
+.block_uteluqchatbot .modal-content {
+    padding: 20px;
+    overflow-y: auto;
 }
 
-.block_uteluqchatbot .chat-input input:focus {
-    outline: none;
-    border-color: #6366F1;
-    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+.block_uteluqchatbot .modal-header, .block_uteluqchatbot .modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.block_uteluqchatbot .chat-input button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 6px;
-    background-color: #6366F1;
-    color: white;
-    font-weight: 500;
+.block_uteluqchatbot .modal-footer {
+    margin-top: 20px;
+}
+
+.block_uteluqchatbot .file-upload-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ccc;
+    padding: 20px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.2s;
 }
 
-.block_uteluqchatbot .chat-input button:hover {
-    background-color: #4f46e5;
-}
-
-.block_uteluqchatbot #toggle-prompt-form {
-    margin-top: 10px;
-    background-color: #f8fafc;
-    border: 1px solid #e2e8f0;
-    color: #64748b;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: 14px;
-}
-
-.block_uteluqchatbot #toggle-prompt-form:hover {
-    background-color: #f1f5f9;
-    color: #4f46e5;
-}
-
-.block_uteluqchatbot #error-message {
-    color: #ef4444;
+.block_uteluqchatbot .file-upload-box {
     text-align: center;
-    margin: 8px 0;
-    font-size: 14px;
 }
 
-/* Styles pour le modal */
+.block_uteluqchatbot .uploaded-file {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.block_uteluqchatbot .uploaded-file button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.block_uteluqchatbot .uploaded-file svg {
+    width: 16px;
+    height: 16px;
+}
+
+@media (max-width: 600px) {
+    .block_uteluqchatbot .modal-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .block_uteluqchatbot .modal-footer button {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+
+
+/* For prompt_modal.mustache */
 .block_uteluqchatbot .modal {
     position: fixed;
     top: 0;
@@ -130,86 +104,355 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
+    display: none;
 }
 
 .block_uteluqchatbot .modal-dialog {
-    margin: 30px auto;
-    max-width: 500px;
     background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    margin: 30px auto;
+    max-width: 550px;
+    position: relative;
+    width: 95%;
 }
 
 .block_uteluqchatbot .modal-content {
-    padding: 20px;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 .block_uteluqchatbot .modal-header {
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #e2e8f0;
+    padding: 16px 24px;
 }
 
 .block_uteluqchatbot .modal-title {
-    font-size: 18px;
-    font-weight: 600;
     color: #1e293b;
+    font-size: 1.25rem;
+    font-weight: 600;
     margin: 0;
 }
 
 .block_uteluqchatbot .close {
     background: none;
     border: none;
-    font-size: 24px;
-    cursor: pointer;
     color: #64748b;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.block_uteluqchatbot .close:hover {
+    color: #4f46e5;
+}
+
+.block_uteluqchatbot .modal-body {
+    padding: 24px;
 }
 
 .block_uteluqchatbot .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
-.block_uteluqchatbot .form-group input,
-.block_uteluqchatbot .form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    font-size: 14px;
+.block_uteluqchatbot .form-group label {
+    color: #475569;
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.block_uteluqchatbot .form-input {
     background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    color: #1e293b;
+    display: block;
+    font-size: 0.95rem;
+    padding: 10px 16px;
+    transition: all 0.2s;
+    width: 100%;
 }
 
-.block_uteluqchatbot .form-group textarea {
-    min-height: 100px;
+.block_uteluqchatbot .form-input:focus {
+    border-color: #6366F1;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+    outline: none;
+}
+
+.block_uteluqchatbot .prompt-textarea {
+    min-height: 150px;
     resize: vertical;
 }
 
 .block_uteluqchatbot .modal-footer {
-    margin-top: 20px;
-    padding-top: 15px;
     border-top: 1px solid #e2e8f0;
-    text-align: right;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    padding-top: 20px;
 }
 
-.block_uteluqchatbot .modal-footer button {
-    margin-left: 10px;
+.block_uteluqchatbot .btn-primary,
+.block_uteluqchatbot .btn-secondary {
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    transition: all 0.2s;
 }
 
-/* Responsive design */
+.block_uteluqchatbot .btn-primary {
+    background: #6366F1;
+    color: white;
+}
+
+.block_uteluqchatbot .btn-primary:hover {
+    background: #4f46e5;
+}
+
+.block_uteluqchatbot .btn-secondary {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.block_uteluqchatbot .btn-secondary:hover {
+    background: #e2e8f0;
+}
+
 @media (max-width: 640px) {
-    .block_uteluqchatbot .block-chatbot-container {
-        padding: 10px;
-    }
-
     .block_uteluqchatbot .modal-dialog {
-        margin: 15px;
+        margin: 16px;
         width: auto;
     }
 
-    .block_uteluqchatbot .message {
-        max-width: 90%;
+    .block_uteluqchatbot .modal-body {
+        padding: 16px;
     }
 }
+
+
+/* For uteluqchatbot.mustache */
+    .block_uteluqchatbot .block-chatbot-container {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        height: 500px;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        max-width: 1000px;
+    }
+
+    .block_uteluqchatbot .chat-messages {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding: 20px;
+        scrollbar-width: thin;
+        scrollbar-color: #6366F1 #f1f5f9;
+    }
+
+    .block_uteluqchatbot .chat-messages::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .block_uteluqchatbot .chat-messages::-webkit-scrollbar-track {
+        background: #f1f5f9;
+    }
+
+    .block_uteluqchatbot .chat-messages::-webkit-scrollbar-thumb {
+        background-color: #6366F1;
+        border-radius: 3px;
+    }
+
+    .block_uteluqchatbot .message {
+        border-radius: 15px;
+        margin: 8px 0;
+        max-width: 85%;
+        padding: 12px 16px;
+        position: relative;
+        word-wrap: break-word;
+    }
+
+    .block_uteluqchatbot .user-message {
+        background: #6366F1;
+        color: white;
+        margin-left: auto;
+    }
+
+    .block_uteluqchatbot .bot-message {
+        background: #f1f5f9;
+        color: #1e293b;
+        margin-right: auto;
+    }
+
+    .block_uteluqchatbot .welcome-message {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 16px;
+    }
+
+    .block_uteluqchatbot .bot-avatar {
+        margin-right: 8px;
+        margin-top: 4px;
+    }
+
+    .block_uteluqchatbot .error-message {
+        color: #ef4444;
+        font-size: 0.875rem;
+        margin: 8px 16px;
+        text-align: center;
+    }
+
+    .block_uteluqchatbot .chat-input-container {
+        background: #ffffff;
+        border-top: 1px solid #e2e8f0;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .block_uteluqchatbot .chat-form {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 8px;
+    }
+
+    .block_uteluqchatbot .chat-input {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 24px;
+        flex-grow: 1;
+        font-size: 0.95rem;
+        padding: 2px 2px;
+        transition: border-color 0.2s;
+        height: 42px;
+        box-sizing: border-box;
+        max-width: calc(100% - 54px);
+    }
+
+    .block_uteluqchatbot .chat-input:focus {
+        border-color: #6366F1;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+    }
+
+    .block_uteluqchatbot .send-button {
+        background: #6366F1;
+        border: none;
+        border-radius: 50%;
+        color: white;
+        cursor: pointer;
+        height: 42px;
+        width: 42px;
+        min-width: 42px;
+        padding: 0;
+        transition: background-color 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        position: relative;
+        margin-left: auto;
+    }
+
+    .block_uteluqchatbot .send-button:hover {
+        background: #4f46e5;
+    }
+
+    .block_uteluqchatbot .send-button svg {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .block_uteluqchatbot .button-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 8px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .block_uteluqchatbot .toggle-buttons-checkbox {
+        display: flex;
+        align-items: center;
+        margin-right: 16px;
+        font-size: 0.875rem;
+        color: #64748b;
+    }
+
+    .block_uteluqchatbot .toggle-buttons-checkbox input[type="checkbox"] {
+        margin-right: 8px;
+    }
+
+    .block_uteluqchatbot .prompt-button, .block_uteluqchatbot .file-upload-button {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 24px;
+        color: #64748b;
+        cursor: pointer;
+        font-size: 0.875rem;
+        padding: 8px 16px;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+    }
+
+    .block_uteluqchatbot .prompt-button {
+        margin-right: 8px;
+    }
+
+    .block_uteluqchatbot .prompt-button:hover, .block_uteluqchatbot .file-upload-button:hover {
+        background: #f1f5f9;
+        color: #4f46e5;
+    }
+
+    @media (max-width: 640px) {
+        .block_uteluqchatbot .block-chatbot-container {
+            height: 400px;
+            max-width: 95%;
+        }
+
+        .block_uteluqchatbot .message {
+            max-width: 90%;
+        }
+
+        .block_uteluqchatbot .chat-form {
+            gap: 8px;
+        }
+
+        .block_uteluqchatbot .chat-input {
+            max-width: calc(100% - 50px);
+        }
+
+        .block_uteluqchatbot .send-button {
+            height: 42px;
+            width: 42px;
+            min-width: 42px;
+        }
+
+        .block_uteluqchatbot .button-container {
+            justify-content: space-between;
+        }
+
+        .block_uteluqchatbot .prompt-button, .block_uteluqchatbot .file-upload-button {
+            font-size: 0.75rem;
+            padding: 6px 12px;
+        }
+    }
