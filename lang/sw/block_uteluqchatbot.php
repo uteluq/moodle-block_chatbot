@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 Université TÉLUQ
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'uteluqchatbot';
 $string['uteluqchatbot:addinstance'] = 'Ongeza kichaguzi kipya cha chatbot';
@@ -81,8 +81,16 @@ $string['invalid_session'] = 'Kukutana isiyo sahihi';
 $string['openai_api_key_not_configured'] = 'Ufunguo wa API wa OpenAI hajagizwa';
 $string['empty_response_from_api'] = 'Jibu la tupu limepokelewa kutoka API';
 $string['error_saving_conversation'] = 'Hitilafu yakatokea wakati wa kuhifadhi makusanyiko';
+$string['invalid_question_after_sanitize'] = 'Swali batili baada ya usafi.';
+$string['empty_string_as_answer'] = 'Mstari tupu umepokelewa kama jibu.';
+$string['database_error_saving_conversation'] = 'Kosa la hifadhidata wakati wa kuokota mazungumzo: ';
+$string['error_saving_conversation'] = 'Kosa wakati wa kuokota mazungumzo';
+$string['error_reading_input'] = 'Kosa wakati wa kusoma data.';
+$string['generic_server_error'] = 'Kosa jenerali ya seva.';
+$string['invalid_course_id'] = 'Kitambulisho cha kozi batili.';
 
-// For classes/PDFExtractAPI.php
+
+// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = 'Kupoteza kuhifadhi ufunguo wa kuweka. Hali ya HTTP: ';
 $string['access_token_obtained_successfully'] = 'Ufunguo wa kuweka ulihifadhiwa kwa mafanikio.';
 $string['failed_to_obtain_access_token_response'] = 'Kupoteza kuhifadhi ufunguo wa kuweka. Jibu: ';
@@ -109,7 +117,7 @@ $string['failed_to_download_asset'] = 'Kupoteza kupakua kipato. Hali ya HTTP: ';
 $string['asset_downloaded_successfully'] = 'Kipato kimepakuliwa kwa mafanikio.';
 $string['error_decoding_json_file'] = 'Hitilafu yakatokea wakati wa kufungua faili ya JSON.';
 
-// For classes/weaviateconnector.php
+// For classes/weaviate_connector.php
 $string['curl_error'] = 'Hitilafu ya cURL: ';
 $string['http_error'] = 'Hitilafu ya HTTP ';
 $string['json_decode_error'] = 'Hitilafu ya kufungua JSON: ';
@@ -122,6 +130,10 @@ $string['unable_to_read_file'] = 'Haikuwezi kusoma faili';
 $string['json_encode_error'] = 'Hitilafu ya kuweka JSON: ';
 $string['failure_after_retries'] = 'Kupoteza baada ya ';
 $string['last_error'] = ' majaribio. Hitilafu ya mwisho: HTTP ';
+$string['invalid_response_format'] = 'Fomati batili ya jibu.';
+$string['http_code'] = 'Msimbo wa HTTP: ';
+
+
 
 // For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
@@ -179,8 +191,20 @@ $string['open_prompt_modal'] = 'Fungua dirisha ya kubadilisha kutoa';
 $string['open_file_upload_modal'] = 'Fungua dirisha ya kuweka masomo';
 
 
-// For classes/PDFExtractAPI.php
+// For classes/pdf_extract_api.php
 $string['error_uploading_asset'] = 'Kosa katika kupakia rasilimali.';
 $string['error_creating_job'] = 'Kosa katika kuunda kazi.';
 $string['job_failed'] = 'Kazi imeshindwa.';
 $string['error_processing_pdf'] = 'Kosa katika kutenda PDF.';
+
+$string['headers_already_sent'] = 'Kichwa kimepelekwa tayari.';
+$string['failed_to_start_output_buffer'] = 'Imeshindwa kuanza buffer ya matokeo.';
+$string['server_error_output_buffer_failed'] = 'Kosa la seva: Buffer ya matokeo imeshindwa.';
+$string['answer_not_utf8'] = 'Jibu siyo katika UTF-8.';
+$string['no_answer_or_error_field'] = 'Hakuna sehemu ya jibu au kosa.';
+$string['json_encode_error'] = 'Kosa la kuweka JSON: ';
+$string['server_error_json_encode_failed'] = 'Kosa la seva: Kuweka JSON imeshindwa.';
+$string['empty_response_from_api'] = 'Jibu tupu kutoka API.';
+$string['empty_string_as_answer'] = 'Mstari tupu umepokelewa kama jibu.';
+$string['database_error_saving_conversation'] = 'Kosa la hifadhidata wakati wa kuokota mazungumzo: ';
+$string['general_exception'] = 'Kosa la jumla: ';

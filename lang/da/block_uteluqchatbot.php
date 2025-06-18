@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 Université TÉLUQ
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'uteluqchatbot';
 $string['uteluqchatbot:addinstance'] = 'Tilføj en ny chatbot-blok';
@@ -81,8 +81,16 @@ $string['invalid_session'] = 'Ugyldig session';
 $string['openai_api_key_not_configured'] = 'OpenAI API-nøgle ikke konfigureret';
 $string['empty_response_from_api'] = 'Tomt svar modtaget fra API';
 $string['error_saving_conversation'] = 'Fejl ved gemning af samtale';
+$string['invalid_question_after_sanitize'] = 'Ugyldigt spørgsmål efter rensning.';
+$string['empty_string_as_answer'] = 'En tom streng blev modtaget som svar.';
+$string['database_error_saving_conversation'] = 'Databasefejl ved gemning af samtale: ';
+$string['error_saving_conversation'] = 'Fejl ved gemning af samtale';
+$string['error_reading_input'] = 'Fejl ved læsning af input.';
+$string['generic_server_error'] = 'Generel serverfejl.';
+$string['invalid_course_id'] = 'Ugyldigt kursus-ID.';
 
-// For classes/PDFExtractAPI.php
+
+// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = 'Mislykkedes at få adgangstoken. HTTP-status: ';
 $string['access_token_obtained_successfully'] = 'Adgangstoken opnået succesfuldt.';
 $string['failed_to_obtain_access_token_response'] = 'Mislykkedes at få adgangstoken. Svar: ';
@@ -109,7 +117,7 @@ $string['failed_to_download_asset'] = 'Mislykkedes at downloade aktiv. HTTP-stat
 $string['asset_downloaded_successfully'] = 'Aktiv downloadet succesfuldt.';
 $string['error_decoding_json_file'] = 'Fejl ved dekodering af JSON-fil.';
 
-// For classes/weaviateconnector.php
+// For classes/weaviate_connector.php
 $string['curl_error'] = 'cURL-fejl: ';
 $string['http_error'] = 'HTTP-fejl ';
 $string['json_decode_error'] = 'JSON-dekodering fejl: ';
@@ -122,6 +130,9 @@ $string['unable_to_read_file'] = 'Ikke i stand til at læse filen';
 $string['json_encode_error'] = 'JSON-kodning fejl: ';
 $string['failure_after_retries'] = 'Fejl efter ';
 $string['last_error'] = ' forsøg. Sidste fejl: HTTP ';
+$string['invalid_response_format'] = 'Ugyldigt responsformat.';
+$string['http_code'] = 'HTTP-kode: ';
+
 
 // For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
@@ -178,10 +189,21 @@ $string['upload_course'] = 'Upload kursus';
 $string['open_prompt_modal'] = 'Åbn prompt-redigeringens modal';
 $string['open_file_upload_modal'] = 'Åbn kursus-upload modal';
 
-// For classes/PDFExtractAPI.php
+// For classes/pdf_extract_api.php
 $string['error_uploading_asset'] = 'Fejl ved upload af asset.';
 $string['error_creating_job'] = 'Fejl ved oprettelse af job.';
 $string['job_failed'] = 'Jobbet mislykkedes.';
 $string['error_processing_pdf'] = 'Fejl ved behandling af PDF.';
 
 
+$string['headers_already_sent'] = 'Headers er allerede sendt.';
+$string['failed_to_start_output_buffer'] = 'Kunne ikke starte outputbuffer.';
+$string['server_error_output_buffer_failed'] = 'Serverfejl: Outputbuffer mislykkedes.';
+$string['answer_not_utf8'] = 'Svar er ikke i UTF-8.';
+$string['no_answer_or_error_field'] = 'Ingen svar- eller fejlmarkering.';
+$string['json_encode_error'] = 'JSON-kodefejl: ';
+$string['server_error_json_encode_failed'] = 'Serverfejl: JSON-kodning mislykkedes.';
+$string['empty_response_from_api'] = 'Tomt svar fra API.';
+$string['empty_string_as_answer'] = 'Tom streng modtaget som svar.';
+$string['database_error_saving_conversation'] = 'Databasefejl ved gemning af samtale: ';
+$string['general_exception'] = 'Generel undtagelse: ';

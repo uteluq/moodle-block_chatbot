@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 Université TÉLUQ
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'uteluqchatbot';
 $string['uteluqchatbot:addinstance'] = 'Adicionar um novo bloco de chatbot';
@@ -81,8 +81,16 @@ $string['invalid_session'] = 'Sessão inválida';
 $string['openai_api_key_not_configured'] = 'Chave da API OpenAI não configurada';
 $string['empty_response_from_api'] = 'Resposta vazia recebida da API';
 $string['error_saving_conversation'] = 'Erro ao salvar a conversa';
+$string['invalid_question_after_sanitize'] = 'Pergunta inválida após a sanitização.';
+$string['empty_string_as_answer'] = 'Uma string vazia foi recebida como resposta.';
+$string['database_error_saving_conversation'] = 'Erro no banco de dados ao salvar a conversa: ';
+$string['error_saving_conversation'] = 'Erro ao salvar a conversa';
+$string['error_reading_input'] = 'Erro ao ler a entrada.';
+$string['generic_server_error'] = 'Erro genérico do servidor.';
+$string['invalid_course_id'] = 'ID do curso inválido.';
 
-// For classes/PDFExtractAPI.php
+
+// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = 'Falha ao obter o token de acesso. Status HTTP: ';
 $string['access_token_obtained_successfully'] = 'Token de acesso obtido com sucesso.';
 $string['failed_to_obtain_access_token_response'] = 'Falha ao obter o token de acesso. Resposta: ';
@@ -109,7 +117,7 @@ $string['failed_to_download_asset'] = 'Falha ao baixar o ativo. Status HTTP: ';
 $string['asset_downloaded_successfully'] = 'Ativo baixado com sucesso.';
 $string['error_decoding_json_file'] = 'Erro ao decodificar o arquivo JSON.';
 
-// For classes/weaviateconnector.php
+// For classes/weaviate_connector.php
 $string['curl_error'] = 'Erro cURL: ';
 $string['http_error'] = 'Erro HTTP ';
 $string['json_decode_error'] = 'Erro de decodificação JSON: ';
@@ -122,6 +130,10 @@ $string['unable_to_read_file'] = 'Incapaz de ler o arquivo';
 $string['json_encode_error'] = 'Erro de codificação JSON: ';
 $string['failure_after_retries'] = 'Falha após ';
 $string['last_error'] = ' tentativas. Último erro: HTTP ';
+$string['invalid_response_format'] = 'Formato de resposta inválido.';
+$string['http_code'] = 'Código HTTP: ';
+
+
 
 // For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
@@ -179,8 +191,21 @@ $string['open_prompt_modal'] = 'Abrir o modal de modificação de prompt';
 $string['open_file_upload_modal'] = 'Abrir o modal de carregamento de curso';
 
 
-// For classes/PDFExtractAPI.php
+// For classes/pdf_extract_api.php
 $string['error_uploading_asset'] = 'Erro ao fazer upload do asset.';
 $string['error_creating_job'] = 'Erro ao criar o job.';
 $string['job_failed'] = 'Job falhou.';
 $string['error_processing_pdf'] = 'Erro ao processar o PDF.';
+
+
+$string['headers_already_sent'] = 'Os cabeçalhos já foram enviados.';
+$string['failed_to_start_output_buffer'] = 'Falha ao iniciar o buffer de saída.';
+$string['server_error_output_buffer_failed'] = 'Erro do servidor: Falha no buffer de saída.';
+$string['answer_not_utf8'] = 'A resposta não está em UTF-8.';
+$string['no_answer_or_error_field'] = 'Nenhum campo de resposta ou erro.';
+$string['json_encode_error'] = 'Erro de codificação JSON: ';
+$string['server_error_json_encode_failed'] = 'Erro do servidor: Falha na codificação JSON.';
+$string['empty_response_from_api'] = 'Resposta vazia da API.';
+$string['empty_string_as_answer'] = 'String vazia recebida como resposta.';
+$string['database_error_saving_conversation'] = 'Erro no banco de dados ao salvar a conversa: ';
+$string['general_exception'] = 'Exceção geral: ';

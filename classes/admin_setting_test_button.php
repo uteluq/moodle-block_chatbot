@@ -1,19 +1,21 @@
 <?php
 /**
- * @copyright 2025 Université TÉLUQ
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
  */
+
+
 
 class admin_setting_test_button extends admin_setting {
     /**
      * Constructor for the test button setting.
      *
      * @param string $name The name of the setting.
-     * @param string $visiblename The visible name of the setting.
+     * @param string $visible_name The visible name of the setting.
      * @param string $description The description of the setting.
-     * @param mixed $defaultsetting The default setting.
+     * @param mixed $default_setting The default setting.
      */
-    public function __construct($name, $visiblename, $description, $defaultsetting) {
-        parent::__construct($name, $visiblename, $description, $defaultsetting);
+    public function __construct($name, $visible_name, $description, $default_setting) {
+        parent::__construct($name, $visible_name, $description, $default_setting);
     }
 
     /**
@@ -47,7 +49,7 @@ class admin_setting_test_button extends admin_setting {
         $url = new moodle_url('/blocks/uteluqchatbot/test_api_keys.php');
         return format_admin_setting(
             $this,
-            $this->visiblename,
+            $this->visible_name,
             html_writer::tag(
                 'div',
                 html_writer::tag(

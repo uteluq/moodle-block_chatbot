@@ -1,4 +1,7 @@
-module.exports = function(grunt) {
+/**
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+ */
+module.exports = function (grunt) {
     grunt.initConfig({
         rollup: {
             options: {

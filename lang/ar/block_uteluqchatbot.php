@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 Université TÉLUQ
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'شات بوت';
 $string['uteluqchatbot:addinstance'] = 'أضف كتلة شات بوت جديدة';
@@ -81,8 +81,16 @@ $string['invalid_session'] = "جلسة غير صالحة";
 $string['openai_api_key_not_configured'] = "مفتاح واجهة برمجة تطبيقات OpenAI غير مُعَد";
 $string['empty_response_from_api'] = "استجابة فارغة تم استلامها من واجهة برمجة التطبيقات";
 $string['error_saving_conversation'] = "خطأ في حفظ المحادثة";
+$string['invalid_question_after_sanitize'] = 'سؤال غير صالح بعد التنظيف.';
+$string['empty_string_as_answer'] = 'تم استلام سلسلة فارغة كإجابة.';
+$string['database_error_saving_conversation'] = 'خطأ في قاعدة البيانات أثناء حفظ المحادثة: ';
+$string['error_saving_conversation'] = 'خطأ أثناء حفظ المحادثة';
+$string['error_reading_input'] = 'خطأ في قراءة الإدخال.';
+$string['generic_server_error'] = 'خطأ عام في الخادم.';
+$string['invalid_course_id'] = 'معرف الدورة غير صالح.';
 
-// For classes/PDFExtractAPI.php
+
+// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = "فشل في الحصول على رمز الوصول. حالة HTTP: ";
 $string['access_token_obtained_successfully'] = "تم الحصول على رمز الوصول بنجاح.";
 $string['failed_to_obtain_access_token_response'] = "فشل في الحصول على رمز الوصول. الاستجابة: ";
@@ -109,7 +117,7 @@ $string['failed_to_download_asset'] = "فشل في تنزيل الأصل. حال
 $string['asset_downloaded_successfully'] = "تم تنزيل الأصل بنجاح.";
 $string['error_decoding_json_file'] = "خطأ في فك تشفير ملف JSON.";
 
-// For classes/weaviateconnector.php
+// For classes/weaviate_connector.php
 $string['curl_error'] = "خطأ cURL: ";
 $string['http_error'] = "خطأ HTTP ";
 $string['json_decode_error'] = "خطأ فك تشفير JSON: ";
@@ -122,6 +130,9 @@ $string['unable_to_read_file'] = "غير قادر على قراءة الملف";
 $string['json_encode_error'] = "خطأ ترميز JSON: ";
 $string['failure_after_retries'] = "فشل بعد ";
 $string['last_error'] = " محاولات. آخر خطأ: HTTP ";
+$string['invalid_response_format'] = 'تنسيق الاستجابة غير صالح.';
+$string['http_code'] = 'رمز HTTP: ';
+
 
 // For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
@@ -180,8 +191,21 @@ $string['open_file_upload_modal'] = "فتح نافذة تحميل الدورة";
 
 
 
-// For classes/PDFExtractAPI.php
+// For classes/pdf_extract_api.php
 $string['error_uploading_asset'] = 'خطأ في تحميل الأصل.';
 $string['error_creating_job'] = 'خطأ في إنشاء المهمة.';
 $string['job_failed'] = 'فشلت المهمة.';
 $string['error_processing_pdf'] = 'خطأ في معالجة ملف PDF.';
+
+
+$string['headers_already_sent'] = 'تم إرسال الرؤوس بالفعل.';
+$string['failed_to_start_output_buffer'] = 'فشل في بدء عازلة الإخراج.';
+$string['server_error_output_buffer_failed'] = 'خطأ في الخادم: فشل العازلة الإخراجية.';
+$string['answer_not_utf8'] = 'الإجابة ليست بتشفير UTF-8.';
+$string['no_answer_or_error_field'] = 'لا يوجد حقل للإجابة أو الخطأ.';
+$string['json_encode_error'] = 'خطأ في تشفير JSON: ';
+$string['server_error_json_encode_failed'] = 'خطأ في الخادم: فشل تشفير JSON.';
+$string['empty_response_from_api'] = 'استجابة فارغة من API.';
+$string['empty_string_as_answer'] = 'تم استلام سلسلة فارغة كإجابة.';
+$string['database_error_saving_conversation'] = 'خطأ في قاعدة البيانات أثناء حفظ المحادثة: ';
+$string['general_exception'] = 'استثناء عام: ';

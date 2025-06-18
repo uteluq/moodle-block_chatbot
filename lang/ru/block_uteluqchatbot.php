@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 Université TÉLUQ
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'Чатбот';
 $string['uteluqchatbot:addinstance'] = 'Добавить новый блок чатбота';
@@ -81,8 +81,16 @@ $string['invalid_session'] = 'Недействительная сессия';
 $string['openai_api_key_not_configured'] = 'Ключ API OpenAI не настроен';
 $string['empty_response_from_api'] = 'Пустой ответ получен от API';
 $string['error_saving_conversation'] = 'Ошибка при сохранении разговора';
+$string['invalid_question_after_sanitize'] = 'Неверный вопрос после очистки.';
+$string['empty_string_as_answer'] = 'Получена пустая строка в качестве ответа.';
+$string['database_error_saving_conversation'] = 'Ошибка базы данных при сохранении разговора: ';
+$string['error_saving_conversation'] = 'Ошибка при сохранении разговора';
+$string['error_reading_input'] = 'Ошибка чтения ввода.';
+$string['generic_server_error'] = 'Общая ошибка сервера.';
+$string['invalid_course_id'] = 'Неверный идентификатор курса.';
 
-// For classes/PDFExtractAPI.php
+
+// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = 'Не удалось получить токен доступа. Статус HTTP: ';
 $string['access_token_obtained_successfully'] = 'Токен доступа получен успешно.';
 $string['failed_to_obtain_access_token_response'] = 'Не удалось получить токен доступа. Ответ: ';
@@ -109,7 +117,7 @@ $string['failed_to_download_asset'] = 'Не удалось скачать акт
 $string['asset_downloaded_successfully'] = 'Актив скачан успешно.';
 $string['error_decoding_json_file'] = 'Ошибка при декодировании файла JSON.';
 
-// For classes/weaviateconnector.php
+// For classes/weaviate_connector.php
 $string['curl_error'] = 'Ошибка cURL: ';
 $string['http_error'] = 'Ошибка HTTP ';
 $string['json_decode_error'] = 'Ошибка декодирования JSON: ';
@@ -122,6 +130,10 @@ $string['unable_to_read_file'] = 'Невозможно прочитать фай
 $string['json_encode_error'] = 'Ошибка кодирования JSON: ';
 $string['failure_after_retries'] = 'Неудача после ';
 $string['last_error'] = ' попыток. Последняя ошибка: HTTP ';
+$string['invalid_response_format'] = 'Неверный формат ответа.';
+$string['http_code'] = 'HTTP код: ';
+
+
 
 // For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
@@ -179,8 +191,21 @@ $string['open_prompt_modal'] = 'Открыть модальное окно из�
 $string['open_file_upload_modal'] = 'Открыть модальное окно загрузки курса';
 
 
-// For classes/PDFExtractAPI.php
+// For classes/pdf_extract_api.php
 $string['error_uploading_asset'] = 'Ошибка загрузки ресурса.';
 $string['error_creating_job'] = 'Ошибка создания задачи.';
 $string['job_failed'] = 'Задача не выполнена.';
 $string['error_processing_pdf'] = 'Ошибка обработки PDF.';
+
+
+$string['headers_already_sent'] = 'Заголовки уже отправлены.';
+$string['failed_to_start_output_buffer'] = 'Не удалось начать буфер вывода.';
+$string['server_error_output_buffer_failed'] = 'Ошибка сервера: не удалось выполнить буферизацию вывода.';
+$string['answer_not_utf8'] = 'Ответ не в UTF-8.';
+$string['no_answer_or_error_field'] = 'Нет поля ответа или ошибки.';
+$string['json_encode_error'] = 'Ошибка кодирования JSON: ';
+$string['server_error_json_encode_failed'] = 'Ошибка сервера: не удалось закодировать JSON.';
+$string['empty_response_from_api'] = 'Пустой ответ от API.';
+$string['empty_string_as_answer'] = 'Получена пустая строка в качестве ответа.';
+$string['database_error_saving_conversation'] = 'Ошибка базы данных при сохранении разговора: ';
+$string['general_exception'] = 'Общее исключение: ';

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 Université TÉLUQ
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'uteluqchatbot';
 $string['uteluqchatbot:addinstance'] = 'Ajoute yon nouvo blok uteluqchatbot';
@@ -81,8 +81,16 @@ $string['invalid_session'] = 'Sesyon envalib';
 $string['openai_api_key_not_configured'] = 'Klè API OpenAI pa konfigire';
 $string['empty_response_from_api'] = 'Repons vid resevwa soti API';
 $string['error_saving_conversation'] = 'Erè sove konvesasyon an';
+$string['invalid_question_after_sanitize'] = 'Tambaya mara inganci bayan tsaftacewa.';
+$string['empty_string_as_answer'] = 'An karɓi kalmomi babu komai a matsayin amsa.';
+$string['database_error_saving_conversation'] = 'Kuskuren bayanai yayin adana hirar: ';
+$string['error_saving_conversation'] = 'Kuskure yayin adana hirar.';
+$string['error_reading_input'] = 'Kuskure yayin karanta bayanan da aka shigar.';
+$string['generic_server_error'] = 'Kuskuren mai masaukin yanar gizo.';
+$string['invalid_course_id'] = 'ID na karatun mara inganci.';
 
-// For classes/PDFExtractAPI.php
+
+// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = 'Pa ka jwenn jeton aksè. Estati HTTP: ';
 $string['access_token_obtained_successfully'] = 'Jeton aksè jwenn avèk siksè.';
 $string['failed_to_obtain_access_token_response'] = 'Pa ka jwenn jeton aksè. Repons: ';
@@ -109,7 +117,7 @@ $string['failed_to_download_asset'] = 'Pa ka telechaje asè a. Estati HTTP: ';
 $string['asset_downloaded_successfully'] = 'Asè telechaje avèk siksè.';
 $string['error_decoding_json_file'] = 'Erè dekode fichye JSON.';
 
-// For classes/weaviateconnector.php
+// For classes/weaviate_connector.php
 $string['curl_error'] = 'Erè cURL: ';
 $string['http_error'] = 'Erè HTTP ';
 $string['json_decode_error'] = 'Erè dekode JSON: ';
@@ -122,6 +130,10 @@ $string['unable_to_read_file'] = 'Pa ka li fichye a';
 $string['json_encode_error'] = 'Erè enkode JSON: ';
 $string['failure_after_retries'] = 'Echè apre ';
 $string['last_error'] = ' tèt. Dènye erè: HTTP ';
+$string['invalid_response_format'] = 'Tsarin martani mara inganci.';
+$string['http_code'] = 'Lambar HTTP: ';
+
+
 
 // For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
@@ -177,3 +189,16 @@ $string['modify_prompt'] = 'Modyifye Pwofò';
 $string['upload_course'] = 'Telechaje Kou';
 $string['open_prompt_modal'] = ' Louvri modál modifikasyon pwofò';
 $string['open_file_upload_modal'] = ' Louvri modál telechaj kou';
+
+
+$string['headers_already_sent'] = 'Kanun labarai sun riga sun tafi.';
+$string['failed_to_start_output_buffer'] = 'An kasa farawa bufer na fitarwa.';
+$string['server_error_output_buffer_failed'] = 'Kuskuren uwar garke: Bufer na fitarwa ya kasa.';
+$string['answer_not_utf8'] = 'Amsa ba ta cikin UTF-8 ba.';
+$string['no_answer_or_error_field'] = 'Babu filin amsa ko kuskure.';
+$string['json_encode_error'] = 'Kuskuren haɗawa JSON: ';
+$string['server_error_json_encode_failed'] = 'Kuskuren uwar garke: Haɗawa JSON ya kasa.';
+$string['empty_response_from_api'] = 'Babu amsa daga API.';
+$string['empty_string_as_answer'] = 'An karɓi sarari mara abu a matsayin amsa.';
+$string['database_error_saving_conversation'] = 'Kuskuren bayanai yayin adana tattaunawa: ';
+$string['general_exception'] = 'Kuskuren gabaɗaya: ';

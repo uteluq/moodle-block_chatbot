@@ -1,8 +1,30 @@
-<!--
-  @copyright 2025 Université TÉLUQ
--->
+{{!
+    @template block_uteluqchatbot/prompt_modal
 
-<div id="promptModal" class="modal" style="display: none;">
+    Prompt configuration modal for the TÉLUQ chatbot block.
+
+    This template renders a modal dialog that allows instructors to create or modify
+    the chatbot's system prompt for their course. Features include:
+    - Dynamic title based on prompt existence (Add/Modify)
+    - Large textarea for prompt content editing
+    - Link to documentation guide for best practices
+    - Form validation and submission handling
+    - Responsive modal design
+
+    Context variables:
+    * has_prompt (bool) - Whether a prompt already exists for this course
+    * prompt_text (string) - Current prompt content (empty if new prompt)
+
+    Example context (JSON):
+    {
+        "has_prompt": true,
+        "prompt_text": "You are a helpful teaching assistant for this course..."
+    }
+
+    @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+}}
+
+<div id="promptModal" class="block_uteluqchatbot modal" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -46,146 +68,3 @@
         </div>
     </div>
 </div>
-
-<style>
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    display: none;
-}
-
-.modal-dialog {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-                0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    margin: 30px auto;
-    max-width: 550px;
-    position: relative;
-    width: 95%;
-}
-
-.modal-content {
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.modal-header {
-    align-items: center;
-    border-bottom: 1px solid #e2e8f0;
-    display: flex;
-    justify-content: space-between;
-    padding: 16px 24px;
-}
-
-.modal-title {
-    color: #1e293b;
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin: 0;
-}
-
-.close {
-    background: none;
-    border: none;
-    color: #64748b;
-    cursor: pointer;
-    padding: 4px;
-}
-
-.close:hover {
-    color: #4f46e5;
-}
-
-.modal-body {
-    padding: 24px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    color: #475569;
-    display: block;
-    font-size: 0.875rem;
-    font-weight: 500;
-    margin-bottom: 8px;
-}
-
-.form-input {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    color: #1e293b;
-    display: block;
-    font-size: 0.95rem;
-    padding: 10px 16px;
-    transition: all 0.2s;
-    width: 100%;
-}
-
-.form-input:focus {
-    border-color: #6366F1;
-    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
-    outline: none;
-}
-
-.prompt-textarea {
-    min-height: 150px;
-    resize: vertical;
-}
-
-.modal-footer {
-    border-top: 1px solid #e2e8f0;
-    display: flex;
-    gap: 12px;
-    justify-content: flex-end;
-    padding-top: 20px;
-}
-
-.btn-primary,
-.btn-secondary {
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.875rem;
-    font-weight: 500;
-    padding: 8px 16px;
-    transition: all 0.2s;
-}
-
-.btn-primary {
-    background: #6366F1;
-    color: white;
-}
-
-.btn-primary:hover {
-    background: #4f46e5;
-}
-
-.btn-secondary {
-    background: #f1f5f9;
-    color: #475569;
-}
-
-.btn-secondary:hover {
-    background: #e2e8f0;
-}
-
-@media (max-width: 640px) {
-    .modal-dialog {
-        margin: 16px;
-        width: auto;
-    }
-
-    .modal-body {
-        padding: 16px;
-    }
-}
-</style>

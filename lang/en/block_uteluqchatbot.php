@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 Université TÉLUQ
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'uteluqchatbot';
 $string['uteluqchatbot:addinstance'] = 'Add a new chatbot block';
@@ -90,11 +90,19 @@ $string['invalid_session'] = "Invalid session";
 $string['openai_api_key_not_configured'] = "OpenAI API key not configured";
 $string['empty_response_from_api'] = "Empty response received from API";
 $string['error_saving_conversation'] = "Error saving conversation";
+$string['invalid_question_after_sanitize'] = 'Invalid question after sanitization.';
+$string['empty_string_as_answer'] = 'An empty string was received as an answer.';
+$string['database_error_saving_conversation'] = 'Database error saving conversation: ';
+$string['error_saving_conversation'] = 'Error saving conversation';
+$string['error_reading_input'] = 'Error reading input.';
+$string['generic_server_error'] = 'Generic server error.';
+$string['invalid_course_id'] = 'Invalid course ID.';
 
 
 
 
-// For classes/PDFExtractAPI.php
+
+// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = "Failed to obtain access token. HTTP Status: ";
 $string['access_token_obtained_successfully'] = "Access Token obtained successfully.";
 $string['failed_to_obtain_access_token_response'] = "Failed to obtain access token. Response: ";
@@ -127,7 +135,7 @@ $string['error_5'] = "Error 5";
 
 
 
-// For classes/PDFExtractAPI.php
+// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = "Failed to obtain access token. HTTP Status: ";
 $string['access_token_obtained_successfully'] = "Access Token obtained successfully.";
 $string['failed_to_obtain_access_token_response'] = "Failed to obtain access token. Response: ";
@@ -157,7 +165,7 @@ $string['error_decoding_json_file'] = "Error decoding JSON file.";
 
 
 
-// For classes/weaviateconnector.php
+// For classes/weaviate_connector.php
 
 $string['curl_error'] = "cURL Error: ";
 $string['http_error'] = "HTTP Error ";
@@ -171,6 +179,9 @@ $string['unable_to_read_file'] = "Unable to read the file";
 $string['json_encode_error'] = "JSON Encode Error: ";
 $string['failure_after_retries'] = "Failure after ";
 $string['last_error'] = " attempts. Last error: HTTP ";
+$string['invalid_response_format'] = 'Invalid response format.';
+$string['http_code'] = 'HTTP Code: ';
+
 
 
 // For block_uteluqchatbot.php
@@ -232,9 +243,63 @@ $string['upload_course'] = "Upload Course";
 $string['open_prompt_modal'] = "Open the prompt modification modal";
 $string['open_file_upload_modal'] = "Open the course upload modal";
 
-// For classes/PDFExtractAPI.php
+// For classes/pdf_extract_api.php
 $string['error_uploading_asset'] = 'Error uploading asset.';
 $string['error_creating_job'] = 'Error creating job.';
 $string['job_failed'] = 'Job failed.';
 $string['error_processing_pdf'] = 'Error processing PDF.';
 
+$string['headers_already_sent'] = 'Headers already sent.';
+$string['failed_to_start_output_buffer'] = 'Failed to start output buffer.';
+$string['server_error_output_buffer_failed'] = 'Server error: Output buffering failed.';
+$string['answer_not_utf8'] = 'Answer is not UTF-8.';
+$string['no_answer_or_error_field'] = 'No answer or error field.';
+$string['json_encode_error'] = 'JSON encode error: ';
+$string['server_error_json_encode_failed'] = 'Server error: JSON encode failed.';
+$string['empty_response_from_api'] = 'Empty response from API.';
+$string['empty_string_as_answer'] = 'Empty string received as answer.';
+$string['database_error_saving_conversation'] = 'Database error saving conversation: ';
+$string['general_exception'] = 'General exception: ';
+
+
+
+
+
+
+// Privacy API strings
+$string['privacy:metadata:block_uteluqchatbot_conversations'] = 'Information about user conversations with the chatbot';
+$string['privacy:metadata:block_uteluqchatbot_conversations:userid'] = 'The ID of the user who created the conversation';
+$string['privacy:metadata:block_uteluqchatbot_conversations:question'] = 'The question asked by the user';
+$string['privacy:metadata:block_uteluqchatbot_conversations:answer'] = 'The answer provided by the chatbot';
+$string['privacy:metadata:block_uteluqchatbot_conversations:timecreated'] = 'The time when the conversation was created';
+$string['privacy:metadata:block_uteluqchatbot_conversations:courseid'] = 'The ID of the course where the conversation took place';
+
+$string['privacy:metadata:block_uteluqchatbot_prompts'] = 'Information about custom prompts created by users';
+$string['privacy:metadata:block_uteluqchatbot_prompts:prompt'] = 'The custom prompt text created by the user';
+$string['privacy:metadata:block_uteluqchatbot_prompts:userid'] = 'The ID of the user who created the prompt';
+$string['privacy:metadata:block_uteluqchatbot_prompts:courseid'] = 'The ID of the course where the prompt was created';
+$string['privacy:metadata:block_uteluqchatbot_prompts:timecreated'] = 'The time when the prompt was created';
+
+// Service externe Cohere API
+$string['privacy:metadata:cohere_api'] = 'Data sent to Cohere API service for AI-powered chat responses';
+$string['privacy:metadata:cohere_api:question'] = 'The user question sent to Cohere API for processing';
+$string['privacy:metadata:cohere_api:courseid'] = 'The course context information sent to Cohere API';
+$string['privacy:metadata:cohere_api:prompt'] = 'Custom prompts and system instructions sent to Cohere API';
+
+// Service externe Weaviate Cloud
+$string['privacy:metadata:weaviate_cloud'] = 'Data sent to Weaviate Cloud vector database for document storage and similarity search';
+$string['privacy:metadata:weaviate_cloud:document_content'] = 'Text content extracted from uploaded documents stored in Weaviate';
+$string['privacy:metadata:weaviate_cloud:embeddings'] = 'Vector embeddings generated from document content stored in Weaviate';
+$string['privacy:metadata:weaviate_cloud:courseid'] = 'Course context information associated with stored documents';
+$string['privacy:metadata:weaviate_cloud:metadata'] = 'Document metadata and properties stored in Weaviate database';
+
+// Service externe Adobe PDF Services API
+$string['privacy:metadata:adobe_pdf_api'] = 'Data sent to Adobe PDF Services API for text extraction from PDF documents';
+$string['privacy:metadata:adobe_pdf_api:pdf_content'] = 'PDF file content sent to Adobe PDF Services for text extraction';
+$string['privacy:metadata:adobe_pdf_api:filename'] = 'Original filename of the PDF document sent for processing';
+$string['privacy:metadata:adobe_pdf_api:extracted_text'] = 'Text content extracted from PDF documents by Adobe PDF Services';
+
+// General strings (ajoutez ces chaînes si elles n'existent pas déjà)
+$string['pluginname'] = 'TÉLUQ Chatbot';
+$string['conversations'] = 'Conversations';
+$string['prompts'] = 'Custom Prompts';

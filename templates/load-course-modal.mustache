@@ -1,179 +1,62 @@
-<!--
-  @copyright 2025 Université TÉLUQ
--->
+{{!
+    @template block_uteluqchatbot/fileupload_modal
 
-<style>
-    .modal {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        overflow-y: auto;
-    }
+    File upload modal for the TÉLUQ chatbot block.
 
-    .modal-dialog {
-        width: 90%;
-        max-width: 500px;
-        background-color: white;
-        border-radius: 8px;
-        overflow: hidden;
-        max-height: 90vh;
-        display: flex;
-        flex-direction: column;
-    }
+    This template renders a modal dialog that allows users to upload PDF and text files
+    for indexing in the chatbot's knowledge base. Features include:
+    - Drag and drop file upload interface
+    - Multiple file selection support
+    - File type validation (PDF, TXT, MD)
+    - Visual feedback for uploaded files
+    - Form submission handling
 
-    .modal-content {
-        padding: 20px;
-        overflow-y: auto;
-    }
+    Context variables:
+    * None - Uses string identifiers for internationalization
 
-    .modal-header, .modal-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+    Example context (JSON):
+    {}
 
-    .modal-footer {
-        margin-top: 20px;
-    }
-
-    .file-upload-container {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        border: 2px dashed #ccc;
-        padding: 20px;
-        border-radius: 8px;
-        cursor: pointer;
-    }
-
-    .file-upload-box {
-        text-align: center;
-    }
-
-    .uploaded-file {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        margin-top: 10px;
-    }
-
-    .uploaded-file button {
-        background: none;
-        border: none;
-        cursor: pointer;
-    }
-
-    .uploaded-file svg {
-        width: 16px;
-        height: 16px;
-    }
-
-    @media (max-width: 600px) {
-        .modal-footer {
-            flex-direction: column;
-            align-items: stretch;
-        }
-
-        .modal-footer button {
-            width: 100%;
-            margin-top: 10px;
-        }
-    }
-</style>
-
-<div id="fileUploadModal" class="modal" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">{{#str}}add_files, block_uteluqchatbot{{/str}}</h5>
-                <button type="button" class="close" onclick="toggleFileUploadModal()">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="currentColor"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="fileUploadForm" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="file">{{#str}}text_or_pdf_files, block_uteluqchatbot{{/str}}</label>
-                        <div class="file-upload-container">
-                            <input type="file" id="file" name="files[]" class="file-input" accept=".txt,.text,.md,.pdf" multiple required>
-                            <div class="file-upload-box">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="upload-icon">
-                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                    <polyline points="17 8 12 3 7 8"></polyline>
-                                    <line x1="12" y1="3" x2="12" y2="15"></line>
-                                </svg>
-                                <span class="upload-text">{{#str}}drag_files_here_or_click, block_uteluqchatbot{{/str}}</span>
+    @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+}}
+<div class="block_uteluqchatbot">
+    <div id="fileUploadModal" class="modal" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{#str}}add_files, block_uteluqchatbot{{/str}}</h5>
+                    <button type="button" class="close" onclick="toggleFileUploadModal()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="fileUploadForm" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="file">{{#str}}text_or_pdf_files, block_uteluqchatbot{{/str}}</label>
+                            <div class="file-upload-container">
+                                <input type="file" id="file" name="files[]" class="file-input" accept=".txt,.text,.md,.pdf" multiple required>
+                                <div class="file-upload-box">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="upload-icon">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="17 8 12 3 7 8"></polyline>
+                                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                                    </svg>
+                                    <span class="upload-text">{{#str}}drag_files_here_or_click, block_uteluqchatbot{{/str}}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div id="uploadedFilesContainer"></div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn-secondary" onclick="toggleFileUploadModal()">{{#str}}cancel, block_uteluqchatbot{{/str}}</button>
-                        <button type="submit" class="btn-primary">{{#str}}upload_course, block_uteluqchatbot{{/str}}</button>
-                    </div>
-                </form>
+                        <div id="uploadedFilesContainer">
+                            <!-- Les fichiers uploadés apparaîtront ici avec la classe .uploaded-file -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn-secondary" onclick="toggleFileUploadModal()">{{#str}}cancel, block_uteluqchatbot{{/str}}</button>
+                            <button type="submit" class="btn-primary">{{#str}}upload_course, block_uteluqchatbot{{/str}}</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-
-function toggleFileUploadModal() {
-    const modal = document.getElementById('fileUploadModal');
-    modal.style.display = modal.style.display === 'none' || modal.style.display === '' ? 'flex' : 'none';
-
-    if (modal.style.display === 'none') {
-        document.getElementById('fileUploadForm').reset();
-        document.getElementById('uploadedFilesContainer').innerHTML = '';
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('file').addEventListener('change', function(e) {
-        const files = e.target.files;
-        const container = document.getElementById('uploadedFilesContainer');
-        container.innerHTML = '';
-
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            const fileItem = document.createElement('div');
-            fileItem.classList.add('uploaded-file');
-            fileItem.innerHTML = `
-                <span>${file.name}</span>
-                <button type="button" onclick="removeFile(this, '${file.name}')">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                        <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="currentColor"/>
-                    </svg>
-                </button>
-            `;
-            container.appendChild(fileItem);
-        }
-    });
-});
-
-function removeFile(button, fileName) {
-    const container = document.getElementById('uploadedFilesContainer');
-    container.removeChild(button.parentElement);
-
-    const filesInput = document.getElementById('file');
-    const dt = new DataTransfer();
-    const files = Array.from(filesInput.files).filter(file => file.name !== fileName);
-    files.forEach(file => dt.items.add(file));
-    filesInput.files = dt.files;
-}
-
-</script>

@@ -1,5 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <XMLDB PATH="blocks/uteluqchatbot/db" VERSION="20250129" COMMENT="XMLDB file for chatbot block">
+    <!--
+      @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+    -->
     <TABLES>
         <TABLE NAME="block_uteluqchatbot_conversations" COMMENT="Stores chat conversations">
             <FIELDS>
@@ -19,8 +22,6 @@
         <TABLE NAME="block_uteluqchatbot_prompts" COMMENT="Table to store custom prompts">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" />
-                <!-- <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" /> -->
-                <!-- <FIELD NAME="description" TYPE="text" NOTNULL="true" SEQUENCE="false" /> -->
                 <FIELD NAME="prompt" TYPE="text" NOTNULL="true" SEQUENCE="false" />
                 <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" />
                 <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" />

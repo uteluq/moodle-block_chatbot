@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 Université TÉLUQ
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'चैटबॉट';
 $string['uteluqchatbot:addinstance'] = 'नया चैटबॉट ब्लॉक जोड़ें';
@@ -81,8 +81,16 @@ $string['invalid_session'] = 'अमान्य सत्र';
 $string['openai_api_key_not_configured'] = 'OpenAI API कुंजी कॉन्फ़िगर नहीं की गई है';
 $string['empty_response_from_api'] = 'API से खाली प्रतिक्रिया प्राप्त हुई';
 $string['error_saving_conversation'] = 'बातचीत सहेजते समय त्रुटि';
+$string['invalid_question_after_sanitize'] = 'सफाई के बाद अवैध प्रश्न।';
+$string['empty_string_as_answer'] = 'एक खाली स्ट्रिंग उत्तर के रूप में प्राप्त हुई।';
+$string['database_error_saving_conversation'] = 'बातचीत सहेजते समय डेटाबेस त्रुटि: ';
+$string['error_saving_conversation'] = 'बातचीत सहेजते समय त्रुटि';
+$string['error_reading_input'] = 'इनपुट पढ़ने में त्रुटि।';
+$string['generic_server_error'] = 'सामान्य सर्वर त्रुटि।';
+$string['invalid_course_id'] = 'अमान्य पाठ्यक्रम आईडी।';
 
-// For classes/PDFExtractAPI.php
+
+// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = 'एक्सेस टोकन प्राप्त करने में विफल। HTTP स्थिति: ';
 $string['access_token_obtained_successfully'] = 'एक्सेस टोकन सफलतापूर्वक प्राप्त किया गया।';
 $string['failed_to_obtain_access_token_response'] = 'एक्सेस टोकन प्राप्त करने में विफल। प्रतिक्रिया: ';
@@ -109,7 +117,7 @@ $string['failed_to_download_asset'] = 'एसेट डाउनलोड कर
 $string['asset_downloaded_successfully'] = 'एसेट सफलतापूर्वक डाउनलोड किया गया।';
 $string['error_decoding_json_file'] = 'JSON फ़ाइल डिकोड करने में त्रुटि।';
 
-// For classes/weaviateconnector.php
+// For classes/weaviate_connector.php
 $string['curl_error'] = 'cURL त्रुटि: ';
 $string['http_error'] = 'HTTP त्रुटि ';
 $string['json_decode_error'] = 'JSON डिकोड त्रुटि: ';
@@ -122,6 +130,10 @@ $string['unable_to_read_file'] = 'फ़ाइल पढ़ने में अ�
 $string['json_encode_error'] = 'JSON एन्कोड त्रुटि: ';
 $string['failure_after_retries'] = 'पुनः प्रयास के बाद विफलता ';
 $string['last_error'] = ' प्रयास। अंतिम त्रुटि: HTTP ';
+$string['invalid_response_format'] = 'अमान्य प्रतिक्रिया प्रारूप।';
+$string['http_code'] = 'HTTP कोड: ';
+
+
 
 // For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
@@ -179,9 +191,20 @@ $string['open_prompt_modal'] = 'प्रॉम्प्ट संशोधन �
 $string['open_file_upload_modal'] = 'कोर्स अपलोड मॉडल खोलें';
 
 
-// For classes/PDFExtractAPI.php
+// For classes/pdf_extract_api.php
 $string['error_uploading_asset'] = 'एसेट अपलोड करने में त्रुटि।';
 $string['error_creating_job'] = 'जॉब बनाने में त्रुटि।';
 $string['job_failed'] = 'जॉब विफल।';
 $string['error_processing_pdf'] = 'पीडीएफ प्रोसेस करने में त्रुटि।';
 
+$string['headers_already_sent'] = 'हेडर पहले ही भेज दिए गए हैं।';
+$string['failed_to_start_output_buffer'] = 'आउटपुट बफर शुरू करने में विफल।';
+$string['server_error_output_buffer_failed'] = 'सर्वर त्रुटि: आउटपुट बफरिंग विफल।';
+$string['answer_not_utf8'] = 'उत्तर UTF-8 में नहीं है।';
+$string['no_answer_or_error_field'] = 'कोई उत्तर या त्रुटि क्षेत्र नहीं।';
+$string['json_encode_error'] = 'JSON एन्कोड त्रुटि: ';
+$string['server_error_json_encode_failed'] = 'सर्वर त्रुटि: JSON एन्कोडिंग विफल।';
+$string['empty_response_from_api'] = 'API से खाली प्रतिक्रिया।';
+$string['empty_string_as_answer'] = 'खाली स्ट्रिंग को उत्तर के रूप में प्राप्त किया गया।';
+$string['database_error_saving_conversation'] = 'बातचीत को सहेजते समय डेटाबेस त्रुटि: ';
+$string['general_exception'] = 'सामान्य अपवाद: ';

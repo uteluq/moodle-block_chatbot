@@ -4,65 +4,63 @@
  *
  * @package    block_uteluqchatbot
  * @subpackage weaviateconnector
- * @copyright  2025 Université TÉLUQ
+ * @copyright  2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+namespace block_uteluqchatbot;
 
-require_once(__DIR__ . '/../../../config.php');
-require_login();
 
 /**
- * Class WeaviateConnector
+ * Class weaviate_connector
  *
  * This class manages all interactions with a Weaviate instance,
  * including connection, document indexing, semantic search,
  * and content generation.
  */
-class WeaviateConnector
+class weaviate_connector
 {
     /** @var string Weaviate instance URL */
-    private string $apiUrl;
+    private $api_url;
 
-    private string $lastPrompt;
+    private $last_prompt;
 
     /** @var string API Key for Weaviate authentication */
-    private string $apiKey;
+    private $api_key;
 
     /** @var string API Key for Cohere authentication */
-    private string $cohereApiKey;
+    private $cohere_api_key;
 
     /** @var string|null Stores the last error occurred */
-    private ?string $lastError = null;
+    private ?string $last_error = null;
 
     /** @var int Batch size for batch indexing */
-    private int $batchSize = 100;
+    private int $batch_size = 100;
 
     /**
      * Constructor
      *
      * Initializes a new instance of the Weaviate connector
      *
-     * @param string $apiUrl Weaviate instance URL
-     * @param string $apiKey Weaviate API Key
-     * @param string $cohereApiKey Cohere API Key
+     * @param string $api_url Weaviate instance URL
+     * @param string $api_key Weaviate API Key
+     * @param string $cohere_api_key Cohere API Key
      */
-    public function __construct(string $apiUrl, string $apiKey, string $cohereApiKey)
+    public function __construct(string $api_url, string $api_key, string $cohere_api_key)
     {
-        $this->apiUrl = rtrim($apiUrl, '/');
-        $this->apiKey = $apiKey;
-        $this->cohereApiKey = $cohereApiKey;
+        $this->api_url = rtrim($api_url, '/');
+        $this->api_key = $api_key;
+        $this->cohere_api_key = $cohere_api_key;
     }
 
     /**
      * Function to call the Cohere API
      *
      * @param string $question Question to ask
-     * @param string $apiKey API Key for Cohere
+     * @param string $api_key API Key for Cohere
      * @return string|null Generated text or null in case of error
      */
-    public function getCohereResponse(string $question, string $apiKey): ?string
+    public function get_cohere_response(string $question, string $api_key): ?string
     {
         $url = 'https://api.cohere.com/v2/chat';
         // Prepare data for the request
@@ -79,50 +77,50 @@ class WeaviateConnector
         // Configure cURL options
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Authorization: Bearer ' . $apiKey,
+            'Authorization: Bearer ' . $api_key,
             'Content-Type: application/json',
             'Accept: application/json'
         ]);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Re-enable SSL verification
-        curl_setopt($ch, CURLOPT_VERBOSE, true); // Verbose mode for more information
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_VERBOSE, true);
 
         // Create a temporary file to store debug information
-        $debugFile = fopen('php://temp', 'w+');
-        curl_setopt($ch, CURLOPT_STDERR, $debugFile);
+        $debug_file = fopen('php://temp', 'w+');
+        curl_setopt($ch, CURLOPT_STDERR, $debug_file);
 
         // Execute the request
         $response = curl_exec($ch);
 
         // Retrieve debug information
-        rewind($debugFile);
-        $debugInfo = stream_get_contents($debugFile);
+        rewind($debug_file);
+        $debug_info = stream_get_contents($debug_file);
 
         // Check for cURL errors
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $curlError = curl_error($ch);
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $curl_error = curl_error($ch);
 
         // Close the cURL session
         curl_close($ch);
 
         // Detailed log
-        error_log('HTTP Status Code: ' . $httpCode);
-        error_log('cURL Debug Info: ' . $debugInfo);
+        error_log('HTTP Status Code: ' . $http_code);
+        error_log('cURL Debug Info: ' . $debug_info);
         error_log('Raw Response: ' . $response);
 
         // Error handling
-        if ($curlError) {
-            return get_string('curl_error', 'block_uteluqchatbot') . $curlError;
+        if ($curl_error) {
+            return get_string('curl_error', 'block_uteluqchatbot') . $curl_error;
         }
 
         // Check HTTP status code
-        if ($httpCode !== 200) {
-            return get_string('http_error', 'block_uteluqchatbot') . $httpCode . ': ' . $response;
+        if ($http_code !== 200) {
+            return get_string('http_error', 'block_uteluqchatbot') . $http_code . ': ' . $response;
         }
 
         // Decode the JSON response
-        $responseData = json_decode($response, true);
+        $response_data = json_decode($response, true);
 
         // Check for JSON decoding errors
         if (json_last_error() !== JSON_ERROR_NONE) {
@@ -131,26 +129,26 @@ class WeaviateConnector
         }
 
         // Extract the response
-        if (isset($responseData['message']['content'][0]['text'])) {
-            $this->lastPrompt = $question;
-            return $responseData['message']['content'][0]['text'];
+        if (isset($response_data['message']['content'][0]['text'])) {
+            $this->last_prompt = $question;
+            return $response_data['message']['content'][0]['text'];
         }
 
         // Return an error message if no response is generated
-        return get_string('no_response_generated', 'block_uteluqchatbot') . print_r($responseData, true);
+        return get_string('no_response_generated', 'block_uteluqchatbot') . print_r($response_data, true);
     }
 
     /**
      * Sends a request to get answers related to a question and a collection
      *
-     * @param string $coursename Course name
+     * @param string $course_name Course name
      * @param string $collection Target collection name
      * @param string $question Question asked
      * @param int $user_id User ID
      * @param int $course_id Course ID
      * @return string|null Generated text or null in case of error
      */
-    public function getQuestionAnswer($coursename, string $collection, string $question, $user_id, $course_id): ?string
+    public function get_question_answer($course_name, string $collection, string $question, $user_id, $course_id): ?string
     {
         global $COURSE, $DB, $USER;
 
@@ -170,7 +168,6 @@ class WeaviateConnector
         // Initialize variables to avoid errors if less than 2 conversations
         $historique = "";
 
-
         // Convert the result to an indexed array
         $conversations = array_values($last_conversations);
 
@@ -189,17 +186,13 @@ class WeaviateConnector
             $task = get_string('default_prompt', 'block_uteluqchatbot');
         }
 
-        
-        $task = str_replace('[[ coursename ]]', $coursename, $task);
+        $task = str_replace('[[ coursename ]]', $course_name, $task);
         $task = str_replace('[[ question ]]', $question, $task);
         $task = str_replace('[[ history ]]', $historique, $task);
 
-
-
-
         // Properly encode the prompt for inclusion in the GraphQL query
-        $task = json_encode($task); // This properly handles escaping
-        $task = substr($task, 1, -1); // Remove the quotes at the beginning and end
+        $task = json_encode($task);
+        $task = substr($task, 1, -1);
 
         $question = json_encode($question);
         $question = substr($question, 1, -1);
@@ -231,12 +224,12 @@ class WeaviateConnector
 
         $headers = [
             'Content-Type: application/json',
-            'Authorization: Bearer ' . $this->apiKey,
-            'X-Cohere-Api-Key: ' . $this->cohereApiKey
+            'Authorization: Bearer ' . $this->api_key,
+            'X-Cohere-Api-Key: ' . $this->cohere_api_key
         ];
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->apiUrl . '/v1/graphql');
+        curl_setopt($ch, CURLOPT_URL, $this->api_url . '/v1/graphql');
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($query));
@@ -244,35 +237,35 @@ class WeaviateConnector
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $response = curl_exec($ch);
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-        if (curl_errno($ch) || $httpCode !== 200) {
-            $this->lastError = curl_error($ch) ?: get_string('http_code', 'block_uteluqchatbot') . $httpCode;
+        if (curl_errno($ch) || $http_code !== 200) {
+            $this->last_error = curl_error($ch) ?: get_string('http_code', 'block_uteluqchatbot') . $http_code;
             curl_close($ch);
             return null;
         }
 
         curl_close($ch);
 
-        $decodedResponse = json_decode($response, true);
-        if (isset($decodedResponse['data']['Get'][$collection][0]['_additional']['generate']['groupedResult'])) {
-            return $decodedResponse['data']['Get'][$collection][0]['_additional']['generate']['groupedResult'];
+        $decoded_response = json_decode($response, true);
+        if (isset($decoded_response['data']['Get'][$collection][0]['_additional']['generate']['groupedResult'])) {
+            return $decoded_response['data']['Get'][$collection][0]['_additional']['generate']['groupedResult'];
         }
 
-        $this->lastError = get_string('invalid_response_format', 'block_uteluqchatbot');
+        $this->last_error = get_string('invalid_response_format', 'block_uteluqchatbot');
         return null;
     }
 
     /**
      * Deletes an existing collection (class) in Weaviate
      *
-     * @param string $className Name of the collection to delete
+     * @param string $class_name Name of the collection to delete
      * @return bool True if deletion is successful, False otherwise
      */
-    public function deleteCollection(string $className): bool
+    public function delete_collection(string $class_name): bool
     {
         // Construct the URL for schema deletion
-        $endpoint = $this->apiUrl . '/v1/schema/' . urlencode($className);
+        $endpoint = $this->api_url . '/v1/schema/' . urlencode($class_name);
 
         // Configure and execute the CURL request
         $ch = curl_init();
@@ -283,17 +276,17 @@ class WeaviateConnector
             CURLOPT_CUSTOMREQUEST => 'DELETE',
             CURLOPT_HTTPHEADER => [
                 'Content-Type: application/json',
-                'Authorization: Bearer ' . $this->apiKey
+                'Authorization: Bearer ' . $this->api_key
             ]
         ]);
 
         // Execute the request and retrieve the response
         $response = curl_exec($ch);
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
         // Handle CURL errors
         if (curl_errno($ch)) {
-            $this->lastError = curl_error($ch);
+            $this->last_error = curl_error($ch);
             curl_close($ch);
             return false;
         }
@@ -301,9 +294,8 @@ class WeaviateConnector
         curl_close($ch);
 
         // Check HTTP response code
-        // 200 or 204 are success codes for deletion
-        if ($httpCode !== 200 && $httpCode !== 204) {
-            $this->lastError = get_string('http_error', 'block_uteluqchatbot') . $httpCode . ": " . $response;
+        if ($http_code !== 200 && $http_code !== 204) {
+            $this->last_error = get_string('http_error', 'block_uteluqchatbot') . $http_code . ": " . $response;
             return false;
         }
 
@@ -313,13 +305,13 @@ class WeaviateConnector
     /**
      * Checks if a collection already exists in Weaviate
      *
-     * @param string $className Name of the collection to check
+     * @param string $class_name Name of the collection to check
      * @return bool True if the collection exists, False otherwise
      */
-    public function collectionExists(string $className): bool
+    public function collection_exists(string $class_name): bool
     {
         // Construct the URL to retrieve the schema
-        $endpoint = $this->apiUrl . '/v1/schema';
+        $endpoint = $this->api_url . '/v1/schema';
 
         // Configure and execute the CURL request
         $ch = curl_init();
@@ -329,17 +321,17 @@ class WeaviateConnector
             CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_HTTPHEADER => [
                 'Content-Type: application/json',
-                'Authorization: Bearer ' . $this->apiKey
+                'Authorization: Bearer ' . $this->api_key
             ]
         ]);
 
         // Execute the request and retrieve the response
         $response = curl_exec($ch);
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
         // Handle CURL errors
         if (curl_errno($ch)) {
-            $this->lastError = curl_error($ch);
+            $this->last_error = curl_error($ch);
             curl_close($ch);
             return false;
         }
@@ -347,8 +339,8 @@ class WeaviateConnector
         curl_close($ch);
 
         // Check HTTP response code
-        if ($httpCode !== 200) {
-            $this->lastError = get_string('http_error', 'block_uteluqchatbot') . $httpCode . ": " . $response;
+        if ($http_code !== 200) {
+            $this->last_error = get_string('http_error', 'block_uteluqchatbot') . $http_code . ": " . $response;
             return false;
         }
 
@@ -358,7 +350,7 @@ class WeaviateConnector
         // Check for the presence of the collection in the schema
         if (isset($schema['classes'])) {
             foreach ($schema['classes'] as $class) {
-                if ($class['class'] === $className) {
+                if ($class['class'] === $class_name) {
                     return true;
                 }
             }
@@ -373,29 +365,29 @@ class WeaviateConnector
      * This method configures a new collection with a vectorizer
      * and specific modules for text processing
      *
-     * @param string $className Name of the collection to create
+     * @param string $class_name Name of the collection to create
      * @param string $vectorizer Name of the vectorizer (default text2vec-cohere)
-     * @param array $moduleConfig Additional module configuration
+     * @param array $module_config Additional module configuration
      * @return bool True if creation is successful, False otherwise
      */
-    public function createCollection(
-        string $className,
+    public function create_collection(
+        string $class_name,
         string $vectorizer = "text2vec-cohere",
-        array $moduleConfig = []
+        array $module_config = []
     ): bool {
         // Construct the URL for schema creation
-        $endpoint = $this->apiUrl . '/v1/schema';
+        $endpoint = $this->api_url . '/v1/schema';
 
         // Prepare the collection configuration
         $data = [
-            'class' => $className,
+            'class' => $class_name,
             'vectorizer' => $vectorizer,
             'moduleConfig' => array_merge(
                 [
                     $vectorizer => [],
                     'generative-cohere' => []
                 ],
-                $moduleConfig
+                $module_config
             )
         ];
 
@@ -409,17 +401,17 @@ class WeaviateConnector
             CURLOPT_POSTFIELDS => json_encode($data),
             CURLOPT_HTTPHEADER => [
                 'Content-Type: application/json',
-                'Authorization: Bearer ' . $this->apiKey
+                'Authorization: Bearer ' . $this->api_key
             ]
         ]);
 
         // Execute the request and retrieve the response
         $response = curl_exec($ch);
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
         // Handle CURL errors
         if (curl_errno($ch)) {
-            $this->lastError = curl_error($ch);
+            $this->last_error = curl_error($ch);
             curl_close($ch);
             return false;
         }
@@ -427,8 +419,8 @@ class WeaviateConnector
         curl_close($ch);
 
         // Check HTTP response code
-        if ($httpCode !== 200) {
-            $this->lastError = get_string('http_error', 'block_uteluqchatbot') . $httpCode . ": " . $response;
+        if ($http_code !== 200) {
+            $this->last_error = get_string('http_error', 'block_uteluqchatbot') . $http_code . ": " . $response;
             return false;
         }
 
@@ -444,7 +436,7 @@ class WeaviateConnector
      * @param string $text Text to clean
      * @return string Cleaned text
      */
-    private function cleanText(string $text): string
+    private function clean_text(string $text): string
     {
         // Convert non-UTF8 or invalid characters
         $text = mb_convert_encoding($text, 'UTF-8', 'UTF-8');
@@ -474,31 +466,29 @@ class WeaviateConnector
      * Splits the text into chunks of similar size
      *
      * @param string $text Text to split
-     * @param int $chunkSize Approximate desired size for each chunk
+     * @param int $chunk_size Approximate desired size for each chunk
      * @return array Array of text chunks
      */
-    private function chunkText(string $text, int $chunkSize = 300): array
+    private function chunk_text(string $text, int $chunk_size = 300): array
     {
         $words = explode(' ', $text);
         $chunks = [];
-        $currentChunk = [];
-        $currentLength = 0;
+        $current_chunk = [];
+        $current_length = 0;
 
         foreach ($words as $word) {
-            $wordLength = strlen($word);
-            // If adding the word exceeds the size limit and there are already words
-            if ($currentLength + $wordLength + 1 > $chunkSize && !empty($currentChunk)) {
-                $chunks[] = implode(' ', $currentChunk);
-                $currentChunk = [];
-                $currentLength = 0;
+            $word_length = strlen($word);
+            if ($current_length + $word_length + 1 > $chunk_size && !empty($current_chunk)) {
+                $chunks[] = implode(' ', $current_chunk);
+                $current_chunk = [];
+                $current_length = 0;
             }
-            $currentChunk[] = $word;
-            $currentLength += $wordLength + 1; // +1 for the space
+            $current_chunk[] = $word;
+            $current_length += $word_length + 1;
         }
 
-        // Add the last chunk if there are remaining words
-        if (!empty($currentChunk)) {
-            $chunks[] = implode(' ', $currentChunk);
+        if (!empty($current_chunk)) {
+            $chunks[] = implode(' ', $current_chunk);
         }
 
         return $chunks;
@@ -512,24 +502,24 @@ class WeaviateConnector
      *
      * @param string $collection Name of the collection to query
      * @param string $concept Concept to search for
-     * @param string $generationTask Instruction for generation
+     * @param string $generation_task Instruction for generation
      * @param array $fields Fields to return in the results
      * @param int $limit Maximum number of results
      * @return array|null Results with generated content or null if error
      */
-    public function semanticSearchWithGeneration(
+    public function semantic_search_with_generation(
         string $collection,
         string $concept,
-        string $generationTask,
+        string $generation_task,
         array $fields = ['texte', 'cours'],
         int $limit = 3
     ): ?array {
-        $graphqlEndpoint = $this->apiUrl . '/v1/graphql';
+        $graphql_endpoint = $this->api_url . '/v1/graphql';
 
         // Prepare the list of fields for the GraphQL query
-        $fieldsString = implode(' ', $fields);
+        $fields_string = implode(' ', $fields);
         // Escape quotes in the generation task
-        $escapedTask = str_replace('"', '\\"', $generationTask);
+        $escaped_task = str_replace('"', '\\"', $generation_task);
 
         // Construct the GraphQL query
         $query = [
@@ -541,11 +531,11 @@ class WeaviateConnector
                             concepts: [\"$concept\"]
                         }
                     ) {
-                        $fieldsString
+                        $fields_string
                         _additional {
                             generate(
                                 groupedResult: {
-                                    task: \"$escapedTask\"
+                                    task: \"$escaped_task\"
                                 }
                             ) {
                                 groupedResult
@@ -558,7 +548,7 @@ class WeaviateConnector
         ];
 
         // Execute the request via CURL
-        $ch = curl_init($graphqlEndpoint);
+        $ch = curl_init($graphql_endpoint);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt_array($ch, [
             CURLOPT_RETURNTRANSFER => true,
@@ -566,17 +556,17 @@ class WeaviateConnector
             CURLOPT_POSTFIELDS => json_encode($query),
             CURLOPT_HTTPHEADER => [
                 'Content-Type: application/json',
-                'Authorization: Bearer ' . $this->apiKey,
-                'X-Cohere-Api-Key: ' . $this->cohereApiKey
+                'Authorization: Bearer ' . $this->api_key,
+                'X-Cohere-Api-Key: ' . $this->cohere_api_key
             ]
         ]);
 
         // Retrieve and verify the response
         $response = curl_exec($ch);
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
         if (curl_errno($ch)) {
-            $this->lastError = curl_error($ch);
+            $this->last_error = curl_error($ch);
             curl_close($ch);
             return null;
         }
@@ -584,15 +574,15 @@ class WeaviateConnector
         curl_close($ch);
 
         // Check HTTP code
-        if ($httpCode !== 200) {
-            $this->lastError = get_string('http_error', 'block_uteluqchatbot') . $httpCode . ": $response";
+        if ($http_code !== 200) {
+            $this->last_error = get_string('http_error', 'block_uteluqchatbot') . $http_code . ": $response";
             return null;
         }
 
         // Decode the JSON response
         $result = json_decode($response, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
-            $this->lastError = get_string('json_decode_error', 'block_uteluqchatbot') . json_last_error_msg();
+            $this->last_error = get_string('json_decode_error', 'block_uteluqchatbot') . json_last_error_msg();
             return null;
         }
 
@@ -604,12 +594,12 @@ class WeaviateConnector
      *
      * Reads, cleans, splits, and indexes the content of a text file
      *
-     * @param string $filePath Path to the file to index
+     * @param string $file_path Path to the file to index
      * @param string $collection Target collection name
-     * @param string $courseId Course ID
+     * @param string $course_id Course ID
      * @return bool True if successful, False if error
      */
-    public function indexTextFile(string $filePath, string $collection, string $courseId): bool
+    public function index_text_file(string $file_path, string $collection, string $course_id): bool
     {
         global $CFG;
 
@@ -617,91 +607,90 @@ class WeaviateConnector
         ini_set('display_errors', 1);
 
         // Check if the file exists
-        if (!file_exists($filePath)) {
-            $this->lastError = get_string('file_not_found', 'block_uteluqchatbot') . $filePath;
+        if (!file_exists($file_path)) {
+            $this->last_error = get_string('file_not_found', 'block_uteluqchatbot') . $file_path;
             return false;
         }
 
         // Read the file
-        $text = file_get_contents($filePath);
+        $text = file_get_contents($file_path);
         if ($text === false) {
-            $this->lastError = get_string('unable_to_read_file', 'block_uteluqchatbot');
+            $this->last_error = get_string('unable_to_read_file', 'block_uteluqchatbot');
             return false;
         }
 
         // Prepare the text
-        $cleanedText = $this->cleanText($text);
-        $cleanedText = $text;
-        $chunks = $this->chunkText($cleanedText);
+        $cleaned_text = $this->clean_text($text);
+        $cleaned_text = $text;
+        $chunks = $this->chunk_text($cleaned_text);
 
         // Configure for batch indexing
-        $batchEndpoint = $this->apiUrl . '/v1/batch/objects';
-        $currentBatch = [];
+        $batch_endpoint = $this->api_url . '/v1/batch/objects';
+        $current_batch = [];
         $success = true;
 
         // Retry parameters
-        $maxRetries = 5;        // Maximum number of attempts
-        $retryDelay = 1;        // Initial delay between attempts (in seconds)
-        $maxRetryDelay = 5;    // Maximum delay between attempts (in seconds)
+        $max_retries = 5;
+        $retry_delay = 1;
+        $max_retry_delay = 5;
 
         // Process each chunk
-        $objectCount = 0;
+        $object_count = 0;
 
         foreach ($chunks as $chunk) {
             $object = [
                 'class' => $collection,
                 'properties' => [
                     'texte' => $chunk,
-                    'cours' => $courseId,
-                    'filepath' => $filePath,
+                    'cours' => $course_id,
+                    'filepath' => $file_path,
                 ]
             ];
-            $currentBatch[] = $object;
-            $objectCount++;
+            $current_batch[] = $object;
+            $object_count++;
 
             // If the batch is full or it's the last chunk
-            if ($objectCount >= $this->batchSize || $chunk === end($chunks)) {
+            if ($object_count >= $this->batch_size || $chunk === end($chunks)) {
                 // Manually construct JSON to avoid potential issues with json_encode
-                $jsonObjects = [];
-                foreach ($currentBatch as $obj) {
-                    $jsonObj = json_encode($obj);
-                    if ($jsonObj === false) {
-                        $this->lastError = get_string('json_encode_error', 'block_uteluqchatbot') . json_last_error_msg();
+                $json_objects = [];
+                foreach ($current_batch as $obj) {
+                    $json_obj = json_encode($obj);
+                    if ($json_obj === false) {
+                        $this->last_error = get_string('json_encode_error', 'block_uteluqchatbot') . json_last_error_msg();
                         return false;
                     }
-                    $jsonObjects[] = $jsonObj;
+                    $json_objects[] = $json_obj;
                 }
 
-                $jsonData = '{"objects":[' . implode(',', $jsonObjects) . ']}';
+                $json_data = '{"objects":[' . implode(',', $json_objects) . ']}';
 
                 // Set up retry logic
                 $retry = 0;
-                $currentDelay = $retryDelay;
-                $requestSuccess = false;
+                $current_delay = $retry_delay;
+                $request_success = false;
 
-                while (!$requestSuccess && $retry <= $maxRetries) {
+                while (!$request_success && $retry <= $max_retries) {
                     if ($retry > 0) {
-                        sleep($currentDelay);
-                        // Exponential backoff
-                        $currentDelay = min($currentDelay * 2, $maxRetryDelay);
+                        sleep($current_delay);
+                        $current_delay = min($current_delay * 2, $max_retry_delay);
                     }
 
-                    $ch = curl_init($batchEndpoint);
+                    $ch = curl_init($batch_endpoint);
                     curl_setopt_array($ch, [
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_SSL_VERIFYPEER => false,
                         CURLOPT_POST => true,
-                        CURLOPT_POSTFIELDS => $jsonData,
+                        CURLOPT_POSTFIELDS => $json_data,
                         CURLOPT_HTTPHEADER => [
                             'Content-Type: application/json',
-                            'Authorization: Bearer ' . $this->apiKey,
-                            'X-Cohere-Api-Key: ' . $this->cohereApiKey
+                            'Authorization: Bearer ' . $this->api_key,
+                            'X-Cohere-Api-Key: ' . $this->cohere_api_key
                         ],
-                        CURLOPT_TIMEOUT => 30, // 30-second timeout
+                        CURLOPT_TIMEOUT => 30,
                     ]);
 
                     $response = curl_exec($ch);
-                    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
                     if (curl_errno($ch)) {
                         curl_close($ch);
@@ -709,35 +698,28 @@ class WeaviateConnector
                         continue;
                     }
 
-                    // Check if it's a temporary server error (500, 502, 503, 504)
-                    if ($httpCode >= 500 && $httpCode < 600) {
+                    if ($http_code >= 500 && $http_code < 600) {
                         curl_close($ch);
                         $retry++;
                         continue;
-                    }
-                    // Other HTTP errors
-                    elseif ($httpCode < 200 || $httpCode >= 300) {
-                        $this->lastError = get_string('http_error', 'block_uteluqchatbot') . $httpCode . ": $response";
+                    } elseif ($http_code < 200 || $http_code >= 300) {
+                        $this->last_error = get_string('http_error', 'block_uteluqchatbot') . $http_code . ": $response";
                         curl_close($ch);
                         return false;
                     }
 
-                    // If we get here, the request was successful
                     curl_close($ch);
-                    $requestSuccess = true;
+                    $request_success = true;
                 }
 
-                // If all attempts failed
-                if (!$requestSuccess) {
-                    $this->lastError = get_string('failure_after_retries', 'block_uteluqchatbot') . $maxRetries . get_string('last_error', 'block_uteluqchatbot') . $httpCode;
+                if (!$request_success) {
+                    $this->last_error = get_string('failure_after_retries', 'block_uteluqchatbot') . $max_retries . get_string('last_error', 'block_uteluqchatbot') . $http_code;
                     return false;
                 }
 
-                // Reset the batch
-                $currentBatch = [];
-                $objectCount = 0;
+                $current_batch = [];
+                $object_count = 0;
 
-                // Pause for 5 seconds between each batch send
                 sleep(1);
             }
         }
@@ -753,13 +735,12 @@ class WeaviateConnector
      * @param array $results Raw search results
      * @return array Formatted results
      */
-    public function formatSearchResults(array $results): array
+    public function format_search_results(array $results): array
     {
-        $formattedResults = [];
+        $formatted_results = [];
 
         foreach ($results as $result) {
-            $formattedResult = [
-                // Filter main data (without _additional)
+            $formatted_result = [
                 'data' => array_filter($result, function ($key) {
                     return $key !== '_additional';
                 }, ARRAY_FILTER_USE_KEY),
@@ -767,18 +748,17 @@ class WeaviateConnector
                 'generation_error' => null
             ];
 
-            // Extract generated content if it exists
             if (isset($result['_additional']['generate'])) {
-                $formattedResult['generated_content'] =
+                $formatted_result['generated_content'] =
                     $result['_additional']['generate']['groupedResult'] ?? null;
-                $formattedResult['generation_error'] =
+                $formatted_result['generation_error'] =
                     $result['_additional']['generate']['error'] ?? null;
             }
 
-            $formattedResults[] = $formattedResult;
+            $formatted_results[] = $formatted_result;
         }
 
-        return $formattedResults;
+        return $formatted_results;
     }
 
     /**
@@ -786,9 +766,9 @@ class WeaviateConnector
      *
      * @param int $size New batch size
      */
-    public function setBatchSize(int $size): void
+    public function set_batch_size(int $size): void
     {
-        $this->batchSize = $size;
+        $this->batch_size = $size;
     }
 
     /**
@@ -796,9 +776,9 @@ class WeaviateConnector
      *
      * @return string|null Error message or null if no error
      */
-    public function getLastError(): ?string
+    public function get_last_error(): ?string
     {
-        return $this->lastError;
+        return $this->last_error;
     }
 
     /**
@@ -806,9 +786,9 @@ class WeaviateConnector
      *
      * @return string|null Last prompt or null if none
      */
-    public function getLastPrompt(): ?string
+    public function get_last_prompt(): ?string
     {
-        return $this->lastPrompt;
+        return $this->last_prompt;
     }
 
     /**
@@ -818,21 +798,21 @@ class WeaviateConnector
      * on a semantic search using a given concept.
      *
      * @param string $collection Name of the collection to query
-     * @param string $concept Concept to search for (e.g., "biology", "technology", etc.)
+     * @param string $concept Concept to search for
      * @param array $fields Fields to return in the results
      * @param int $limit Maximum number of results to return
      * @return array|null Semantic search results or null in case of error
      */
-    public function semanticSearch(
+    public function semantic_search(
         string $collection,
         string $concept,
         array $fields = ['texte', 'cours'],
         int $limit = 3
     ): ?array {
-        $graphqlEndpoint = $this->apiUrl . '/v1/graphql';
+        $graphql_endpoint = $this->api_url . '/v1/graphql';
 
         // Prepare the list of fields for the GraphQL query
-        $fieldsString = implode(' ', $fields);
+        $fields_string = implode(' ', $fields);
 
         // Construct the GraphQL query
         $query = [
@@ -844,14 +824,14 @@ class WeaviateConnector
                         concepts: [\"$concept\"]
                     }
                 ) {
-                    $fieldsString
+                    $fields_string
                 }
             }
         }"
         ];
 
         // Execute the request via CURL
-        $ch = curl_init($graphqlEndpoint);
+        $ch = curl_init($graphql_endpoint);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt_array($ch, [
             CURLOPT_RETURNTRANSFER => true,
@@ -859,17 +839,17 @@ class WeaviateConnector
             CURLOPT_POSTFIELDS => json_encode($query),
             CURLOPT_HTTPHEADER => [
                 'Content-Type: application/json',
-                'Authorization: Bearer ' . $this->apiKey,
-                'X-Cohere-Api-Key: ' . $this->cohereApiKey
+                'Authorization: Bearer ' . $this->api_key,
+                'X-Cohere-Api-Key: ' . $this->cohere_api_key
             ]
         ]);
 
         // Retrieve and verify the response
         $response = curl_exec($ch);
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
         if (curl_errno($ch)) {
-            $this->lastError = curl_error($ch);
+            $this->last_error = curl_error($ch);
             curl_close($ch);
             return null;
         }
@@ -877,15 +857,15 @@ class WeaviateConnector
         curl_close($ch);
 
         // Check HTTP code
-        if ($httpCode !== 200) {
-            $this->lastError = get_string('http_error', 'block_uteluqchatbot') . $httpCode . ": $response";
+        if ($http_code !== 200) {
+            $this->last_error = get_string('http_error', 'block_uteluqchatbot') . $http_code . ": $response";
             return null;
         }
 
         // Decode the JSON response
         $result = json_decode($response, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
-            $this->lastError = get_string('json_decode_error', 'block_uteluqchatbot') . json_last_error_msg();
+            $this->last_error = get_string('json_decode_error', 'block_uteluqchatbot') . json_last_error_msg();
             return null;
         }
 
