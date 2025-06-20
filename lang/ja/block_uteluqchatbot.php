@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'チャットボット';
 $string['uteluqchatbot:addinstance'] = '新しいチャットボットブロックを追加';
@@ -208,3 +208,49 @@ $string['empty_response_from_api'] = 'APIからの空の応答。';
 $string['empty_string_as_answer'] = '空の文字列が回答として受信されました。';
 $string['database_error_saving_conversation'] = '会話の保存中にデータベースエラー：';
 $string['general_exception'] = '一般例外：';
+$string['no_files_selected'] = 'ファイルが選択されていません';
+$string['course_id'] = 'コースID';
+$string['file_name'] = 'ファイル名';
+$string['file_content_base64'] = 'ファイル内容（base64エンコード）';
+$string['insufficient_permissions'] = 'ファイルをアップロードする権限が不足しています';
+$string['missing_api_configuration'] = '必要なAPI設定が不足しています';
+$string['weaviate_connector_not_found'] = 'WeaviateConnectorクラスが見つかりません';
+$string['collection_prefix'] = 'Collection_course_';
+$string['error_creating_collection'] = 'コレクション作成エラー：';
+$string['unknown_error'] = '不明なエラー';
+$string['failed_create_upload_directory'] = 'アップロードディレクトリの作成に失敗しました';
+$string['empty_filename'] = '空のファイル名が提供されました';
+$string['unsupported_file_type'] = 'サポートされていないファイルタイプ：';
+$string['invalid_file_data'] = '無効なファイルデータ：';
+$string['failed_save_file'] = 'ファイル保存に失敗しました：';
+$string['adobe_pdf_credentials_not_configured'] = 'Adobe PDF API認証情報が設定されていません';
+$string['pdf_extractor_not_found'] = 'PDFエクストラクタークラスが見つかりません';
+$string['failed_extract_pdf_text'] = 'PDFからのテキスト抽出に失敗しました：';
+$string['failed_save_extracted_text'] = '抽出されたテキストファイルの保存に失敗しました：';
+$string['error_indexing_file_unknown'] = 'ファイルのインデックス作成エラー ';
+$string['files_indexed_successfully'] = ' ファイルが正常にインデックス化されました';
+$string['errors_occurred'] = '。エラー：';
+$string['no_files_processed'] = 'ファイルが処理されませんでした。エラー：';
+$string['operation_successful'] = '操作成功';
+$string['response_message'] = '応答メッセージ';
+$string['processed_files_count'] = '処理されたファイルの数';
+$string['sending_question_fallback'] = '質問を送信中...';
+$string['error_colon_fallback'] = 'エラー：';
+$string['error_sending_question_fallback'] = '質問の送信エラー：';
+$string['saving_prompt_fallback'] = 'プロンプトを保存中...';
+$string['prompt_saved_successfully_fallback'] = 'プロンプトが正常に保存されました！';
+$string['error_saving_prompt_fallback'] = 'プロンプトの保存エラー：';
+$string['no_files_selected_fallback'] = 'ファイルが選択されていません。';
+$string['uploading_files_fallback'] = 'ファイルをアップロード中...';
+$string['files_indexed_successfully_fallback'] = 'ファイルが正常にインデックス化されました！';
+$string['error_processing_files_fallback'] = 'ファイル処理エラー：';
+$string['unknown_error_occurred'] = '不明なエラーが発生しました';
+$string['server_response_error'] = 'サーバー応答エラー。詳細はコンソールを確認してください。';
+$string['server_error_check_console'] = 'サーバーエラー - 詳細はコンソールを確認してください';
+$string['files_converted_debug'] = 'ファイルがbase64に変換されました：';
+$string['sending_ajax_request_debug'] = 'AJAXリクエストを送信中：';
+$string['upload_response_received_debug'] = 'アップロード応答を受信：';
+$string['response_type_debug'] = '応答タイプ：';
+$string['upload_error_details_debug'] = 'アップロードエラー詳細：';
+$string['error_object_debug'] = 'エラーオブジェクト：';
+$string['raw_server_response_debug'] = '生サーバー応答：';

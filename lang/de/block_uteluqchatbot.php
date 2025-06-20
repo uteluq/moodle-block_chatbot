@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'uteluqchatbot';
 $string['uteluqchatbot:addinstance'] = 'Füge einen neuen Chatbot-Block hinzu';
@@ -208,3 +208,50 @@ $string['empty_response_from_api'] = 'Leere Antwort von der API.';
 $string['empty_string_as_answer'] = 'Leerer String als Antwort erhalten.';
 $string['database_error_saving_conversation'] = 'Datenbankfehler beim Speichern der Konversation: ';
 $string['general_exception'] = 'Allgemeine Ausnahme: ';
+$string['no_files_selected'] = 'Keine Dateien ausgewählt';
+
+$string['course_id'] = 'Kurs-ID';
+$string['file_name'] = 'Dateiname';
+$string['file_content_base64'] = 'Dateiinhalt (base64-kodiert)';
+$string['insufficient_permissions'] = 'Unzureichende Berechtigungen zum Hochladen von Dateien';
+$string['missing_api_configuration'] = 'Erforderliche API-Konfiguration fehlt';
+$string['weaviate_connector_not_found'] = 'WeaviateConnector-Klasse nicht gefunden';
+$string['collection_prefix'] = 'Collection_course_';
+$string['error_creating_collection'] = 'Fehler beim Erstellen der Sammlung: ';
+$string['unknown_error'] = 'Unbekannter Fehler';
+$string['failed_create_upload_directory'] = 'Upload-Verzeichnis konnte nicht erstellt werden';
+$string['empty_filename'] = 'Leerer Dateiname angegeben';
+$string['unsupported_file_type'] = 'Nicht unterstützter Dateityp: ';
+$string['invalid_file_data'] = 'Ungültige Dateidaten für: ';
+$string['failed_save_file'] = 'Datei konnte nicht gespeichert werden: ';
+$string['adobe_pdf_credentials_not_configured'] = 'Adobe PDF API-Anmeldedaten nicht konfiguriert';
+$string['pdf_extractor_not_found'] = 'PDF-Extractor-Klasse nicht gefunden';
+$string['failed_extract_pdf_text'] = 'Text konnte nicht aus PDF extrahiert werden: ';
+$string['failed_save_extracted_text'] = 'Extrahierte Textdatei konnte nicht gespeichert werden: ';
+$string['error_indexing_file_unknown'] = 'Fehler beim Indizieren der Datei ';
+$string['files_indexed_successfully'] = ' Datei(en) erfolgreich indiziert';
+$string['errors_occurred'] = '. Fehler: ';
+$string['no_files_processed'] = 'Keine Dateien verarbeitet. Fehler: ';
+$string['operation_successful'] = 'Operation erfolgreich';
+$string['response_message'] = 'Antwortnachricht';
+$string['processed_files_count'] = 'Anzahl verarbeiteter Dateien';
+$string['sending_question_fallback'] = 'Frage wird gesendet...';
+$string['error_colon_fallback'] = 'Fehler: ';
+$string['error_sending_question_fallback'] = 'Fehler beim Senden der Frage: ';
+$string['saving_prompt_fallback'] = 'Prompt wird gespeichert...';
+$string['prompt_saved_successfully_fallback'] = 'Prompt erfolgreich gespeichert!';
+$string['error_saving_prompt_fallback'] = 'Fehler beim Speichern des Prompts: ';
+$string['no_files_selected_fallback'] = 'Keine Dateien ausgewählt.';
+$string['uploading_files_fallback'] = 'Dateien werden hochgeladen...';
+$string['files_indexed_successfully_fallback'] = 'Dateien erfolgreich indiziert!';
+$string['error_processing_files_fallback'] = 'Fehler beim Verarbeiten der Dateien: ';
+$string['unknown_error_occurred'] = 'Ein unbekannter Fehler ist aufgetreten';
+$string['server_response_error'] = 'Server-Antwort-Fehler. Überprüfen Sie die Konsole für Details.';
+$string['server_error_check_console'] = 'Server-Fehler - überprüfen Sie die Konsole für Details';
+$string['files_converted_debug'] = 'Dateien in base64 konvertiert:';
+$string['sending_ajax_request_debug'] = 'AJAX-Anfrage senden:';
+$string['upload_response_received_debug'] = 'Upload-Antwort erhalten:';
+$string['response_type_debug'] = 'Antworttyp:';
+$string['upload_error_details_debug'] = 'Upload-Fehler Details:';
+$string['error_object_debug'] = 'Fehlerobjekt:';
+$string['raw_server_response_debug'] = 'Rohe Server-Antwort:';

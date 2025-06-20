@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'uteluqchatbot';
 $string['uteluqchatbot:addinstance'] = 'Dodaj nowy blok chatbot';
@@ -208,3 +208,49 @@ $string['empty_response_from_api'] = 'Pusta odpowiedź z API.';
 $string['empty_string_as_answer'] = 'Otrzymano pusty ciąg znaków jako odpowiedź.';
 $string['database_error_saving_conversation'] = 'Błąd bazy danych podczas zapisywania rozmowy: ';
 $string['general_exception'] = 'Ogólny wyjątek: ';
+$string['no_files_selected'] = 'Nie wybrano żadnych plików';
+$string['course_id'] = 'ID kursu';
+$string['file_name'] = 'Nazwa pliku';
+$string['file_content_base64'] = 'Zawartość pliku (kodowanie base64)';
+$string['insufficient_permissions'] = 'Niewystarczające uprawnienia do przesyłania plików';
+$string['missing_api_configuration'] = 'Brakuje wymaganej konfiguracji API';
+$string['weaviate_connector_not_found'] = 'Klasa WeaviateConnector nie została znaleziona';
+$string['collection_prefix'] = 'Collection_course_';
+$string['error_creating_collection'] = 'Błąd tworzenia kolekcji: ';
+$string['unknown_error'] = 'Nieznany błąd';
+$string['failed_create_upload_directory'] = 'Nie udało się utworzyć katalogu przesyłania';
+$string['empty_filename'] = 'Podano pustą nazwę pliku';
+$string['unsupported_file_type'] = 'Nieobsługiwany typ pliku: ';
+$string['invalid_file_data'] = 'Nieprawidłowe dane pliku dla: ';
+$string['failed_save_file'] = 'Nie udało się zapisać pliku: ';
+$string['adobe_pdf_credentials_not_configured'] = 'Dane uwierzytelniające Adobe PDF API nie są skonfigurowane';
+$string['pdf_extractor_not_found'] = 'Klasa ekstraktora PDF nie została znaleziona';
+$string['failed_extract_pdf_text'] = 'Nie udało się wyodrębnić tekstu z PDF: ';
+$string['failed_save_extracted_text'] = 'Nie udało się zapisać wyodrębnionego pliku tekstowego: ';
+$string['error_indexing_file_unknown'] = 'Błąd indeksowania pliku ';
+$string['files_indexed_successfully'] = ' plik(i) pomyślnie zindeksowane';
+$string['errors_occurred'] = '. Błędy: ';
+$string['no_files_processed'] = 'Nie przetworzono żadnych plików. Błędy: ';
+$string['operation_successful'] = 'Operacja pomyślna';
+$string['response_message'] = 'Wiadomość odpowiedzi';
+$string['processed_files_count'] = 'Liczba przetworzonych plików';
+$string['sending_question_fallback'] = 'Wysyłanie pytania...';
+$string['error_colon_fallback'] = 'Błąd: ';
+$string['error_sending_question_fallback'] = 'Błąd wysyłania pytania: ';
+$string['saving_prompt_fallback'] = 'Zapisywanie promptu...';
+$string['prompt_saved_successfully_fallback'] = 'Prompt zapisany pomyślnie!';
+$string['error_saving_prompt_fallback'] = 'Błąd zapisywania promptu: ';
+$string['no_files_selected_fallback'] = 'Nie wybrano plików.';
+$string['uploading_files_fallback'] = 'Przesyłanie plików...';
+$string['files_indexed_successfully_fallback'] = 'Pliki zostały pomyślnie zindeksowane!';
+$string['error_processing_files_fallback'] = 'Błąd przetwarzania plików: ';
+$string['unknown_error_occurred'] = 'Wystąpił nieznany błąd';
+$string['server_response_error'] = 'Błąd odpowiedzi serwera. Sprawdź konsolę, aby uzyskać szczegóły.';
+$string['server_error_check_console'] = 'Błąd serwera - sprawdź konsolę, aby uzyskać szczegóły';
+$string['files_converted_debug'] = 'Pliki przekonwertowane na base64:';
+$string['sending_ajax_request_debug'] = 'Wysyłanie żądania AJAX:';
+$string['upload_response_received_debug'] = 'Otrzymano odpowiedź przesyłania:';
+$string['response_type_debug'] = 'Typ odpowiedzi:';
+$string['upload_error_details_debug'] = 'Szczegóły błędu przesyłania:';
+$string['error_object_debug'] = 'Obiekt błędu:';
+$string['raw_server_response_debug'] = 'Surowa odpowiedź serwera:';

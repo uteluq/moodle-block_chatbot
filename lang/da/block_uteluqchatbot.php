@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'uteluqchatbot';
 $string['uteluqchatbot:addinstance'] = 'Tilføj en ny chatbot-blok';
@@ -207,3 +207,49 @@ $string['empty_response_from_api'] = 'Tomt svar fra API.';
 $string['empty_string_as_answer'] = 'Tom streng modtaget som svar.';
 $string['database_error_saving_conversation'] = 'Databasefejl ved gemning af samtale: ';
 $string['general_exception'] = 'Generel undtagelse: ';
+$string['no_files_selected'] = 'Ingen filer valgt';
+$string['course_id'] = 'Kursus-ID';
+$string['file_name'] = 'Filnavn';
+$string['file_content_base64'] = 'Filindhold (base64-kodet)';
+$string['insufficient_permissions'] = 'Utilstrækkelige tilladelser til at uploade filer';
+$string['missing_api_configuration'] = 'Manglende påkrævet API-konfiguration';
+$string['weaviate_connector_not_found'] = 'WeaviateConnector-klasse ikke fundet';
+$string['collection_prefix'] = 'Collection_course_';
+$string['error_creating_collection'] = 'Fejl ved oprettelse af samling: ';
+$string['unknown_error'] = 'Ukendt fejl';
+$string['failed_create_upload_directory'] = 'Kunne ikke oprette upload-mappe';
+$string['empty_filename'] = 'Tomt filnavn angivet';
+$string['unsupported_file_type'] = 'Ikke-understøttet filtype: ';
+$string['invalid_file_data'] = 'Ugyldig fildata for: ';
+$string['failed_save_file'] = 'Kunne ikke gemme fil: ';
+$string['adobe_pdf_credentials_not_configured'] = 'Adobe PDF API-legitimationsoplysninger ikke konfigureret';
+$string['pdf_extractor_not_found'] = 'PDF-ekstraktørklasse ikke fundet';
+$string['failed_extract_pdf_text'] = 'Kunne ikke udtrække tekst fra PDF: ';
+$string['failed_save_extracted_text'] = 'Kunne ikke gemme udtrukket tekstfil: ';
+$string['error_indexing_file_unknown'] = 'Fejl ved indeksering af fil ';
+$string['files_indexed_successfully'] = ' fil(er) indekseret succesfuldt';
+$string['errors_occurred'] = '. Fejl: ';
+$string['no_files_processed'] = 'Ingen filer behandlet. Fejl: ';
+$string['operation_successful'] = 'Operation vellykket';
+$string['response_message'] = 'Responsbesked';
+$string['processed_files_count'] = 'Antal behandlede filer';
+$string['sending_question_fallback'] = 'Sender spørgsmålet...';
+$string['error_colon_fallback'] = 'Fejl: ';
+$string['error_sending_question_fallback'] = 'Fejl ved afsendelse af spørgsmål: ';
+$string['saving_prompt_fallback'] = 'Gemmer prompten...';
+$string['prompt_saved_successfully_fallback'] = 'Prompt gemt succesfuldt!';
+$string['error_saving_prompt_fallback'] = 'Fejl ved gemning af prompt: ';
+$string['no_files_selected_fallback'] = 'Ingen filer valgt.';
+$string['uploading_files_fallback'] = 'Uploader filer...';
+$string['files_indexed_successfully_fallback'] = 'Filer indekseret succesfuldt!';
+$string['error_processing_files_fallback'] = 'Fejl ved behandling af filer: ';
+$string['unknown_error_occurred'] = 'En ukendt fejl opstod';
+$string['server_response_error'] = 'Server respons fejl. Tjek konsollen for detaljer.';
+$string['server_error_check_console'] = 'Server fejl - tjek konsollen for detaljer';
+$string['files_converted_debug'] = 'Filer konverteret til base64:';
+$string['sending_ajax_request_debug'] = 'Sender AJAX-anmodning:';
+$string['upload_response_received_debug'] = 'Upload-respons modtaget:';
+$string['response_type_debug'] = 'Responstype:';
+$string['upload_error_details_debug'] = 'Upload fejl detaljer:';
+$string['error_object_debug'] = 'Fejlobjekt:';
+$string['raw_server_response_debug'] = 'Rå server respons:';

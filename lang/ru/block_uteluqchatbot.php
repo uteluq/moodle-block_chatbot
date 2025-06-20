@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'Чатбот';
 $string['uteluqchatbot:addinstance'] = 'Добавить новый блок чатбота';
@@ -209,3 +209,50 @@ $string['empty_response_from_api'] = 'Пустой ответ от API.';
 $string['empty_string_as_answer'] = 'Получена пустая строка в качестве ответа.';
 $string['database_error_saving_conversation'] = 'Ошибка базы данных при сохранении разговора: ';
 $string['general_exception'] = 'Общее исключение: ';
+$string['no_files_selected'] = 'Файлы не выбраны';
+
+$string['course_id'] = 'ID курса';
+$string['file_name'] = 'Имя файла';
+$string['file_content_base64'] = 'Содержимое файла (кодировка base64)';
+$string['insufficient_permissions'] = 'Недостаточно прав для загрузки файлов';
+$string['missing_api_configuration'] = 'Отсутствует необходимая конфигурация API';
+$string['weaviate_connector_not_found'] = 'Класс WeaviateConnector не найден';
+$string['collection_prefix'] = 'Collection_course_';
+$string['error_creating_collection'] = 'Ошибка создания коллекции: ';
+$string['unknown_error'] = 'Неизвестная ошибка';
+$string['failed_create_upload_directory'] = 'Не удалось создать папку загрузки';
+$string['empty_filename'] = 'Предоставлено пустое имя файла';
+$string['unsupported_file_type'] = 'Неподдерживаемый тип файла: ';
+$string['invalid_file_data'] = 'Недопустимые данные файла для: ';
+$string['failed_save_file'] = 'Не удалось сохранить файл: ';
+$string['adobe_pdf_credentials_not_configured'] = 'Учетные данные Adobe PDF API не настроены';
+$string['pdf_extractor_not_found'] = 'Класс извлечения PDF не найден';
+$string['failed_extract_pdf_text'] = 'Не удалось извлечь текст из PDF: ';
+$string['failed_save_extracted_text'] = 'Не удалось сохранить извлеченный текстовый файл: ';
+$string['error_indexing_file_unknown'] = 'Ошибка индексации файла ';
+$string['files_indexed_successfully'] = ' файл(ы) успешно проиндексированы';
+$string['errors_occurred'] = '. Ошибки: ';
+$string['no_files_processed'] = 'Файлы не обработаны. Ошибки: ';
+$string['operation_successful'] = 'Операция успешна';
+$string['response_message'] = 'Сообщение ответа';
+$string['processed_files_count'] = 'Количество обработанных файлов';
+$string['sending_question_fallback'] = 'Отправка вопроса...';
+$string['error_colon_fallback'] = 'Ошибка: ';
+$string['error_sending_question_fallback'] = 'Ошибка отправки вопроса: ';
+$string['saving_prompt_fallback'] = 'Сохранение промпта...';
+$string['prompt_saved_successfully_fallback'] = 'Промпт успешно сохранен!';
+$string['error_saving_prompt_fallback'] = 'Ошибка сохранения промпта: ';
+$string['no_files_selected_fallback'] = 'Файлы не выбраны.';
+$string['uploading_files_fallback'] = 'Загрузка файлов...';
+$string['files_indexed_successfully_fallback'] = 'Файлы успешно проиндексированы!';
+$string['error_processing_files_fallback'] = 'Ошибка обработки файлов: ';
+$string['unknown_error_occurred'] = 'Произошла неизвестная ошибка';
+$string['server_response_error'] = 'Ошибка ответа сервера. Проверьте консоль для подробностей.';
+$string['server_error_check_console'] = 'Ошибка сервера - проверьте консоль для подробностей';
+$string['files_converted_debug'] = 'Файлы преобразованы в base64:';
+$string['sending_ajax_request_debug'] = 'Отправка AJAX-запроса:';
+$string['upload_response_received_debug'] = 'Получен ответ загрузки:';
+$string['response_type_debug'] = 'Тип ответа:';
+$string['upload_error_details_debug'] = 'Детали ошибки загрузки:';
+$string['error_object_debug'] = 'Объект ошибки:';
+$string['raw_server_response_debug'] = 'Необработанный ответ сервера:';

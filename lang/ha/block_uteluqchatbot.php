@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'uteluqchatbot';
 $string['uteluqchatbot:addinstance'] = 'Ajoute yon nouvo blok uteluqchatbot';
@@ -202,3 +202,51 @@ $string['empty_response_from_api'] = 'Babu amsa daga API.';
 $string['empty_string_as_answer'] = 'An karɓi sarari mara abu a matsayin amsa.';
 $string['database_error_saving_conversation'] = 'Kuskuren bayanai yayin adana tattaunawa: ';
 $string['general_exception'] = 'Kuskuren gabaɗaya: ';
+$string['no_files_selected'] = 'Ba a zaɓi fayiloli ba';
+$string['course_id'] = 'ID ɗin kwas';
+$string['file_name'] = 'Sunan fayil';
+$string['file_content_base64'] = 'Abun ciki na fayil (encoded a base64)';
+$string['insufficient_permissions'] = 'Ba a da izini don ɗora fayiloli';
+$string['missing_api_configuration'] = 'Rashin daidaiton API da ake buƙata';
+$string['weaviate_connector_not_found'] = 'Ba a samu ajin WeaviateConnector ba';
+$string['collection_prefix'] = 'Collection_course_';
+$string['error_creating_collection'] = 'Kuskure wajen ƙirƙirar tarin fayiloli: ';
+$string['unknown_error'] = 'Kuskure da ba a sani ba';
+$string['failed_create_upload_directory'] = 'An kasa ƙirƙirar babban fayil na ɗora fayiloli';
+$string['empty_filename'] = 'An bayar da sunan fayil mara komai';
+$string['unsupported_file_type'] = 'Nau’in fayil da ba a goyon baya: ';
+$string['invalid_file_data'] = 'Bayanan fayil marasa inganci: ';
+$string['failed_save_file'] = 'An kasa adana fayil: ';
+$string['adobe_pdf_credentials_not_configured'] = 'Ba a saita takardun shaida na Adobe PDF API ba';
+$string['pdf_extractor_not_found'] = 'Ba a samu ajin fitar da PDF ba';
+$string['failed_extract_pdf_text'] = 'An kasa fitar da rubutu daga PDF: ';
+$string['failed_save_extracted_text'] = 'An kasa adana rubutun da aka cire daga fayil: ';
+$string['error_indexing_file_unknown'] = 'Kuskure yayin yin index ɗin fayil ';
+$string['files_indexed_successfully'] = 'An samu nasarar yin index ga fayil(oli)';
+$string['errors_occurred'] = '. Kuskuren da ya faru: ';
+$string['no_files_processed'] = 'Babu fayil da aka sarrafa. Kuskure: ';
+$string['operation_successful'] = 'Aikin ya yi nasara';
+$string['response_message'] = 'Saƙon martani';
+$string['processed_files_count'] = 'Yawan fayilolin da aka sarrafa';
+$string['sending_question_fallback'] = 'Ana aika tambaya...';
+$string['error_colon_fallback'] = 'Kuskure: ';
+$string['error_sending_question_fallback'] = 'Kuskure yayin aikawa da tambaya: ';
+$string['saving_prompt_fallback'] = 'Ana adana umarni...';
+$string['prompt_saved_successfully_fallback'] = 'An adana umarnin cikin nasara!';
+$string['error_saving_prompt_fallback'] = 'Kuskure yayin adana umarni: ';
+$string['no_files_selected_fallback'] = 'Ba a zaɓi wani fayil ba.';
+$string['uploading_files_fallback'] = 'Ana ɗora fayiloli...';
+$string['files_indexed_successfully_fallback'] = 'An samu nasarar yin index ɗin fayiloli!';
+$string['error_processing_files_fallback'] = 'Kuskure yayin sarrafa fayiloli: ';
+
+$string['unknown_error_occurred'] = 'An sami kuskure da ba a sani ba';
+$string['server_response_error'] = 'Kuskuren amsar uwar garken. Duba consola don ƙarin bayani.';
+$string['server_error_check_console'] = 'Kuskuren uwar garke - duba consola don ƙarin bayani';
+
+$string['files_converted_debug'] = 'Fayiloli an juya su zuwa base64:';
+$string['sending_ajax_request_debug'] = 'Aika da buƙatar AJAX:';
+$string['upload_response_received_debug'] = 'An karɓi amsar ɗora fayil:';
+$string['response_type_debug'] = 'Nau’in amsa:';
+$string['upload_error_details_debug'] = 'Cikakken bayani na kuskuren ɗora fayil:';
+$string['error_object_debug'] = 'Abun kuskure:';
+$string['raw_server_response_debug'] = 'Amsar uwar garke kamar yadda take:';
