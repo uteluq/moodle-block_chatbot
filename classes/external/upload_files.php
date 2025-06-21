@@ -1,7 +1,7 @@
 <?php
 /**
  * External API for file upload and indexing
- * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  */
 
 namespace block_uteluqchatbot\external;
@@ -26,11 +26,11 @@ class upload_files extends external_api {
      */
     public static function execute_parameters() {
         return new external_function_parameters([
-            'courseid' => new external_value(PARAM_INT, 'Course ID'),
+            'courseid' => new external_value(PARAM_INT, get_string('course_id', 'block_uteluqchatbot')),
             'files' => new external_multiple_structure(
                 new external_single_structure([
-                    'filename' => new external_value(PARAM_TEXT, 'File name'),
-                    'filecontent' => new external_value(PARAM_RAW, 'File content (base64 encoded)'),
+                    'filename' => new external_value(PARAM_TEXT, get_string('file_name', 'block_uteluqchatbot')),
+                    'filecontent' => new external_value(PARAM_RAW, get_string('file_content_base64', 'block_uteluqchatbot')),
                 ])
             )
         ]);
@@ -100,7 +100,7 @@ class upload_files extends external_api {
                     is_enrolled($context, $USER->id)) {
                     // OK
                 } else {
-                    throw new Exception('Insufficient permissions to upload files');
+                    throw new Exception(get_string('insufficient_permissions', 'block_uteluqchatbot'));
                 }
             }
 
@@ -111,18 +111,18 @@ class upload_files extends external_api {
 
             // Validate required configurations
             if (empty($apiUrl) || empty($apiKey) || empty($cohereApiKey)) {
-                throw new Exception('Missing required API configuration');
+                throw new Exception(get_string('missing_api_configuration', 'block_uteluqchatbot'));
             }
 
             // Check if classes exist
             if (!class_exists('\block_uteluqchatbot\weaviate_connector')) {
-                throw new Exception('WeaviateConnector class not found');
+                throw new Exception(get_string('weaviate_connector_not_found', 'block_uteluqchatbot'));
             }
 
             // Initialize WeaviateConnector object
             $connector = new \block_uteluqchatbot\weaviate_connector($apiUrl, $apiKey, $cohereApiKey);
 
-            $courseName = 'Collection_course_' . $params['courseid'];
+            $courseName = get_string('collection_prefix', 'block_uteluqchatbot') . $params['courseid'];
             
             // Delete existing collection and recreate it
             $connector->delete_collection($courseName);
@@ -132,7 +132,7 @@ class upload_files extends external_api {
             // Create the collection
             if (!$connector->create_collection($courseName)) {
                 $error = $connector->get_last_error();
-                throw new Exception('Error creating collection: ' . ($error ? $error : 'Unknown error'));
+                throw new Exception(get_string('error_creating_collection', 'block_uteluqchatbot') . ($error ? $error : get_string('unknown_error', 'block_uteluqchatbot')));
             }
 
             // Create or get a temporary directory for the plugin
@@ -142,7 +142,7 @@ class upload_files extends external_api {
             // If the uploads subdirectory doesn't exist, create it
             if (!file_exists($uploadDir)) {
                 if (!mkdir($uploadDir, 0777, true)) {
-                    throw new Exception('Failed to create upload directory');
+                    throw new Exception(get_string('failed_create_upload_directory', 'block_uteluqchatbot'));
                 }
             }
 
@@ -153,18 +153,18 @@ class upload_files extends external_api {
                 try {
                     // Validate filename
                     if (empty($file['filename'])) {
-                        throw new Exception('Empty filename provided');
+                        throw new Exception(get_string('empty_filename', 'block_uteluqchatbot'));
                     }
 
                     // Check if file type is supported
                     if (!self::is_pdf($file['filename']) && !self::is_text_file($file['filename'])) {
-                        throw new Exception('Unsupported file type: ' . $file['filename']);
+                        throw new Exception(get_string('unsupported_file_type', 'block_uteluqchatbot') . $file['filename']);
                     }
 
                     // Decode base64 content
                     $fileContent = base64_decode($file['filecontent']);
                     if ($fileContent === false) {
-                        throw new Exception('Invalid file data for: ' . $file['filename']);
+                        throw new Exception(get_string('invalid_file_data', 'block_uteluqchatbot') . $file['filename']);
                     }
 
                     // Generate unique filename
@@ -173,7 +173,7 @@ class upload_files extends external_api {
 
                     // Save file temporarily
                     if (file_put_contents($destination, $fileContent) === false) {
-                        throw new Exception('Failed to save file: ' . $file['filename']);
+                        throw new Exception(get_string('failed_save_file', 'block_uteluqchatbot') . $file['filename']);
                     }
 
                     $extractedText = '';
@@ -186,19 +186,19 @@ class upload_files extends external_api {
                         $adobe_pdf_client_secret = get_config('block_uteluqchatbot', 'adobe_pdf_client_secret');
 
                         if (empty($adobe_pdf_client_id) || empty($adobe_pdf_client_secret)) {
-                            throw new Exception('Adobe PDF API credentials not configured');
+                            throw new Exception(get_string('adobe_pdf_credentials_not_configured', 'block_uteluqchatbot'));
                         }
 
                         // Check if PDF extractor class exists
                         if (!class_exists('\block_uteluqchatbot\pdf_extract_api')) {
-                            throw new Exception('PDF extractor class not found');
+                            throw new Exception(get_string('pdf_extractor_not_found', 'block_uteluqchatbot'));
                         }
 
                         $pdfExtractor = new \block_uteluqchatbot\pdf_extract_api($adobe_pdf_client_id, $adobe_pdf_client_secret);
                         $extractedText = $pdfExtractor->process_pdf($destination);
 
                         if (empty($extractedText)) {
-                            throw new Exception('Failed to extract text from PDF: ' . $file['filename']);
+                            throw new Exception(get_string('failed_extract_pdf_text', 'block_uteluqchatbot') . $file['filename']);
                         }
 
                         // Generate a unique name for the text file
@@ -206,7 +206,7 @@ class upload_files extends external_api {
                         $destinationTxt = $uploadDir . $newFileTxtName;
 
                         if (file_put_contents($destinationTxt, $extractedText) === false) {
-                            throw new Exception('Failed to save extracted text file: ' . $file['filename']);
+                            throw new Exception(get_string('failed_save_extracted_text', 'block_uteluqchatbot') . $file['filename']);
                         }
 
                     } else if (self::is_text_file($file['filename'])) {
@@ -220,7 +220,7 @@ class upload_files extends external_api {
 
                     if (!$indexed) {
                         $error = $connector->get_last_error();
-                        throw new Exception('Error indexing file ' . $file['filename'] . ': ' . ($error ? $error : 'Unknown error'));
+                        throw new Exception(get_string('error_indexing_file_unknown', 'block_uteluqchatbot') . $file['filename'] . ': ' . ($error ? $error : get_string('unknown_error', 'block_uteluqchatbot')));
                     }
 
                     // Clean up temporary files
@@ -248,9 +248,9 @@ class upload_files extends external_api {
 
             // Return results
             if ($processedFiles > 0) {
-                $message = $processedFiles . ' file(s) indexed successfully';
+                $message = $processedFiles . get_string('files_indexed_successfully', 'block_uteluqchatbot');
                 if (!empty($errors)) {
-                    $message .= '. Errors: ' . implode('; ', $errors);
+                    $message .= get_string('errors_occurred', 'block_uteluqchatbot') . implode('; ', $errors);
                 }
                 
                 return [
@@ -261,7 +261,7 @@ class upload_files extends external_api {
             } else {
                 return [
                     'success' => false,
-                    'message' => 'No files processed. Errors: ' . implode('; ', $errors),
+                    'message' => get_string('no_files_processed', 'block_uteluqchatbot') . implode('; ', $errors),
                     'processedfiles' => 0
                 ];
             }
@@ -286,9 +286,9 @@ class upload_files extends external_api {
      */
     public static function execute_returns() {
         return new external_single_structure([
-            'success' => new external_value(PARAM_BOOL, 'Whether the operation was successful'),
-            'message' => new external_value(PARAM_TEXT, 'Response message'),
-            'processedfiles' => new external_value(PARAM_INT, 'Number of files processed')
+            'success' => new external_value(PARAM_BOOL, get_string('operation_successful', 'block_uteluqchatbot')),
+            'message' => new external_value(PARAM_TEXT, get_string('response_message', 'block_uteluqchatbot')),
+            'processedfiles' => new external_value(PARAM_INT, get_string('processed_files_count', 'block_uteluqchatbot'))
         ]);
     }
 }

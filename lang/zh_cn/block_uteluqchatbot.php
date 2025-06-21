@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = '聊天机器人';
 $string['uteluqchatbot:addinstance'] = '添加新的聊天机器人块';
@@ -209,3 +209,51 @@ $string['empty_response_from_api'] = '来自API的空响应。';
 $string['empty_string_as_answer'] = '收到空字符串作为答案。';
 $string['database_error_saving_conversation'] = '保存对话时的数据库错误：';
 $string['general_exception'] = '一般异常：';
+$string['no_files_selected'] = '未选择文件';
+
+
+$string['course_id'] = '课程ID';
+$string['file_name'] = '文件名';
+$string['file_content_base64'] = '文件内容（base64编码）';
+$string['insufficient_permissions'] = '上传文件权限不足';
+$string['missing_api_configuration'] = '缺少必需的API配置';
+$string['weaviate_connector_not_found'] = '未找到WeaviateConnector类';
+$string['collection_prefix'] = 'Collection_course_';
+$string['error_creating_collection'] = '创建集合时出错：';
+$string['unknown_error'] = '未知错误';
+$string['failed_create_upload_directory'] = '创建上传目录失败';
+$string['empty_filename'] = '提供了空文件名';
+$string['unsupported_file_type'] = '不支持的文件类型：';
+$string['invalid_file_data'] = '无效的文件数据：';
+$string['failed_save_file'] = '保存文件失败：';
+$string['adobe_pdf_credentials_not_configured'] = 'Adobe PDF API凭据未配置';
+$string['pdf_extractor_not_found'] = '未找到PDF提取器类';
+$string['failed_extract_pdf_text'] = '从PDF提取文本失败：';
+$string['failed_save_extracted_text'] = '保存提取的文本文件失败：';
+$string['error_indexing_file_unknown'] = '索引文件时出错 ';
+$string['files_indexed_successfully'] = ' 个文件已成功索引';
+$string['errors_occurred'] = '。错误：';
+$string['no_files_processed'] = '未处理任何文件。错误：';
+$string['operation_successful'] = '操作成功';
+$string['response_message'] = '响应消息';
+$string['processed_files_count'] = '已处理文件数量';
+$string['sending_question_fallback'] = '正在发送问题...';
+$string['error_colon_fallback'] = '错误：';
+$string['error_sending_question_fallback'] = '发送问题时出错：';
+$string['saving_prompt_fallback'] = '正在保存提示...';
+$string['prompt_saved_successfully_fallback'] = '提示保存成功！';
+$string['error_saving_prompt_fallback'] = '保存提示时出错：';
+$string['no_files_selected_fallback'] = '未选择文件。';
+$string['uploading_files_fallback'] = '正在上传文件...';
+$string['files_indexed_successfully_fallback'] = '文件索引成功！';
+$string['error_processing_files_fallback'] = '处理文件时出错：';
+$string['unknown_error_occurred'] = '发生未知错误';
+$string['server_response_error'] = '服务器响应错误。请查看控制台了解详情。';
+$string['server_error_check_console'] = '服务器错误 - 请查看控制台了解详情';
+$string['files_converted_debug'] = '文件已转换为base64：';
+$string['sending_ajax_request_debug'] = '正在发送AJAX请求：';
+$string['upload_response_received_debug'] = '已收到上传响应：';
+$string['response_type_debug'] = '响应类型：';
+$string['upload_error_details_debug'] = '上传错误详情：';
+$string['error_object_debug'] = '错误对象：';
+$string['raw_server_response_debug'] = '原始服务器响应：';

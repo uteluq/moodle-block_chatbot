@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'uteluqchatbot';
 $string['uteluqchatbot:addinstance'] = 'Ongeza kichaguzi kipya cha chatbot';
@@ -208,3 +208,50 @@ $string['empty_response_from_api'] = 'Jibu tupu kutoka API.';
 $string['empty_string_as_answer'] = 'Mstari tupu umepokelewa kama jibu.';
 $string['database_error_saving_conversation'] = 'Kosa la hifadhidata wakati wa kuokota mazungumzo: ';
 $string['general_exception'] = 'Kosa la jumla: ';
+$string['no_files_selected'] = 'Hakuna faili zilizochaguliwa';
+
+$string['course_id'] = 'Kitambulisho cha kozi';
+$string['file_name'] = 'Jina la faili';
+$string['file_content_base64'] = 'Maudhui ya faili (yamekodwa kwa base64)';
+$string['insufficient_permissions'] = 'Ruhusa za kutosha za kupakia faili';
+$string['missing_api_configuration'] = 'Upangaji wa API unaohitajika haupo';
+$string['weaviate_connector_not_found'] = 'Darasa la WeaviateConnector halipo';
+$string['collection_prefix'] = 'Collection_course_';
+$string['error_creating_collection'] = 'Hitilafu ya kuunda mkusanyiko: ';
+$string['unknown_error'] = 'Hitilafu isiyojulikana';
+$string['failed_create_upload_directory'] = 'Imeshindwa kuunda saraka ya kupakia';
+$string['empty_filename'] = 'Jina tupu la faili limetolewa';
+$string['unsupported_file_type'] = 'Aina ya faili isiyotegemezwa: ';
+$string['invalid_file_data'] = 'Data batili ya faili kwa: ';
+$string['failed_save_file'] = 'Imeshindwa kuhifadhi faili: ';
+$string['adobe_pdf_credentials_not_configured'] = 'Hati za uthibitisho za Adobe PDF API hazijapangwa';
+$string['pdf_extractor_not_found'] = 'Darasa la kuchukua PDF halipo';
+$string['failed_extract_pdf_text'] = 'Imeshindwa kutoa maandishi kutoka PDF: ';
+$string['failed_save_extracted_text'] = 'Imeshindwa kuhifadhi faili la maandishi yaliyochukuliwa: ';
+$string['error_indexing_file_unknown'] = 'Hitilafu ya kuongeza faili kwenye orodha ';
+$string['files_indexed_successfully'] = ' faili zimeongezwa kwenye orodha kwa mafanikio';
+$string['errors_occurred'] = '. Makosa: ';
+$string['no_files_processed'] = 'Hakuna faili zilizochakatwa. Makosa: ';
+$string['operation_successful'] = 'Uendeshaji umefanikiwa';
+$string['response_message'] = 'Ujumbe wa majibu';
+$string['processed_files_count'] = 'Idadi ya faili zilizochakatwa';
+$string['sending_question_fallback'] = 'Inatuma swali...';
+$string['error_colon_fallback'] = 'Hitilafu: ';
+$string['error_sending_question_fallback'] = 'Hitilafu ya kutuma swali: ';
+$string['saving_prompt_fallback'] = 'Inahifadhi prompt...';
+$string['prompt_saved_successfully_fallback'] = 'Prompt imehifadhiwa kwa mafanikio!';
+$string['error_saving_prompt_fallback'] = 'Hitilafu ya kuhifadhi prompt: ';
+$string['no_files_selected_fallback'] = 'Hakuna faili zilizochaguliwa.';
+$string['uploading_files_fallback'] = 'Inapakia faili...';
+$string['files_indexed_successfully_fallback'] = 'Faili zimeongezwa kwenye orodha kwa mafanikio!';
+$string['error_processing_files_fallback'] = 'Hitilafu ya kuchakata faili: ';
+$string['unknown_error_occurred'] = 'Hitilafu isiyojulikana imetokea';
+$string['server_response_error'] = 'Hitilafu ya majibu ya seva. Angalia console kwa maelezo.';
+$string['server_error_check_console'] = 'Hitilafu ya seva - angalia console kwa maelezo';
+$string['files_converted_debug'] = 'Faili zimebadilishwa kuwa base64:';
+$string['sending_ajax_request_debug'] = 'Inatuma ombi la AJAX:';
+$string['upload_response_received_debug'] = 'Majibu ya upakiaji yamepokelewa:';
+$string['response_type_debug'] = 'Aina ya majibu:';
+$string['upload_error_details_debug'] = 'Maelezo ya hitilafu ya upakiaji:';
+$string['error_object_debug'] = 'Kitu cha hitilafu:';
+$string['raw_server_response_debug'] = 'Majibu ghafi ya seva:';

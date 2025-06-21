@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'شات بوت';
 $string['uteluqchatbot:addinstance'] = 'أضف كتلة شات بوت جديدة';
@@ -209,3 +209,49 @@ $string['empty_response_from_api'] = 'استجابة فارغة من API.';
 $string['empty_string_as_answer'] = 'تم استلام سلسلة فارغة كإجابة.';
 $string['database_error_saving_conversation'] = 'خطأ في قاعدة البيانات أثناء حفظ المحادثة: ';
 $string['general_exception'] = 'استثناء عام: ';
+$string['no_files_selected'] = 'لم يتم تحديد أي ملفات';
+$string['course_id'] = 'معرف الدورة';
+$string['file_name'] = 'اسم الملف';
+$string['file_content_base64'] = 'محتوى الملف (مُرمز بـ base64)';
+$string['insufficient_permissions'] = 'صلاحيات غير كافية لرفع الملفات';
+$string['missing_api_configuration'] = 'تكوين API المطلوب مفقود';
+$string['weaviate_connector_not_found'] = 'فئة WeaviateConnector غير موجودة';
+$string['collection_prefix'] = 'Collection_course_';
+$string['error_creating_collection'] = 'خطأ في إنشاء المجموعة: ';
+$string['unknown_error'] = 'خطأ غير معروف';
+$string['failed_create_upload_directory'] = 'فشل في إنشاء دليل الرفع';
+$string['empty_filename'] = 'تم توفير اسم ملف فارغ';
+$string['unsupported_file_type'] = 'نوع ملف غير مدعوم: ';
+$string['invalid_file_data'] = 'بيانات ملف غير صحيحة لـ: ';
+$string['failed_save_file'] = 'فشل في حفظ الملف: ';
+$string['adobe_pdf_credentials_not_configured'] = 'بيانات اعتماد Adobe PDF API غير مُكونة';
+$string['pdf_extractor_not_found'] = 'فئة مستخرج PDF غير موجودة';
+$string['failed_extract_pdf_text'] = 'فشل في استخراج النص من PDF: ';
+$string['failed_save_extracted_text'] = 'فشل في حفظ ملف النص المستخرج: ';
+$string['error_indexing_file_unknown'] = 'خطأ في فهرسة الملف ';
+$string['files_indexed_successfully'] = ' ملف(ات) تم فهرستها بنجاح';
+$string['errors_occurred'] = '. أخطاء: ';
+$string['no_files_processed'] = 'لم يتم معالجة أي ملفات. أخطاء: ';
+$string['operation_successful'] = 'العملية نجحت';
+$string['response_message'] = 'رسالة الاستجابة';
+$string['processed_files_count'] = 'عدد الملفات المعالجة';
+$string['sending_question_fallback'] = 'إرسال السؤال...';
+$string['error_colon_fallback'] = 'خطأ: ';
+$string['error_sending_question_fallback'] = 'خطأ في إرسال السؤال: ';
+$string['saving_prompt_fallback'] = 'حفظ المطالبة...';
+$string['prompt_saved_successfully_fallback'] = 'تم حفظ المطالبة بنجاح!';
+$string['error_saving_prompt_fallback'] = 'خطأ في حفظ المطالبة: ';
+$string['no_files_selected_fallback'] = 'لم يتم تحديد أي ملفات.';
+$string['uploading_files_fallback'] = 'رفع الملفات...';
+$string['files_indexed_successfully_fallback'] = 'تم فهرسة الملفات بنجاح!';
+$string['error_processing_files_fallback'] = 'خطأ في معالجة الملفات: ';
+$string['unknown_error_occurred'] = 'حدث خطأ غير معروف';
+$string['server_response_error'] = 'خطأ في استجابة الخادم. تحقق من وحدة التحكم للحصول على التفاصيل.';
+$string['server_error_check_console'] = 'خطأ في الخادم - تحقق من وحدة التحكم للحصول على التفاصيل';
+$string['files_converted_debug'] = 'تم تحويل الملفات إلى base64:';
+$string['sending_ajax_request_debug'] = 'إرسال طلب AJAX:';
+$string['upload_response_received_debug'] = 'تم استلام استجابة الرفع:';
+$string['response_type_debug'] = 'نوع الاستجابة:';
+$string['upload_error_details_debug'] = 'تفاصيل خطأ الرفع:';
+$string['error_object_debug'] = 'كائن الخطأ:';
+$string['raw_server_response_debug'] = 'استجابة الخادم الأولية:';

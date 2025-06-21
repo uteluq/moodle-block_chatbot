@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'चैटबॉट';
 $string['uteluqchatbot:addinstance'] = 'नया चैटबॉट ब्लॉक जोड़ें';
@@ -208,3 +208,49 @@ $string['empty_response_from_api'] = 'API से खाली प्रतिक
 $string['empty_string_as_answer'] = 'खाली स्ट्रिंग को उत्तर के रूप में प्राप्त किया गया।';
 $string['database_error_saving_conversation'] = 'बातचीत को सहेजते समय डेटाबेस त्रुटि: ';
 $string['general_exception'] = 'सामान्य अपवाद: ';
+$string['no_files_selected'] = 'कोई फाइल चयनित नहीं';
+$string['course_id'] = 'कोर्स ID';
+$string['file_name'] = 'फ़ाइल नाम';
+$string['file_content_base64'] = 'फ़ाइल सामग्री (base64 एन्कोडेड)';
+$string['insufficient_permissions'] = 'फ़ाइलें अपलोड करने के लिए अपर्याप्त अनुमतियाँ';
+$string['missing_api_configuration'] = 'आवश्यक API कॉन्फ़िगरेशन गुम है';
+$string['weaviate_connector_not_found'] = 'WeaviateConnector क्लास नहीं मिली';
+$string['collection_prefix'] = 'Collection_course_';
+$string['error_creating_collection'] = 'संग्रह बनाने में त्रुटि: ';
+$string['unknown_error'] = 'अज्ञात त्रुटि';
+$string['failed_create_upload_directory'] = 'अपलोड डायरेक्टरी बनाने में विफल';
+$string['empty_filename'] = 'खाली फ़ाइल नाम प्रदान किया गया';
+$string['unsupported_file_type'] = 'असमर्थित फ़ाइल प्रकार: ';
+$string['invalid_file_data'] = 'अमान्य फ़ाइल डेटा: ';
+$string['failed_save_file'] = 'फ़ाइल सेव करने में विफल: ';
+$string['adobe_pdf_credentials_not_configured'] = 'Adobe PDF API क्रेडेंशियल कॉन्फ़िगर नहीं किए गए';
+$string['pdf_extractor_not_found'] = 'PDF एक्सट्रैक्टर क्लास नहीं मिली';
+$string['failed_extract_pdf_text'] = 'PDF से टेक्स्ट निकालने में विफल: ';
+$string['failed_save_extracted_text'] = 'निकाले गए टेक्स्ट फ़ाइल को सेव करने में विफल: ';
+$string['error_indexing_file_unknown'] = 'फ़ाइल इंडेक्स करने में त्रुटि ';
+$string['files_indexed_successfully'] = ' फ़ाइल(एं) सफलतापूर्वक इंडेक्स की गईं';
+$string['errors_occurred'] = '. त्रुटियाँ: ';
+$string['no_files_processed'] = 'कोई फ़ाइल प्रोसेस नहीं हुई। त्रुटियाँ: ';
+$string['operation_successful'] = 'ऑपरेशन सफल';
+$string['response_message'] = 'प्रतिक्रिया संदेश';
+$string['processed_files_count'] = 'प्रोसेस की गई फ़ाइलों की संख्या';
+$string['sending_question_fallback'] = 'प्रश्न भेजा जा रहा है...';
+$string['error_colon_fallback'] = 'त्रुटि: ';
+$string['error_sending_question_fallback'] = 'प्रश्न भेजने में त्रुटि: ';
+$string['saving_prompt_fallback'] = 'प्रॉम्प्ट सेव किया जा रहा है...';
+$string['prompt_saved_successfully_fallback'] = 'प्रॉम्प्ट सफलतापूर्वक सेव हो गया!';
+$string['error_saving_prompt_fallback'] = 'प्रॉम्प्ट सेव करने में त्रुटि: ';
+$string['no_files_selected_fallback'] = 'कोई फ़ाइल चयनित नहीं।';
+$string['uploading_files_fallback'] = 'फ़ाइलें अपलोड की जा रही हैं...';
+$string['files_indexed_successfully_fallback'] = 'फ़ाइलें सफलतापूर्वक इंडेक्स की गईं!';
+$string['error_processing_files_fallback'] = 'फ़ाइलों को प्रोसेस करने में त्रुटि: ';
+$string['unknown_error_occurred'] = 'एक अज्ञात त्रुटि हुई';
+$string['server_response_error'] = 'सर्वर प्रतिक्रिया त्रुटि। विवरण के लिए कंसोल जांचें।';
+$string['server_error_check_console'] = 'सर्वर त्रुटि - विवरण के लिए कंसोल जांचें';
+$string['files_converted_debug'] = 'फ़ाइलें base64 में कनवर्ट की गईं:';
+$string['sending_ajax_request_debug'] = 'AJAX अनुरोध भेजा जा रहा है:';
+$string['upload_response_received_debug'] = 'अपलोड प्रतिक्रिया प्राप्त हुई:';
+$string['response_type_debug'] = 'प्रतिक्रिया प्रकार:';
+$string['upload_error_details_debug'] = 'अपलोड त्रुटि विवरण:';
+$string['error_object_debug'] = 'त्रुटि ऑब्जेक्ट:';
+$string['raw_server_response_debug'] = 'कच्ची सर्वर प्रतिक्रिया:';
