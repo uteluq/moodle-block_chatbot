@@ -72,7 +72,7 @@ The plugin currently supports the following languages:
 - Access the chatbot block on a course page.
 - Pose questions related to course content in the provided text box.
 
-![For Learners](https://drive.google.com/uc?export=view&id=1MfvQgGL0ufW24-yyTMvEAnU8Pg61pHLR)
+![For Learners](screenshots/learner.png)
 
 
 ### For Teachers
@@ -80,11 +80,11 @@ The plugin currently supports the following languages:
 - Click **Modify Prompt** to customize the chatbot’s response behavior, referring to the [Prompt Design Guide](#).
 - Test the chatbot by asking questions to ensure it aligns with course content.
 
-![For Teachers](https://drive.google.com/uc?export=view&id=14ZMb7VUJMqRfWBskcpTPvV1rfc9c9M_9)
+![For Teachers](screenshots/teacher.png)
 
-![For Teachers](https://drive.google.com/uc?export=view&id=1N9aNPd6VTxuB-_GWubKzRfy-td54CkVn)
+![For Teachers](screenshots/teacher2.png)
 
-![For Teachers](https://drive.google.com/uc?export=view&id=1GVXFF8SqZMfQ5ok766dIV7h_D_eqUP__)
+![For Teachers](screenshots/teacher3.png)
 
 
 ### For Admins
@@ -92,7 +92,7 @@ The plugin currently supports the following languages:
 - Configure API keys and other settings as needed.
 - Monitor plugin performance and ensure API services are operational.
 
-- ![For Teachers](https://drive.google.com/uc?export=view&id=1j49BXrAeJ8xRhMxclCl9v9BAE0Czcvux)
+- ![For Teachers](screenshots/admin.png)
 
 
 ## Testing and Validation
