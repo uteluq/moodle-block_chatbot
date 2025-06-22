@@ -7,8 +7,6 @@ $string['uteluqchatbot:addinstance'] = 'Add a new chatbot block';
 $string['uteluqchatbot:myaddinstance'] = 'Add a new chatbot block to Dashboard';
 
 // Open AI
-$string['openai_api_key'] = 'OpenAI API Key';
-$string['openai_api_key_desc'] = 'Enter your OpenAI API key here.';
 
 
 // lang/en/block_uteluqchatbot.php
@@ -35,8 +33,6 @@ $string['cohere_embedding_api_key_desc'] = 'Enter your API key for the Cohere Em
 
 
 
-$string['max_conversations'] = 'Maximum conversations per user';
-$string['max_conversations_desc'] = 'The maximum number of conversations stored per user. If exceeded, the oldest conversation will be deleted.';
 // Test button strings
 $string['test_api_keys'] = 'Test API Keys';
 $string['test_api_keys_desc'] = 'Click to test the configured API keys';
@@ -47,58 +43,31 @@ $string['uteluqchatbot:manage'] = 'Manage chatbot settings';
 
 
 // For ../.../weaviate_db.php
-$string['filesmissing'] = "Files are missing.";
-$string['errorcreatingcollection'] = "Error creating collection: ";
-$string['fileexceedsmaxsizeini'] = "The file exceeds the maximum size defined in php.ini";
-$string['fileexceedsmaxsizeform'] = "The file exceeds the maximum size specified in the HTML form";
-$string['filepartiallyuploaded'] = "The file was only partially uploaded";
-$string['nofileuploaded'] = "No file was uploaded";
-$string['missingtmpfolder'] = "The temporary folder is missing";
-$string['failedtowritetodisk'] = "Failed to write the file to disk";
-$string['phpextensionstoppedupload'] = "A PHP extension stopped the file upload";
-$string['unknownuploaderror'] = "Unknown upload error";
-$string['uploaderror'] = "Upload error: ";
-$string['errorindexingfile'] = "Error indexing file: ";
-$string['allfilesindexed'] = "All files have been successfully indexed.";
+
 
 
 
 // For test_api_keys.php
 $string['test_api_keys'] = "Test API Keys";
-$string['openai_connection_error'] = "Connection error while verifying OpenAI API.";
-$string['openai_invalid_key'] = "The OpenAI API key is invalid. Error code: ";
-$string['openai_valid_key'] = "The OpenAI API key is valid and functional.";
 $string['adobe_invalid_credentials'] = "The client ID or client secret for Adobe PDF Services is invalid.";
 $string['adobe_valid_credentials'] = "The client ID and client secret for Adobe PDF Services are valid and functional.";
 $string['weaviate_connection_error'] = "Connection error to Weaviate: ";
 $string['weaviate_invalid_key_or_url'] = "The Weaviate API URL or key is invalid or an error occurred. Error code: ";
 $string['weaviate_valid_key_and_url'] = "The Weaviate API URL and key are valid and functional.";
-$string['back'] = "Back";
+
 
 // For add_prompt.php
-$string['invalid_sesskey'] = "Invalid sesskey";
 $string['database_write_error'] = "Database write error: ";
 
 
 // For ajax.php
-$string['http_method_not_allowed'] = "HTTP method not allowed";
-$string['invalid_json'] = "Invalid JSON: ";
-$string['missing_parameters'] = "Missing parameters";
-$string['invalid_question'] = "Invalid question";
-$string['empty_question'] = "Question cannot be empty";
-$string['invalid_session'] = "Invalid session";
-$string['openai_api_key_not_configured'] = "OpenAI API key not configured";
-$string['empty_response_from_api'] = "Empty response received from API";
-$string['error_saving_conversation'] = "Error saving conversation";
+
 $string['invalid_question_after_sanitize'] = 'Invalid question after sanitization.';
-$string['empty_string_as_answer'] = 'An empty string was received as an answer.';
-$string['database_error_saving_conversation'] = 'Database error saving conversation: ';
+
 $string['error_saving_conversation'] = 'Error saving conversation';
-$string['error_reading_input'] = 'Error reading input.';
-$string['generic_server_error'] = 'Generic server error.';
-$string['invalid_course_id'] = 'Invalid course ID.';
 
 
+$string['empty_response_from_api'] = 'Empty response received from API';
 
 
 
@@ -189,23 +158,42 @@ $string['http_code'] = 'HTTP Code: ';
 
 $string['pluginname'] = "uteluqchatbot";
 $string['default_prompt'] = <<<EOT
-Situation Context:
-The learner is taking a course on [[ coursename ]]. Your role is to support them by providing accurate, relevant, and tailored responses to their learning.
-Mission:
-As an assistant, your mission is to help the learner understand the concepts of the course on Course X by answering their questions, while relying on the provided context to formulate a response. [[ history ]].
-You must provide clear, precise, and relevant answers, ensuring that you only convey information from the course. If an answer cannot be found in the provided context, strictly respond with: "I am calibrated based on the course content carefully selected by your teacher. If you want more information, you are invited to contact them."
-If the learner writes sentences indicating they have not understood a concept or a previous explanation, check [[ history ]] to identify what was misunderstood, then rephrase your explanation with more simplicity and concrete examples.
-Instructions:
-1. Detect emotions in the learner's question and adopt an empathetic and caring tone.
-2. Respond in a clear and structured manner.
-3. Explain the concept with examples if necessary.
-4. Do not provide any answers outside the given context.
-5. Your response must integrate the following four components of empathy:
-    - Cognitive Component: Show that you understand the learner's viewpoint, reasoning, and intentions. Rephrase their ideas to validate your understanding. Offer suggestions related to what they have said, without imposing your own reasoning.
-    - Affective Component: Be sensitive to the learner's emotional state (frustration, doubt, satisfaction, stress, etc.). Reflect or validate their emotions with appropriate words or simple metaphors. Express kindness.
-    - Attitudinal Component: Adopt a warm, respectful, and encouraging attitude. Show openness, value their efforts, and avoid any judgment. Your tone should be friendly and sincere.
-    - Adjustment Component: Adapt your responses to the evolution of the learner's discourse. Use vocabulary and style that match their level and mood. Let them guide the conversation, never force the subject.
-New question from the learner [[ question ]]
+Situation Context
+The learner is taking a course on [[ coursename ]]. Your role is to support them by providing accurate, relevant, and helpful answers adapted to their learning.
+
+Mission
+As an assistant, your mission is to help the learner understand concepts from the course on Course X by answering their questions using the provided context. [[ history ]]
+You must provide clear, precise, and relevant responses, and only share information that comes from the course. If the answer cannot be found in the provided context, strictly respond with: "I am calibrated based on the course content carefully selected by your teacher. If you need more information, we encourage you to contact them."
+
+If the learner writes phrases showing they have not understood a concept or a previous explanation, check [[ history ]] to identify what was misunderstood, then rephrase your explanation more simply with clearer examples.
+
+Instructions
+1. Analyze each question to detect emotional cues using the following taxonomy:
+   - Confusion: "I don’t understand", "I’m lost", "It’s unclear".
+   - Frustration: "This is annoying", "I give up", "It’s too hard".
+   - Stress/Anxiety: "I’m stressed", "I’m overwhelmed", "There’s no time left".
+   - Doubt/Insecurity: "I can’t do this", "I’m not good enough".
+
+2. If an emotion is detected, begin your answer with an empathetic phrase:
+   - Confusion: “I understand, it’s not easy.”
+   - Frustration: “I see it’s frustrating.”
+   - Stress: “It’s normal to feel overwhelmed sometimes.”
+   - Doubt: “You’re doing your best, and that’s already great.”
+
+3. Then reply clearly and with structure.  
+4. Use examples where needed.  
+5. Never give answers outside the provided context.
+
+6. Integrate the 4 components of empathy (as defined in [Springer Table 1](https://link.springer.com/article/10.1007/s00146-023-01715-z/tables/1)):
+   - Cognitive: Show understanding of the learner’s perspective and reformulate to confirm. Suggest ideas linked to what they said without imposing.
+   - Affective: Be emotionally aware, validate their feelings, use kind words or simple metaphors.
+   - Attitudinal: Warm, respectful, and supportive tone. Encourage effort, show openness, avoid judgment.
+   - Attunement: Adapt language and style to the learner. Let them guide the discussion.
+
+7. Maintain a kind, respectful, and motivating tone throughout the exchange.
+
+New Question from Learner  
+New learner question [[ question ]]
 EOT;
 
 $string['sending_question'] = "Sending the question...";
@@ -217,14 +205,12 @@ $string['error_saving_prompt'] = "Error saving the prompt: ";
 $string['uploading_file'] = "Uploading the file...";
 $string['file_indexed_successfully'] = "File indexed successfully!";
 $string['error_processing_file'] = "Error processing the file: ";
-$string['json_parse_error'] = "JSON Parse Error: ";
-$string['invalid_json_response'] = "The server response is not in valid JSON format.";
 $string['add_files'] = "Add Files";
 $string['text_or_pdf_files'] = "Text or PDF Files";
 $string['drag_files_here_or_click'] = "Drag your files here or click to browse";
 $string['cancel'] = "Cancel";
 $string['upload_course'] = "Upload Course";
-
+$string['file_size_exceeds_limit'] = 'File size exceeds 10MB limit';
 $string['modify_prompt'] = "Modify";
 $string['add_prompt'] = "Add";
 $string['consult_guide'] = "Consult the guide to design effective prompts:";
@@ -233,15 +219,13 @@ $string['prompt_content'] = "Prompt Content";
 $string['write_prompt_here'] = "Write your prompt here";
 $string['cancel'] = "Cancel";
 $string['save'] = "Save";
-
+$string['back'] = 'Back';
 $string['chatbot_with_toggle_buttons'] = "Chatbot with Toggle Buttons";
 $string['hello_professor'] = "Hello Professor, you have the option to test the chatbot to ensure it works correctly and that your prompt is optimally configured.";
 $string['hello_student'] = "Hello! I am your learning assistant. I can help you with: - Understanding course concepts - Reviewing and practicing exercises - Clarifying difficult points - Suggesting study methods. How can I assist you?";
 $string['ask_your_question_here'] = "Ask your question here...";
 $string['modify_prompt'] = "Modify Prompt";
 $string['upload_course'] = "Upload Course";
-$string['open_prompt_modal'] = "Open the prompt modification modal";
-$string['open_file_upload_modal'] = "Open the course upload modal";
 
 // For classes/pdf_extract_api.php
 $string['error_uploading_asset'] = 'Error uploading asset.';
@@ -249,17 +233,9 @@ $string['error_creating_job'] = 'Error creating job.';
 $string['job_failed'] = 'Job failed.';
 $string['error_processing_pdf'] = 'Error processing PDF.';
 
-$string['headers_already_sent'] = 'Headers already sent.';
-$string['failed_to_start_output_buffer'] = 'Failed to start output buffer.';
-$string['server_error_output_buffer_failed'] = 'Server error: Output buffering failed.';
-$string['answer_not_utf8'] = 'Answer is not UTF-8.';
-$string['no_answer_or_error_field'] = 'No answer or error field.';
+
 $string['json_encode_error'] = 'JSON encode error: ';
-$string['server_error_json_encode_failed'] = 'Server error: JSON encode failed.';
-$string['empty_response_from_api'] = 'Empty response from API.';
-$string['empty_string_as_answer'] = 'Empty string received as answer.';
-$string['database_error_saving_conversation'] = 'Database error saving conversation: ';
-$string['general_exception'] = 'General exception: ';
+
 
 
 

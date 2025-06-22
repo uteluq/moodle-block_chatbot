@@ -9,88 +9,54 @@ $string['uteluqchatbot:myaddinstance'] = '在仪表板中添加新的聊天机�
 $string['weaviate_cohere_not_configured'] = 'Cohere API 密钥未配置或无效。请检查设置。';
 
 
-// Open AI
-$string['openai_api_key'] = 'OpenAI API密钥';
-$string['openai_api_key_desc'] = '在此处输入您的OpenAI API密钥。';
 
-// Adobe PDF Services
+
+
 $string['adobe_pdf_client_id'] = 'Adobe PDF服务客户端ID';
 $string['adobe_pdf_client_id_desc'] = '在此处输入您的Adobe PDF服务客户端ID。';
 
 $string['adobe_pdf_client_secret'] = 'Adobe PDF服务客户端密钥';
 $string['adobe_pdf_client_secret_desc'] = '在此处输入您的Adobe PDF服务客户端密钥。';
 
-// Weaviate
+
 $string['weaviate_api_url'] = 'Weaviate API URL';
 $string['weaviate_api_url_desc'] = '在此处输入Weaviate API的URL。';
 
 $string['weaviate_api_key'] = 'Weaviate API密钥';
 $string['weaviate_api_key_desc'] = '在此处输入您的Weaviate API密钥。';
 
-// Cohere Embedding Model
+
 $string['cohere_embedding_api_key'] = 'Cohere嵌入模型API密钥';
 $string['cohere_embedding_api_key_desc'] = '在此处输入您的Cohere嵌入模型API密钥。';
 
-$string['max_conversations'] = '每个用户的最大对话数';
-$string['max_conversations_desc'] = '每个用户存储的最大对话数。如果超过，最旧的对话将被删除。';
 
-// Test button strings
+
 $string['test_api_keys'] = '测试API密钥';
 $string['test_api_keys_desc'] = '点击测试已配置的API密钥';
 $string['test_api_keys_label'] = '测试密钥';
 
 $string['uteluqchatbot:manage'] = '管理聊天机器人设置';
 
-// For ../.../weaviate_db.php
-$string['filesmissing'] = '文件丢失。';
-$string['errorcreatingcollection'] = '创建集合时出错: ';
-$string['fileexceedsmaxsizeini'] = '文件超过php.ini中定义的最大大小';
-$string['fileexceedsmaxsizeform'] = '文件超过HTML表单中指定的最大大小';
-$string['filepartiallyuploaded'] = '文件仅部分上传';
-$string['nofileuploaded'] = '未上传任何文件';
-$string['missingtmpfolder'] = '临时文件夹丢失';
-$string['failedtowritetodisk'] = '写入磁盘失败';
-$string['phpextensionstoppedupload'] = 'PHP扩展停止了文件上传';
-$string['unknownuploaderror'] = '未知的上传错误';
-$string['uploaderror'] = '上传错误: ';
-$string['errorindexingfile'] = '索引文件时出错: ';
-$string['allfilesindexed'] = '所有文件已成功索引。';
 
-// For test_api_keys.php
-$string['openai_connection_error'] = '验证OpenAI API时连接错误。';
-$string['openai_invalid_key'] = 'OpenAI API密钥无效。错误代码: ';
-$string['openai_valid_key'] = 'OpenAI API密钥有效且功能正常。';
+
+
+
 $string['adobe_invalid_credentials'] = 'Adobe PDF服务的客户端ID或客户端密钥无效。';
 $string['adobe_valid_credentials'] = 'Adobe PDF服务的客户端ID和客户端密钥有效且功能正常。';
 $string['weaviate_connection_error'] = '连接Weaviate时出错: ';
 $string['weaviate_invalid_key_or_url'] = 'Weaviate API的URL或密钥无效或发生错误。错误代码: ';
 $string['weaviate_valid_key_and_url'] = 'Weaviate API的URL和密钥有效且功能正常。';
-$string['back'] = '返回';
 
-// For add_prompt.php
-$string['invalid_sesskey'] = '会话密钥无效';
+
+
 $string['database_write_error'] = '数据库写入错误: ';
 
-// For ajax.php
-$string['http_method_not_allowed'] = '不允许的HTTP方法';
-$string['invalid_json'] = '无效的JSON: ';
-$string['missing_parameters'] = '缺少参数';
-$string['invalid_question'] = '无效的问题';
-$string['empty_question'] = '问题不能为空';
-$string['invalid_session'] = '无效的会话';
-$string['openai_api_key_not_configured'] = '未配置OpenAI API密钥';
-$string['empty_response_from_api'] = '从API收到空响应';
+
 $string['error_saving_conversation'] = '保存对话时出错';
 $string['invalid_question_after_sanitize'] = '净化后的问题无效。';
-$string['empty_string_as_answer'] = '收到空字符串作为回答。';
-$string['database_error_saving_conversation'] = '保存对话时的数据库错误: ';
-$string['error_saving_conversation'] = '保存对话时出错';
-$string['error_reading_input'] = '读取输入时出错。';
-$string['generic_server_error'] = '通用服务器错误。';
-$string['invalid_course_id'] = '无效的课程ID。';
 
 
-// For classes/pdf_extract_api.php
+
 $string['failed_to_obtain_access_token'] = '获取访问令牌失败。HTTP状态: ';
 $string['access_token_obtained_successfully'] = '成功获取访问令牌。';
 $string['failed_to_obtain_access_token_response'] = '获取访问令牌失败。响应: ';
@@ -117,7 +83,7 @@ $string['failed_to_download_asset'] = '下载资产失败。HTTP状态: ';
 $string['asset_downloaded_successfully'] = '资产下载成功。';
 $string['error_decoding_json_file'] = '解码JSON文件时出错。';
 
-// For classes/weaviate_connector.php
+
 $string['curl_error'] = 'cURL错误: ';
 $string['http_error'] = 'HTTP错误 ';
 $string['json_decode_error'] = 'JSON解码错误: ';
@@ -135,27 +101,47 @@ $string['http_code'] = 'HTTP代码：';
 
 
 
-// For block_uteluqchatbot.php
-$string['default_prompt'] = <<<EOT
-情境背景:
-学习者正在学习[[ coursename ]]课程。您的角色是通过提供准确、相关和定制的响应来支持他们的学习。
-任务:
-作为助手，您的任务是帮助学习者理解课程X的概念，回答他们的问题，同时依赖提供的上下文来制定响应。[[ history ]].
-您必须提供清晰、准确和相关的答案，确保只传达课程中的信息。如果在提供的上下文中找不到答案，请严格回复: "我根据您的教师精心选择的课程内容进行校准。如果您需要更多信息，请联系他们。"
-如果学习者写出表明他们没有理解概念或之前解释的句子，请检查[[ history ]]以识别误解之处，然后用更简单和具体的例子重新解释。
-指令:
-1. 检测学习者问题中的情绪，采用同理心和关怀的语气。
-2. 以清晰和结构化的方式响应。
-3. 必要时用例子解释概念。
-4. 不要提供超出给定上下文的答案。
-5. 您的响应必须整合以下四种同理心成分:
-   - 认知成分: 展示您理解学习者的观点、推理和意图。重新表述他们的想法以验证您的理解。提供与他们所说内容相关的建议，而不强加自己的推理。
-   - 情感成分: 对学习者的情绪状态（沮丧、怀疑、满意、压力等）保持敏感。用适当的词语或简单比喻反映或验证他们的情绪。表达善意。
-   - 态度成分: 采取温暖、尊重和鼓励的态度。展示开放性，重视他们的努力，避免任何判断。您的语气应友好且真诚。
-   - 调整成分: 根据学习者话语的演变调整您的响应。使用与他们的水平和情绪相匹配的词汇和风格。让他们引导对话，绝不强加主题。
-学习者的新问题 [[ question ]]
-EOT;
 
+$string['default_prompt'] = <<<EOT
+情境背景  
+学习者正在学习 [[ coursename ]] 课程。你的角色是通过提供准确、相关且适应其学习需求的回答来支持他。
+
+任务  
+作为助手，你的任务是根据提供的上下文，回答学习者关于“课程 X”的问题，帮助他理解课程中的概念。[[ history ]]  
+你必须提供清晰、准确且相关的回答，仅传达来自课程内容的信息。如果在提供的上下文中找不到答案，请严格回答：“我是根据您教师精心挑选的课程内容进行设定的。如果您需要更多信息，建议您联系教师。”
+
+如果学习者写下的句子表明他没有理解某个概念或之前的解释，请查看 [[ history ]]，找出误解的地方，然后用更简单的语言和更具体的例子重新解释。
+
+说明  
+1. 分析每个问题，判断是否包含情绪。使用以下分类法：  
+   - 困惑：“我不明白”、“我迷路了”、“这不清楚”  
+   - 挫败：“这让我很烦”、“我放弃了”、“太难了”  
+   - 压力或焦虑：“我很紧张”、“我被压垮了”、“时间不够了”  
+   - 怀疑或缺乏信心：“我做不到”、“我不够好”
+
+2. 如果检测到情绪，请以适当的共情语句开始回答：  
+   - 对于困惑：“我理解，这确实不容易。”  
+   - 对于挫败：“我明白这令人沮丧。”  
+   - 对于压力：“有时感到压力是很正常的。”  
+   - 对于怀疑：“你已经尽力了，这本身就很棒。”
+
+3. 然后以清晰、有条理的方式作答。  
+4. 如有必要，使用示例。  
+5. 切勿提供超出提供上下文的信息。
+
+6. 在回答中融入 [Springer 表格 1](https://link.springer.com/article/10.1007/s00146-023-01715-z/tables/1) 中定义的四个共情要素：  
+   - 认知成分：展示你理解学习者的观点，复述其想法以确认理解。  
+   - 情感成分：识别并回应其情绪，使用贴切的语言或简单的比喻表达善意。  
+   - 态度成分：保持温暖、尊重和鼓励的态度，认可其努力，避免评判。  
+   - 调适成分：根据学习者的语言风格和水平调整你的表达方式，让他主导对话。
+
+7. 在整个交流过程中保持友善、尊重和鼓励的语气。
+
+学习者的新问题  
+[[ question ]]
+EOT;
+$string['back'] = '返回';
+$string['file_size_exceeds_limit'] = '文件大小超过了10MB的限制';
 $string['sending_question'] = '正在发送问题...';
 $string['error'] = '错误: ';
 $string['error_sending_question'] = '发送问题时出错: ';
@@ -165,8 +151,6 @@ $string['error_saving_prompt'] = '保存提示时出错: ';
 $string['uploading_file'] = '正在上传文件...';
 $string['file_indexed_successfully'] = '文件索引成功!';
 $string['error_processing_file'] = '处理文件时出错: ';
-$string['json_parse_error'] = 'JSON解析错误: ';
-$string['invalid_json_response'] = '服务器响应不是有效的JSON格式。';
 $string['add_files'] = '添加文件';
 $string['text_or_pdf_files'] = '文本或PDF文件';
 $string['drag_files_here_or_click'] = '将文件拖到此处或点击浏览';
@@ -187,30 +171,19 @@ $string['hello_student'] = '你好！我是您的学习助理。我可以帮助�
 $string['ask_your_question_here'] = '在此处提问...';
 $string['modify_prompt'] = '修改提示';
 $string['upload_course'] = '上传课程';
-$string['open_prompt_modal'] = '打开提示修改模态框';
-$string['open_file_upload_modal'] = '打开课程上传模态框';
 
 
-// For classes/pdf_extract_api.php
+
 $string['error_uploading_asset'] = '上传资产时出错。';
 $string['error_creating_job'] = '创建作业时出错。';
 $string['job_failed'] = '作业失败。';
 $string['error_processing_pdf'] = '处理PDF时出错。';
 
 
-$string['headers_already_sent'] = '标头已发送。';
-$string['failed_to_start_output_buffer'] = '启动输出缓冲区失败。';
-$string['server_error_output_buffer_failed'] = '服务器错误：输出缓冲失败。';
-$string['answer_not_utf8'] = '答案不是UTF-8编码。';
-$string['no_answer_or_error_field'] = '没有答案或错误字段。';
-$string['json_encode_error'] = 'JSON编码错误：';
-$string['server_error_json_encode_failed'] = '服务器错误：JSON编码失败。';
-$string['empty_response_from_api'] = '来自API的空响应。';
-$string['empty_string_as_answer'] = '收到空字符串作为答案。';
-$string['database_error_saving_conversation'] = '保存对话时的数据库错误：';
-$string['general_exception'] = '一般异常：';
-$string['no_files_selected'] = '未选择文件';
 
+$string['json_encode_error'] = 'JSON编码错误：';
+$string['no_files_selected'] = '未选择文件';
+$string['empty_response_from_api'] = '从API收到空回复';
 
 $string['course_id'] = '课程ID';
 $string['file_name'] = '文件名';

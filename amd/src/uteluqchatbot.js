@@ -250,9 +250,9 @@ define(['jquery', 'core/str', 'core/ajax', 'core/notification'], function($, str
                     convertFilesToBase64(fileInput.files)
                         .then(function(filesData) {
                             str.get_string('files_converted_debug', 'block_uteluqchatbot').then(function(debugStr) {
-                                console.log(debugStr, filesData.length);
+                                
                             }).catch(function() {
-                                console.log('Files converted to base64:', filesData.length);
+                                
                             });
                             
                             const request = {
@@ -264,23 +264,23 @@ define(['jquery', 'core/str', 'core/ajax', 'core/notification'], function($, str
                             };
 
                             str.get_string('sending_ajax_request_debug', 'block_uteluqchatbot').then(function(debugStr) {
-                                console.log(debugStr, request);
+                                
                             }).catch(function() {
-                                console.log('Sending AJAX request:', request);
+                                
                             });
                             return ajax.call([request])[0];
                         })
                         .then(function(response) {
                             str.get_string('upload_response_received_debug', 'block_uteluqchatbot').then(function(debugStr) {
-                                console.log(debugStr, response);
+                                
                             }).catch(function() {
-                                console.log('Upload response received:', response);
+                                
                             });
                             
                             str.get_string('response_type_debug', 'block_uteluqchatbot').then(function(debugStr) {
-                                console.log(debugStr, typeof response);
+                                
                             }).catch(function() {
-                                console.log('Response type:', typeof response);
+                                
                             });
                             
                             errorDiv.textContent = "";
@@ -340,17 +340,17 @@ define(['jquery', 'core/str', 'core/ajax', 'core/notification'], function($, str
                             });
                             
                             str.get_string('error_object_debug', 'block_uteluqchatbot').then(function(debugStr) {
-                                console.log(debugStr, JSON.stringify(error, null, 2));
+                                
                             }).catch(function() {
-                                console.log("Error object:", JSON.stringify(error, null, 2));
+                                
                             });
                             
                             // Si l'erreur contient une réponse brute, l'afficher
                             if (error && error.responseText) {
                                 str.get_string('raw_server_response_debug', 'block_uteluqchatbot').then(function(debugStr) {
-                                    console.log(debugStr, error.responseText);
+                                    
                                 }).catch(function() {
-                                    console.log("Raw server response:", error.responseText);
+                                    
                                 });
                                 
                                 str.get_string('server_response_error', 'block_uteluqchatbot').then(function(serverErrorStr) {

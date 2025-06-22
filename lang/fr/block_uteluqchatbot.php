@@ -6,8 +6,6 @@
 $string['pluginname'] = 'uteluqchatbot';
 $string['uteluqchatbot:addinstance'] = 'Ajouter un nouveau bloc uteluqchatbot';
 $string['uteluqchatbot:myaddinstance'] = 'Ajouter un nouveau bloc uteluqchatbot au tableau de bord';
-$string['openai_api_key'] = 'Clé API OpenAI';
-$string['openai_api_key_desc'] = 'Entrez votre clé API OpenAI';
 $string['api_error'] = 'Erreur lors de la communication avec OpenAI';
 
 
@@ -36,9 +34,6 @@ $string['cohere_embedding_api_key_desc'] = 'Entrez votre clé API pour le modèl
 
 
 
-$string['max_conversations'] = 'Nombre maximum de conversations par utilisateur';
-$string['max_conversations_desc'] = 'Le nombre maximum de conversations stockées par utilisateur. Si ce nombre est dépassé, la conversation la plus ancienne sera supprimée.';
-
 
 $string['placeholder_question'] = 'Posez votre question ici...';
 $string['send_button'] = 'Envoyer';
@@ -63,59 +58,26 @@ $string['uteluqchatbot:manage'] = 'Gérer les paramètres du chatbot';
 
 
 // For weaviate_db.php
-$string['filesmissing'] = "Fichiers manquants.";
-$string['errorcreatingcollection'] = "Erreur lors de la création de la collection: ";
-$string['fileexceedsmaxsizeini'] = "Le fichier dépasse la taille maximale définie dans php.ini";
-$string['fileexceedsmaxsizeform'] = "Le fichier dépasse la taille maximale spécifiée dans le formulaire HTML";
-$string['filepartiallyuploaded'] = "Le fichier n'a été que partiellement téléchargé";
-$string['nofileuploaded'] = "Aucun fichier n'a été téléchargé";
-$string['missingtmpfolder'] = "Le dossier temporaire est manquant";
-$string['failedtowritetodisk'] = "Échec de l'écriture du fichier sur le disque";
-$string['phpextensionstoppedupload'] = "Une extension PHP a arrêté le téléchargement du fichier";
-$string['unknownuploaderror'] = "Erreur inconnue de téléchargement";
-$string['uploaderror'] = "Erreur lors du téléchargement: ";
-$string['errorindexingfile'] = "Erreur lors de l'indexation du fichier: ";
-$string['allfilesindexed'] = "Tous les fichiers ont été indexés avec succès.";
+
 
 
 // For test_api_keys.php
 $string['test_api_keys'] = "Tester les clés API";
-$string['openai_connection_error'] = "Erreur de connexion lors de la vérification de l'API OpenAI.";
-$string['openai_invalid_key'] = "La clé API OpenAI est invalide. Code d'erreur: ";
-$string['openai_valid_key'] = "La clé API OpenAI est valide et fonctionnelle.";
 $string['adobe_invalid_credentials'] = "Le client ID ou le client secret pour Adobe PDF Services est invalide.";
 $string['adobe_valid_credentials'] = "Le client ID et le client secret pour Adobe PDF Services sont valides et fonctionnels.";
 $string['weaviate_connection_error'] = "Erreur de connexion à Weaviate: ";
 $string['weaviate_invalid_key_or_url'] = "L'URL de l'API Weaviate ou la clé Weaviate est invalide ou une erreur est survenue. Code d'erreur: ";
 $string['weaviate_valid_key_and_url'] = "L'URL de l'API Weaviate ainsi que la clé Weaviate sont valides et fonctionnelles.";
-$string['back'] = "Retour";
+
 
 
 // For add_prompt.php
-$string['invalid_sesskey'] = "Clé de session invalide";
 $string['database_write_error'] = "Erreur d'écriture de la base de données: ";
 
 // For ajax.php
-$string['http_method_not_allowed'] = "Méthode HTTP non autorisée";
-$string['invalid_json'] = "JSON invalide: ";
-$string['missing_parameters'] = "Paramètres manquants";
-$string['invalid_question'] = "Question invalide";
-$string['empty_question'] = "La question ne peut pas être vide";
-$string['invalid_session'] = "Session invalide";
-$string['openai_api_key_not_configured'] = "Clé API OpenAI non configurée";
-$string['empty_response_from_api'] = "Réponse vide reçue de l'API";
-$string['error_saving_conversation'] = "Erreur lors de l'enregistrement de la conversation";
 $string['invalid_question_after_sanitize'] = 'Question invalide après nettoyage.';
-$string['empty_string_as_answer'] = 'Une chaîne vide a été reçue comme réponse.';
-$string['database_error_saving_conversation'] = 'Erreur de base de données lors de l\'enregistrement de la conversation : ';
-$string['error_saving_conversation'] = 'Erreur lors de l\'enregistrement de la conversation';
 $string['invalid_question_after_sanitize'] = 'Question invalide après nettoyage.';
-$string['empty_string_as_answer'] = 'Une chaîne vide a été reçue comme réponse.';
-$string['database_error_saving_conversation'] = 'Erreur de base de données lors de l\'enregistrement de la conversation : ';
 $string['error_saving_conversation'] = 'Erreur lors de l\'enregistrement de la conversation';
-$string['error_reading_input'] = 'Erreur lors de la lecture de l\'entrée.';
-$string['generic_server_error'] = 'Erreur générique du serveur.';
-$string['invalid_course_id'] = 'ID de cours invalide.';
 
 
 
@@ -168,8 +130,7 @@ $string['http_code'] = 'Code HTTP : ';
 
 
 
-
-
+$string['back'] = 'Retour';
 // For block_uteluqchatbot.php
 $string['pluginname'] = "uteluqchatbot";
 $string['default_prompt'] = <<<EOT
@@ -219,8 +180,6 @@ $string['error_saving_prompt'] = "Erreur lors de l'enregistrement du prompt: ";
 $string['uploading_file'] = "Téléchargement du fichier en cours...";
 $string['file_indexed_successfully'] = "Fichier indexé avec succès!";
 $string['error_processing_file'] = "Erreur lors du traitement du fichier: ";
-$string['json_parse_error'] = "Erreur de parsing JSON: ";
-$string['invalid_json_response'] = "La réponse du serveur n'est pas au format JSON valide.";
 $string['add_files'] = "Ajouter des fichiers";
 $string['text_or_pdf_files'] = "Fichiers texte ou PDF";
 $string['drag_files_here_or_click'] = "Glissez vos fichiers ici ou cliquez pour parcourir";
@@ -242,8 +201,6 @@ $string['hello_student'] = "Bonjour ! Je suis votre assistant d'apprentissage. J
 $string['ask_your_question_here'] = "Posez votre question ici...";
 $string['modify_prompt'] = "Modifier le prompt";
 $string['upload_course'] = "Charger le cours";
-$string['open_prompt_modal'] = "Ouvrir la modale de modification du prompt";
-$string['open_file_upload_modal'] = "Ouvrir la modale de chargement de cours";
 
 // For classes/pdf_extract_api.php
 $string['error_uploading_asset'] = 'Erreur lors du téléchargement de l\'asset.';
@@ -252,19 +209,11 @@ $string['job_failed'] = 'Le job a échoué.';
 $string['error_processing_pdf'] = 'Erreur lors du traitement du PDF.';
 
 
-$string['headers_already_sent'] = 'Les en-têtes ont déjà été envoyés.';
-$string['failed_to_start_output_buffer'] = 'Échec du démarrage du tampon de sortie.';
-$string['server_error_output_buffer_failed'] = 'Erreur serveur : échec du tampon de sortie.';
-$string['answer_not_utf8'] = 'La réponse n\'est pas en UTF-8.';
-$string['no_answer_or_error_field'] = 'Aucun champ de réponse ou d\'erreur.';
+
 $string['json_encode_error'] = 'Erreur d\'encodage JSON : ';
-$string['server_error_json_encode_failed'] = 'Erreur serveur : échec de l\'encodage JSON.';
-$string['empty_response_from_api'] = 'Réponse vide de l\'API.';
-$string['empty_string_as_answer'] = 'Chaîne vide reçue comme réponse.';
-$string['database_error_saving_conversation'] = 'Erreur de base de données lors de l\'enregistrement de la conversation : ';
-$string['general_exception'] = 'Exception générale : ';
 
-
+$string['empty_response_from_api'] = 'Réponse vide reçue de l\'API';
+$string['file_size_exceeds_limit'] = 'La taille du fichier dépasse la limite de 10 Mo';
 
 
 // Privacy API strings

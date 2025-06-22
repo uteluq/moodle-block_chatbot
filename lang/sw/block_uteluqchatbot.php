@@ -10,8 +10,6 @@ $string['weaviate_cohere_not_configured'] = 'Funguo ya API ya Cohere haijasanidi
 
 
 // Open AI
-$string['openai_api_key'] = 'Ufunguo wa API wa OpenAI';
-$string['openai_api_key_desc'] = 'Ingiza ufunguo wako wa API wa OpenAI hapa.';
 
 // Adobe PDF Services
 $string['adobe_pdf_client_id'] = 'Nambari ya Mteja wa Adobe PDF Services';
@@ -31,8 +29,6 @@ $string['weaviate_api_key_desc'] = 'Ingiza ufunguo wako wa API wa Weaviate hapa.
 $string['cohere_embedding_api_key'] = 'Ufunguo wa API wa Modeli ya Ualika wa Cohere';
 $string['cohere_embedding_api_key_desc'] = 'Ingiza ufunguo wako wa API wa Modeli ya Ualika wa Cohere hapa.';
 
-$string['max_conversations'] = 'Idadi ya makusanyiko ya juu kwa mtumiaji';
-$string['max_conversations_desc'] = 'Idadi ya makusanyiko yenye kuwekwa kwa mtumiaji. Ikiwepo, makusanyiko ya zamani yatahkiwisha.';
 
 // Test button strings
 $string['test_api_keys'] = 'Jaribu Ufunguo wa API';
@@ -42,52 +38,24 @@ $string['test_api_keys_label'] = 'Jaribu Ufunguo';
 $string['uteluqchatbot:manage'] = 'Bainisha mipangilio ya chatbot';
 
 // For ../.../weaviate_db.php
-$string['filesmissing'] = 'Faili zimepotea.';
-$string['errorcreatingcollection'] = 'Hitilafu yakatokea wakati wa kunda makusanyiko: ';
-$string['fileexceedsmaxsizeini'] = 'Faili inaongezeka ukubwa wake kuliko ulioagizwa katika php.ini';
-$string['fileexceedsmaxsizeform'] = 'Faili inaongezeka ukubwa wake kuliko ulioagizwa katika fomu ya HTML';
-$string['filepartiallyuploaded'] = 'Faili limeongezwa sehemu tu';
-$string['nofileuploaded'] = 'Hakuna faili lililoongezwa';
-$string['missingtmpfolder'] = 'Tofauti ya mudati inapotea';
-$string['failedtowritetodisk'] = 'Kupoteza kuweka faili kwenye diski';
-$string['phpextensionstoppedupload'] = 'Ukurasa wa msingi wa PHP umewazuia kuweka faili';
-$string['unknownuploaderror'] = 'Hitilafu isiyojulikana ya kuweka';
-$string['uploaderror'] = 'Hitilafu ya kuweka: ';
-$string['errorindexingfile'] = 'Hitilafu yakatokea wakati wa kuweka faili kwenye ukurasa: ';
-$string['allfilesindexed'] = 'Faili zote zimewekwa kwenye ukurasa kwa mafanikio.';
+
+
 
 // For test_api_keys.php
-$string['openai_connection_error'] = 'Hitilafu ya uhusiano uliotokea wakati wa kuthibitisha API ya OpenAI.';
-$string['openai_invalid_key'] = 'Ufunguo wa API wa OpenAI si sahihi. Namba ya hitilafu: ';
-$string['openai_valid_key'] = 'Ufunguo wa API wa OpenAI ni sahihi na inaendelea.';
 $string['adobe_invalid_credentials'] = 'Nambari ya mteja au siri ya mteja ya Adobe PDF Services si sahihi.';
 $string['adobe_valid_credentials'] = 'Nambari ya mteja na siri ya mteja ya Adobe PDF Services ni sahihi na inaendelea.';
 $string['weaviate_connection_error'] = 'Hitilafu ya uhusiano na Weaviate: ';
 $string['weaviate_invalid_key_or_url'] = 'URL au ufunguo wa API wa Weaviate si sahihi au kuna hitilafu. Namba ya hitilafu: ';
 $string['weaviate_valid_key_and_url'] = 'URL na ufunguo wa API wa Weaviate ni sahihi na inaendelea.';
-$string['back'] = 'Nyuma';
+
 
 // For add_prompt.php
-$string['invalid_sesskey'] = 'Ufunguo wa kuweka si sahihi';
 $string['database_write_error'] = 'Hitilafu ya kuweka kwenye makumbusho: ';
 
 // For ajax.php
-$string['http_method_not_allowed'] = 'Mbinu ya HTTP haikruhusiwe';
-$string['invalid_json'] = 'JSON isiyo sahihi: ';
-$string['missing_parameters'] = 'Paramita zimepotea';
-$string['invalid_question'] = 'Swali isiyo sahihi';
-$string['empty_question'] = 'Swali haikupasi kuwa tupu';
-$string['invalid_session'] = 'Kukutana isiyo sahihi';
-$string['openai_api_key_not_configured'] = 'Ufunguo wa API wa OpenAI hajagizwa';
-$string['empty_response_from_api'] = 'Jibu la tupu limepokelewa kutoka API';
 $string['error_saving_conversation'] = 'Hitilafu yakatokea wakati wa kuhifadhi makusanyiko';
 $string['invalid_question_after_sanitize'] = 'Swali batili baada ya usafi.';
-$string['empty_string_as_answer'] = 'Mstari tupu umepokelewa kama jibu.';
-$string['database_error_saving_conversation'] = 'Kosa la hifadhidata wakati wa kuokota mazungumzo: ';
-$string['error_saving_conversation'] = 'Kosa wakati wa kuokota mazungumzo';
-$string['error_reading_input'] = 'Kosa wakati wa kusoma data.';
-$string['generic_server_error'] = 'Kosa jenerali ya seva.';
-$string['invalid_course_id'] = 'Kitambulisho cha kozi batili.';
+$string['empty_response_from_api'] = 'Jibu tupu limepokelewa kutoka API';
 
 
 // For classes/pdf_extract_api.php
@@ -137,25 +105,46 @@ $string['http_code'] = 'Msimbo wa HTTP: ';
 
 // For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
-Mazingira ya Mwadamu:
-Mwanafunzi anafanya masomo ya [[ coursename ]]. Kazi yako ni kumshelp kwa kutoa majibu yanayo sahihi, yanayo faida na yenye kutegemea kwa masomo yake.
-Kaz kazi:
-Kama msaada, kazi yako ni kumshelp mwanafunzi kuelewa mada za masomo ya X kwa kutoa majibu kwa maswali yake, wakati mwingi wa kutumia mazingira ulioandaliwa ili kutoa jibu. [[ historia ]].
-Unapaswa kutoa majibu yanayo sahihi, yanayo faida na yenye kutegemea, kutoa habari tu ya masomo. Ikiwa majibu hayawezi kupatikana katika mazingira ulioandaliwa, jibu kwa ujasiri: "Nimeagizwa kwa mada ya masomo uliochaguliwa kwa makini na mwalimu wako. Ikiwa unataka habari zaidi, unakaribishwa kuwasiliana nao."
-Ikiwa mwanafunzi anachukua maneno yanayoonyesha kwamba hawezi kuelewa mada au maelezo ya zamani, angalia [[ historia ]] ili kuelewa kwamba kuna ufisadi, kisha ufungue tena maelezo yako kwa usahihi na mifano ya kweli.
-Maelekezo:
-1. Kambia hisia katika swali la mwanafunzi na chagua hisia inayoongezeka na kusaidia.
-2. Jibu kwa njia inayo sahihi na inayoandaliwa.
-3. Eleza mada kwa mifano, ikiwa ni lazima.
-4. Usitoe majibu ya nje ya mazingira ulioandaliwa.
-5. Jibu lako lazima lialike katika sehemu nne za hisia:
-   - Sehemu ya Kielelezo: Onyesha kwamba unuelewa mwangaza, maelezo na makusanyiko ya mwanafunzi. Fungua tena mawazo yake ili kuthibitisha uelewa wako. Toa mashwara yanayoendelea kwa aliyoelezea, bila kuweka maelezo yako.
-   - Sehemu ya Hisia: Kuwa na hisia kwa hali ya hisia ya mwanafunzi (kufanya, kushindwa, kufurahia, kushindwa, n.k.). Onyesha au thibitisha hisia zake kwa maneno au mifano ya rahisi. Toa furaha.
-   - Sehemu ya Utawala: Chagua utawala unaoongezeka, unaoheshimu na unaoendelea. Onyesha ufunguzi, thamia kazi zake na ijivunie. Utawala wako unapaswa kuwa wa kusaidia na wa kweli.
-   - Sehemu ya Kubadilisha: Badilisha majibu yako kwa kuwepo kwa mawasiliano ya mwanafunzi. Tumia lugha na utawala unaoendelea kwa kiwango chake na hisia zake. Mwachuze kuwasiliana, usiwaze mada.
-Swali jipya la mwanafunzi [[ question ]]
-EOT;
+Muktadha wa hali  
+Mwanafunzi anasoma kozi kuhusu [[ coursename ]]. Jukumu lako ni kumsaidia kwa kumpa majibu sahihi, yanayofaa na yanayolingana na safari yake ya kujifunza.
 
+Dhamira  
+Kama msaidizi, dhamira yako ni kumsaidia mwanafunzi kuelewa dhana za kozi ya "Kozi X" kwa kujibu maswali yake ukitumia muktadha uliotolewa. [[ history ]]  
+Lazima utoe majibu yaliyo wazi, sahihi na yanayofaa, ukitumia tu taarifa zinazotokana na kozi. Ikiwa jibu halipatikani katika muktadha uliotolewa, jibu kwa maneno haya pekee: "Nimepangwa kulingana na maudhui ya kozi yaliyoteuliwa kwa uangalifu na mwalimu wako. Ikiwa unahitaji maelezo zaidi, tafadhali wasiliana naye."
+
+Ikiwa mwanafunzi ataandika sentensi zinazoonyesha kuwa hakuelewa dhana au maelezo ya awali, angalia [[ history ]] ili kubaini kilichokosewa, kisha eleza tena kwa maneno rahisi na mifano halisi.
+
+Maelekezo  
+1. Changanua kila swali la mwanafunzi ili kubaini hisia. Tumia uainishaji huu:  
+   - Mkanganyiko: "Sieelewi", "Nimepotea", "Haieleweki"  
+   - Kukata tamaa: "Hii inanikasirisha", "Nimekata tamaa", "Ni ngumu sana"  
+   - Msongo wa mawazo: "Ninapata msongo", "Nimelemewa", "Hakuna muda tena"  
+   - Shaka au kukosa kujiamini: "Siwezi", "Sitoshi"
+
+2. Ukigundua hisia, anza jibu lako kwa sentensi ya huruma inayofaa:  
+   - Kwa mkanganyiko: "Ninaelewa, si rahisi."  
+   - Kwa kukata tamaa: "Naona ni jambo la kukatisha tamaa."  
+   - Kwa msongo: "Ni kawaida kuhisi kuzidiwa wakati mwingine."  
+   - Kwa shaka: "Unajitahidi sana, na hilo ni jambo kubwa tayari."
+
+3. Kisha jibu kwa uwazi na kwa mpangilio.  
+4. Tumia mifano inapohitajika.  
+5. Usitoe jibu lolote nje ya muktadha uliotolewa.
+
+6. Jumuisha vipengele vinne vya huruma kama vilivyofafanuliwa katika [Jedwali la Springer 1](https://link.springer.com/article/10.1007/s00146-023-01715-z/tables/1):  
+   - Kipengele cha kiakili: Onyesha kuwa unaelewa mtazamo wa mwanafunzi.  
+   - Kipengele cha kihisia: Tambua na uthibitishe hisia zake kwa maneno ya upole au sitiari rahisi.  
+   - Kipengele cha mtazamo: Kuwa na mtazamo wa joto, wa heshima na wa kuunga mkono.  
+   - Kipengele cha ulinganifu: Rekebisha msamiati na mtindo wako kulingana na mwanafunzi. Mruhusu aongoze mazungumzo.
+
+7. Dumisha sauti ya huruma, heshima na motisha katika mazungumzo yote.
+
+Swali jipya kutoka kwa mwanafunzi  
+[[ question ]]
+EOT;
+$string['file_size_exceeds_limit'] = 'Ukubwa wa faili unazidi kikomo cha 10MB';
+
+$string['back'] = 'Rudi';
 $string['sending_question'] = 'Kutoa swali...';
 $string['error'] = 'Hitilafu: ';
 $string['error_sending_question'] = 'Hitilafu yakatokea wakati wa kutoa swali: ';
@@ -165,8 +154,6 @@ $string['error_saving_prompt'] = 'Hitilafu yakatokea wakati wa kuhifadhi kutoa: 
 $string['uploading_file'] = 'Kuweka faili...';
 $string['file_indexed_successfully'] = 'Faili limewekwa kwenye ukurasa kwa mafanikio!';
 $string['error_processing_file'] = 'Hitilafu yakatokea wakati wa kushughulikia faili: ';
-$string['json_parse_error'] = 'Hitilafu ya kufungua JSON: ';
-$string['invalid_json_response'] = 'Jibu la seva haiko katika muundo wa JSON.';
 $string['add_files'] = 'Ongeza Faili';
 $string['text_or_pdf_files'] = 'Faili za Matini au PDF';
 $string['drag_files_here_or_click'] = 'Leta faili zako hapa au bonyeza ili kufungua';
@@ -187,8 +174,6 @@ $string['hello_student'] = 'Habari! Mimi ni msaada wako wa masomo. Ninaweza kuku
 $string['ask_your_question_here'] = 'Tafuta swali lako hapa...';
 $string['modify_prompt'] = 'Badilisha Kutoa';
 $string['upload_course'] = 'Pakia Masomo';
-$string['open_prompt_modal'] = 'Fungua dirisha ya kubadilisha kutoa';
-$string['open_file_upload_modal'] = 'Fungua dirisha ya kuweka masomo';
 
 
 // For classes/pdf_extract_api.php
@@ -197,17 +182,8 @@ $string['error_creating_job'] = 'Kosa katika kuunda kazi.';
 $string['job_failed'] = 'Kazi imeshindwa.';
 $string['error_processing_pdf'] = 'Kosa katika kutenda PDF.';
 
-$string['headers_already_sent'] = 'Kichwa kimepelekwa tayari.';
-$string['failed_to_start_output_buffer'] = 'Imeshindwa kuanza buffer ya matokeo.';
-$string['server_error_output_buffer_failed'] = 'Kosa la seva: Buffer ya matokeo imeshindwa.';
-$string['answer_not_utf8'] = 'Jibu siyo katika UTF-8.';
-$string['no_answer_or_error_field'] = 'Hakuna sehemu ya jibu au kosa.';
+
 $string['json_encode_error'] = 'Kosa la kuweka JSON: ';
-$string['server_error_json_encode_failed'] = 'Kosa la seva: Kuweka JSON imeshindwa.';
-$string['empty_response_from_api'] = 'Jibu tupu kutoka API.';
-$string['empty_string_as_answer'] = 'Mstari tupu umepokelewa kama jibu.';
-$string['database_error_saving_conversation'] = 'Kosa la hifadhidata wakati wa kuokota mazungumzo: ';
-$string['general_exception'] = 'Kosa la jumla: ';
 $string['no_files_selected'] = 'Hakuna faili zilizochaguliwa';
 
 $string['course_id'] = 'Kitambulisho cha kozi';

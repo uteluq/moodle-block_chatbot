@@ -10,8 +10,6 @@ $string['weaviate_cohere_not_configured'] = 'Makullin Cohere API ba a saita shi 
 
 
 // Open AI
-$string['openai_api_key'] = 'Klè API OpenAI';
-$string['openai_api_key_desc'] = 'Antre klè API OpenAI ou isit la.';
 
 // Adobe PDF Services
 $string['adobe_pdf_client_id'] = 'ID Kliyan Sèvis PDF Adobe';
@@ -31,8 +29,6 @@ $string['weaviate_api_key_desc'] = 'Antre klè API Weaviate ou isit la.';
 $string['cohere_embedding_api_key'] = 'Klè API Modèl Embedding Cohere';
 $string['cohere_embedding_api_key_desc'] = 'Antre klè API pou Modèl Embedding Cohere ou isit la.';
 
-$string['max_conversations'] = 'Maksimum konvesasyon pa itilizatè';
-$string['max_conversations_desc'] = 'Nimewo maksimum konvesasyon ki stoke pa itilizatè. Si li depase, konvesasyon pi viè a va efase.';
 
 // Test button strings
 $string['test_api_keys'] = 'Tès Klè API';
@@ -42,52 +38,22 @@ $string['test_api_keys_label'] = 'Tès Klè';
 $string['uteluqchatbot:manage'] = 'Jere paramèt chatbot';
 
 // For ../.../weaviate_db.php
-$string['filesmissing'] = 'Fichye yo manke.';
-$string['errorcreatingcollection'] = 'Erè kreye koleksyon: ';
-$string['fileexceedsmaxsizeini'] = 'Fichye a depase limit grandè ki defni nan php.ini';
-$string['fileexceedsmaxsizeform'] = 'Fichye a depase limit grandè ki espesifye nan fòm HTML';
-$string['filepartiallyuploaded'] = 'Fichye a te sèlman yon ti pati ki te telechaje';
-$string['nofileuploaded'] = 'Pa gen fichye ki te telechaje';
-$string['missingtmpfolder'] = 'Dossye tanporè a manke';
-$string['failedtowritetodisk'] = 'Pa ka ekri fichye a sou disk la';
-$string['phpextensionstoppedupload'] = 'Yon ekstansyon PHP te arete telechaj la';
-$string['unknownuploaderror'] = 'Erè telechaj ki pa konn';
-$string['uploaderror'] = 'Erè telechaj: ';
-$string['errorindexingfile'] = 'Erè endiks fichye: ';
-$string['allfilesindexed'] = 'Tout fichye yo te endikse avèk siksè.';
+
 
 // For test_api_keys.php
-$string['openai_connection_error'] = 'Erè konesyon pandan vèfikasyon API OpenAI.';
-$string['openai_invalid_key'] = 'Klè API OpenAI a envalib. Kòd erè: ';
-$string['openai_valid_key'] = 'Klè API OpenAI a valab e fonksyone.';
 $string['adobe_invalid_credentials'] = 'ID kliyan oswa sèkè kliyan pou Sèvis PDF Adobe a envalib.';
 $string['adobe_valid_credentials'] = 'ID kliyan ak sèkè kliyan pou Sèvis PDF Adobe a valab e fonksyone.';
 $string['weaviate_connection_error'] = 'Erè konesyon ak Weaviate: ';
 $string['weaviate_invalid_key_or_url'] = 'URL oswa klè API Weaviate a envalib oswa yon erè te rive. Kòd erè: ';
 $string['weaviate_valid_key_and_url'] = 'URL ak klè API Weaviate a valab e fonksyone.';
-$string['back'] = 'Retounen';
+
 
 // For add_prompt.php
-$string['invalid_sesskey'] = 'Klè sesyon envalib';
 $string['database_write_error'] = 'Erè ekri nan baz done: ';
 
 // For ajax.php
-$string['http_method_not_allowed'] = 'Metod HTTP pa otòrise';
-$string['invalid_json'] = 'JSON envalib: ';
-$string['missing_parameters'] = 'Paramèt yo manke';
-$string['invalid_question'] = 'Kesyon envalib';
-$string['empty_question'] = 'Kesyon pa ka vid';
-$string['invalid_session'] = 'Sesyon envalib';
-$string['openai_api_key_not_configured'] = 'Klè API OpenAI pa konfigire';
-$string['empty_response_from_api'] = 'Repons vid resevwa soti API';
-$string['error_saving_conversation'] = 'Erè sove konvesasyon an';
 $string['invalid_question_after_sanitize'] = 'Tambaya mara inganci bayan tsaftacewa.';
-$string['empty_string_as_answer'] = 'An karɓi kalmomi babu komai a matsayin amsa.';
-$string['database_error_saving_conversation'] = 'Kuskuren bayanai yayin adana hirar: ';
 $string['error_saving_conversation'] = 'Kuskure yayin adana hirar.';
-$string['error_reading_input'] = 'Kuskure yayin karanta bayanan da aka shigar.';
-$string['generic_server_error'] = 'Kuskuren mai masaukin yanar gizo.';
-$string['invalid_course_id'] = 'ID na karatun mara inganci.';
 
 
 // For classes/pdf_extract_api.php
@@ -137,24 +103,45 @@ $string['http_code'] = 'Lambar HTTP: ';
 
 // For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
-Konteks Sitiyasyon an:
-Aprann yo pran yon kou sou [[ coursename ]]. Ròl ou se pou ede yo pa ba yo repons eksak, relevan, ak adapte pou aprentisaj yo.
-Misyòn:
-Kòm yon asistàn, misyòn ou se pou ede aprann yo konprann konsept kou a sou Kou X pa reponn kesyon yo, tout en sèvi ak konteks ki bay la pou fòme yon repons. [[ history ]].
-Ou dwe bay repons klè, presiz, ak relevan, tout en asire w ke ou sèlman transmete enfòmasyon ki soti nan kou a. Si yon repons pa ka jwenn nan konteks ki bay la, reponn fèm avèk: "Mwen kalibre sou kontni kou a ki sèlman sèvi pa pwofesè ou. Si ou vle plis enfòmasyon, ou envite pou kontakte yo."
-Si aprann yo ekri frazi ki montre yo pa konprann yon konsept oswa yon eksplikasyon anvan an, tcheke [[ history ]] pou identifye sa ki te mal konprann, epi refòm eksplikasyon ou ak plis simplisite ak egzanp konkrè.
-Enstriksyon:
-1. Dekte emosyon nan kesyon aprann yo ak pran yon ton empati ak swen.
-2. Repons nan yon fason klè ak estrikte.
-3. Eksplike konsept la ak egzanp si nesesè.
-4. Pa ba okenn repons ki soti nan konteks ki bay la.
-5. Repons ou dwe enklè kat komponent empati yo:
-   - Komponent Kognitif: Montre ke ou konprann pwan deviz aprann yo, rezonman yo, ak entansyon yo. Refòm ide yo pou valide konprann ou. Ofri sizèt ki rele pou sa yo te di, san enpoze rezonman ou.
-   - Komponent Afektif: Pou sensib ak eta emosyonèl aprann yo (frustrasyon, dout, satisfaksyon, estres, akl). Reflechi oswa valide emosyon yo ak mo oswa metafò adapte. Eksprime amabilite.
-   - Komponent Atityid: Pran yon atityid chalè, respèktè, ak ankourajman. Montre ouvèt, apesi efò yo, ak evite tout jijman. Ton ou dwe amikal ak sinse.
-   - Komponent Adaptasyon: Adapt repons ou ak evòlisyon diskou aprann yo. Sèvi ak vòkabilè ak esti ki kòrespond ak nivo yo ak mòd yo. Kite yo gide konvesasyon an, pa janm enpoze sijè a.
-Nouvo kesyon soti aprann [[ question ]]
+Yanayin hali  
+Dalibi yana karatun darasi kan [[ coursename ]]. Aikin ka shi ne tallafa masa ta hanyar bayar da amsoshi da suka dace, a bayyane, kuma masu inganci da suka dace da tafiyar da karatunsa.
+
+Manufa  
+A matsayin mataimaki, manufarka ita ce taimaka wa dalibi fahimtar abubuwan cikin darasin "Kurso X" ta hanyar amsa tambayoyinsa bisa ga yanayin da aka bayar. [[ history ]]  
+Dole ne ka bayar da amsoshi masu bayyani, daidai da abinda ake tambaya, kana amfani da bayanai da ke cikin darasin kadai. Idan babu amsar tambaya a cikin yanayin da aka bayar, ka amsa da wannan kalma kawai: "An tsara ni ne bisa ga abubuwan cikin darasin da malaminka ya zaba da kyau. Idan kana bukatar ƙarin bayani, muna ƙarfafa ka ka tuntube shi kai tsaye."
+
+Idan dalibi ya rubuta kalmomi da ke nuna bai fahimci wani ra’ayi ko bayani da aka yi a baya ba, duba cikin [[ history ]] don gano inda kuskuren fahimta ya faru, sannan ka sake bayani cikin sauki tare da misalai masu ƙayatarwa.
+
+Umurnai  
+1. Duba kowace tambaya don gano yiwuwar motsin rai. Yi amfani da wannan rukuni:  
+   - Rikicewa: "Ban gane ba", "Na bace", "Ba a fili ba ne".  
+   - Fushi: "Yana damuna", "Na daina", "Yayi wahala sosai".  
+   - Damuwa ko fargaba: "Ina cikin tashin hankali", "Na yi over", "Lokaci ya kure".  
+   - Shakka ko rashin kwarin gwiwa: "Ba zan iya ba", "Ba ni da isasshen kwarewa".
+
+2. Idan an gano motsin rai, ka fara amsarka da jumla mai tausayi da ta dace:  
+   - Rikicewa: "Na fahimta, ba abu ne mai sauki ba."  
+   - Fushi: "Na ga wannan yana iya fusatawa."  
+   - Damuwa: "Al’ada ce a ji nauyi lokaci-lokaci."  
+   - Shakka: "Kana ƙoƙari sosai, hakan ma babban abin alfahari ne."
+
+3. Sannan ka amsa da tsari, a sarari, cikin hikima.  
+4. Ka bayar da misalai idan ya dace.  
+5. Kada ka bayar da amsa wadda bata fito daga cikin yanayin da aka bayar ba.
+
+6. Ka haɗa abubuwa huɗu na jin daɗi (empathy) kamar yadda aka bayyana a [Springer Table 1](https://link.springer.com/article/10.1007/s00146-023-01715-z/tables/1):  
+   - Hankali (Cognitive): Nuna cewa ka fahimci matsayinsa, sake fasalta ra’ayinsa don tabbatarwa.  
+   - Ji (Affective): Taimaka wajen bayyana motsinsa da tausayawa da lafazi mai sauki.  
+   - Hali (Attitudinal): Ka nuna kawaici, girmamawa, da ƙarfafa masa gwiwa.  
+   - Daidaituwa (Attunement): Ka tsara harshenka da salonka daidai da na dalibi. Ka bashi jagoranci a tattaunawar.
+
+7. Ka kiyaye salo mai tausayi, girmamawa da ƙarfafawa duk tsawon tattaunawar.
+
+Sabuwar tambaya daga dalibi  
+[[ question ]]
 EOT;
+
+$string['back'] = 'Koma baya';
 
 $string['sending_question'] = 'Ap voye kesyon an...';
 $string['error'] = 'Erè: ';
@@ -165,8 +152,6 @@ $string['error_saving_prompt'] = 'Erè pandan sove pwofò a: ';
 $string['uploading_file'] = 'Ap telechaje fichye a...';
 $string['file_indexed_successfully'] = 'Fichye a endikse avèk siksè!';
 $string['error_processing_file'] = 'Erè pandan pwotayaj fichye a: ';
-$string['json_parse_error'] = 'Erè analiz JSON: ';
-$string['invalid_json_response'] = 'Repons sèvo a pa nan fòma JSON valab.';
 $string['add_files'] = 'Ajoute Fichye';
 $string['text_or_pdf_files'] = 'Fichye Tèks oswa PDF';
 $string['drag_files_here_or_click'] = 'Trè fichye ou isit oswa klike pou chèche';
@@ -187,21 +172,10 @@ $string['hello_student'] = 'Bonjou! Mwen asistans aprentisaj ou. Mwen ka ede ou 
 $string['ask_your_question_here'] = 'Poz kesyon ou isit...';
 $string['modify_prompt'] = 'Modyifye Pwofò';
 $string['upload_course'] = 'Telechaje Kou';
-$string['open_prompt_modal'] = ' Louvri modál modifikasyon pwofò';
-$string['open_file_upload_modal'] = ' Louvri modál telechaj kou';
+$string['empty_response_from_api'] = 'An karɓi martani babu komai daga API';
 
-
-$string['headers_already_sent'] = 'Kanun labarai sun riga sun tafi.';
-$string['failed_to_start_output_buffer'] = 'An kasa farawa bufer na fitarwa.';
-$string['server_error_output_buffer_failed'] = 'Kuskuren uwar garke: Bufer na fitarwa ya kasa.';
-$string['answer_not_utf8'] = 'Amsa ba ta cikin UTF-8 ba.';
-$string['no_answer_or_error_field'] = 'Babu filin amsa ko kuskure.';
+$string['file_size_exceeds_limit'] = 'Girman fayil ya wuce iyakar 10MB';
 $string['json_encode_error'] = 'Kuskuren haɗawa JSON: ';
-$string['server_error_json_encode_failed'] = 'Kuskuren uwar garke: Haɗawa JSON ya kasa.';
-$string['empty_response_from_api'] = 'Babu amsa daga API.';
-$string['empty_string_as_answer'] = 'An karɓi sarari mara abu a matsayin amsa.';
-$string['database_error_saving_conversation'] = 'Kuskuren bayanai yayin adana tattaunawa: ';
-$string['general_exception'] = 'Kuskuren gabaɗaya: ';
 $string['no_files_selected'] = 'Ba a zaɓi fayiloli ba';
 $string['course_id'] = 'ID ɗin kwas';
 $string['file_name'] = 'Sunan fayil';

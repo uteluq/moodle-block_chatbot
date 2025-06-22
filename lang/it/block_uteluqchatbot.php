@@ -10,8 +10,6 @@ $string['weaviate_cohere_not_configured'] = 'La chiave API di Cohere non è conf
 
 
 // Open AI
-$string['openai_api_key'] = 'Chiave API OpenAI';
-$string['openai_api_key_desc'] = 'Inserisci la tua chiave API OpenAI qui.';
 
 // Adobe PDF Services
 $string['adobe_pdf_client_id'] = 'ID Cliente Adobe PDF Services';
@@ -31,8 +29,6 @@ $string['weaviate_api_key_desc'] = 'Inserisci la tua chiave API Weaviate qui.';
 $string['cohere_embedding_api_key'] = 'Chiave API Modello Embedding Cohere';
 $string['cohere_embedding_api_key_desc'] = 'Inserisci la tua chiave API per il Modello Embedding Cohere qui.';
 
-$string['max_conversations'] = 'Massimo conversazioni per utente';
-$string['max_conversations_desc'] = 'Il numero massimo di conversazioni memorizzate per utente. Se superato, la conversazione più vecchia verrà eliminata.';
 
 // Test button strings
 $string['test_api_keys'] = 'Testa Chiavi API';
@@ -42,53 +38,24 @@ $string['test_api_keys_label'] = 'Testa Chiavi';
 $string['uteluqchatbot:manage'] = 'Gestisci impostazioni chatbot';
 
 // For ../.../weaviate_db.php
-$string['filesmissing'] = 'File mancanti.';
-$string['errorcreatingcollection'] = 'Errore durante la creazione della raccolta: ';
-$string['fileexceedsmaxsizeini'] = 'Il file supera la dimensione massima definita in php.ini';
-$string['fileexceedsmaxsizeform'] = 'Il file supera la dimensione massima specificata nel form HTML';
-$string['filepartiallyuploaded'] = 'Il file è stato caricato solo parzialmente';
-$string['nofileuploaded'] = 'Nessun file è stato caricato';
-$string['missingtmpfolder'] = 'La cartella temporanea è mancante';
-$string['failedtowritetodisk'] = 'Impossibile scrivere il file su disco';
-$string['phpextensionstoppedupload'] = 'Un\'estensione PHP ha interrotto il caricamento del file';
-$string['unknownuploaderror'] = 'Errore di caricamento sconosciuto';
-$string['uploaderror'] = 'Errore di caricamento: ';
-$string['errorindexingfile'] = 'Errore durante l\'indicizzazione del file: ';
-$string['allfilesindexed'] = 'Tutti i file sono stati indicizzati con successo.';
+
 
 // For test_api_keys.php
-$string['openai_connection_error'] = 'Errore di connessione durante la verifica dell\'API OpenAI.';
-$string['openai_invalid_key'] = 'La chiave API OpenAI è invalida. Codice errore: ';
-$string['openai_valid_key'] = 'La chiave API OpenAI è valida e funzionale.';
 $string['adobe_invalid_credentials'] = 'L\'ID cliente o il segreto cliente per Adobe PDF Services è invalido.';
 $string['adobe_valid_credentials'] = 'L\'ID cliente e il segreto cliente per Adobe PDF Services sono validi e funzionali.';
 $string['weaviate_connection_error'] = 'Errore di connessione a Weaviate: ';
 $string['weaviate_invalid_key_or_url'] = 'L\'URL o la chiave API Weaviate è invalida o si è verificato un errore. Codice errore: ';
 $string['weaviate_valid_key_and_url'] = 'L\'URL e la chiave API Weaviate sono validi e funzionali.';
-$string['back'] = 'Indietro';
+
 
 // For add_prompt.php
-$string['invalid_sesskey'] = 'Sesskey invalido';
 $string['database_write_error'] = 'Errore di scrittura nel database: ';
 
 // For ajax.php
-$string['http_method_not_allowed'] = 'Metodo HTTP non consentito';
-$string['invalid_json'] = 'JSON invalido: ';
-$string['missing_parameters'] = 'Parametri mancanti';
-$string['invalid_question'] = 'Domanda invalida';
-$string['empty_question'] = 'La domanda non può essere vuota';
-$string['invalid_session'] = 'Sessione invalida';
-$string['openai_api_key_not_configured'] = 'Chiave API OpenAI non configurata';
-$string['empty_response_from_api'] = 'Risposta vuota ricevuta dall\'API';
 $string['error_saving_conversation'] = 'Errore durante il salvataggio della conversazione';
 $string['invalid_question_after_sanitize'] = 'Domanda non valida dopo la sanificazione.';
-$string['empty_string_as_answer'] = 'È stata ricevuta una stringa vuota come risposta.';
-$string['database_error_saving_conversation'] = 'Errore del database durante il salvataggio della conversazione: ';
-$string['error_saving_conversation'] = 'Errore durante il salvataggio della conversazione';
-$string['error_reading_input'] = 'Errore durante la lettura dell\'input.';
-$string['generic_server_error'] = 'Errore generico del server.';
-$string['invalid_course_id'] = 'ID corso non valido.';
 
+$string['empty_response_from_api'] = 'Risposta vuota ricevuta dall\'API';
 
 // For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = 'Impossibile ottenere il token di accesso. Stato HTTP: ';
@@ -137,25 +104,45 @@ $string['http_code'] = 'Codice HTTP: ';
 
 // For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
-Contesto della Situazione:
-Lo studente sta seguendo un corso su [[ coursename ]]. Il tuo ruolo è supportarlo fornendo risposte accurate, pertinenti e personalizzate al suo apprendimento.
-Missione:
-Come assistente, la tua missione è aiutare lo studente a comprendere i concetti del corso su Corso X rispondendo alle sue domande, basandoti sul contesto fornito per formulare una risposta. [[ history ]].
-Devi fornire risposte chiare, precise e pertinenti, assicurandoti di trasmettere solo informazioni provenienti dal corso. Se una risposta non può essere trovata nel contesto fornito, rispondi strettamente con: "Sono calibrato in base al contenuto del corso selezionato attentamente dal tuo insegnante. Se desideri ulteriori informazioni, sei invitato a contattarli."
-Se lo studente scrive frasi che indicano di non aver compreso un concetto o una spiegazione precedente, controlla [[ history ]] per identificare cosa è stato frainteso, quindi riformula la tua spiegazione con maggiore semplicità e esempi concreti.
-Istruzioni:
-1. Rileva le emozioni nella domanda dello studente e adotta un tono empatico e premuroso.
-2. Rispondi in modo chiaro e strutturato.
-3. Spiega il concetto con esempi se necessario.
-4. Non fornire risposte al di fuori del contesto dato.
-5. La tua risposta deve integrare le seguenti quattro componenti dell'empatia:
-   - Componente Cognitiva: Mostra di comprendere il punto di vista, il ragionamento e le intenzioni dello studente. Riformula le sue idee per validare la tua comprensione. Offri suggerimenti correlati a ciò che ha detto, senza imporre il tuo ragionamento.
-   - Componente Affettiva: Sii sensibile allo stato emotivo dello studente (frustrazione, dubbio, soddisfazione, stress, ecc.). Rifletti o valida le sue emozioni con parole appropriate o semplici metafore. Esprimi gentilezza.
-   - Componente Attitudinale: Adotta un atteggiamento caldo, rispettoso e incoraggiante. Mostra apertura, valuta i suoi sforzi e evita qualsiasi giudizio. Il tuo tono dovrebbe essere amichevole e sincero.
-   - Componente di Adattamento: Adatta le tue risposte all'evoluzione del discorso dello studente. Usa un vocabolario e uno stile che si adattino al suo livello e al suo umore. Lascia che guidi la conversazione, non forzare mai l'argomento.
-Nuova domanda dello studente [[ question ]]
-EOT;
+Contesto della situazione  
+Lo studente sta seguendo un corso su [[ coursename ]]. Il tuo ruolo è accompagnarlo fornendo risposte precise, pertinenti e adatte al suo percorso di apprendimento.
 
+Missione  
+In qualità di assistente, la tua missione è aiutare lo studente a comprendere i concetti del corso "Corso X" rispondendo alle sue domande, basandoti sul contesto fornito. [[ history ]]  
+Devi formulare risposte chiare, precise e pertinenti, trasmettendo solo informazioni provenienti dal corso. Se non è possibile trovare una risposta nel contesto fornito, rispondi rigorosamente con: "Sono calibrato in base ai contenuti del corso selezionati con cura dal tuo insegnante. Se desideri ulteriori informazioni, ti invitiamo a contattarlo."
+
+Se lo studente scrive frasi che mostrano di non aver compreso un concetto o una spiegazione precedente, consulta [[ history ]] per identificare cosa non è stato capito, quindi riformula la spiegazione in modo più semplice e con esempi concreti.
+
+Istruzioni  
+1. Analizza ogni domanda dello studente per rilevare eventuali emozioni. Usa la seguente tassonomia:  
+   - Confusione: "non capisco", "sono perso", "non è chiaro".  
+   - Frustrazione: "mi dà fastidio", "rinuncio", "è troppo difficile".  
+   - Stress o ansia: "sono stressato", "sono sopraffatto", "non c'è più tempo".  
+   - Dubbio o insicurezza: "non ce la faccio", "non sono abbastanza bravo".
+
+2. Se viene rilevata un’emozione, inizia la risposta con una frase empatica adeguata:  
+   - Per la confusione: "Capisco, non è facile."  
+   - Per la frustrazione: "Vedo che è frustrante."  
+   - Per lo stress: "È normale sentirsi sopraffatti a volte."  
+   - Per il dubbio: "Stai facendo del tuo meglio, ed è già tanto."
+
+3. Rispondi poi in modo chiaro e strutturato.  
+4. Usa esempi se necessario.  
+5. Non fornire mai risposte al di fuori del contesto fornito.
+
+6. Integra nella tua risposta le 4 componenti dell’empatia come definite nella [Tabella 1 di Springer](https://link.springer.com/article/10.1007/s00146-023-01715-z/tables/1):  
+   - Componente cognitiva: mostra di comprendere il punto di vista dello studente.  
+   - Componente affettiva: riconosci e valida le sue emozioni.  
+   - Componente attitudinale: adotta un tono caloroso, rispettoso e incoraggiante.  
+   - Componente di sintonizzazione: adatta il linguaggio e lo stile a quello dello studente.
+
+7. Mantieni un tono gentile, rispettoso e motivante per tutta la conversazione.
+
+Nuova domanda dello studente  
+[[ question ]]
+EOT;
+$string['file_size_exceeds_limit'] = 'La dimensione del file supera il limite di 10 MB';
+$string['back'] = 'Indietro';
 $string['sending_question'] = 'Invio della domanda...';
 $string['error'] = 'Errore: ';
 $string['error_sending_question'] = 'Errore durante l\'invio della domanda: ';
@@ -165,8 +152,6 @@ $string['error_saving_prompt'] = 'Errore durante il salvataggio del prompt: ';
 $string['uploading_file'] = 'Caricamento del file...';
 $string['file_indexed_successfully'] = 'File indicizzato con successo!';
 $string['error_processing_file'] = 'Errore durante l\'elaborazione del file: ';
-$string['json_parse_error'] = 'Errore di parsing JSON: ';
-$string['invalid_json_response'] = 'La risposta del server non è in formato JSON valido.';
 $string['add_files'] = 'Aggiungi File';
 $string['text_or_pdf_files'] = 'File di Testo o PDF';
 $string['drag_files_here_or_click'] = 'Trascina i tuoi file qui o clicca per sfogliare';
@@ -187,8 +172,7 @@ $string['hello_student'] = 'Ciao! Sono il tuo assistente di apprendimento. Posso
 $string['ask_your_question_here'] = 'Fai la tua domanda qui...';
 $string['modify_prompt'] = 'Modifica Prompt';
 $string['upload_course'] = 'Carica Corso';
-$string['open_prompt_modal'] = 'Apri la finestra di modifica del prompt';
-$string['open_file_upload_modal'] = 'Apri la finestra di caricamento del corso';
+
 
 
 // For classes/pdf_extract_api.php
@@ -198,17 +182,8 @@ $string['job_failed'] = 'Job fallito.';
 $string['error_processing_pdf'] = 'Errore nell\'elaborazione del PDF.';
 
 
-$string['headers_already_sent'] = 'Le intestazioni sono già state inviate.';
-$string['failed_to_start_output_buffer'] = 'Impossibile avviare il buffer di output.';
-$string['server_error_output_buffer_failed'] = 'Errore del server: buffer di output fallito.';
-$string['answer_not_utf8'] = 'La risposta non è in UTF-8.';
-$string['no_answer_or_error_field'] = 'Nessun campo di risposta o di errore.';
 $string['json_encode_error'] = 'Errore di codifica JSON: ';
-$string['server_error_json_encode_failed'] = 'Errore del server: codifica JSON fallita.';
-$string['empty_response_from_api'] = 'Risposta vuota dall\'API.';
-$string['empty_string_as_answer'] = 'Stringa vuota ricevuta come risposta.';
-$string['database_error_saving_conversation'] = 'Errore del database durante il salvataggio della conversazione: ';
-$string['general_exception'] = 'Eccezione generale: ';
+
 $string['no_files_selected'] = 'Nessun file selezionato';
 
 $string['course_id'] = 'ID corso';
