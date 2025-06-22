@@ -1,5 +1,5 @@
 /**
- * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  */
 define(['jquery', 'core/str'], function ($, str) {
     /**
@@ -18,7 +18,6 @@ define(['jquery', 'core/str'], function ($, str) {
                 
                 // Reset accumulated files when modal is closed
                 accumulatedFiles = [];
-                console.log('Modal closed, files reset');
             }
         }
     };
@@ -34,7 +33,6 @@ define(['jquery', 'core/str'], function ($, str) {
 
         // Remove from accumulated files array
         accumulatedFiles = accumulatedFiles.filter(file => file.name !== fileName);
-        console.log('Removed file:', fileName, 'Remaining files:', accumulatedFiles.length);
 
         // Update the file input with remaining files
         const filesInput = document.querySelector('.block_uteluqchatbot #file');
@@ -57,7 +55,7 @@ define(['jquery', 'core/str'], function ($, str) {
         if (file.size > maxSize) {
             return {
                 valid: false,
-                message: 'File size exceeds 10MB limit'
+                message: get_string('file_size_exceeds_limit', 'block_uteluqchatbot')
             };
         }
 
@@ -89,11 +87,9 @@ define(['jquery', 'core/str'], function ($, str) {
         // Clear existing content
         container.innerHTML = '';
         
-        console.log(`Displaying ${files.length} files`); // Debug log
 
         // Process each file - NO DataTransfer manipulation here
         Array.from(files).forEach((file, index) => {
-            console.log(`Displaying file ${index + 1}: ${file.name}`); // Debug log
             
             const validation = validateFile(file);
 
@@ -164,22 +160,17 @@ define(['jquery', 'core/str'], function ($, str) {
         const container = document.querySelector('.block_uteluqchatbot #uploadedFilesContainer');
 
         if (!fileInput || !container) {
-            console.log('File input or container not found'); // Debug log
             return;
         }
 
-        fileInput.addEventListener('change', function (e) {
-            console.log('File input changed, new files:', e.target.files.length); // Debug log
-            
+        fileInput.addEventListener('change', function (e) {            
             // Add new files to accumulated files (avoid duplicates by name)
             const newFiles = Array.from(e.target.files);
             newFiles.forEach(newFile => {
                 const existingFile = accumulatedFiles.find(file => file.name === newFile.name);
                 if (!existingFile) {
                     accumulatedFiles.push(newFile);
-                    console.log('Added file:', newFile.name);
                 } else {
-                    console.log('File already exists:', newFile.name);
                 }
             });
 
@@ -188,7 +179,6 @@ define(['jquery', 'core/str'], function ($, str) {
             accumulatedFiles.forEach(file => dt.items.add(file));
             fileInput.files = dt.files;
 
-            console.log('Total accumulated files:', accumulatedFiles.length);
             displayFiles(accumulatedFiles);
         });
 
@@ -198,7 +188,6 @@ define(['jquery', 'core/str'], function ($, str) {
             uploadBox.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log('Upload box clicked, opening file selector'); // Debug log
                 fileInput.click();
             });
         }
@@ -258,16 +247,13 @@ define(['jquery', 'core/str'], function ($, str) {
         function handleDrop(e) {
             const dt = e.dataTransfer;
             const files = dt.files;
-            
-            console.log(`Files dropped: ${files.length}`); // Debug log
-            
+                        
             // Add dropped files to accumulated files (avoid duplicates)
             const newFiles = Array.from(files);
             newFiles.forEach(newFile => {
                 const existingFile = accumulatedFiles.find(file => file.name === newFile.name);
                 if (!existingFile) {
                     accumulatedFiles.push(newFile);
-                    console.log('Added dropped file:', newFile.name);
                 }
             });
 
@@ -283,7 +269,6 @@ define(['jquery', 'core/str'], function ($, str) {
 
     return {
         init: function () {
-            console.log('Initializing file upload module'); // Debug log
             setupFileInputListener();
             setupDragAndDrop();
 

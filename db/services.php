@@ -1,7 +1,7 @@
 <?php
 /**
  * External services for uteluqchatbot block
- * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  */
 
 defined('MOODLE_INTERNAL') || die();
@@ -37,7 +37,6 @@ $functions = [
         'capabilities' => '',
         'loginrequired' => true,
     ],
-    // Nouvelle fonction pour l'upload de fichiers multiples
     'block_uteluqchatbot_upload_files' => [
         'classname'   => 'block_uteluqchatbot\external\upload_files',
         'methodname'  => 'execute',

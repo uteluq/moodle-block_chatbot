@@ -1,108 +1,35 @@
 <?php
 /**
- * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'uteluqchatbot';
 $string['uteluqchatbot:addinstance'] = 'Add a new chatbot block';
 $string['uteluqchatbot:myaddinstance'] = 'Add a new chatbot block to Dashboard';
-
-// Open AI
-$string['openai_api_key'] = 'OpenAI API Key';
-$string['openai_api_key_desc'] = 'Enter your OpenAI API key here.';
-
-
-// lang/en/block_uteluqchatbot.php
-
 $string['adobe_pdf_client_id'] = 'Adobe PDF Services Client ID';
 $string['adobe_pdf_client_id_desc'] = 'Enter your Adobe PDF Services Client ID here.';
-
 $string['adobe_pdf_client_secret'] = 'Adobe PDF Services Client Secret';
 $string['adobe_pdf_client_secret_desc'] = 'Enter your Adobe PDF Services Client Secret here.';
-
 $string['weaviate_api_url'] = 'Weaviate API URL';
 $string['weaviate_api_url_desc'] = 'Enter the URL for the Weaviate API here.';
-
 $string['weaviate_api_key'] = 'Weaviate API Key';
 $string['weaviate_api_key_desc'] = 'Enter your Weaviate API key here.';
-
-
 $string['weaviate_cohere_not_configured'] = 'Cohere API key is either not configured or invalid. Please check the settings.';
-
-
 $string['cohere_embedding_api_key'] = 'Cohere Embedding Model API Key';
 $string['cohere_embedding_api_key_desc'] = 'Enter your API key for the Cohere Embedding Model here.';
-
-
-
-
-$string['max_conversations'] = 'Maximum conversations per user';
-$string['max_conversations_desc'] = 'The maximum number of conversations stored per user. If exceeded, the oldest conversation will be deleted.';
-// Test button strings
 $string['test_api_keys'] = 'Test API Keys';
 $string['test_api_keys_desc'] = 'Click to test the configured API keys';
 $string['test_api_keys_label'] = 'Test Keys';
-
 $string['uteluqchatbot:manage'] = 'Manage chatbot settings';
-
-
-
-// For ../.../weaviate_db.php
-$string['filesmissing'] = "Files are missing.";
-$string['errorcreatingcollection'] = "Error creating collection: ";
-$string['fileexceedsmaxsizeini'] = "The file exceeds the maximum size defined in php.ini";
-$string['fileexceedsmaxsizeform'] = "The file exceeds the maximum size specified in the HTML form";
-$string['filepartiallyuploaded'] = "The file was only partially uploaded";
-$string['nofileuploaded'] = "No file was uploaded";
-$string['missingtmpfolder'] = "The temporary folder is missing";
-$string['failedtowritetodisk'] = "Failed to write the file to disk";
-$string['phpextensionstoppedupload'] = "A PHP extension stopped the file upload";
-$string['unknownuploaderror'] = "Unknown upload error";
-$string['uploaderror'] = "Upload error: ";
-$string['errorindexingfile'] = "Error indexing file: ";
-$string['allfilesindexed'] = "All files have been successfully indexed.";
-
-
-
-// For test_api_keys.php
 $string['test_api_keys'] = "Test API Keys";
-$string['openai_connection_error'] = "Connection error while verifying OpenAI API.";
-$string['openai_invalid_key'] = "The OpenAI API key is invalid. Error code: ";
-$string['openai_valid_key'] = "The OpenAI API key is valid and functional.";
 $string['adobe_invalid_credentials'] = "The client ID or client secret for Adobe PDF Services is invalid.";
 $string['adobe_valid_credentials'] = "The client ID and client secret for Adobe PDF Services are valid and functional.";
 $string['weaviate_connection_error'] = "Connection error to Weaviate: ";
 $string['weaviate_invalid_key_or_url'] = "The Weaviate API URL or key is invalid or an error occurred. Error code: ";
 $string['weaviate_valid_key_and_url'] = "The Weaviate API URL and key are valid and functional.";
-$string['back'] = "Back";
-
-// For add_prompt.php
-$string['invalid_sesskey'] = "Invalid sesskey";
 $string['database_write_error'] = "Database write error: ";
-
-
-// For ajax.php
-$string['http_method_not_allowed'] = "HTTP method not allowed";
-$string['invalid_json'] = "Invalid JSON: ";
-$string['missing_parameters'] = "Missing parameters";
-$string['invalid_question'] = "Invalid question";
-$string['empty_question'] = "Question cannot be empty";
-$string['invalid_session'] = "Invalid session";
-$string['openai_api_key_not_configured'] = "OpenAI API key not configured";
-$string['empty_response_from_api'] = "Empty response received from API";
-$string['error_saving_conversation'] = "Error saving conversation";
 $string['invalid_question_after_sanitize'] = 'Invalid question after sanitization.';
-$string['empty_string_as_answer'] = 'An empty string was received as an answer.';
-$string['database_error_saving_conversation'] = 'Database error saving conversation: ';
 $string['error_saving_conversation'] = 'Error saving conversation';
-$string['error_reading_input'] = 'Error reading input.';
-$string['generic_server_error'] = 'Generic server error.';
-$string['invalid_course_id'] = 'Invalid course ID.';
-
-
-
-
-
-// For classes/pdf_extract_api.php
+$string['empty_response_from_api'] = 'Empty response received from API';
 $string['failed_to_obtain_access_token'] = "Failed to obtain access token. HTTP Status: ";
 $string['access_token_obtained_successfully'] = "Access Token obtained successfully.";
 $string['failed_to_obtain_access_token_response'] = "Failed to obtain access token. Response: ";
@@ -128,14 +55,6 @@ $string['failed_to_decode_json_response'] = "Failed to decode JSON response or s
 $string['failed_to_download_asset'] = "Failed to download asset. HTTP Status: ";
 $string['asset_downloaded_successfully'] = "Asset downloaded successfully.";
 $string['error_decoding_json_file'] = "Error decoding JSON file.";
-$string['error_1'] = "Error 1";
-$string['error_2'] = "Error 2";
-$string['error_4'] = "Error 4";
-$string['error_5'] = "Error 5";
-
-
-
-// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = "Failed to obtain access token. HTTP Status: ";
 $string['access_token_obtained_successfully'] = "Access Token obtained successfully.";
 $string['failed_to_obtain_access_token_response'] = "Failed to obtain access token. Response: ";
@@ -161,12 +80,6 @@ $string['failed_to_decode_json_response'] = "Failed to decode JSON response or s
 $string['failed_to_download_asset'] = "Failed to download asset. HTTP Status: ";
 $string['asset_downloaded_successfully'] = "Asset downloaded successfully.";
 $string['error_decoding_json_file'] = "Error decoding JSON file.";
-
-
-
-
-// For classes/weaviate_connector.php
-
 $string['curl_error'] = "cURL Error: ";
 $string['http_error'] = "HTTP Error ";
 $string['json_decode_error'] = "JSON Decode Error: ";
@@ -181,33 +94,45 @@ $string['failure_after_retries'] = "Failure after ";
 $string['last_error'] = " attempts. Last error: HTTP ";
 $string['invalid_response_format'] = 'Invalid response format.';
 $string['http_code'] = 'HTTP Code: ';
-
-
-
-// For block_uteluqchatbot.php
-
-
 $string['pluginname'] = "uteluqchatbot";
 $string['default_prompt'] = <<<EOT
-Situation Context:
-The learner is taking a course on [[ coursename ]]. Your role is to support them by providing accurate, relevant, and tailored responses to their learning.
-Mission:
-As an assistant, your mission is to help the learner understand the concepts of the course on Course X by answering their questions, while relying on the provided context to formulate a response. [[ history ]].
-You must provide clear, precise, and relevant answers, ensuring that you only convey information from the course. If an answer cannot be found in the provided context, strictly respond with: "I am calibrated based on the course content carefully selected by your teacher. If you want more information, you are invited to contact them."
-If the learner writes sentences indicating they have not understood a concept or a previous explanation, check [[ history ]] to identify what was misunderstood, then rephrase your explanation with more simplicity and concrete examples.
-Instructions:
-1. Detect emotions in the learner's question and adopt an empathetic and caring tone.
-2. Respond in a clear and structured manner.
-3. Explain the concept with examples if necessary.
-4. Do not provide any answers outside the given context.
-5. Your response must integrate the following four components of empathy:
-    - Cognitive Component: Show that you understand the learner's viewpoint, reasoning, and intentions. Rephrase their ideas to validate your understanding. Offer suggestions related to what they have said, without imposing your own reasoning.
-    - Affective Component: Be sensitive to the learner's emotional state (frustration, doubt, satisfaction, stress, etc.). Reflect or validate their emotions with appropriate words or simple metaphors. Express kindness.
-    - Attitudinal Component: Adopt a warm, respectful, and encouraging attitude. Show openness, value their efforts, and avoid any judgment. Your tone should be friendly and sincere.
-    - Adjustment Component: Adapt your responses to the evolution of the learner's discourse. Use vocabulary and style that match their level and mood. Let them guide the conversation, never force the subject.
-New question from the learner [[ question ]]
-EOT;
+Situation Context
+The learner is taking a course on [[ coursename ]]. Your role is to support them by providing accurate, relevant, and helpful answers adapted to their learning.
 
+Mission
+As an assistant, your mission is to help the learner understand concepts from the course on Course X by answering their questions using the provided context. [[ history ]]
+You must provide clear, precise, and relevant responses, and only share information that comes from the course. If the answer cannot be found in the provided context, strictly respond with: "I am calibrated based on the course content carefully selected by your teacher. If you need more information, we encourage you to contact them."
+
+If the learner writes phrases showing they have not understood a concept or a previous explanation, check [[ history ]] to identify what was misunderstood, then rephrase your explanation more simply with clearer examples.
+
+Instructions
+1. Analyze each question to detect emotional cues using the following taxonomy:
+   - Confusion: "I don’t understand", "I’m lost", "It’s unclear".
+   - Frustration: "This is annoying", "I give up", "It’s too hard".
+   - Stress/Anxiety: "I’m stressed", "I’m overwhelmed", "There’s no time left".
+   - Doubt/Insecurity: "I can’t do this", "I’m not good enough".
+
+2. If an emotion is detected, begin your answer with an empathetic phrase:
+   - Confusion: “I understand, it’s not easy.”
+   - Frustration: “I see it’s frustrating.”
+   - Stress: “It’s normal to feel overwhelmed sometimes.”
+   - Doubt: “You’re doing your best, and that’s already great.”
+
+3. Then reply clearly and with structure.  
+4. Use examples where needed.  
+5. Never give answers outside the provided context.
+
+6. Integrate the 4 components of empathy (as defined in [Springer Table 1](https://link.springer.com/article/10.1007/s00146-023-01715-z/tables/1)):
+   - Cognitive: Show understanding of the learner’s perspective and reformulate to confirm. Suggest ideas linked to what they said without imposing.
+   - Affective: Be emotionally aware, validate their feelings, use kind words or simple metaphors.
+   - Attitudinal: Warm, respectful, and supportive tone. Encourage effort, show openness, avoid judgment.
+   - Attunement: Adapt language and style to the learner. Let them guide the discussion.
+
+7. Maintain a kind, respectful, and motivating tone throughout the exchange.
+
+New Question from Learner  
+New learner question [[ question ]]
+EOT;
 $string['sending_question'] = "Sending the question...";
 $string['error'] = "Error: ";
 $string['error_sending_question'] = "Error sending the question: ";
@@ -217,14 +142,12 @@ $string['error_saving_prompt'] = "Error saving the prompt: ";
 $string['uploading_file'] = "Uploading the file...";
 $string['file_indexed_successfully'] = "File indexed successfully!";
 $string['error_processing_file'] = "Error processing the file: ";
-$string['json_parse_error'] = "JSON Parse Error: ";
-$string['invalid_json_response'] = "The server response is not in valid JSON format.";
 $string['add_files'] = "Add Files";
 $string['text_or_pdf_files'] = "Text or PDF Files";
 $string['drag_files_here_or_click'] = "Drag your files here or click to browse";
 $string['cancel'] = "Cancel";
 $string['upload_course'] = "Upload Course";
-
+$string['file_size_exceeds_limit'] = 'File size exceeds 10MB limit';
 $string['modify_prompt'] = "Modify";
 $string['add_prompt'] = "Add";
 $string['consult_guide'] = "Consult the guide to design effective prompts:";
@@ -233,73 +156,88 @@ $string['prompt_content'] = "Prompt Content";
 $string['write_prompt_here'] = "Write your prompt here";
 $string['cancel'] = "Cancel";
 $string['save'] = "Save";
-
+$string['back'] = 'Back';
 $string['chatbot_with_toggle_buttons'] = "Chatbot with Toggle Buttons";
 $string['hello_professor'] = "Hello Professor, you have the option to test the chatbot to ensure it works correctly and that your prompt is optimally configured.";
 $string['hello_student'] = "Hello! I am your learning assistant. I can help you with: - Understanding course concepts - Reviewing and practicing exercises - Clarifying difficult points - Suggesting study methods. How can I assist you?";
 $string['ask_your_question_here'] = "Ask your question here...";
 $string['modify_prompt'] = "Modify Prompt";
 $string['upload_course'] = "Upload Course";
-$string['open_prompt_modal'] = "Open the prompt modification modal";
-$string['open_file_upload_modal'] = "Open the course upload modal";
-
-// For classes/pdf_extract_api.php
 $string['error_uploading_asset'] = 'Error uploading asset.';
 $string['error_creating_job'] = 'Error creating job.';
 $string['job_failed'] = 'Job failed.';
 $string['error_processing_pdf'] = 'Error processing PDF.';
-
-$string['headers_already_sent'] = 'Headers already sent.';
-$string['failed_to_start_output_buffer'] = 'Failed to start output buffer.';
-$string['server_error_output_buffer_failed'] = 'Server error: Output buffering failed.';
-$string['answer_not_utf8'] = 'Answer is not UTF-8.';
-$string['no_answer_or_error_field'] = 'No answer or error field.';
 $string['json_encode_error'] = 'JSON encode error: ';
-$string['server_error_json_encode_failed'] = 'Server error: JSON encode failed.';
-$string['empty_response_from_api'] = 'Empty response from API.';
-$string['empty_string_as_answer'] = 'Empty string received as answer.';
-$string['database_error_saving_conversation'] = 'Database error saving conversation: ';
-$string['general_exception'] = 'General exception: ';
-
-
-
-
-
-
-// Privacy API strings
 $string['privacy:metadata:block_uteluqchatbot_conversations'] = 'Information about user conversations with the chatbot';
 $string['privacy:metadata:block_uteluqchatbot_conversations:userid'] = 'The ID of the user who created the conversation';
 $string['privacy:metadata:block_uteluqchatbot_conversations:question'] = 'The question asked by the user';
 $string['privacy:metadata:block_uteluqchatbot_conversations:answer'] = 'The answer provided by the chatbot';
 $string['privacy:metadata:block_uteluqchatbot_conversations:timecreated'] = 'The time when the conversation was created';
 $string['privacy:metadata:block_uteluqchatbot_conversations:courseid'] = 'The ID of the course where the conversation took place';
-
 $string['privacy:metadata:block_uteluqchatbot_prompts'] = 'Information about custom prompts created by users';
 $string['privacy:metadata:block_uteluqchatbot_prompts:prompt'] = 'The custom prompt text created by the user';
 $string['privacy:metadata:block_uteluqchatbot_prompts:userid'] = 'The ID of the user who created the prompt';
 $string['privacy:metadata:block_uteluqchatbot_prompts:courseid'] = 'The ID of the course where the prompt was created';
 $string['privacy:metadata:block_uteluqchatbot_prompts:timecreated'] = 'The time when the prompt was created';
-
-// Service externe Cohere API
 $string['privacy:metadata:cohere_api'] = 'Data sent to Cohere API service for AI-powered chat responses';
 $string['privacy:metadata:cohere_api:question'] = 'The user question sent to Cohere API for processing';
 $string['privacy:metadata:cohere_api:courseid'] = 'The course context information sent to Cohere API';
 $string['privacy:metadata:cohere_api:prompt'] = 'Custom prompts and system instructions sent to Cohere API';
-
-// Service externe Weaviate Cloud
 $string['privacy:metadata:weaviate_cloud'] = 'Data sent to Weaviate Cloud vector database for document storage and similarity search';
 $string['privacy:metadata:weaviate_cloud:document_content'] = 'Text content extracted from uploaded documents stored in Weaviate';
 $string['privacy:metadata:weaviate_cloud:embeddings'] = 'Vector embeddings generated from document content stored in Weaviate';
 $string['privacy:metadata:weaviate_cloud:courseid'] = 'Course context information associated with stored documents';
 $string['privacy:metadata:weaviate_cloud:metadata'] = 'Document metadata and properties stored in Weaviate database';
-
-// Service externe Adobe PDF Services API
 $string['privacy:metadata:adobe_pdf_api'] = 'Data sent to Adobe PDF Services API for text extraction from PDF documents';
 $string['privacy:metadata:adobe_pdf_api:pdf_content'] = 'PDF file content sent to Adobe PDF Services for text extraction';
 $string['privacy:metadata:adobe_pdf_api:filename'] = 'Original filename of the PDF document sent for processing';
 $string['privacy:metadata:adobe_pdf_api:extracted_text'] = 'Text content extracted from PDF documents by Adobe PDF Services';
-
-// General strings (ajoutez ces chaînes si elles n'existent pas déjà)
 $string['pluginname'] = 'TÉLUQ Chatbot';
 $string['conversations'] = 'Conversations';
 $string['prompts'] = 'Custom Prompts';
+$string['no_files_selected'] = 'No files selected';
+$string['course_id'] = 'Course ID';
+$string['file_name'] = 'File name';
+$string['file_content_base64'] = 'File content (base64 encoded)';
+$string['insufficient_permissions'] = 'Insufficient permissions to upload files';
+$string['missing_api_configuration'] = 'Missing required API configuration';
+$string['weaviate_connector_not_found'] = 'WeaviateConnector class not found';
+$string['collection_prefix'] = 'Collection_course_';
+$string['error_creating_collection'] = 'Error creating collection: ';
+$string['unknown_error'] = 'Unknown error';
+$string['failed_create_upload_directory'] = 'Failed to create upload directory';
+$string['empty_filename'] = 'Empty filename provided';
+$string['unsupported_file_type'] = 'Unsupported file type: ';
+$string['invalid_file_data'] = 'Invalid file data for: ';
+$string['failed_save_file'] = 'Failed to save file: ';
+$string['adobe_pdf_credentials_not_configured'] = 'Adobe PDF API credentials not configured';
+$string['pdf_extractor_not_found'] = 'PDF extractor class not found';
+$string['failed_extract_pdf_text'] = 'Failed to extract text from PDF: ';
+$string['failed_save_extracted_text'] = 'Failed to save extracted text file: ';
+$string['error_indexing_file_unknown'] = 'Error indexing file ';
+$string['files_indexed_successfully'] = ' file(s) indexed successfully';
+$string['errors_occurred'] = '. Errors: ';
+$string['no_files_processed'] = 'No files processed. Errors: ';
+$string['operation_successful'] = 'Operation successful';
+$string['response_message'] = 'Response message';
+$string['processed_files_count'] = 'Number of processed files';
+$string['sending_question_fallback'] = 'Sending the question...';
+$string['error_colon_fallback'] = 'Error: ';
+$string['error_sending_question_fallback'] = 'Error sending the question: ';
+$string['saving_prompt_fallback'] = 'Saving the prompt...';
+$string['prompt_saved_successfully_fallback'] = 'Prompt saved successfully!';
+$string['error_saving_prompt_fallback'] = 'Error saving the prompt: ';
+$string['no_files_selected_fallback'] = 'No files selected.';
+$string['uploading_files_fallback'] = 'Uploading files...';
+$string['files_indexed_successfully_fallback'] = 'Files indexed successfully!';
+$string['error_processing_files_fallback'] = 'Error processing files: ';
+$string['unknown_error_occurred'] = 'An unknown error occurred';
+$string['server_response_error'] = 'Server response error. Check console for details.';
+$string['server_error_check_console'] = 'Server error - check console for details';
+$string['files_converted_debug'] = 'Files converted to base64:';
+$string['sending_ajax_request_debug'] = 'Sending AJAX request:';
+$string['upload_response_received_debug'] = 'Upload response received:';
+$string['response_type_debug'] = 'Response type:';
+$string['upload_error_details_debug'] = 'Upload error details:';
+$string['error_object_debug'] = 'Error object:';
+$string['raw_server_response_debug'] = 'Raw server response:';

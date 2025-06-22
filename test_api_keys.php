@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  */
 
 require_once('../../config.php');
@@ -179,7 +179,7 @@ foreach ($results as $service => $result) {
 echo html_writer::div(
     $OUTPUT->single_button(
         new moodle_url('/admin/settings.php', ['section' => 'blocksettingchatbot']),
-        get_string('back'),
+        get_string('back', 'block_uteluqchatbot'),
         'get'
     ),
     'mt-3'

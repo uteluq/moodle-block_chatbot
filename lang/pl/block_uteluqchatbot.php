@@ -1,96 +1,34 @@
 <?php
 /**
- * @copyright 2025 UNIVERSITÉ TÉLUQ & Université GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  */
 $string['pluginname'] = 'uteluqchatbot';
 $string['uteluqchatbot:addinstance'] = 'Dodaj nowy blok chatbot';
 $string['uteluqchatbot:myaddinstance'] = 'Dodaj nowy blok chatbot do pulpitu nawigacyjnego';
-
 $string['weaviate_cohere_not_configured'] = 'Klucz API Cohere nie został skonfigurowany lub jest nieprawidłowy. Sprawdź ustawienia.';
-
-
-// Open AI
-$string['openai_api_key'] = 'Klucz API OpenAI';
-$string['openai_api_key_desc'] = 'Wprowadź swój klucz API OpenAI tutaj.';
-
-// Adobe PDF Services
 $string['adobe_pdf_client_id'] = 'ID klienta Adobe PDF Services';
 $string['adobe_pdf_client_id_desc'] = 'Wprowadź swój ID klienta Adobe PDF Services tutaj.';
-
 $string['adobe_pdf_client_secret'] = 'Sekret klienta Adobe PDF Services';
 $string['adobe_pdf_client_secret_desc'] = 'Wprowadź swój sekret klienta Adobe PDF Services tutaj.';
-
-// Weaviate
 $string['weaviate_api_url'] = 'URL API Weaviate';
 $string['weaviate_api_url_desc'] = 'Wprowadź URL API Weaviate tutaj.';
-
 $string['weaviate_api_key'] = 'Klucz API Weaviate';
 $string['weaviate_api_key_desc'] = 'Wprowadź swój klucz API Weaviate tutaj.';
-
-// Cohere Embedding Model
 $string['cohere_embedding_api_key'] = 'Klucz API modelu Cohere Embedding';
 $string['cohere_embedding_api_key_desc'] = 'Wprowadź swój klucz API dla modelu Cohere Embedding tutaj.';
-
-$string['max_conversations'] = 'Maksymalna liczba rozmów na użytkownika';
-$string['max_conversations_desc'] = 'Maksymalna liczba rozmów przechowywanych na użytkownika. Po przekroczeniu, najstarsza rozmowa zostanie usunięta.';
-
-// Test button strings
 $string['test_api_keys'] = 'Testuj klucze API';
 $string['test_api_keys_desc'] = 'Kliknij, aby przetestować skonfigurowane klucze API';
 $string['test_api_keys_label'] = 'Testuj klucze';
-
 $string['uteluqchatbot:manage'] = 'Zarządzaj ustawieniami chatbot';
-
-// For ../.../weaviate_db.php
-$string['filesmissing'] = 'Brak plików.';
-$string['errorcreatingcollection'] = 'Błąd podczas tworzenia kolekcji: ';
-$string['fileexceedsmaxsizeini'] = 'Plik przekracza maksymalny rozmiar zdefiniowany w php.ini';
-$string['fileexceedsmaxsizeform'] = 'Plik przekracza maksymalny rozmiar określony w formularzu HTML';
-$string['filepartiallyuploaded'] = 'Plik został częściowo przesłany';
-$string['nofileuploaded'] = 'Nie przesłano żadnego pliku';
-$string['missingtmpfolder'] = 'Brak folderu tymczasowego';
-$string['failedtowritetodisk'] = 'Nie udało się zapisać pliku na dysku';
-$string['phpextensionstoppedupload'] = 'Rozszerzenie PHP zatrzymało przesyłanie pliku';
-$string['unknownuploaderror'] = 'Nieznany błąd przesyłania';
-$string['uploaderror'] = 'Błąd przesyłania: ';
-$string['errorindexingfile'] = 'Błąd podczas indeksowania pliku: ';
-$string['allfilesindexed'] = 'Wszystkie pliki zostały pomyślnie zindeksowane.';
-
-// For test_api_keys.php
-$string['openai_connection_error'] = 'Błąd połączenia podczas weryfikacji API OpenAI.';
-$string['openai_invalid_key'] = 'Klucz API OpenAI jest nieprawidłowy. Kod błędu: ';
-$string['openai_valid_key'] = 'Klucz API OpenAI jest prawidłowy i funkcjonalny.';
 $string['adobe_invalid_credentials'] = 'ID klienta lub sekret klienta dla Adobe PDF Services jest nieprawidłowy.';
 $string['adobe_valid_credentials'] = 'ID klienta i sekret klienta dla Adobe PDF Services są prawidłowe i funkcjonalne.';
 $string['weaviate_connection_error'] = 'Błąd połączenia z Weaviate: ';
 $string['weaviate_invalid_key_or_url'] = 'URL lub klucz API Weaviate jest nieprawidłowy lub wystąpił błąd. Kod błędu: ';
 $string['weaviate_valid_key_and_url'] = 'URL i klucz API Weaviate są prawidłowe i funkcjonalne.';
-$string['back'] = 'Powrót';
-
-// For add_prompt.php
-$string['invalid_sesskey'] = 'Nieprawidłowy sesskey';
 $string['database_write_error'] = 'Błąd zapisu w bazie danych: ';
-
-// For ajax.php
-$string['http_method_not_allowed'] = 'Metoda HTTP niedozwolona';
-$string['invalid_json'] = 'Nieprawidłowy JSON: ';
-$string['missing_parameters'] = 'Brak parametrów';
-$string['invalid_question'] = 'Nieprawidłowe pytanie';
-$string['empty_question'] = 'Pytanie nie może być puste';
-$string['invalid_session'] = 'Nieprawidłowa sesja';
-$string['openai_api_key_not_configured'] = 'Klucz API OpenAI nie jest skonfigurowany';
-$string['empty_response_from_api'] = 'Pusta odpowiedź otrzymana z API';
 $string['error_saving_conversation'] = 'Błąd podczas zapisywania rozmowy';
 $string['invalid_question_after_sanitize'] = 'Nieprawidłowe pytanie po oczyszczeniu.';
-$string['empty_string_as_answer'] = 'Otrzymano pusty ciąg znaków jako odpowiedź.';
-$string['database_error_saving_conversation'] = 'Błąd bazy danych podczas zapisywania rozmowy: ';
-$string['error_saving_conversation'] = 'Błąd podczas zapisywania rozmowy';
-$string['error_reading_input'] = 'Błąd podczas odczytu danych wejściowych.';
-$string['generic_server_error'] = 'Ogólny błąd serwera.';
-$string['invalid_course_id'] = 'Nieprawidłowy identyfikator kursu.';
-
-
-// For classes/pdf_extract_api.php
+$string['empty_response_from_api'] = 'Otrzymano pustą odpowiedź z API';
 $string['failed_to_obtain_access_token'] = 'Nie udało się uzyskać tokenu dostępu. Status HTTP: ';
 $string['access_token_obtained_successfully'] = 'Token dostępu uzyskany pomyślnie.';
 $string['failed_to_obtain_access_token_response'] = 'Nie udało się uzyskać tokenu dostępu. Odpowiedź: ';
@@ -116,8 +54,6 @@ $string['failed_to_decode_json_response'] = 'Nie udało się zdekodować odpowie
 $string['failed_to_download_asset'] = 'Nie udało się pobrać zasobu. Status HTTP: ';
 $string['asset_downloaded_successfully'] = 'Zasób pobrany pomyślnie.';
 $string['error_decoding_json_file'] = 'Błąd podczas dekodowania pliku JSON.';
-
-// For classes/weaviate_connector.php
 $string['curl_error'] = 'Błąd cURL: ';
 $string['http_error'] = 'Błąd HTTP ';
 $string['json_decode_error'] = 'Błąd dekodowania JSON: ';
@@ -132,30 +68,48 @@ $string['failure_after_retries'] = 'Niepowodzenie po ';
 $string['last_error'] = ' próbach. Ostatni błąd: HTTP ';
 $string['invalid_response_format'] = 'Nieprawidłowy format odpowiedzi.';
 $string['http_code'] = 'Kod HTTP: ';
-
-
-
-// For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
-Kontekst sytuacji:
-Uczący się uczestniczy w kursie [[ coursename ]]. Twoim zadaniem jest wspieranie go, dostarczając precyzyjnych, istotnych i dostosowanych odpowiedzi na jego potrzeby edukacyjne.
-Misja:
-Jako asystent, twoją misją jest pomóc uczniowi zrozumieć koncepcje kursu X, odpowiadając na jego pytania i bazując na dostarczonym kontekście, aby sformułować odpowiedź. [[ history ]].
-Musisz dostarczać jasne, precyzyjne i istotne odpowiedzi, zapewniając, że przekazujesz wyłącznie informacje z kursu. Jeśli odpowiedź nie może być znaleziona w dostarczonym kontekście, odpowiadaj ściśle: "Jestem skalibrowany na podstawie treści kursu starannie wybranych przez twojego nauczyciela. Jeśli potrzebujesz więcej informacji, jesteś proszony o kontakt z nim."
-Jeśli uczący się pisze zdania wskazujące, że nie zrozumiał koncepcji lub poprzedniego wyjaśnienia, sprawdź [[ history ]], aby zidentyfikować, co zostało niezrozumiane, a następnie przeprojektuj swoje wyjaśnienie, używając prostszego języka i konkretnych przykładów.
-Instrukcje:
-1. Wykryj emocje w pytaniu uczącego się i przyjąć empatyczny i troskliwy ton.
-2. Odpowiadaj w sposób jasny i ustrukturyzowany.
-3. Wyjaśnij koncepcję z przykładami, jeśli to konieczne.
-4. Nie dostarczaj żadnych odpowiedzi poza podanym kontekstem.
-5. Twoja odpowiedź musi integrować następujące cztery komponenty empatii:
-   - Komponent poznawczy: Pokaż, że rozumiesz punkt widzenia, rozumowanie i intencje uczącego się. Przeprojektuj jego pomysły, aby zwalidować swoje zrozumienie. Zaoferuj sugestie związane z tym, co powiedział, nie narzucając własnego rozumowania.
-   - Komponent afektywny: Bądź wrażliwy na stan emocjonalny uczącego się (frustracja, wątpliwości, zadowolenie, stres itp.). Odzwierciedlaj lub waliduj jego emocje za pomocą odpowiednich słów lub prostych metafor. Wyrażaj dobroć.
-   - Komponent postawowy: Przyjmij ciepłe, szacowne i zachęcające podejście. Pokaż otwartość, doceniaj jego wysiłki i unikaj jakichkolwiek osądów. Twój ton powinien być przyjazny i szczery.
-   - Komponent dostosowawczy: Dostosuj swoje odpowiedzi do rozwoju dyskursu uczącego się. Używaj słownictwa i stylu, które odpowiadają jego poziomowi i nastrojowi. Pozwól mu kierować rozmową, nigdy nie narzucaj tematu.
-Nowe pytanie od uczącego się [[ question ]]
-EOT;
+Kontekst sytuacyjny  
+Uczeń uczestniczy w kursie dotyczącym [[ coursename ]]. Twoją rolą jest wspieranie go poprzez udzielanie dokładnych, trafnych i dostosowanych do jego nauki odpowiedzi.
 
+Misja  
+Jako asystent, Twoim zadaniem jest pomóc uczniowi zrozumieć pojęcia z kursu „Kurs X”, odpowiadając na jego pytania w oparciu o dostarczony kontekst. [[ history ]]  
+Musisz formułować odpowiedzi w sposób jasny, precyzyjny i trafny, przekazując wyłącznie informacje pochodzące z kursu. Jeśli odpowiedź nie znajduje się w dostarczonym kontekście, odpowiedz wyłącznie: „Jestem dostosowany do treści kursu starannie wybranych przez Twojego nauczyciela. Jeśli chcesz uzyskać więcej informacji, skontaktuj się z nim.”
+
+Jeśli uczeń pisze zdania sugerujące, że nie zrozumiał jakiegoś pojęcia lub wcześniejszego wyjaśnienia, sprawdź [[ history ]], aby zidentyfikować źródło nieporozumienia, a następnie przekształć swoje wyjaśnienie w prostsze słowa i podaj bardziej konkretne przykłady.
+
+Instrukcje  
+1. Analizuj każde pytanie ucznia pod kątem obecności emocji. Skorzystaj z poniższej klasyfikacji:  
+   - Dezorientacja: „nie rozumiem”, „zgubiłem się”, „to niejasne”  
+   - Frustracja: „to mnie denerwuje”, „poddaję się”, „to zbyt trudne”  
+   - Stres lub niepokój: „stresuję się”, „jestem przytłoczony”, „nie ma już czasu”  
+   - Wątpliwości lub brak pewności siebie: „nie dam rady”, „nie jestem wystarczająco dobry”
+
+2. Jeśli wykryjesz emocję, rozpocznij odpowiedź od odpowiedniego empatycznego zdania:  
+   - Dla dezorientacji: „Rozumiem, to nie jest łatwe.”  
+   - Dla frustracji: „Widzę, że to frustrujące.”  
+   - Dla stresu: „To normalne, że czasem czujemy się przytłoczeni.”  
+   - Dla wątpliwości: „Dajesz z siebie wszystko – to już bardzo dużo.”
+
+3. Następnie odpowiedz w sposób jasny i uporządkowany.  
+4. Używaj przykładów, jeśli to konieczne.  
+5. Nigdy nie udzielaj odpowiedzi poza dostarczonym kontekstem.
+
+6. W swojej odpowiedzi uwzględnij 4 komponenty empatii, zgodnie z [Springer Table 1](https://link.springer.com/article/10.1007/s00146-023-01715-z/tables/1):  
+   - Komponent poznawczy: pokaż, że rozumiesz punkt widzenia ucznia  
+   - Komponent emocjonalny: bądź wrażliwy na jego stan emocjonalny  
+   - Komponent postawy: przyjmij ciepłą, pełną szacunku i wspierającą postawę  
+   - Komponent dostosowania: dopasuj język i styl do ucznia
+
+7. Utrzymuj życzliwy, pełen szacunku i motywujący ton przez cały czas trwania rozmowy.
+
+Nowe pytanie od ucznia  
+[[ question ]]
+EOT;
+$string['conversations'] = 'Rozmowy';
+$string['prompts'] = 'Podpowiedzi';
+$string['file_size_exceeds_limit'] = 'Rozmiar pliku przekracza limit 10 MB';
+$string['back'] = 'Wstecz';
 $string['sending_question'] = 'Wysyłanie pytania...';
 $string['error'] = 'Błąd: ';
 $string['error_sending_question'] = 'Błąd podczas wysyłania pytania: ';
@@ -165,14 +119,11 @@ $string['error_saving_prompt'] = 'Błąd podczas zapisywania promptu: ';
 $string['uploading_file'] = 'Przesyłanie pliku...';
 $string['file_indexed_successfully'] = 'Plik zindeksowany pomyślnie!';
 $string['error_processing_file'] = 'Błąd podczas przetwarzania pliku: ';
-$string['json_parse_error'] = 'Błąd analizy JSON: ';
-$string['invalid_json_response'] = 'Odpowiedź serwera nie jest w poprawnym formacie JSON.';
 $string['add_files'] = 'Dodaj pliki';
 $string['text_or_pdf_files'] = 'Pliki tekstowe lub PDF';
 $string['drag_files_here_or_click'] = 'Przeciągnij swoje pliki tutaj lub kliknij, aby przeglądać';
 $string['cancel'] = 'Anuluj';
 $string['upload_course'] = 'Prześlij kurs';
-
 $string['modify_prompt'] = 'Modyfikuj';
 $string['add_prompt'] = 'Dodaj';
 $string['consult_guide'] = 'Skonsultuj przewodnik, aby zaprojektować skuteczne prompte:';
@@ -180,31 +131,84 @@ $string['guide_link'] = 'Przewodnik dla nauczycieli do projektowania promptów';
 $string['prompt_content'] = 'Zawartość promptu';
 $string['write_prompt_here'] = 'Napisz swój prompt tutaj';
 $string['save'] = 'Zapisz';
-
 $string['chatbot_with_toggle_buttons'] = 'Chatbot z przyciskami przełączania';
 $string['hello_professor'] = 'Witaj Profesorze, masz możliwość przetestowania chatbot, aby upewnić się, że działa poprawnie i że twój prompt jest optymalnie skonfigurowany.';
 $string['hello_student'] = 'Witaj! Jestem twoim asystentem edukacyjnym. Mogę pomóc ci w: - Zrozumieniu koncepcji kursu - Przeglądaniu i ćwiczeniu zadań - Wyjaśnianiu trudnych punktów - Sugerowaniu metod nauki. Jak mogę ci pomóc?';
 $string['ask_your_question_here'] = 'Zadaj swoje pytanie tutaj...';
 $string['modify_prompt'] = 'Modyfikuj prompt';
 $string['upload_course'] = 'Prześlij kurs';
-$string['open_prompt_modal'] = 'Otwórz okno modyfikacji promptu';
-$string['open_file_upload_modal'] = 'Otwórz okno przesyłania kursu';
-
-
-// For classes/pdf_extract_api.php
 $string['error_uploading_asset'] = 'Błąd podczas przesyłania zasobu.';
 $string['error_creating_job'] = 'Błąd podczas tworzenia zadania.';
 $string['job_failed'] = 'Zadanie nie powiodło się.';
 $string['error_processing_pdf'] = 'Błąd podczas przetwarzania pliku PDF.';
-
-$string['headers_already_sent'] = 'Nagłówki zostały już wysłane.';
-$string['failed_to_start_output_buffer'] = 'Nie udało się uruchomić bufora wyjściowego.';
-$string['server_error_output_buffer_failed'] = 'Błąd serwera: Buforowanie wyjścia nie powiodło się.';
-$string['answer_not_utf8'] = 'Odpowiedź nie jest w UTF-8.';
-$string['no_answer_or_error_field'] = 'Brak pola odpowiedzi lub błędu.';
 $string['json_encode_error'] = 'Błąd kodowania JSON: ';
-$string['server_error_json_encode_failed'] = 'Błąd serwera: Kodowanie JSON nie powiodło się.';
-$string['empty_response_from_api'] = 'Pusta odpowiedź z API.';
-$string['empty_string_as_answer'] = 'Otrzymano pusty ciąg znaków jako odpowiedź.';
-$string['database_error_saving_conversation'] = 'Błąd bazy danych podczas zapisywania rozmowy: ';
-$string['general_exception'] = 'Ogólny wyjątek: ';
+$string['no_files_selected'] = 'Nie wybrano żadnych plików';
+$string['course_id'] = 'ID kursu';
+$string['file_name'] = 'Nazwa pliku';
+$string['file_content_base64'] = 'Zawartość pliku (kodowanie base64)';
+$string['insufficient_permissions'] = 'Niewystarczające uprawnienia do przesyłania plików';
+$string['missing_api_configuration'] = 'Brakuje wymaganej konfiguracji API';
+$string['weaviate_connector_not_found'] = 'Klasa WeaviateConnector nie została znaleziona';
+$string['collection_prefix'] = 'Collection_course_';
+$string['error_creating_collection'] = 'Błąd tworzenia kolekcji: ';
+$string['unknown_error'] = 'Nieznany błąd';
+$string['failed_create_upload_directory'] = 'Nie udało się utworzyć katalogu przesyłania';
+$string['empty_filename'] = 'Podano pustą nazwę pliku';
+$string['unsupported_file_type'] = 'Nieobsługiwany typ pliku: ';
+$string['invalid_file_data'] = 'Nieprawidłowe dane pliku dla: ';
+$string['failed_save_file'] = 'Nie udało się zapisać pliku: ';
+$string['adobe_pdf_credentials_not_configured'] = 'Dane uwierzytelniające Adobe PDF API nie są skonfigurowane';
+$string['pdf_extractor_not_found'] = 'Klasa ekstraktora PDF nie została znaleziona';
+$string['failed_extract_pdf_text'] = 'Nie udało się wyodrębnić tekstu z PDF: ';
+$string['failed_save_extracted_text'] = 'Nie udało się zapisać wyodrębnionego pliku tekstowego: ';
+$string['error_indexing_file_unknown'] = 'Błąd indeksowania pliku ';
+$string['files_indexed_successfully'] = ' plik(i) pomyślnie zindeksowane';
+$string['errors_occurred'] = '. Błędy: ';
+$string['no_files_processed'] = 'Nie przetworzono żadnych plików. Błędy: ';
+$string['operation_successful'] = 'Operacja pomyślna';
+$string['response_message'] = 'Wiadomość odpowiedzi';
+$string['processed_files_count'] = 'Liczba przetworzonych plików';
+$string['sending_question_fallback'] = 'Wysyłanie pytania...';
+$string['error_colon_fallback'] = 'Błąd: ';
+$string['error_sending_question_fallback'] = 'Błąd wysyłania pytania: ';
+$string['saving_prompt_fallback'] = 'Zapisywanie promptu...';
+$string['prompt_saved_successfully_fallback'] = 'Prompt zapisany pomyślnie!';
+$string['error_saving_prompt_fallback'] = 'Błąd zapisywania promptu: ';
+$string['no_files_selected_fallback'] = 'Nie wybrano plików.';
+$string['uploading_files_fallback'] = 'Przesyłanie plików...';
+$string['files_indexed_successfully_fallback'] = 'Pliki zostały pomyślnie zindeksowane!';
+$string['error_processing_files_fallback'] = 'Błąd przetwarzania plików: ';
+$string['unknown_error_occurred'] = 'Wystąpił nieznany błąd';
+$string['server_response_error'] = 'Błąd odpowiedzi serwera. Sprawdź konsolę, aby uzyskać szczegóły.';
+$string['server_error_check_console'] = 'Błąd serwera - sprawdź konsolę, aby uzyskać szczegóły';
+$string['files_converted_debug'] = 'Pliki przekonwertowane na base64:';
+$string['sending_ajax_request_debug'] = 'Wysyłanie żądania AJAX:';
+$string['upload_response_received_debug'] = 'Otrzymano odpowiedź przesyłania:';
+$string['response_type_debug'] = 'Typ odpowiedzi:';
+$string['upload_error_details_debug'] = 'Szczegóły błędu przesyłania:';
+$string['error_object_debug'] = 'Obiekt błędu:';
+$string['raw_server_response_debug'] = 'Surowa odpowiedź serwera:';
+$string['privacy:metadata:block_uteluqchatbot_conversations'] = 'Informacje o rozmowach użytkowników z chatbotem';
+$string['privacy:metadata:block_uteluqchatbot_conversations:userid'] = 'ID użytkownika, który utworzył rozmowę';
+$string['privacy:metadata:block_uteluqchatbot_conversations:question'] = 'Pytanie zadane przez użytkownika';
+$string['privacy:metadata:block_uteluqchatbot_conversations:answer'] = 'Odpowiedź udzielona przez chatbota';
+$string['privacy:metadata:block_uteluqchatbot_conversations:timecreated'] = 'Czas utworzenia rozmowy';
+$string['privacy:metadata:block_uteluqchatbot_conversations:courseid'] = 'ID kursu, w którym odbyła się rozmowa';
+$string['privacy:metadata:block_uteluqchatbot_prompts'] = 'Informacje o niestandardowych promptach utworzonych przez użytkowników';
+$string['privacy:metadata:block_uteluqchatbot_prompts:prompt'] = 'Tekst niestandardowego prompta utworzonego przez użytkownika';
+$string['privacy:metadata:block_uteluqchatbot_prompts:userid'] = 'ID użytkownika, który utworzył prompt';
+$string['privacy:metadata:block_uteluqchatbot_prompts:courseid'] = 'ID kursu, w którym został utworzony prompt';
+$string['privacy:metadata:block_uteluqchatbot_prompts:timecreated'] = 'Czas utworzenia prompta';
+$string['privacy:metadata:cohere_api'] = 'Dane wysyłane do usługi Cohere API dla odpowiedzi chatowych opartych na AI';
+$string['privacy:metadata:cohere_api:question'] = 'Pytanie użytkownika wysłane do Cohere API do przetwarzania';
+$string['privacy:metadata:cohere_api:courseid'] = 'Informacje kontekstowe kursu wysłane do Cohere API';
+$string['privacy:metadata:cohere_api:prompt'] = 'Niestandardowe prompty i instrukcje systemowe wysłane do Cohere API';
+$string['privacy:metadata:weaviate_cloud'] = 'Dane wysyłane do bazy danych wektorowych Weaviate Cloud do przechowywania dokumentów i wyszukiwania podobieństw';
+$string['privacy:metadata:weaviate_cloud:document_content'] = 'Zawartość tekstowa wyodrębniona z przesłanych dokumentów przechowywanych w Weaviate';
+$string['privacy:metadata:weaviate_cloud:embeddings'] = 'Osadzenia wektorowe wygenerowane z zawartości dokumentów przechowywanych w Weaviate';
+$string['privacy:metadata:weaviate_cloud:courseid'] = 'Informacje kontekstowe kursu powiązane z przechowywanymi dokumentami';
+$string['privacy:metadata:weaviate_cloud:metadata'] = 'Metadane dokumentów i właściwości przechowywane w bazie danych Weaviate';
+$string['privacy:metadata:adobe_pdf_api'] = 'Dane wysyłane do Adobe PDF Services API do wyodrębniania tekstu z dokumentów PDF';
+$string['privacy:metadata:adobe_pdf_api:pdf_content'] = 'Zawartość pliku PDF wysłana do Adobe PDF Services do wyodrębnienia tekstu';
+$string['privacy:metadata:adobe_pdf_api:filename'] = 'Oryginalna nazwa pliku dokumentu PDF wysłanego do przetwarzania';
+$string['privacy:metadata:adobe_pdf_api:extracted_text'] = 'Zawartość tekstowa wyodrębniona z dokumentów PDF przez Adobe PDF Services';
