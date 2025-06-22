@@ -1,13 +1,16 @@
 import os
 import re
+import sys
 
 def get_js_files(parent_dir):
     """
-    Find all .js files in any subdirectory of the parent directory.
+    Find all .js files in any subdirectory of the parent directory, excluding node_modules.
     Returns a list of file paths.
     """
     js_files = []
-    for root, _, files in os.walk(parent_dir):
+    for root, dirs, files in os.walk(parent_dir):
+        # Exclude node_modules from traversal
+        dirs[:] = [d for d in dirs if d != 'node_modules']
         for file in files:
             if file.endswith('.js'):
                 js_files.append(os.path.join(root, file))
@@ -46,7 +49,7 @@ def main():
     
     if not js_files:
         print("No .js files found in any subdirectory.")
-        return
+        return 0
     
     print(f"Found {len(js_files)} .js files. Checking for 'console.log'...")
     
@@ -62,6 +65,9 @@ def main():
     
     if not violations_found:
         print("No instances of 'console.log' found in any .js files.")
+    
+    # Return error code if any violation found
+    return 1 if violations_found else 0
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

@@ -1,52 +1,6 @@
 # Maintenance Guide - Block UTELUQ Chatbot
 
-## Prerequisites
-
-### Installing Node.js and ## Maintenance Tools
-
-### Check for console.log statements
-
-```bash
-python tools/check_console.py
-```
-
-### Language String Analysis
-
-The `ch.py` script in the project root checks the language files for missing or unused strings:
-
-```bash
-python ch.py
-```
-
-### Non-English Comment Detection
-
-The `tools/english_only.py` script scans PHP, JS, and Mustache files for comments not written in English:
-
-1. Install the required dependency:
-   ```bash
-   pip install langdetect
-   ```
-
-2. Run the script:
-   ```bash
-   python tools/english_only.py
-   ```
-
-   Additional options:
-   ```bash
-   # Summary report
-   python tools/english_only.py --summary
-   
-   # Verbose output
-   python tools/english_only.py --verbose
-   
-   # Scan specific file extensions
-   python tools/english_only.py --extensions .php,.js
-   ```
-
-For more information, see `tools/README.md`.
-
-## Versioningure Node.js is installed (npm is included with Node.js)
+## Verify that Node.js is installed (npm is included with Node.js)
    - Verify the installation with the commands: `node -v` and `npm -v`
    - If not installed, download it from [nodejs.org](https://nodejs.org/)
 
@@ -141,6 +95,43 @@ python tools/check_console.py
 ```
 python tools/check_lang.py
 ```
+
+
+
+### Check for console.log statements
+
+```bash
+python tools/check_console.py
+```
+
+
+### Non-English Comment Detection
+
+The `tools/english_only.py` script scans PHP, JS, and Mustache files for comments not written in English:
+
+1. Install the required dependency:
+   ```bash
+   pip install langdetect
+   ```
+
+2. Run the script:
+   ```bash
+   python tools/english_only.py
+   ```
+
+   Additional options:
+   ```bash
+   # Summary report
+   python tools/english_only.py --summary
+   
+   # Verbose output
+   python tools/english_only.py --verbose
+   
+   # Scan specific file extensions
+   python tools/english_only.py --extensions .php,.js
+   ```
+
+For more information, see `tools/README.md`.
 
 ## Versioning
 

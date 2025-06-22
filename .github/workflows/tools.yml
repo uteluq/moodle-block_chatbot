@@ -1,0 +1,30 @@
+name: Code Quality Tools
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  run-tools:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install langdetect
+
+      - name: Run check_console.py
+        run: python tools/check_console.py
+
+      - name: Run check_lang.py
+        run: python tools/check_lang.py

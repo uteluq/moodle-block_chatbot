@@ -1,44 +1,44 @@
-# Outils de développement pour block_uteluqchatbot
+# Development Tools for block_uteluqchatbot
 
-Ce répertoire contient des outils utiles pour analyser et maintenir le code du plugin block_uteluqchatbot.
+This directory contains useful tools for analyzing and maintaining the block_uteluqchatbot plugin code.
 
 ## english_only.py
 
-Cet outil détecte les commentaires non anglais dans le code source (fichiers PHP, JS et Mustache).
+This tool detects non-English comments in the source code (PHP, JS, and Mustache files).
 
-### Installation des dépendances
+### Installing dependencies
 
 ```bash
 pip install langdetect
 ```
 
-### Utilisation
+### Usage
 
 ```bash
-# Analyse automatique depuis la racine du projet
+# Automatic scan from the project root
 python english_only.py
 
-# Afficher un rapport sommaire au lieu des détails complets
+# Show a summary report instead of full details
 python english_only.py --summary
 
-# Mode verbeux montrant la progression
+# Verbose mode showing progress
 python english_only.py --verbose
 
-# Analyser un répertoire spécifique
-python english_only.py --directory /chemin/vers/repertoire
+# Scan a specific directory
+python english_only.py --directory /path/to/directory
 
-# Analyser uniquement certaines extensions
+# Scan only certain extensions
 python english_only.py --extensions .php,.js
 ```
 
 ### Options
 
-- `-d`, `--directory` : Spécifier le répertoire à analyser (par défaut : détection automatique de la racine du projet)
-- `-e`, `--extensions` : Extensions de fichiers à analyser, séparées par des virgules (par défaut : .php,.js,.mustache)
-- `-s`, `--summary` : Afficher uniquement un résumé des résultats
-- `-v`, `--verbose` : Afficher des informations détaillées pendant l'analyse
+- `-d`, `--directory`: Specify the directory to scan (default: auto-detect project root)
+- `-e`, `--extensions`: File extensions to scan, comma-separated (default: .php,.js,.mustache)
+- `-s`, `--summary`: Show only a summary of the results
+- `-v`, `--verbose`: Show detailed information during the scan
 
-### Exemple de sortie
+### Example output
 
 ```
 Auto-detected project root: /path/to/moodle-block_uteluqchatbot
@@ -54,6 +54,6 @@ Detected language: fr
 --------------------------------------------------
 ```
 
-## Autres outils
+## Other tools
 
-Ajoutez ici la documentation pour les autres outils au fur et à mesure qu'ils sont développés.
+Add documentation for other tools here as they are developed.
