@@ -11,7 +11,7 @@ define(['jquery', 'core/str', 'core/ajax', 'core/notification'], function($, str
                 modal.style.display = modal.style.display === 'none' ? 'block' : 'none';
             };
 
-            // Toggle file upload modal - SÉLECTEURS CORRIGÉS
+            // Toggle file upload modal
             const toggleFileUploadModal = function () {
                 const modal = document.querySelector('.block_uteluqchatbot #fileUploadModal');
                 if (modal) {
@@ -214,7 +214,7 @@ define(['jquery', 'core/str', 'core/ajax', 'core/notification'], function($, str
                     });
             });
 
-            // Handle file upload form submission - SÉLECTEURS CORRIGÉS
+            // Handle file upload form submission
             const fileUploadForm = document.querySelector(".block_uteluqchatbot #fileUploadForm");
             if (fileUploadForm) {
                 fileUploadForm.addEventListener("submit", function(e) {
@@ -296,7 +296,7 @@ define(['jquery', 'core/str', 'core/ajax', 'core/notification'], function($, str
                                     });
                                 });
 
-                                // Reset form and close modal - SÉLECTEURS CORRIGÉS
+                                // Reset form and close modal
                                 fileUploadForm.reset();
                                 const container = document.querySelector('.block_uteluqchatbot #uploadedFilesContainer');
                                 if (container) container.innerHTML = '';
