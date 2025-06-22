@@ -106,7 +106,6 @@ class provider implements
             ],
             'privacy:metadata:adobe_pdf_api'
         );
-
         return $items;
     }
 
