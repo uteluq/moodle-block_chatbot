@@ -1,5 +1,6 @@
 import os
 import re
+import argparse
 
 def scan_files_for_strings(directory):
     # Set to store all found 'x' values
@@ -44,12 +45,19 @@ def load_language_file(lang_file_path):
     
     # Regular expression to match $string['key'] = "...";
     pattern = r"\$string\s*\[\s*['\"]([^'\"]+)['\"]\s*\]\s*=\s*['\"].*?['\"]\s*;"
-    
+    # Regex for heredoc/nowdoc: $string['key'] = <<<EOT
+    heredoc_pattern = r"\$string\s*\[\s*['\"]([^'\"]+)['\"]\s*\]\s*=\s*<<<['\"]?(\w+)['\"]?"
     try:
         with open(lang_file_path, 'r', encoding='utf-8') as f:
             content = f.read()
-            matches = re.finditer(pattern, content)
+            # Classic assignments
+            matches = re.finditer(pattern, content, re.DOTALL)
             for match in matches:
+                key = match.group(1)
+                lang_keys.add(key)
+            # Heredoc/nowdoc assignments
+            matches_heredoc = re.finditer(heredoc_pattern, content)
+            for match in matches_heredoc:
                 key = match.group(1)
                 lang_keys.add(key)
     except Exception as e:
@@ -66,10 +74,13 @@ def compare_keys(x_values, lang_keys):
     return missing_in_lang, unused_in_lang
 
 def main():
+    parser = argparse.ArgumentParser(description="Check language string usage.")
+    parser.add_argument('-F', '--full', action='store_true', help='Show all keys, including those defined in language file but not used in code')
+    args = parser.parse_args()
+
     # Automatically detect the project root (parent directory of tools/)
     current_dir = os.path.dirname(os.path.abspath(__file__))  # Get the directory of this script
     directory = os.path.dirname(current_dir)  # Get the parent directory (project root)
-    
     print(f"Detected project root: {directory}")
     if not os.path.isdir(directory):
         print("Invalid directory path!")
@@ -85,6 +96,7 @@ def main():
         print("No lang directory found!")
         return
 
+    error_found = False
     for lang in sorted(os.listdir(lang_dir)):
         lang_file_path = os.path.join(lang_dir, lang, 'block_uteluqchatbot.php')
         if not os.path.isfile(lang_file_path):
@@ -99,16 +111,19 @@ def main():
             print("Keys used in code but missing in language file:")
             for key in sorted(missing_in_lang):
                 print(f"- {key}")
+            error_found = True
         else:
             print("No keys missing in language file.")
-        if unused_in_lang:
+        if unused_in_lang and args.full:
             print("Keys defined in language file but not used in code:")
             for key in sorted(unused_in_lang):
                 print(f"- {key}")
-        else:
+        elif not unused_in_lang:
             print("No unused keys in language file.")
         print(f"Total keys found in code: {len(x_values)}")
         print(f"Total keys in language file: {len(lang_keys)}")
+    return 1 if error_found else 0
 
 if __name__ == "__main__":
-    main()
+    import sys
+    sys.exit(main())

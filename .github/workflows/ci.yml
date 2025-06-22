@@ -87,10 +87,6 @@ jobs:
         if: ${{ !cancelled() }}
         run: moodle-plugin-ci savepoints
 
-      - name: Grunt
-        if: ${{ !cancelled() }}
-        run: moodle-plugin-ci grunt --max-lint-warnings 0
-
       - name: PHPUnit tests
         if: ${{ !cancelled() }}
         run: moodle-plugin-ci phpunit --fail-on-warning

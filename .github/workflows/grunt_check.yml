@@ -1,0 +1,35 @@
+name: Grunt Minified Files Check
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  grunt-minified-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Save current minified files
+        run: |
+          mkdir -p .ci_backup
+          cp amd/build/*.min.js .ci_backup/
+
+      - name: Run Grunt
+        run: npx grunt
+
+      - name: Compare minified files
+        run: |
+          diff -q amd/build/uteluqchatbot.min.js .ci_backup/uteluqchatbot.min.js
+          diff -q amd/build/fileupload.min.js .ci_backup/fileupload.min.js

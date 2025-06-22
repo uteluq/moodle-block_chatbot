@@ -21,7 +21,7 @@ $capabilities = array(
     'block/uteluqchatbot:manage' => array(
         'riskbitmask'  => RISK_CONFIG, // Risk associated with modifying configurations.
         'captype'      => 'write', // Capability type (write).
-        'contextlevel' => CONTEXT_SYSTEM, // System context (site administration).
+        'contextlevel' => CONTEXT_SYSTEM, // System context.
         'archetypes'   => array(
             'manager' => CAP_ALLOW, // Only managers can manage the plugin.
         ),
