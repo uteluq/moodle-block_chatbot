@@ -21,6 +21,7 @@ The plugin currently supports the following languages:
 - **Polish (pl)**
 - **Portuguese (pt)**
 - **Russian (ru)**
+- **Spanish (es)**
 - **Swahili (sw)**
 - **Chinese (Simplified) (zh_cn)**
 
