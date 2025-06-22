@@ -5,60 +5,30 @@
 $string['pluginname'] = 'uteluqchatbot';
 $string['uteluqchatbot:addinstance'] = 'Dodaj nowy blok chatbot';
 $string['uteluqchatbot:myaddinstance'] = 'Dodaj nowy blok chatbot do pulpitu nawigacyjnego';
-
 $string['weaviate_cohere_not_configured'] = 'Klucz API Cohere nie został skonfigurowany lub jest nieprawidłowy. Sprawdź ustawienia.';
-
-
-// Open AI
-
-// Adobe PDF Services
 $string['adobe_pdf_client_id'] = 'ID klienta Adobe PDF Services';
 $string['adobe_pdf_client_id_desc'] = 'Wprowadź swój ID klienta Adobe PDF Services tutaj.';
-
 $string['adobe_pdf_client_secret'] = 'Sekret klienta Adobe PDF Services';
 $string['adobe_pdf_client_secret_desc'] = 'Wprowadź swój sekret klienta Adobe PDF Services tutaj.';
-
-// Weaviate
 $string['weaviate_api_url'] = 'URL API Weaviate';
 $string['weaviate_api_url_desc'] = 'Wprowadź URL API Weaviate tutaj.';
-
 $string['weaviate_api_key'] = 'Klucz API Weaviate';
 $string['weaviate_api_key_desc'] = 'Wprowadź swój klucz API Weaviate tutaj.';
-
-// Cohere Embedding Model
 $string['cohere_embedding_api_key'] = 'Klucz API modelu Cohere Embedding';
 $string['cohere_embedding_api_key_desc'] = 'Wprowadź swój klucz API dla modelu Cohere Embedding tutaj.';
-
-
-// Test button strings
 $string['test_api_keys'] = 'Testuj klucze API';
 $string['test_api_keys_desc'] = 'Kliknij, aby przetestować skonfigurowane klucze API';
 $string['test_api_keys_label'] = 'Testuj klucze';
-
 $string['uteluqchatbot:manage'] = 'Zarządzaj ustawieniami chatbot';
-
-// For ../.../weaviate_db.php
-
-
-
-// For test_api_keys.php
 $string['adobe_invalid_credentials'] = 'ID klienta lub sekret klienta dla Adobe PDF Services jest nieprawidłowy.';
 $string['adobe_valid_credentials'] = 'ID klienta i sekret klienta dla Adobe PDF Services są prawidłowe i funkcjonalne.';
 $string['weaviate_connection_error'] = 'Błąd połączenia z Weaviate: ';
 $string['weaviate_invalid_key_or_url'] = 'URL lub klucz API Weaviate jest nieprawidłowy lub wystąpił błąd. Kod błędu: ';
 $string['weaviate_valid_key_and_url'] = 'URL i klucz API Weaviate są prawidłowe i funkcjonalne.';
-
-
-// For add_prompt.php
 $string['database_write_error'] = 'Błąd zapisu w bazie danych: ';
-
-// For ajax.php
 $string['error_saving_conversation'] = 'Błąd podczas zapisywania rozmowy';
 $string['invalid_question_after_sanitize'] = 'Nieprawidłowe pytanie po oczyszczeniu.';
-
 $string['empty_response_from_api'] = 'Otrzymano pustą odpowiedź z API';
-
-// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = 'Nie udało się uzyskać tokenu dostępu. Status HTTP: ';
 $string['access_token_obtained_successfully'] = 'Token dostępu uzyskany pomyślnie.';
 $string['failed_to_obtain_access_token_response'] = 'Nie udało się uzyskać tokenu dostępu. Odpowiedź: ';
@@ -84,8 +54,6 @@ $string['failed_to_decode_json_response'] = 'Nie udało się zdekodować odpowie
 $string['failed_to_download_asset'] = 'Nie udało się pobrać zasobu. Status HTTP: ';
 $string['asset_downloaded_successfully'] = 'Zasób pobrany pomyślnie.';
 $string['error_decoding_json_file'] = 'Błąd podczas dekodowania pliku JSON.';
-
-// For classes/weaviate_connector.php
 $string['curl_error'] = 'Błąd cURL: ';
 $string['http_error'] = 'Błąd HTTP ';
 $string['json_decode_error'] = 'Błąd dekodowania JSON: ';
@@ -100,9 +68,6 @@ $string['failure_after_retries'] = 'Niepowodzenie po ';
 $string['last_error'] = ' próbach. Ostatni błąd: HTTP ';
 $string['invalid_response_format'] = 'Nieprawidłowy format odpowiedzi.';
 $string['http_code'] = 'Kod HTTP: ';
-
-
-
 $string['default_prompt'] = <<<EOT
 Kontekst sytuacyjny  
 Uczeń uczestniczy w kursie dotyczącym [[ coursename ]]. Twoją rolą jest wspieranie go poprzez udzielanie dokładnych, trafnych i dostosowanych do jego nauki odpowiedzi.
@@ -141,7 +106,8 @@ Instrukcje
 Nowe pytanie od ucznia  
 [[ question ]]
 EOT;
-
+$string['conversations'] = 'Rozmowy';
+$string['prompts'] = 'Podpowiedzi';
 $string['file_size_exceeds_limit'] = 'Rozmiar pliku przekracza limit 10 MB';
 $string['back'] = 'Wstecz';
 $string['sending_question'] = 'Wysyłanie pytania...';
@@ -158,7 +124,6 @@ $string['text_or_pdf_files'] = 'Pliki tekstowe lub PDF';
 $string['drag_files_here_or_click'] = 'Przeciągnij swoje pliki tutaj lub kliknij, aby przeglądać';
 $string['cancel'] = 'Anuluj';
 $string['upload_course'] = 'Prześlij kurs';
-
 $string['modify_prompt'] = 'Modyfikuj';
 $string['add_prompt'] = 'Dodaj';
 $string['consult_guide'] = 'Skonsultuj przewodnik, aby zaprojektować skuteczne prompte:';
@@ -166,22 +131,16 @@ $string['guide_link'] = 'Przewodnik dla nauczycieli do projektowania promptów';
 $string['prompt_content'] = 'Zawartość promptu';
 $string['write_prompt_here'] = 'Napisz swój prompt tutaj';
 $string['save'] = 'Zapisz';
-
 $string['chatbot_with_toggle_buttons'] = 'Chatbot z przyciskami przełączania';
 $string['hello_professor'] = 'Witaj Profesorze, masz możliwość przetestowania chatbot, aby upewnić się, że działa poprawnie i że twój prompt jest optymalnie skonfigurowany.';
 $string['hello_student'] = 'Witaj! Jestem twoim asystentem edukacyjnym. Mogę pomóc ci w: - Zrozumieniu koncepcji kursu - Przeglądaniu i ćwiczeniu zadań - Wyjaśnianiu trudnych punktów - Sugerowaniu metod nauki. Jak mogę ci pomóc?';
 $string['ask_your_question_here'] = 'Zadaj swoje pytanie tutaj...';
 $string['modify_prompt'] = 'Modyfikuj prompt';
 $string['upload_course'] = 'Prześlij kurs';
-
-
-// For classes/pdf_extract_api.php
 $string['error_uploading_asset'] = 'Błąd podczas przesyłania zasobu.';
 $string['error_creating_job'] = 'Błąd podczas tworzenia zadania.';
 $string['job_failed'] = 'Zadanie nie powiodło się.';
 $string['error_processing_pdf'] = 'Błąd podczas przetwarzania pliku PDF.';
-
-
 $string['json_encode_error'] = 'Błąd kodowania JSON: ';
 $string['no_files_selected'] = 'Nie wybrano żadnych plików';
 $string['course_id'] = 'ID kursu';
@@ -229,3 +188,27 @@ $string['response_type_debug'] = 'Typ odpowiedzi:';
 $string['upload_error_details_debug'] = 'Szczegóły błędu przesyłania:';
 $string['error_object_debug'] = 'Obiekt błędu:';
 $string['raw_server_response_debug'] = 'Surowa odpowiedź serwera:';
+$string['privacy:metadata:block_uteluqchatbot_conversations'] = 'Informacje o rozmowach użytkowników z chatbotem';
+$string['privacy:metadata:block_uteluqchatbot_conversations:userid'] = 'ID użytkownika, który utworzył rozmowę';
+$string['privacy:metadata:block_uteluqchatbot_conversations:question'] = 'Pytanie zadane przez użytkownika';
+$string['privacy:metadata:block_uteluqchatbot_conversations:answer'] = 'Odpowiedź udzielona przez chatbota';
+$string['privacy:metadata:block_uteluqchatbot_conversations:timecreated'] = 'Czas utworzenia rozmowy';
+$string['privacy:metadata:block_uteluqchatbot_conversations:courseid'] = 'ID kursu, w którym odbyła się rozmowa';
+$string['privacy:metadata:block_uteluqchatbot_prompts'] = 'Informacje o niestandardowych promptach utworzonych przez użytkowników';
+$string['privacy:metadata:block_uteluqchatbot_prompts:prompt'] = 'Tekst niestandardowego prompta utworzonego przez użytkownika';
+$string['privacy:metadata:block_uteluqchatbot_prompts:userid'] = 'ID użytkownika, który utworzył prompt';
+$string['privacy:metadata:block_uteluqchatbot_prompts:courseid'] = 'ID kursu, w którym został utworzony prompt';
+$string['privacy:metadata:block_uteluqchatbot_prompts:timecreated'] = 'Czas utworzenia prompta';
+$string['privacy:metadata:cohere_api'] = 'Dane wysyłane do usługi Cohere API dla odpowiedzi chatowych opartych na AI';
+$string['privacy:metadata:cohere_api:question'] = 'Pytanie użytkownika wysłane do Cohere API do przetwarzania';
+$string['privacy:metadata:cohere_api:courseid'] = 'Informacje kontekstowe kursu wysłane do Cohere API';
+$string['privacy:metadata:cohere_api:prompt'] = 'Niestandardowe prompty i instrukcje systemowe wysłane do Cohere API';
+$string['privacy:metadata:weaviate_cloud'] = 'Dane wysyłane do bazy danych wektorowych Weaviate Cloud do przechowywania dokumentów i wyszukiwania podobieństw';
+$string['privacy:metadata:weaviate_cloud:document_content'] = 'Zawartość tekstowa wyodrębniona z przesłanych dokumentów przechowywanych w Weaviate';
+$string['privacy:metadata:weaviate_cloud:embeddings'] = 'Osadzenia wektorowe wygenerowane z zawartości dokumentów przechowywanych w Weaviate';
+$string['privacy:metadata:weaviate_cloud:courseid'] = 'Informacje kontekstowe kursu powiązane z przechowywanymi dokumentami';
+$string['privacy:metadata:weaviate_cloud:metadata'] = 'Metadane dokumentów i właściwości przechowywane w bazie danych Weaviate';
+$string['privacy:metadata:adobe_pdf_api'] = 'Dane wysyłane do Adobe PDF Services API do wyodrębniania tekstu z dokumentów PDF';
+$string['privacy:metadata:adobe_pdf_api:pdf_content'] = 'Zawartość pliku PDF wysłana do Adobe PDF Services do wyodrębnienia tekstu';
+$string['privacy:metadata:adobe_pdf_api:filename'] = 'Oryginalna nazwa pliku dokumentu PDF wysłanego do przetwarzania';
+$string['privacy:metadata:adobe_pdf_api:extracted_text'] = 'Zawartość tekstowa wyodrębniona z dokumentów PDF przez Adobe PDF Services';

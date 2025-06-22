@@ -55,7 +55,7 @@ define(['jquery', 'core/str'], function ($, str) {
         if (file.size > maxSize) {
             return {
                 valid: false,
-                message: 'File size exceeds 10MB limit'
+                message: get_string('file_size_exceeds_limit', 'block_uteluqchatbot')
             };
         }
 

@@ -5,73 +5,31 @@
 $string['pluginname'] = 'uteluqchatbot';
 $string['uteluqchatbot:addinstance'] = 'Add a new chatbot block';
 $string['uteluqchatbot:myaddinstance'] = 'Add a new chatbot block to Dashboard';
-
-// Open AI
-
-
-// lang/en/block_uteluqchatbot.php
-
 $string['adobe_pdf_client_id'] = 'Adobe PDF Services Client ID';
 $string['adobe_pdf_client_id_desc'] = 'Enter your Adobe PDF Services Client ID here.';
-
 $string['adobe_pdf_client_secret'] = 'Adobe PDF Services Client Secret';
 $string['adobe_pdf_client_secret_desc'] = 'Enter your Adobe PDF Services Client Secret here.';
-
 $string['weaviate_api_url'] = 'Weaviate API URL';
 $string['weaviate_api_url_desc'] = 'Enter the URL for the Weaviate API here.';
-
 $string['weaviate_api_key'] = 'Weaviate API Key';
 $string['weaviate_api_key_desc'] = 'Enter your Weaviate API key here.';
-
-
 $string['weaviate_cohere_not_configured'] = 'Cohere API key is either not configured or invalid. Please check the settings.';
-
-
 $string['cohere_embedding_api_key'] = 'Cohere Embedding Model API Key';
 $string['cohere_embedding_api_key_desc'] = 'Enter your API key for the Cohere Embedding Model here.';
-
-
-
-
-// Test button strings
 $string['test_api_keys'] = 'Test API Keys';
 $string['test_api_keys_desc'] = 'Click to test the configured API keys';
 $string['test_api_keys_label'] = 'Test Keys';
-
 $string['uteluqchatbot:manage'] = 'Manage chatbot settings';
-
-
-
-// For ../.../weaviate_db.php
-
-
-
-
-// For test_api_keys.php
 $string['test_api_keys'] = "Test API Keys";
 $string['adobe_invalid_credentials'] = "The client ID or client secret for Adobe PDF Services is invalid.";
 $string['adobe_valid_credentials'] = "The client ID and client secret for Adobe PDF Services are valid and functional.";
 $string['weaviate_connection_error'] = "Connection error to Weaviate: ";
 $string['weaviate_invalid_key_or_url'] = "The Weaviate API URL or key is invalid or an error occurred. Error code: ";
 $string['weaviate_valid_key_and_url'] = "The Weaviate API URL and key are valid and functional.";
-
-
-// For add_prompt.php
 $string['database_write_error'] = "Database write error: ";
-
-
-// For ajax.php
-
 $string['invalid_question_after_sanitize'] = 'Invalid question after sanitization.';
-
 $string['error_saving_conversation'] = 'Error saving conversation';
-
-
 $string['empty_response_from_api'] = 'Empty response received from API';
-
-
-
-// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = "Failed to obtain access token. HTTP Status: ";
 $string['access_token_obtained_successfully'] = "Access Token obtained successfully.";
 $string['failed_to_obtain_access_token_response'] = "Failed to obtain access token. Response: ";
@@ -97,14 +55,6 @@ $string['failed_to_decode_json_response'] = "Failed to decode JSON response or s
 $string['failed_to_download_asset'] = "Failed to download asset. HTTP Status: ";
 $string['asset_downloaded_successfully'] = "Asset downloaded successfully.";
 $string['error_decoding_json_file'] = "Error decoding JSON file.";
-$string['error_1'] = "Error 1";
-$string['error_2'] = "Error 2";
-$string['error_4'] = "Error 4";
-$string['error_5'] = "Error 5";
-
-
-
-// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = "Failed to obtain access token. HTTP Status: ";
 $string['access_token_obtained_successfully'] = "Access Token obtained successfully.";
 $string['failed_to_obtain_access_token_response'] = "Failed to obtain access token. Response: ";
@@ -130,12 +80,6 @@ $string['failed_to_decode_json_response'] = "Failed to decode JSON response or s
 $string['failed_to_download_asset'] = "Failed to download asset. HTTP Status: ";
 $string['asset_downloaded_successfully'] = "Asset downloaded successfully.";
 $string['error_decoding_json_file'] = "Error decoding JSON file.";
-
-
-
-
-// For classes/weaviate_connector.php
-
 $string['curl_error'] = "cURL Error: ";
 $string['http_error'] = "HTTP Error ";
 $string['json_decode_error'] = "JSON Decode Error: ";
@@ -150,12 +94,6 @@ $string['failure_after_retries'] = "Failure after ";
 $string['last_error'] = " attempts. Last error: HTTP ";
 $string['invalid_response_format'] = 'Invalid response format.';
 $string['http_code'] = 'HTTP Code: ';
-
-
-
-// For block_uteluqchatbot.php
-
-
 $string['pluginname'] = "uteluqchatbot";
 $string['default_prompt'] = <<<EOT
 Situation Context
@@ -195,7 +133,6 @@ Instructions
 New Question from Learner  
 New learner question [[ question ]]
 EOT;
-
 $string['sending_question'] = "Sending the question...";
 $string['error'] = "Error: ";
 $string['error_sending_question'] = "Error sending the question: ";
@@ -226,56 +163,35 @@ $string['hello_student'] = "Hello! I am your learning assistant. I can help you 
 $string['ask_your_question_here'] = "Ask your question here...";
 $string['modify_prompt'] = "Modify Prompt";
 $string['upload_course'] = "Upload Course";
-
-// For classes/pdf_extract_api.php
 $string['error_uploading_asset'] = 'Error uploading asset.';
 $string['error_creating_job'] = 'Error creating job.';
 $string['job_failed'] = 'Job failed.';
 $string['error_processing_pdf'] = 'Error processing PDF.';
-
-
 $string['json_encode_error'] = 'JSON encode error: ';
-
-
-
-
-
-
-
-// Privacy API strings
 $string['privacy:metadata:block_uteluqchatbot_conversations'] = 'Information about user conversations with the chatbot';
 $string['privacy:metadata:block_uteluqchatbot_conversations:userid'] = 'The ID of the user who created the conversation';
 $string['privacy:metadata:block_uteluqchatbot_conversations:question'] = 'The question asked by the user';
 $string['privacy:metadata:block_uteluqchatbot_conversations:answer'] = 'The answer provided by the chatbot';
 $string['privacy:metadata:block_uteluqchatbot_conversations:timecreated'] = 'The time when the conversation was created';
 $string['privacy:metadata:block_uteluqchatbot_conversations:courseid'] = 'The ID of the course where the conversation took place';
-
 $string['privacy:metadata:block_uteluqchatbot_prompts'] = 'Information about custom prompts created by users';
 $string['privacy:metadata:block_uteluqchatbot_prompts:prompt'] = 'The custom prompt text created by the user';
 $string['privacy:metadata:block_uteluqchatbot_prompts:userid'] = 'The ID of the user who created the prompt';
 $string['privacy:metadata:block_uteluqchatbot_prompts:courseid'] = 'The ID of the course where the prompt was created';
 $string['privacy:metadata:block_uteluqchatbot_prompts:timecreated'] = 'The time when the prompt was created';
-
-// Service externe Cohere API
 $string['privacy:metadata:cohere_api'] = 'Data sent to Cohere API service for AI-powered chat responses';
 $string['privacy:metadata:cohere_api:question'] = 'The user question sent to Cohere API for processing';
 $string['privacy:metadata:cohere_api:courseid'] = 'The course context information sent to Cohere API';
 $string['privacy:metadata:cohere_api:prompt'] = 'Custom prompts and system instructions sent to Cohere API';
-
-// Service externe Weaviate Cloud
 $string['privacy:metadata:weaviate_cloud'] = 'Data sent to Weaviate Cloud vector database for document storage and similarity search';
 $string['privacy:metadata:weaviate_cloud:document_content'] = 'Text content extracted from uploaded documents stored in Weaviate';
 $string['privacy:metadata:weaviate_cloud:embeddings'] = 'Vector embeddings generated from document content stored in Weaviate';
 $string['privacy:metadata:weaviate_cloud:courseid'] = 'Course context information associated with stored documents';
 $string['privacy:metadata:weaviate_cloud:metadata'] = 'Document metadata and properties stored in Weaviate database';
-
-// Service externe Adobe PDF Services API
 $string['privacy:metadata:adobe_pdf_api'] = 'Data sent to Adobe PDF Services API for text extraction from PDF documents';
 $string['privacy:metadata:adobe_pdf_api:pdf_content'] = 'PDF file content sent to Adobe PDF Services for text extraction';
 $string['privacy:metadata:adobe_pdf_api:filename'] = 'Original filename of the PDF document sent for processing';
 $string['privacy:metadata:adobe_pdf_api:extracted_text'] = 'Text content extracted from PDF documents by Adobe PDF Services';
-
-// General strings (ajoutez ces chaînes si elles n'existent pas déjà)
 $string['pluginname'] = 'TÉLUQ Chatbot';
 $string['conversations'] = 'Conversations';
 $string['prompts'] = 'Custom Prompts';

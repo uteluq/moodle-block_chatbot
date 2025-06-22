@@ -5,60 +5,30 @@
 $string['pluginname'] = 'uteluqchatbot';
 $string['uteluqchatbot:addinstance'] = 'Ongeza kichaguzi kipya cha chatbot';
 $string['uteluqchatbot:myaddinstance'] = 'Ongeza kichaguzi kipya cha chatbot kwenye Ukurasa wa Mwanzo';
-
 $string['weaviate_cohere_not_configured'] = 'Funguo ya API ya Cohere haijasanidiwa au si sahihi. Tafadhali angalia mipangilio.';
-
-
-// Open AI
-
-// Adobe PDF Services
 $string['adobe_pdf_client_id'] = 'Nambari ya Mteja wa Adobe PDF Services';
 $string['adobe_pdf_client_id_desc'] = 'Ingiza nambari yako ya mteja wa Adobe PDF Services hapa.';
-
 $string['adobe_pdf_client_secret'] = 'Siri ya Mteja wa Adobe PDF Services';
 $string['adobe_pdf_client_secret_desc'] = 'Ingiza siri yako ya mteja wa Adobe PDF Services hapa.';
-
-// Weaviate
 $string['weaviate_api_url'] = 'URL ya API ya Weaviate';
 $string['weaviate_api_url_desc'] = 'Ingiza URL ya API ya Weaviate hapa.';
-
 $string['weaviate_api_key'] = 'Ufunguo wa API wa Weaviate';
 $string['weaviate_api_key_desc'] = 'Ingiza ufunguo wako wa API wa Weaviate hapa.';
-
-// Cohere Embedding Model
 $string['cohere_embedding_api_key'] = 'Ufunguo wa API wa Modeli ya Ualika wa Cohere';
 $string['cohere_embedding_api_key_desc'] = 'Ingiza ufunguo wako wa API wa Modeli ya Ualika wa Cohere hapa.';
-
-
-// Test button strings
 $string['test_api_keys'] = 'Jaribu Ufunguo wa API';
 $string['test_api_keys_desc'] = 'Bonyeza ili kujaribu ufunguo wa API ulioagizwa';
 $string['test_api_keys_label'] = 'Jaribu Ufunguo';
-
 $string['uteluqchatbot:manage'] = 'Bainisha mipangilio ya chatbot';
-
-// For ../.../weaviate_db.php
-
-
-
-// For test_api_keys.php
 $string['adobe_invalid_credentials'] = 'Nambari ya mteja au siri ya mteja ya Adobe PDF Services si sahihi.';
 $string['adobe_valid_credentials'] = 'Nambari ya mteja na siri ya mteja ya Adobe PDF Services ni sahihi na inaendelea.';
 $string['weaviate_connection_error'] = 'Hitilafu ya uhusiano na Weaviate: ';
 $string['weaviate_invalid_key_or_url'] = 'URL au ufunguo wa API wa Weaviate si sahihi au kuna hitilafu. Namba ya hitilafu: ';
 $string['weaviate_valid_key_and_url'] = 'URL na ufunguo wa API wa Weaviate ni sahihi na inaendelea.';
-
-
-// For add_prompt.php
 $string['database_write_error'] = 'Hitilafu ya kuweka kwenye makumbusho: ';
-
-// For ajax.php
 $string['error_saving_conversation'] = 'Hitilafu yakatokea wakati wa kuhifadhi makusanyiko';
 $string['invalid_question_after_sanitize'] = 'Swali batili baada ya usafi.';
 $string['empty_response_from_api'] = 'Jibu tupu limepokelewa kutoka API';
-
-
-// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = 'Kupoteza kuhifadhi ufunguo wa kuweka. Hali ya HTTP: ';
 $string['access_token_obtained_successfully'] = 'Ufunguo wa kuweka ulihifadhiwa kwa mafanikio.';
 $string['failed_to_obtain_access_token_response'] = 'Kupoteza kuhifadhi ufunguo wa kuweka. Jibu: ';
@@ -84,8 +54,6 @@ $string['failed_to_decode_json_response'] = 'Kupoteza kufungua jibu la JSON au s
 $string['failed_to_download_asset'] = 'Kupoteza kupakua kipato. Hali ya HTTP: ';
 $string['asset_downloaded_successfully'] = 'Kipato kimepakuliwa kwa mafanikio.';
 $string['error_decoding_json_file'] = 'Hitilafu yakatokea wakati wa kufungua faili ya JSON.';
-
-// For classes/weaviate_connector.php
 $string['curl_error'] = 'Hitilafu ya cURL: ';
 $string['http_error'] = 'Hitilafu ya HTTP ';
 $string['json_decode_error'] = 'Hitilafu ya kufungua JSON: ';
@@ -100,10 +68,6 @@ $string['failure_after_retries'] = 'Kupoteza baada ya ';
 $string['last_error'] = ' majaribio. Hitilafu ya mwisho: HTTP ';
 $string['invalid_response_format'] = 'Fomati batili ya jibu.';
 $string['http_code'] = 'Msimbo wa HTTP: ';
-
-
-
-// For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
 Muktadha wa hali  
 Mwanafunzi anasoma kozi kuhusu [[ coursename ]]. Jukumu lako ni kumsaidia kwa kumpa majibu sahihi, yanayofaa na yanayolingana na safari yake ya kujifunza.
@@ -143,7 +107,6 @@ Swali jipya kutoka kwa mwanafunzi
 [[ question ]]
 EOT;
 $string['file_size_exceeds_limit'] = 'Ukubwa wa faili unazidi kikomo cha 10MB';
-
 $string['back'] = 'Rudi';
 $string['sending_question'] = 'Kutoa swali...';
 $string['error'] = 'Hitilafu: ';
@@ -159,7 +122,8 @@ $string['text_or_pdf_files'] = 'Faili za Matini au PDF';
 $string['drag_files_here_or_click'] = 'Leta faili zako hapa au bonyeza ili kufungua';
 $string['cancel'] = 'Katiza';
 $string['upload_course'] = 'Pakia Masomo';
-
+$string['conversations'] = 'Mazungumzo';
+$string['prompts'] = 'Vidokezo';
 $string['modify_prompt'] = 'Badilisha';
 $string['add_prompt'] = 'Ongeza';
 $string['consult_guide'] = 'Tafuta mwongozo wa kutoa maelezo ya kutosha:';
@@ -167,25 +131,18 @@ $string['guide_link'] = 'Mwongozo wa kutoa maelezo kwa walimu';
 $string['prompt_content'] = 'Yaliyoandaliwa ya Kutoa';
 $string['write_prompt_here'] = 'Andika kutoa kwako hapa';
 $string['save'] = 'Hifadhi';
-
 $string['chatbot_with_toggle_buttons'] = 'Chatbot na Vituo vya Kubadilisha';
 $string['hello_professor'] = 'Habari Mwalimu, una nafasi ya kujaribu chatbot ili kuthibitisha kwamba inaendelea kwa ufanisi na kwamba kutoa kwako kimeagizwa kwa ufanisi.';
 $string['hello_student'] = 'Habari! Mimi ni msaada wako wa masomo. Ninaweza kukuza katika: - Kuelewa mada ya masomo - Kuthibitisha na kufanya kazi za masomo - Kutoa maelezo ya sehemu ambazo ni chungu - Kutoa njia za kujifunza. Ninaweza kukuza jinsi gani?';
 $string['ask_your_question_here'] = 'Tafuta swali lako hapa...';
 $string['modify_prompt'] = 'Badilisha Kutoa';
 $string['upload_course'] = 'Pakia Masomo';
-
-
-// For classes/pdf_extract_api.php
 $string['error_uploading_asset'] = 'Kosa katika kupakia rasilimali.';
 $string['error_creating_job'] = 'Kosa katika kuunda kazi.';
 $string['job_failed'] = 'Kazi imeshindwa.';
 $string['error_processing_pdf'] = 'Kosa katika kutenda PDF.';
-
-
 $string['json_encode_error'] = 'Kosa la kuweka JSON: ';
 $string['no_files_selected'] = 'Hakuna faili zilizochaguliwa';
-
 $string['course_id'] = 'Kitambulisho cha kozi';
 $string['file_name'] = 'Jina la faili';
 $string['file_content_base64'] = 'Maudhui ya faili (yamekodwa kwa base64)';
@@ -231,3 +188,27 @@ $string['response_type_debug'] = 'Aina ya majibu:';
 $string['upload_error_details_debug'] = 'Maelezo ya hitilafu ya upakiaji:';
 $string['error_object_debug'] = 'Kitu cha hitilafu:';
 $string['raw_server_response_debug'] = 'Majibu ghafi ya seva:';
+$string['privacy:metadata:block_uteluqchatbot_conversations'] = 'Taarifa kuhusu mazungumzo ya watumiaji na chatbot';
+$string['privacy:metadata:block_uteluqchatbot_conversations:userid'] = 'Kitambulisho cha mtumiaji aliyeunda mazungumzo';
+$string['privacy:metadata:block_uteluqchatbot_conversations:question'] = 'Swali lililojibiwa na mtumiaji';
+$string['privacy:metadata:block_uteluqchatbot_conversations:answer'] = 'Jibu lililotolewa na chatbot';
+$string['privacy:metadata:block_uteluqchatbot_conversations:timecreated'] = 'Wakati mazungumzo yalipotengenezwa';
+$string['privacy:metadata:block_uteluqchatbot_conversations:courseid'] = 'Kitambulisho cha kozi ambapo mazungumzo yalifanyika';
+$string['privacy:metadata:block_uteluqchatbot_prompts'] = 'Taarifa kuhusu agizo maalum lililotengenezwa na watumiaji';
+$string['privacy:metadata:block_uteluqchatbot_prompts:prompt'] = 'Maandishi ya agizo maalum yaliyotengenezwa na mtumiaji';
+$string['privacy:metadata:block_uteluqchatbot_prompts:userid'] = 'Kitambulisho cha mtumiaji aliyetengeneza agizo';
+$string['privacy:metadata:block_uteluqchatbot_prompts:courseid'] = 'Kitambulisho cha kozi ambapo agizo lilitengenezwa';
+$string['privacy:metadata:block_uteluqchatbot_prompts:timecreated'] = 'Wakati agizo lilipotengenezwa';
+$string['privacy:metadata:cohere_api'] = 'Data iliyotumwa kwa huduma ya Cohere API kwa ajili ya majibu ya mazungumzo yanayoeneshwa na AI';
+$string['privacy:metadata:cohere_api:question'] = 'Swali la mtumiaji lililotumwa kwa Cohere API kwa ajili ya usindikaji';
+$string['privacy:metadata:cohere_api:courseid'] = 'Taarifa za muktadha wa kozi zilizotumwa kwa Cohere API';
+$string['privacy:metadata:cohere_api:prompt'] = 'Agizo maalum na maagizo ya mfumo yaliyotumwa kwa Cohere API';
+$string['privacy:metadata:weaviate_cloud'] = 'Data iliyotumwa kwa hifadhidata ya vector ya Weaviate Cloud kwa ajili ya uhifadhi wa hati na utafutaji wa mfanano';
+$string['privacy:metadata:weaviate_cloud:document_content'] = 'Yaliyomo ya maandishi yaliyotolewa kutoka hati zilizopakiwa zilizohifadhiwa katika Weaviate';
+$string['privacy:metadata:weaviate_cloud:embeddings'] = 'Uingizaji wa vector uliozalishwa kutoka yaliyomo ya hati zilizohifadhiwa katika Weaviate';
+$string['privacy:metadata:weaviate_cloud:courseid'] = 'Taarifa za muktadha wa kozi zinazohusiana na hati zilizohifadhiwa';
+$string['privacy:metadata:weaviate_cloud:metadata'] = 'Metadata ya hati na mali zilizohifadhiwa katika hifadhidata ya Weaviate';
+$string['privacy:metadata:adobe_pdf_api'] = 'Data iliyotumwa kwa Adobe PDF Services API kwa ajili ya kutoa maandishi kutoka hati za PDF';
+$string['privacy:metadata:adobe_pdf_api:pdf_content'] = 'Yaliyomo ya faili la PDF yaliyotumwa kwa Adobe PDF Services kwa ajili ya kutoa maandishi';
+$string['privacy:metadata:adobe_pdf_api:filename'] = 'Jina la asili la faili la hati ya PDF iliyotumwa kwa ajili ya usindikaji';
+$string['privacy:metadata:adobe_pdf_api:extracted_text'] = 'Yaliyomo ya maandishi yaliyotolewa kutoka hati za PDF na Adobe PDF Services';

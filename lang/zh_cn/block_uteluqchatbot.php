@@ -5,58 +5,29 @@
 $string['pluginname'] = '聊天机器人';
 $string['uteluqchatbot:addinstance'] = '添加新的聊天机器人块';
 $string['uteluqchatbot:myaddinstance'] = '在仪表板中添加新的聊天机器人块';
-
 $string['weaviate_cohere_not_configured'] = 'Cohere API 密钥未配置或无效。请检查设置。';
-
-
-
-
-
 $string['adobe_pdf_client_id'] = 'Adobe PDF服务客户端ID';
 $string['adobe_pdf_client_id_desc'] = '在此处输入您的Adobe PDF服务客户端ID。';
-
 $string['adobe_pdf_client_secret'] = 'Adobe PDF服务客户端密钥';
 $string['adobe_pdf_client_secret_desc'] = '在此处输入您的Adobe PDF服务客户端密钥。';
-
-
 $string['weaviate_api_url'] = 'Weaviate API URL';
 $string['weaviate_api_url_desc'] = '在此处输入Weaviate API的URL。';
-
 $string['weaviate_api_key'] = 'Weaviate API密钥';
 $string['weaviate_api_key_desc'] = '在此处输入您的Weaviate API密钥。';
-
-
 $string['cohere_embedding_api_key'] = 'Cohere嵌入模型API密钥';
 $string['cohere_embedding_api_key_desc'] = '在此处输入您的Cohere嵌入模型API密钥。';
-
-
-
 $string['test_api_keys'] = '测试API密钥';
 $string['test_api_keys_desc'] = '点击测试已配置的API密钥';
 $string['test_api_keys_label'] = '测试密钥';
-
 $string['uteluqchatbot:manage'] = '管理聊天机器人设置';
-
-
-
-
-
 $string['adobe_invalid_credentials'] = 'Adobe PDF服务的客户端ID或客户端密钥无效。';
 $string['adobe_valid_credentials'] = 'Adobe PDF服务的客户端ID和客户端密钥有效且功能正常。';
 $string['weaviate_connection_error'] = '连接Weaviate时出错: ';
 $string['weaviate_invalid_key_or_url'] = 'Weaviate API的URL或密钥无效或发生错误。错误代码: ';
 $string['weaviate_valid_key_and_url'] = 'Weaviate API的URL和密钥有效且功能正常。';
-
-
-
 $string['database_write_error'] = '数据库写入错误: ';
-
-
 $string['error_saving_conversation'] = '保存对话时出错';
 $string['invalid_question_after_sanitize'] = '净化后的问题无效。';
-
-
-
 $string['failed_to_obtain_access_token'] = '获取访问令牌失败。HTTP状态: ';
 $string['access_token_obtained_successfully'] = '成功获取访问令牌。';
 $string['failed_to_obtain_access_token_response'] = '获取访问令牌失败。响应: ';
@@ -82,8 +53,6 @@ $string['failed_to_decode_json_response'] = '解码JSON响应失败或状态字�
 $string['failed_to_download_asset'] = '下载资产失败。HTTP状态: ';
 $string['asset_downloaded_successfully'] = '资产下载成功。';
 $string['error_decoding_json_file'] = '解码JSON文件时出错。';
-
-
 $string['curl_error'] = 'cURL错误: ';
 $string['http_error'] = 'HTTP错误 ';
 $string['json_decode_error'] = 'JSON解码错误: ';
@@ -98,10 +67,6 @@ $string['failure_after_retries'] = '重试后失败 ';
 $string['last_error'] = ' 次。最后一次错误: HTTP ';
 $string['invalid_response_format'] = '无效的响应格式。';
 $string['http_code'] = 'HTTP代码：';
-
-
-
-
 $string['default_prompt'] = <<<EOT
 情境背景  
 学习者正在学习 [[ coursename ]] 课程。你的角色是通过提供准确、相关且适应其学习需求的回答来支持他。
@@ -156,7 +121,8 @@ $string['text_or_pdf_files'] = '文本或PDF文件';
 $string['drag_files_here_or_click'] = '将文件拖到此处或点击浏览';
 $string['cancel'] = '取消';
 $string['upload_course'] = '上传课程';
-
+$string['conversations'] = '对话';
+$string['prompts'] = '提示';
 $string['modify_prompt'] = '修改';
 $string['add_prompt'] = '添加';
 $string['consult_guide'] = '咨询指南以设计有效的提示:';
@@ -164,27 +130,19 @@ $string['guide_link'] = '为教师设计提示的指南';
 $string['prompt_content'] = '提示内容';
 $string['write_prompt_here'] = '在此处编写您的提示';
 $string['save'] = '保存';
-
 $string['chatbot_with_toggle_buttons'] = '带有切换按钮的聊天机器人';
 $string['hello_professor'] = '你好，教授。您可以测试聊天机器人，以确保它正常工作，并且您的提示已优化配置。';
 $string['hello_student'] = '你好！我是您的学习助理。我可以帮助您: - 理解课程概念 - 复习和练习 - 澄清难点 - 建议学习方法。我能如何帮助您?';
 $string['ask_your_question_here'] = '在此处提问...';
 $string['modify_prompt'] = '修改提示';
 $string['upload_course'] = '上传课程';
-
-
-
 $string['error_uploading_asset'] = '上传资产时出错。';
 $string['error_creating_job'] = '创建作业时出错。';
 $string['job_failed'] = '作业失败。';
 $string['error_processing_pdf'] = '处理PDF时出错。';
-
-
-
 $string['json_encode_error'] = 'JSON编码错误：';
 $string['no_files_selected'] = '未选择文件';
 $string['empty_response_from_api'] = '从API收到空回复';
-
 $string['course_id'] = '课程ID';
 $string['file_name'] = '文件名';
 $string['file_content_base64'] = '文件内容（base64编码）';
@@ -230,3 +188,27 @@ $string['response_type_debug'] = '响应类型：';
 $string['upload_error_details_debug'] = '上传错误详情：';
 $string['error_object_debug'] = '错误对象：';
 $string['raw_server_response_debug'] = '原始服务器响应：';
+$string['privacy:metadata:block_uteluqchatbot_conversations'] = '关于用户与聊天机器人对话的信息';
+$string['privacy:metadata:block_uteluqchatbot_conversations:userid'] = '创建对话的用户ID';
+$string['privacy:metadata:block_uteluqchatbot_conversations:question'] = '用户提出的问题';
+$string['privacy:metadata:block_uteluqchatbot_conversations:answer'] = '聊天机器人提供的答案';
+$string['privacy:metadata:block_uteluqchatbot_conversations:timecreated'] = '对话创建的时间';
+$string['privacy:metadata:block_uteluqchatbot_conversations:courseid'] = '对话发生的课程ID';
+$string['privacy:metadata:block_uteluqchatbot_prompts'] = '关于用户创建的自定义提示的信息';
+$string['privacy:metadata:block_uteluqchatbot_prompts:prompt'] = '用户创建的自定义提示文本';
+$string['privacy:metadata:block_uteluqchatbot_prompts:userid'] = '创建提示的用户ID';
+$string['privacy:metadata:block_uteluqchatbot_prompts:courseid'] = '创建提示的课程ID';
+$string['privacy:metadata:block_uteluqchatbot_prompts:timecreated'] = '提示创建的时间';
+$string['privacy:metadata:cohere_api'] = '发送到Cohere API服务用于AI驱动聊天响应的数据';
+$string['privacy:metadata:cohere_api:question'] = '发送到Cohere API进行处理的用户问题';
+$string['privacy:metadata:cohere_api:courseid'] = '发送到Cohere API的课程上下文信息';
+$string['privacy:metadata:cohere_api:prompt'] = '发送到Cohere API的自定义提示和系统指令';
+$string['privacy:metadata:weaviate_cloud'] = '发送到Weaviate Cloud向量数据库用于文档存储和相似性搜索的数据';
+$string['privacy:metadata:weaviate_cloud:document_content'] = '从存储在Weaviate中的上传文档中提取的文本内容';
+$string['privacy:metadata:weaviate_cloud:embeddings'] = '从存储在Weaviate中的文档内容生成的向量嵌入';
+$string['privacy:metadata:weaviate_cloud:courseid'] = '与存储文档相关联的课程上下文信息';
+$string['privacy:metadata:weaviate_cloud:metadata'] = '存储在Weaviate数据库中的文档元数据和属性';
+$string['privacy:metadata:adobe_pdf_api'] = '发送到Adobe PDF Services API用于从PDF文档提取文本的数据';
+$string['privacy:metadata:adobe_pdf_api:pdf_content'] = '发送到Adobe PDF Services进行文本提取的PDF文件内容';
+$string['privacy:metadata:adobe_pdf_api:filename'] = '发送进行处理的PDF文档的原始文件名';
+$string['privacy:metadata:adobe_pdf_api:extracted_text'] = '由Adobe PDF Services从PDF文档中提取的文本内容';

@@ -73,7 +73,7 @@ class provider implements
             'privacy:metadata:block_uteluqchatbot_prompts'
         );
 
-        // Service externe Cohere API
+        // External service Cohere API
         $items->add_external_location_link(
             'cohere_api',
             [
@@ -84,7 +84,7 @@ class provider implements
             'privacy:metadata:cohere_api'
         );
 
-        // Service externe Weaviate Cloud (base de données vectorielle)
+        // External service Weaviate Cloud (vector database)
         $items->add_external_location_link(
             'weaviate_cloud',
             [
@@ -96,7 +96,7 @@ class provider implements
             'privacy:metadata:weaviate_cloud'
         );
 
-        // Service externe Adobe PDF Services API
+        // External service Adobe PDF Services API
         $items->add_external_location_link(
             'adobe_pdf_api',
             [

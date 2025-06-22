@@ -5,62 +5,30 @@
 $string['pluginname'] = 'uteluqchatbot';
 $string['uteluqchatbot:addinstance'] = 'Tilføj en ny chatbot-blok';
 $string['uteluqchatbot:myaddinstance'] = 'Tilføj en ny chatbot-blok til dashboardet';
-
 $string['weaviate_cohere_not_configured'] = 'Cohere API-nøglen er enten ikke konfigureret eller ugyldig. Kontroller venligst indstillingerne.';
-
-
-// Open AI
-
-// Adobe PDF Services
 $string['adobe_pdf_client_id'] = 'Adobe PDF Services klient-ID';
 $string['adobe_pdf_client_id_desc'] = 'Indtast dit Adobe PDF Services klient-ID her.';
-
 $string['adobe_pdf_client_secret'] = 'Adobe PDF Services klient-hemmelighed';
 $string['adobe_pdf_client_secret_desc'] = 'Indtast din Adobe PDF Services klient-hemmelighed her.';
-
-// Weaviate
 $string['weaviate_api_url'] = 'Weaviate API URL';
 $string['weaviate_api_url_desc'] = 'Indtast URL\'en for Weaviate API her.';
-
 $string['weaviate_api_key'] = 'Weaviate API-nøgle';
 $string['weaviate_api_key_desc'] = 'Indtast din Weaviate API-nøgle her.';
-
-// Cohere Embedding Model
 $string['cohere_embedding_api_key'] = 'Cohere Embedding Model API-nøgle';
 $string['cohere_embedding_api_key_desc'] = 'Indtast din API-nøgle for Cohere Embedding Model her.';
-
-
-// Test button strings
 $string['test_api_keys'] = 'Test API-nøgler';
 $string['test_api_keys_desc'] = 'Klik for at teste de konfigurerede API-nøgler';
 $string['test_api_keys_label'] = 'Test nøgler';
-
 $string['uteluqchatbot:manage'] = 'Administrer chatbot-indstillinger';
-
-// For ../.../weaviate_db.php
-
-
-// For test_api_keys.php
 $string['adobe_invalid_credentials'] = 'Klient-ID eller klient-hemmelighed for Adobe PDF Services er ugyldig.';
 $string['adobe_valid_credentials'] = 'Klient-ID og klient-hemmelighed for Adobe PDF Services er gyldige og funktionelle.';
 $string['weaviate_connection_error'] = 'Forbindelsesfejl til Weaviate: ';
 $string['weaviate_invalid_key_or_url'] = 'Weaviate API URL eller nøgle er ugyldig eller en fejl opstod. Fejlkode: ';
 $string['weaviate_valid_key_and_url'] = 'Weaviate API URL og nøgle er gyldige og funktionelle.';
-
-
-// For add_prompt.php
 $string['database_write_error'] = 'Database skrivefejl: ';
-
-// For ajax.php
-
-
 $string['invalid_question_after_sanitize'] = 'Ugyldigt spørgsmål efter rensning.';
-
 $string['error_saving_conversation'] = 'Fejl ved gemning af samtale';
-
 $string['empty_response_from_api'] = 'Tomt svar modtaget fra API';
-
-// For classes/pdf_extract_api.php
 $string['failed_to_obtain_access_token'] = 'Mislykkedes at få adgangstoken. HTTP-status: ';
 $string['access_token_obtained_successfully'] = 'Adgangstoken opnået succesfuldt.';
 $string['failed_to_obtain_access_token_response'] = 'Mislykkedes at få adgangstoken. Svar: ';
@@ -86,8 +54,6 @@ $string['failed_to_decode_json_response'] = 'Mislykkedes at dekode JSON-svar ell
 $string['failed_to_download_asset'] = 'Mislykkedes at downloade aktiv. HTTP-status: ';
 $string['asset_downloaded_successfully'] = 'Aktiv downloadet succesfuldt.';
 $string['error_decoding_json_file'] = 'Fejl ved dekodering af JSON-fil.';
-
-// For classes/weaviate_connector.php
 $string['curl_error'] = 'cURL-fejl: ';
 $string['http_error'] = 'HTTP-fejl ';
 $string['json_decode_error'] = 'JSON-dekodering fejl: ';
@@ -102,9 +68,6 @@ $string['failure_after_retries'] = 'Fejl efter ';
 $string['last_error'] = ' forsøg. Sidste fejl: HTTP ';
 $string['invalid_response_format'] = 'Ugyldigt responsformat.';
 $string['http_code'] = 'HTTP-kode: ';
-
-
-// For block_uteluqchatbot.php
 $string['default_prompt'] = <<<EOT
 Situationskontekst
 Læreren følger et kursus om [[ coursename ]]. Din rolle er at støtte dem ved at give præcise, relevante og lærerettede svar.
@@ -155,7 +118,6 @@ $string['text_or_pdf_files'] = 'Tekst- eller PDF-filer';
 $string['drag_files_here_or_click'] = 'Træk dine filer hertil eller klik for at gennemse';
 $string['cancel'] = 'Annuller';
 $string['upload_course'] = 'Upload kursus';
-
 $string['modify_prompt'] = 'Rediger';
 $string['add_prompt'] = 'Tilføj';
 $string['consult_guide'] = 'Konsulter guidet for at designe effektive prompts:';
@@ -163,24 +125,17 @@ $string['guide_link'] = 'Guide til design af prompts for lærere';
 $string['prompt_content'] = 'Prompt-indhold';
 $string['write_prompt_here'] = 'Skriv din prompt her';
 $string['save'] = 'Gem';
-
 $string['chatbot_with_toggle_buttons'] = 'Chatbot med skifteknapper';
 $string['hello_professor'] = 'Hej professor, du har mulighed for at teste chatbotten for at sikre, at den fungerer korrekt og at din prompt er optimalt konfigureret.';
 $string['hello_student'] = 'Hej! Jeg er din læringsassistent. Jeg kan hjælpe dig med: - Forståelse af kursuskoncepter - Gennemgang og øvelser - Klarification af svære punkter - Forslag til studie metoder. Hvordan kan jeg hjælpe dig?';
 $string['ask_your_question_here'] = 'Stil dit spørgsmål her...';
 $string['modify_prompt'] = 'Rediger prompt';
 $string['upload_course'] = 'Upload kursus';
-
-// For classes/pdf_extract_api.php
 $string['error_uploading_asset'] = 'Fejl ved upload af asset.';
 $string['error_creating_job'] = 'Fejl ved oprettelse af job.';
 $string['job_failed'] = 'Jobbet mislykkedes.';
 $string['error_processing_pdf'] = 'Fejl ved behandling af PDF.';
-
-
-
 $string['json_encode_error'] = 'JSON-kodefejl: ';
-
 $string['no_files_selected'] = 'Ingen filer valgt';
 $string['course_id'] = 'Kursus-ID';
 $string['file_name'] = 'Filnavn';
@@ -227,3 +182,29 @@ $string['response_type_debug'] = 'Responstype:';
 $string['upload_error_details_debug'] = 'Upload fejl detaljer:';
 $string['error_object_debug'] = 'Fejlobjekt:';
 $string['raw_server_response_debug'] = 'Rå server respons:';
+$string['conversations'] = 'Samtaler';
+$string['prompts'] = 'Oplæg';
+$string['privacy:metadata:block_uteluqchatbot_conversations'] = 'Information om brugersamtaler med chatbotten';
+$string['privacy:metadata:block_uteluqchatbot_conversations:userid'] = 'ID\'et for brugeren, der oprettede samtalen';
+$string['privacy:metadata:block_uteluqchatbot_conversations:question'] = 'Spørgsmålet stillet af brugeren';
+$string['privacy:metadata:block_uteluqchatbot_conversations:answer'] = 'Svaret givet af chatbotten';
+$string['privacy:metadata:block_uteluqchatbot_conversations:timecreated'] = 'Tidspunktet hvor samtalen blev oprettet';
+$string['privacy:metadata:block_uteluqchatbot_conversations:courseid'] = 'ID\'et for kurset hvor samtalen fandt sted';
+$string['privacy:metadata:block_uteluqchatbot_prompts'] = 'Information om brugerdefinerede prompts oprettet af brugere';
+$string['privacy:metadata:block_uteluqchatbot_prompts:prompt'] = 'Den brugerdefinerede prompt-tekst oprettet af brugeren';
+$string['privacy:metadata:block_uteluqchatbot_prompts:userid'] = 'ID\'et for brugeren, der oprettede prompten';
+$string['privacy:metadata:block_uteluqchatbot_prompts:courseid'] = 'ID\'et for kurset hvor prompten blev oprettet';
+$string['privacy:metadata:block_uteluqchatbot_prompts:timecreated'] = 'Tidspunktet hvor prompten blev oprettet';
+$string['privacy:metadata:cohere_api'] = 'Data sendt til Cohere API-tjenesten for AI-drevne chat-svar';
+$string['privacy:metadata:cohere_api:question'] = 'Brugerspørgsmålet sendt til Cohere API til behandling';
+$string['privacy:metadata:cohere_api:courseid'] = 'Kursuskontekstinformationen sendt til Cohere API';
+$string['privacy:metadata:cohere_api:prompt'] = 'Brugerdefinerede prompts og systeminstruktioner sendt til Cohere API';
+$string['privacy:metadata:weaviate_cloud'] = 'Data sendt til Weaviate Cloud vektordatabase til dokumentlagring og lignende søgning';
+$string['privacy:metadata:weaviate_cloud:document_content'] = 'Tekstindhold ekstraheret fra uploadede dokumenter gemt i Weaviate';
+$string['privacy:metadata:weaviate_cloud:embeddings'] = 'Vektorindlejringer genereret fra dokumentindhold gemt i Weaviate';
+$string['privacy:metadata:weaviate_cloud:courseid'] = 'Kursuskontekstinformation tilknyttet gemte dokumenter';
+$string['privacy:metadata:weaviate_cloud:metadata'] = 'Dokumentmetadata og egenskaber gemt i Weaviate-databasen';
+$string['privacy:metadata:adobe_pdf_api'] = 'Data sendt til Adobe PDF Services API til tekstekstraktion fra PDF-dokumenter';
+$string['privacy:metadata:adobe_pdf_api:pdf_content'] = 'PDF-filindhold sendt til Adobe PDF Services til tekstekstraktion';
+$string['privacy:metadata:adobe_pdf_api:filename'] = 'Oprindeligt filnavn for PDF-dokumentet sendt til behandling';
+$string['privacy:metadata:adobe_pdf_api:extracted_text'] = 'Tekstindhold ekstraheret fra PDF-dokumenter af Adobe PDF Services';

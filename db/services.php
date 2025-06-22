@@ -37,7 +37,6 @@ $functions = [
         'capabilities' => '',
         'loginrequired' => true,
     ],
-    // Nouvelle fonction pour l'upload de fichiers multiples
     'block_uteluqchatbot_upload_files' => [
         'classname'   => 'block_uteluqchatbot\external\upload_files',
         'methodname'  => 'execute',

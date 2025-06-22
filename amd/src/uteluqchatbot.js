@@ -345,7 +345,7 @@ define(['jquery', 'core/str', 'core/ajax', 'core/notification'], function($, str
                                 
                             });
                             
-                            // Si l'erreur contient une réponse brute, l'afficher
+                            // If the error contains a raw response, display it.
                             if (error && error.responseText) {
                                 str.get_string('raw_server_response_debug', 'block_uteluqchatbot').then(function(debugStr) {
                                     
@@ -361,7 +361,7 @@ define(['jquery', 'core/str', 'core/ajax', 'core/notification'], function($, str
                                 return;
                             }
                             
-                            // Gestion sécurisée des erreurs
+                            // Secure error handling
                             str.get_string('unknown_error_occurred', 'block_uteluqchatbot').then(function(unknownErrorStr) {
                                 let errorMessage = unknownErrorStr;
                                 if (error) {
