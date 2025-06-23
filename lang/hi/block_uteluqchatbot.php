@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 Université TÉLUQ and the Université Gaston-Berger
  */
 $string['pluginname'] = 'यूटेलूकचैटबॉट';
 $string['uteluqchatbot:addinstance'] = 'नया चैटबॉट ब्लॉक जोड़ें';

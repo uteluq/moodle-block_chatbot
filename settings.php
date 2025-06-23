@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 Université TÉLUQ and the Université Gaston-Berger
  */
 
 require_once($CFG->dirroot . '/blocks/uteluqchatbot/classes/admin_setting_test_button.php');

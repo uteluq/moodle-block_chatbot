@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 Université TÉLUQ and the Université Gaston-Berger
  */
 
 defined('MOODLE_INTERNAL') || die();

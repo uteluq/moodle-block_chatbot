@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 Université TÉLUQ and the Université Gaston-Berger
  */
 $string['pluginname'] = '聊天机器人';
 $string['uteluqchatbot:addinstance'] = '添加新的聊天机器人块';

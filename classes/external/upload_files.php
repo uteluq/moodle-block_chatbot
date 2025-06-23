@@ -1,7 +1,7 @@
 <?php
 /**
  * External API for file upload and indexing
- * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 Université TÉLUQ and the Université Gaston-Berger
  */
 
 namespace block_uteluqchatbot\external;

@@ -1,7 +1,7 @@
 <?php
 /**
  * External service for sending questions to chatbot
- * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 Université TÉLUQ and the Université Gaston-Berger
  */
 
 namespace block_uteluqchatbot\external;
