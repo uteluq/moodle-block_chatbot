@@ -1,7 +1,7 @@
 <?php
 /**
  * External service for saving prompts
- * @copyright 2025 Université TÉLUQ and the Université Gaston-Berger
+ * @copyright 2025 Université TÉLUQ and the UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  */
 
 namespace block_uteluqchatbot\external;

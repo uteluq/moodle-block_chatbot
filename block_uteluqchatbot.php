@@ -4,7 +4,7 @@
  * Chatbot block class for Moodle.
  *
  * @package    block_uteluqchatbot
- * @copyright  2025 Université TÉLUQ and the Université Gaston-Berger
+ * @copyright  2025 Université TÉLUQ and the UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

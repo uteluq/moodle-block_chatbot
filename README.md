@@ -168,4 +168,4 @@ For issues, feature requests, or questions:
 
 ## Acknowledgments
 
-Developed under the *PROJET R&I 2024 Composante 2* by the Université TÉLUQ and the Université Gaston-Berger. Special thanks to the Agence Universitaire de la Francophonie (AUF) for supporting this initiative.
+Developed under the *PROJET R&I 2024 Composante 2* by the Université TÉLUQ and the UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS. Special thanks to the Agence Universitaire de la Francophonie (AUF) for supporting this initiative.

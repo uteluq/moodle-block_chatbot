@@ -1,5 +1,5 @@
 /**
- * @copyright 2025 Université TÉLUQ and the Université Gaston-Berger
+ * @copyright 2025 Université TÉLUQ and the UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  */
 
 define(['jquery', 'core/str', 'core/ajax', 'core/notification'], function($, str, ajax, notification) {
