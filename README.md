@@ -48,7 +48,7 @@ The plugin currently supports the following languages:
 
 ### Download the Plugin:
 - Clone the repository: `git clone https://github.com//moodle-block_uteluqchatbot.git uteluqchatbot`
-- Or download the ZIP file from the [Moodle Plugins Directory](https://github.com/uteluq/moodle-block_uteluqchatbot/blob/main/README.md#) (once published).
+- Or download the ZIP file from the [Moodle Plugins Directory](https://moodle.org/plugins/block_uteluqchatbot) (once published).
 
 ### Install in Moodle:
 - Copy the `uteluqchatbot` folder to the `/blocks/` directory of your Moodle installation.
@@ -98,16 +98,10 @@ The plugin currently supports the following languages:
 
 ## Testing and Validation
 
-The plugin has been rigorously tested in both academic and AWS cloud environments to ensure robustness and scalability (see project report, Section 2). Key findings include:
+The plugin has been rigorously tested in both academic and AWS cloud environments to ensure robustness and scalability. Key findings include:
 
 - **RAG Mode**: Outperforms non-RAG mode in precision, relevance, completeness, and pedagogical utility, with clear, context-aware responses and no noticeable latency.
 - **Non-RAG Mode**: Offers satisfactory clarity and speed but may provide less accurate or overly general responses for course-specific queries.
-
-A detailed testing protocol will be published, with evaluation criteria including:
-
-- Precision, relevance, clarity, and completeness of responses.
-- Response time, dialogue coherence, and pedagogical utility.
-- Comparative testing with and without RAG, using provided course PDFs.
 
 ## Requirements
 
