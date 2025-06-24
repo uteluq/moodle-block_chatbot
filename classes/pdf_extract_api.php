@@ -4,7 +4,7 @@
  *
  * @package    block_uteluqchatbot
  * @subpackage pdfextractapi
- * @copyright  2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
+ * @copyright  2025 Université TÉLUQ and the UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

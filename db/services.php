@@ -1,7 +1,7 @@
 <?php
 /**
  * External services for uteluqchatbot block
- * @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
+ * @copyright 2025 Université TÉLUQ and the UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
  */
 
 defined('MOODLE_INTERNAL') || die();

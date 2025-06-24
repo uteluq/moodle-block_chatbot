@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <XMLDB PATH="blocks/uteluqchatbot/db" VERSION="20250129" COMMENT="XMLDB file for chatbot block">
     <!--
-      @copyright 2025 UNIVERSITÉ TÉLUQ & UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
+      @copyright 2025 Université TÉLUQ and the UNIVERSITÉ GASTON BERGER DE SAINT-LOUIS
     -->
     <TABLES>
         <TABLE NAME="block_uteluqchatbot_conversations" COMMENT="Stores chat conversations">
