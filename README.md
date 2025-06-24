@@ -1,5 +1,5 @@
 # Moodle Block uteluqchatbot
-[![Moodle Plugin CI](https://github.com/uteluq/moodle-block_uteluqchatbot/actions/workflows/ci.yml/badge.svg)](https://github.com/uteluq/moodle-block_uteluqchatbot/actions/workflows/ci.yml)
+[![Moodle Plugin CI](https://github.com/uteluq/moodle-block_uteluqchatbot/actions/workflows/ci.yml/badge.svg)](https://github.com/uteluq/moodle-block_uteluqchatbot/actions/workflows/ci.yml) [![Code Quality Tools](https://github.com/uteluq/moodle-block_uteluqchatbot/actions/workflows/tools.yml/badge.svg)](https://github.com/uteluq/moodle-block_uteluqchatbot/actions/workflows/tools.yml) [![Grunt Minified Files Check](https://github.com/uteluq/moodle-block_uteluqchatbot/actions/workflows/grunt_check.yml/badge.svg)](https://github.com/uteluq/moodle-block_uteluqchatbot/actions/workflows/grunt_check.yml)
 
 The uteluqchatbot plugin is a Moodle block plugin designed to enhance distance learning by providing an adaptive and innovative chatbot solution. Integrated into the Moodle platform, it supports three distinct user roles—Learner, Teacher, and Administrative Manager—to facilitate course interactions, content management, and plugin configuration. This plugin leverages Retrieval-Augmented Generation (RAG) to deliver precise, context-aware responses based on course materials, improving the learning experience for users.
 
@@ -156,7 +156,7 @@ Please adhere to Moodle’s [Coding Style](https://moodledev.io/general/developm
 
 ## License
 
-This plugin is licensed under the GNU General Public License v3.0 or later (GPLv3+). See the [LICENSE](https://github.com/uteluq/moodle-block_uteluqchatbot/blob/main/LICENSE) file for details.
+This plugin is licensed under the GNU General Public License v3.0 or later (GPLv3+). See the [LICENSE](LICENSE) file for details.
 
 ## Support
 
