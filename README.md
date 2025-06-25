@@ -47,8 +47,9 @@ The plugin currently supports the following languages:
 ## Installation
 
 ### Download the Plugin:
-- Clone the repository: `git clone https://github.com//moodle-block_uteluqchatbot.git uteluqchatbot`
-- Or download the ZIP file from the [Moodle Plugins Directory](https://moodle.org/plugins/block_uteluqchatbot).
+- Clone the repository: `git clone https://github.com/uteluq/moodle-block_uteluqchatbot.git`
+- Download the zip file from a release on GitHub: e.g, `https://github.com/uteluq/moodle-block_uteluqchatbot/archive/refs/tags/v0.5.6.zip`. 
+- Or download the zip file from the [Moodle Plugins Directory](https://moodle.org/plugins/block_uteluqchatbot).
 
 ### Install in Moodle:
 - Copy the `uteluqchatbot` folder to the `/blocks/` directory of your Moodle installation.
