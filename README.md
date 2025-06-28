@@ -146,8 +146,8 @@ Contributions are welcome! To contribute:
 3. Commit changes: `git commit -m "Add your feature"`.
 4. Push to the branch: `git push origin feature/your-feature`.
 5. Open a pull request.
-
-Please adhere to Moodle’s [Coding Style](https://moodledev.io/general/development/policies/codingstyle) and submit issues via the [GitHub Issues page](https://github.com//moodle-block_uteluqchatbot/issues).
+   
+Please adhere to Moodle’s [Coding Style](https://moodledev.io/general/development/policies/codingstyle) and submit issues via the [GitHub Issues page](https://github.com/uteluq/moodle-block_uteluqchatbot/issues).
 
 ## License
 
@@ -157,7 +157,7 @@ This plugin is licensed under the GNU General Public License v3.0 or later (GPLv
 
 For issues, feature requests, or questions:
 
-- File an issue on the [GitHub Issues page](https://github.com//moodle-block_uteluqchatbot/issues).
+- File an issue on the [GitHub Issues page](https://github.com/uteluq/moodle-block_uteluqchatbot/issues).
 - Refer to the [Moodle Tracker](https://tracker.moodle.org/) for broader Moodle-related support.
 - Consult the [Moodle Documentation](https://docs.moodle.org/) or the plugin’s [Prompt Design Guide](https://github.com/uteluq/moodle-block_uteluqchatbot/blob/main/README.md) for specific guidance.
 
