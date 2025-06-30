@@ -79,6 +79,9 @@ class send_question extends external_api
 
             // Get configuration
             $weaviate_api_url = get_config('block_uteluqchatbot', 'weaviate_api_url');
+            if (strpos($weaviate_api_url, 'https://') !== 0) {
+                $weaviate_api_url = 'https://' . $weaviate_api_url;
+            }
             $weaviate_api_key = get_config('block_uteluqchatbot', 'weaviate_api_key');
             $cohere_api_key = get_config('block_uteluqchatbot', 'cohere_embedding_api_key');
 
