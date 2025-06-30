@@ -33,7 +33,7 @@ The plugin currently supports the following languages:
 
 ### Teacher Role
 - **Course Upload**: Teachers can upload multiple PDF course resources simultaneously, which the chatbot uses to generate informed responses.
-- **Prompt Customization**: Teachers can modify the default prompt to tailor the chatbot’s behavior, supported by a provided [Prompt Design Guide](#).
+- **Prompt Customization**: Teachers can modify the default prompt to tailor the chatbot’s behavior.
 - **Testing Functionality**: Teachers can test the chatbot by posing questions to verify its performance with uploaded resources.
 
 ### Administrative Manager Role
@@ -79,7 +79,7 @@ The plugin currently supports the following languages:
 
 ### For Teachers
 - From the chatbot interface, click **Upload Course** to add PDF resources.
-- Click **Modify Prompt** to customize the chatbot’s response behavior, referring to the [Prompt Design Guide](#).
+- Click **Modify Prompt** to customize the chatbot’s response behavior.
 - Test the chatbot by asking questions to ensure it aligns with course content.
 
 ![For Teachers](images/For_Teachers_1.png)
@@ -151,7 +151,7 @@ Please adhere to Moodle’s [Coding Style](https://moodledev.io/general/developm
 
 ## License
 
-This plugin is licensed under the GNU General Public License v3.0 or later (GPLv3+). See the [LICENSE](LICENSE) file for details.
+This plugin is licensed under the GNU General Public License v3.0 or later (GPLv3+). See the [LICENSE](https://raw.githubusercontent.com/uteluq/moodle-block_uteluqchatbot/main/LICENSE) file for details.
 
 ## Support
 
@@ -159,7 +159,7 @@ For issues, feature requests, or questions:
 
 - File an issue on the [GitHub Issues page](https://github.com/uteluq/moodle-block_uteluqchatbot/issues).
 - Refer to the [Moodle Tracker](https://tracker.moodle.org/) for broader Moodle-related support.
-- Consult the [Moodle Documentation](https://docs.moodle.org/) or the plugin’s [Prompt Design Guide](https://github.com/uteluq/moodle-block_uteluqchatbot/blob/main/README.md) for specific guidance.
+- Consult the [Moodle Documentation](https://docs.moodle.org/) or the plugin’s documentation for specific guidance.
 
 ## Acknowledgments
 
