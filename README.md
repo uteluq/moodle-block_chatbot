@@ -72,7 +72,7 @@ The plugin currently supports the following languages:
 
 ### For Learners
 - Access the chatbot block on a course page.
-- Pose questions related to course content in the provided text box.
+- Ask questions about course content using the provided text box.
 
 ![For Learners](images/For_Learners.png)
 
@@ -132,10 +132,10 @@ The Chatbot Moodle block plugin integrates several web services to support its f
   - **Configuration**: Requires a client ID and client secret entered in the plugin’s admin settings.
 
 - **Weaviate** ([Server Installation](https://weaviate.io/developers/weaviate/installation) | [Weaviate Cloud](https://weaviate.io/developers/wcs)):
-  - **Purpose**: Acts as the vector database to store content embeddings, supporting the retrieval component of RAG for contextual responses.
-  - **Configuration**: Requires API key(s) entered in the plugin’s admin settings (note: multiple entries in the report may indicate an OCR error or distinct keys).
+  - **Purpose**: Serves as the vector database for storing content embeddings, supporting the retrieval component of RAG for contextual responses.
+  - **Configuration**: Requires one or more API keys to be entered in the plugin’s admin settings. (Note: Multiple entries in the report may indicate an OCR error or distinct keys.)
 
-Configuration is managed through **Site Administration > Plugins > Blocks > Chatbot** in Moodle.
+Configuration is managed via **Site Administration > Plugins > Blocks > Chatbot** in Moodle.
 
 ## Contributing
 
