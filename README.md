@@ -1,6 +1,8 @@
 # Moodle Block uteluqchatbot
 [![Moodle Plugin CI](https://github.com/uteluq/moodle-block_uteluqchatbot/actions/workflows/ci.yml/badge.svg)](https://github.com/uteluq/moodle-block_uteluqchatbot/actions/workflows/ci.yml) [![Code Quality Tools](https://github.com/uteluq/moodle-block_uteluqchatbot/actions/workflows/tools.yml/badge.svg)](https://github.com/uteluq/moodle-block_uteluqchatbot/actions/workflows/tools.yml) [![Grunt Minified Files Check](https://github.com/uteluq/moodle-block_uteluqchatbot/actions/workflows/grunt_check.yml/badge.svg)](https://github.com/uteluq/moodle-block_uteluqchatbot/actions/workflows/grunt_check.yml)
 
+![](https://upload.wikimedia.org/wikipedia/fr/b/bc/Logo_AUF.png)
+
 The uteluqchatbot plugin is a Moodle block plugin designed to enhance distance learning by providing an adaptive and innovative chatbot solution. Integrated into the Moodle platform, it supports three distinct user roles—Learner, Teacher, and Administrative Manager—to facilitate course interactions, content management, and plugin configuration. This plugin leverages Retrieval-Augmented Generation (RAG) to deliver precise, context-aware responses based on course materials, improving the learning experience for users.
 
 ## Maturity
